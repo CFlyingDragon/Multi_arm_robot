@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/devel
+
+Name: free_gait_msgs
+Description: Description of free_gait_msgs
+Version: 0.3.0
+Cflags: -I/home/d/catkin_ws/devel/include
+Libs: -L/home/d/catkin_ws/devel/lib 
+Requires: message_runtime std_msgs actionlib actionlib_msgs geometry_msgs trajectory_msgs

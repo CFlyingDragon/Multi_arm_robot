@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: my_controller_pkg
+Description: Description of my_controller_pkg
+Version: 0.0.0
+Cflags: -I/usr/local/include
+Libs: -L/usr/local/lib -lmy_controller_pkg
+Requires: 

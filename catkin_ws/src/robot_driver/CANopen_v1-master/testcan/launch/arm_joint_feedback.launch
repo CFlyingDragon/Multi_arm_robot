@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="testcan" type="arm_joint_states_publisher" respawn="false" name="arm_joint_states_publisher" output="screen"/>
+</launch>

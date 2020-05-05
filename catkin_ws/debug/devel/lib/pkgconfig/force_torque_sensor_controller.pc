@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/debug/devel
+
+Name: force_torque_sensor_controller
+Description: Description of force_torque_sensor_controller
+Version: 0.15.0
+Cflags: -I/home/d/catkin_ws/src/demo/ros_controllers-melodic-devel/force_torque_sensor_controller/include
+Libs: -L/home/d/catkin_ws/debug/devel/lib -lforce_torque_sensor_controller
+Requires: controller_interface geometry_msgs hardware_interface pluginlib realtime_tools roscpp

@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: kinematics
+Description: Description of kinematics
+Version: 0.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

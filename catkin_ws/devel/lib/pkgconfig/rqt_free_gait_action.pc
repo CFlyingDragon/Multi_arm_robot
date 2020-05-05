@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/devel
+
+Name: rqt_free_gait_action
+Description: Description of rqt_free_gait_action
+Version: 0.3.0
+Cflags: -I/home/d/catkin_ws/src/quadruped_locomotion-master/rqt_free_gait_action/include
+Libs: -L/home/d/catkin_ws/devel/lib 
+Requires: free_gait_msgs roscpp rqt_gui rqt_gui_cpp

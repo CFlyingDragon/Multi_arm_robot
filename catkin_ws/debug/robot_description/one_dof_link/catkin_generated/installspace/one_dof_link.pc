@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: one_dof_link
+Description: Description of one_dof_link
+Version: 1.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

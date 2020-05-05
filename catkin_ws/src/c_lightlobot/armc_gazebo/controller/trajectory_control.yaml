@@ -1,0 +1,23 @@
+armc:
+  armc_joint_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - Joint1
+      - Joint2
+      - Joint3
+      - Joint4
+      - Joint5
+      - Joint6
+      - Joint7
+ 
+    gains:
+      Joint1:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint2:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint3:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint4:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint5:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint6:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint7:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+ 
+ 
+  

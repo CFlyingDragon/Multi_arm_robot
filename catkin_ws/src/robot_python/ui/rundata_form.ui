@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1238</width>
+    <height>903</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>16</width>
+    <height>16</height>
+   </size>
+  </property>
+  <property name="animated">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>451</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_1"/>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>410</y>
+      <width>451</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>410</y>
+      <width>501</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QFrame" name="frame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>461</width>
+          <height>331</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>0</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>运行内容显示框</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>370</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>进度：</string>
+        </property>
+       </widget>
+       <widget class="QProgressBar" name="progressBar">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>370</y>
+          <width>411</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="value">
+         <number>24</number>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_6">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>0</y>
+      <width>501</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QFrame" name="frame_4">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>0</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>地址获取框</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_10">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>171</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>数据地址data_path：</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_data_path">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>80</y>
+          <width>461</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>/home/d/catkin_ws/src/robot_python/data</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_14">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>120</y>
+          <width>271</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>命令地址：pub_command_path：</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_pub_path">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>160</y>
+          <width>461</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>/robot3/armc_position_controller/command</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_15">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>200</y>
+          <width>341</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>订阅关节角度地址：sub_pos_path：</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_sub_pos">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>240</y>
+          <width>461</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>/robot3/joint_states</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_16">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>290</y>
+          <width>281</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>订阅六维力地址：sub_force_path：</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_sub_force">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>461</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>/robot3/ft_sensor_topic</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>410</y>
+      <width>271</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QFrame" name="frame_6">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>0</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>获取数据/话题地址</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>0</y>
+      <width>271</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QFrame" name="frame_5">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QPushButton" name="button_begin">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>221</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>开始</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="autoRepeat">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>false</bool>
+        </property>
+        <property name="autoRepeatDelay">
+         <number>400</number>
+        </property>
+        <property name="autoRepeatInterval">
+         <number>200</number>
+        </property>
+        <property name="autoDefault">
+         <bool>true</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="button_end">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>110</y>
+          <width>221</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>停止</string>
+        </property>
+        <property name="autoDefault">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QWidget" name="layoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>200</y>
+          <width>201</width>
+          <height>91</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QCheckBox" name="checkBox_UR5">
+           <property name="text">
+            <string>UR5勾   armc默认</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_gazebo">
+           <property name="text">
+            <string>实物勾   仿真默认</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QPushButton" name="button_get_dir">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>310</y>
+          <width>221</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>获取地址</string>
+        </property>
+        <property name="autoDefault">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1238</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

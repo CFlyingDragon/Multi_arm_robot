@@ -1,0 +1,44 @@
+#ifndef __CANSEND_H
+#define __CANSEND_H
+
+#define MOP 0x6060
+#define CW 0x6040
+
+#define TP  0x607A 	//Ŀ��λ��
+#define TV_V  0x60ff	//���ٶ�ģʽ�µ�Ŀ���ٶ�
+#define TV_P  0x6081	//��λ��ģʽ�µ�Ŀ���ٶ�
+#define TA  0x6083 //Ŀ����ٶ�
+#define TDa 0x6084 //Ŀ����ٶ�
+
+//�ŷ�ģʽ
+#define SON 0x0f
+#define SOFF 0x07
+#define SREADY 0x06
+#define Sstart 0x1f
+
+#define PPM 0x01
+#define PVM 0x03
+#define PTM 0x04
+#define HM 0x06
+#define IPM 0x07
+
+typedef enum{
+    WriteSDO = 0x600,
+    ReadSDO = 0x580,
+    TPDO1 = 0x180,
+    RPDO1 = 0x200
+}CanSendType;
+
+typedef enum{
+    CAN1 = 0,
+    CAN2 = 1
+}CANx;
+
+typedef struct {
+  char cmd;	/**< sdo's command */
+  short index;		/**< index */
+  char subindex;		/**<subindex */
+  char data[4]; /**< sdo's datas */
+} SDOData;
+
+#endif

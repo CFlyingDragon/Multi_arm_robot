@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/debug/devel
+
+Name: rqt_ethercat_test_plugin
+Description: Description of rqt_ethercat_test_plugin
+Version: 0.0.0
+Cflags: -I/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/include
+Libs: -L/home/d/catkin_ws/debug/devel/lib 
+Requires: 

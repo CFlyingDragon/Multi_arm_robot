@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/debug/devel
+
+Name: example_action_server
+Description: Description of example_action_server
+Version: 0.0.0
+Cflags: -I/home/d/catkin_ws/debug/devel/include
+Libs: -L/home/d/catkin_ws/debug/devel/lib 
+Requires: 

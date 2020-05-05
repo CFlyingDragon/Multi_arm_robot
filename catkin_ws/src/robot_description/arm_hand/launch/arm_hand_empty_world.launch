@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="world_name" default="worlds/empty.world"/>
+
+  <arg name="robot_namespace" default="/"/>
+
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0"/>
+  <arg name="yaw" default="0"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!--<arg name="world_name" value="$(find simpledog)/worlds/simpledog_terrian.world"/>-->
+    <arg name="world_name" value="worlds/empty.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <param name="robot_description" command="$(find xacro)/xacro '$(find arm_hand)/urdf/arm_hand.urdf.xacro'
+  --inorder
+  robot_namespace:=$(arg robot_namespace)"/>
+  <!--<param name="robot_description" textfile="$(find simpledog)/urdf/simpledog.urdf.xacro"/>-->
+
+  <!--<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />-->
+
+<!-- Load controller configuration -->
+<rosparam command="load" file="$(find arm_hand)/config/control.yaml" />
+
+<!-- Spawn controllers -->
+<node name="base_controller_spawner" pkg="controller_manager" type="spawner"
+      args="arm_hand_joint_publisher
+            joint1_position_controller
+            joint2_position_controller
+            joint3_position_controller
+            joint4_position_controller
+            joint5_position_controller
+            joint6_position_controller
+            joint7_position_controller
+"/>
+
+
+<!--get joint states and pub the robot tf-->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+<!-- Spawn robot in gazebo (the world file has already include the robot)-->
+<node name="spawn_arm_hand_model" pkg="gazebo_ros" type="spawn_model"
+    args="-x $(arg x)
+    -y $(arg y)
+    -z $(arg z)
+    -Y $(arg yaw)
+    -unpause
+    -urdf
+    -param robot_description
+    -model $(arg robot_namespace)" />
+
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find arm_hand)/config/visualization.rviz" required="true" />
+
+<node name="joint_command_interface" pkg="arm_hand" type="joint_command_interface_node" />
+
+</launch>
+

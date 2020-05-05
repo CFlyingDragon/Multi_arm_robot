@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: position_controllers
+Description: Description of position_controllers
+Version: 0.15.0
+Cflags: -I/usr/local/include
+Libs: -L/usr/local/lib -lposition_controllers
+Requires: controller_interface forward_command_controller

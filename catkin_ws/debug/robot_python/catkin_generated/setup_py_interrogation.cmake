@@ -1,0 +1,6 @@
+set(robot_python_SETUP_PY_VERSION "0.0.0")
+set(robot_python_SETUP_PY_SCRIPTS "")
+set(robot_python_SETUP_PY_PACKAGES "robot_python")
+set(robot_python_SETUP_PY_PACKAGE_DIRS "src/robot_python")
+set(robot_python_SETUP_PY_MODULES "")
+set(robot_python_SETUP_PY_MODULE_DIRS "")

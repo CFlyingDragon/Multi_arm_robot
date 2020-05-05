@@ -1,0 +1,7 @@
+-DROS_BUILD_SHARED_LIBS=1
+-DROS_BUILD_SHARED_LIBS=1
+-DROS_PACKAGE_NAME="rqt_free_gait_action"
+-DROSCONSOLE_BACKEND_LOG4CXX
+-o
+/home/d/catkin_ws/build/quadruped_locomotion-master/rqt_free_gait_action/include/rqt_free_gait_action/moc_WorkerThreadSendActionSequence.cpp
+/home/d/catkin_ws/src/quadruped_locomotion-master/rqt_free_gait_action/include/rqt_free_gait_action/WorkerThreadSendActionSequence.h

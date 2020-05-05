@@ -1,0 +1,9 @@
+#goal definition
+int32 input
+---
+#result definition
+int32 output
+int32 goal_stamp
+---
+#feedback
+int32 fdbk

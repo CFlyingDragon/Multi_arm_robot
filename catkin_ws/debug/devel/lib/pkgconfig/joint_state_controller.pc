@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/debug/devel
+
+Name: joint_state_controller
+Description: Description of joint_state_controller
+Version: 0.15.0
+Cflags: -I/home/d/catkin_ws/src/demo/ros_controllers-melodic-devel/joint_state_controller/include
+Libs: -L/home/d/catkin_ws/debug/devel/lib -ljoint_state_controller
+Requires: realtime_tools roscpp hardware_interface pluginlib controller_interface sensor_msgs

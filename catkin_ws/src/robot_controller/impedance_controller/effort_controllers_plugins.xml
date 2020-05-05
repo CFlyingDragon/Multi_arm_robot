@@ -1,0 +1,9 @@
+<library path="lib/libarmc_imp_econtroller_node">
+  <class name="impendance_controller/ImpEffortController" 
+         type="impendance_controller::ImpEffortController" 
+         base_class_type="controller_interface::ControllerBase">
+    <description>The ImpEffortController tracks position commands.</description>
+  </class>
+</library>
+
+

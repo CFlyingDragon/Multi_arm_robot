@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/install
+
+Name: free_gait_action_loader
+Description: Description of free_gait_action_loader
+Version: 0.3.0
+Cflags: 
+Libs: -L/home/d/catkin_ws/install/lib 
+Requires: 

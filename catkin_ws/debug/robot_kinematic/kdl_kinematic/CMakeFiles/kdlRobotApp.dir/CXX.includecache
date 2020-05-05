@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include/kdl_kinematic/kdl_robot_app.h
+
+/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/lib/kdl_robot_app.cpp
+kdl_kinematic/kdl_robot_app.h
+/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/lib/kdl_kinematic/kdl_robot_app.h
+

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- include our world -->
+  <include file="$(find robots_gazebo)/launch/robots_world.launch"/>
+  <!-- include our robots -->
+  <include file="$(find robots_gazebo)/launch/robots.launch"/>
+
+</launch>

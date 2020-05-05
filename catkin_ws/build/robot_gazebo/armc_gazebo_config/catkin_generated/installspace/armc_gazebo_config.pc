@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/install
+
+Name: armc_gazebo_config
+Description: Description of armc_gazebo_config
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/d/catkin_ws/install/lib 
+Requires: 

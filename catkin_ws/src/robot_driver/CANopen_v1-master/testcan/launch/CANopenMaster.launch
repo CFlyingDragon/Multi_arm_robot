@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="testcan" type="canopenexample" respawn="false" name="canopenexample" output="screen">
+    <rosparam file="$(find testcan)/cfg/CANopen.yaml" command="load"/>
+  </node>
+</launch>

@@ -1,0 +1,1 @@
+/usr/bin/g++  -fPIC -g  -shared -Wl,-soname,libcanopen_vci_ros.so -o ../../../devel/lib/libcanopen_vci_ros.so CMakeFiles/canopen_vci_ros.dir/src/canopen_vci_ros.cpp.o 

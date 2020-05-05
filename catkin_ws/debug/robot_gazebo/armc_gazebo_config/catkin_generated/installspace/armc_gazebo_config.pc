@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: armc_gazebo_config
+Description: Description of armc_gazebo_config
+Version: 0.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

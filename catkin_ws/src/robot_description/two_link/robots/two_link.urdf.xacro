@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.0-0-g9aa0fdb  Build Version: 1.5.7004.21443
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="two_link" xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:include filename="$(find two_link)/robots/joints.urdf.xacro" />
+<!-- simple dog joints macros configure the joint driver and param-->
+  <xacro:two_link_joint joint_prefix="1"> </xacro:two_link_joint>
+  <xacro:two_link_joint joint_prefix="1"> </xacro:two_link_joint>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-1.9536E-08 0.0088431 0.037629"
+        rpy="0 0 0" />
+      <mass
+        value="0.77887" />
+      <inertia
+        ixx="0.0015096"
+        ixy="-1.0345E-08"
+        ixz="-2.4176E-10"
+        iyy="0.0011768"
+        iyz="0.00024377"
+        izz="0.0013264" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.64706 0.64706 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Link1">
+    <inertial>
+      <origin
+        xyz="-4.1277E-15 -0.15 0.10285"
+        rpy="0 0 0" />
+      <mass
+        value="0.38623" />
+      <inertia
+        ixx="0.0033546"
+        ixy="-1.0318E-16"
+        ixz="-1.8435E-21"
+        iyy="7.0388E-05"
+        iyz="-2.9513E-19"
+        izz="0.0034178" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link/meshes/Link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link/meshes/Link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+  <link
+    name="Link2">
+    <inertial>
+      <origin
+        xyz="5.2551E-06 -0.37963 -0.045832"
+        rpy="0 0 0" />
+      <mass
+        value="0.93375" />
+      <inertia
+        ixx="0.014681"
+        ixy="8.6072E-07"
+        ixz="-1.7615E-07"
+        iyy="0.0014073"
+        iyz="0.0022958"
+        izz="0.014207" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link/meshes/Link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.64706 0.64706 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link/meshes/Link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="0 0 0.10805"
+      rpy="0 0 0" />
+    <parent
+      link="Link1" />
+    <child
+      link="Link2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <safety_controller
+      k_velocity="0" />
+  </joint>
+</robot>

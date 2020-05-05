@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: force_sensor
+Description: Description of force_sensor
+Version: 0.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: serial std_msgs

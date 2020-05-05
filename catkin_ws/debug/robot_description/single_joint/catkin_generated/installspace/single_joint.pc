@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: single_joint
+Description: Description of single_joint
+Version: 1.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

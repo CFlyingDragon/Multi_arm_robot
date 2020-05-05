@@ -1,0 +1,1 @@
+/usr/bin/g++  -fPIC -g  -shared -Wl,-soname,libvisualservo.so -o ../../devel/lib/libvisualservo.so CMakeFiles/visualservo.dir/src/global.cpp.o CMakeFiles/visualservo.dir/src/visualservo.cpp.o 

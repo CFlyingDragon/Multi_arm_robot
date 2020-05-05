@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: ros_canopen_driver
+Description: Description of ros_canopen_driver
+Version: 0.0.0
+Cflags: -I/usr/local/include
+Libs: -L/usr/local/lib -lros_canopen_hardware_interface
+Requires: roscpp actionlib moveit_msgs message_runtime

@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/debug/devel
+
+Name: rrbot_description
+Description: Description of rrbot_description
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/d/catkin_ws/debug/devel/lib 
+Requires: 

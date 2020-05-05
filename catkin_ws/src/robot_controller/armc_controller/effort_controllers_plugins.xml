@@ -1,0 +1,9 @@
+<library path="lib/libarmc_effort_position_controller">
+  <class name="armc_controller/ArmcEffortPositionController" 
+         type="armc_controller::ArmcEffortPositionController" 
+         base_class_type="controller_interface::ControllerBase">
+    <description>The ArmcEffortPositionController tracks position commands.</description>
+  </class>
+</library>
+
+

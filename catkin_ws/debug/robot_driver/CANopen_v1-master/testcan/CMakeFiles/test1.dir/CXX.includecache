@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/include/testcan/controlcan.h
+
+/home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/src/test1.cpp
+stdio.h
+-
+sys/types.h
+-
+sys/stat.h
+-
+fcntl.h
+-
+pthread.h
+-
+controlcan.h
+/home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/src/controlcan.h
+ctime
+-
+cstdlib
+-
+unistd.h
+/home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/src/unistd.h
+

@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: two_link
+Description: Description of two_link
+Version: 1.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

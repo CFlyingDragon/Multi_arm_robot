@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: impedance_controler
+Description: Description of impedance_controler
+Version: 0.0.0
+Cflags: -I/usr/local/include
+Libs: -L/usr/local/lib -limpedance_controler
+Requires: roscpp rospy std_msgs

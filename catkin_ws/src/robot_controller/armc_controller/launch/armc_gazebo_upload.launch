@@ -1,0 +1,60 @@
+<launch>
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="world_name" default="worlds/empty.world"/>
+  <arg name="robot_namespace" default="armc"/>
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0"/>
+  <arg name="yaw" default="0"/>
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="false"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+
+  <!-- We resume the logic in empty_world.launch -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find armc_description)/robots/armc.urdf.xacro'"/> 
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+<!-- Load controller configuration -->
+  <rosparam command="load" file="$(find armc_controller)/config/control.yaml" />
+
+<!-- Spawn controllers -->
+  <node name="armc_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/armc" args="
+                  armc_joint_publisher
+                  joint1_effort_controller
+                  joint2_effort_controller
+                  joint3_effort_controller
+                  joint4_effort_controller
+                  joint5_effort_controller
+                  joint6_effort_controller
+                  joint7_effort_controller"/>
+
+
+<!--get joint states and pub the robot tf-->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+	args="
+    -x $(arg x)
+    -y $(arg y)
+    -z $(arg z)
+    -Y $(arg yaw)
+    -unpause
+    -urdf
+    -param robot_description
+    -model $(arg robot_namespace)" />"/> 
+
+</launch>

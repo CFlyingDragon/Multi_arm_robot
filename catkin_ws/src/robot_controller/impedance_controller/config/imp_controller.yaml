@@ -1,0 +1,88 @@
+armc:
+  armc_joint_publisher:
+    type: "joint_state_controller/JointStateController"
+    publish_rate: 100
+
+  armc_position_controller:
+    type: "position_controllers/JointPositionController"
+    joints:
+      - Joint1
+      - Joint2
+      - Joint3
+      - Joint4
+      - Joint5
+      - Joint6
+      - Joint7
+    gains:
+      Joint1:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint2:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint3:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint4:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint5:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint6:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint7:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+
+  effort_joint_controller:
+    type: "effort_controllers/JointGroupEffortController"
+    joints:
+      - Joint1
+      - Joint2
+      - Joint3
+      - Joint4
+      - Joint5
+      - Joint6
+      - Joint7
+    gains:
+      Joint1:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint2:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint3:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint4:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint5:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint6:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint7:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+
+  effort_position_controller:
+    type: "impedance_controller/EffortPositionController"
+    joints:
+      - Joint1
+      - Joint2
+      - Joint3
+      - Joint4
+      - Joint5
+      - Joint6
+      - Joint7
+    gains:
+      Joint1:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint2:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint3:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint4:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint5:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint6:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint7:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+
+  imp_effort_controller:
+    type: "impendance_controller/ImpEffortController"
+    joints:
+      - Joint1
+      - Joint2
+      - Joint3
+      - Joint4
+      - Joint5
+      - Joint6
+      - Joint7
+    gains:
+      Joint1:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint2:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint3:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint4:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint5:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint6:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+      Joint7:   {p: 1000.0, i: 0.0, d: 0.1, i_clamp: 0.0}
+    imp_param:
+      imp_m: [10,10,10,10,10,10]
+      imp_b: [100,100,100,100,100,100]
+      imp_k: [100000,100000,100000,100000,100000,100000]
+    robot_model:
+      path: "/home/d/catkin_ws/src/robot_description/armc_description/urdf/armc_description.urdf"
+      base_link: "base_link"
+      top_link: "Link7"

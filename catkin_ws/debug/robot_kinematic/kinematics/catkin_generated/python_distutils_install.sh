@@ -1,0 +1,33 @@
+#!/bin/sh
+
+if [ -n "$DESTDIR" ] ; then
+    case $DESTDIR in
+        /*) # ok
+            ;;
+        *)
+            /bin/echo "DESTDIR argument must be absolute... "
+            /bin/echo "otherwise python's distutils will bork things."
+            exit 1
+    esac
+    DESTDIR_ARG="--root=$DESTDIR"
+fi
+
+echo_and_run() { echo "+ $@" ; "$@" ; }
+
+echo_and_run cd "/home/d/catkin_ws/src/robot_kinematic/kinematics"
+
+# ensure that Python install destination exists
+echo_and_run mkdir -p "$DESTDIR/usr/local/lib/python2.7/dist-packages"
+
+# Note that PYTHONPATH is pulled from the environment to support installing
+# into one location when some dependencies were installed in another
+# location, #123.
+echo_and_run /usr/bin/env \
+    PYTHONPATH="/usr/local/lib/python2.7/dist-packages:/home/d/catkin_ws/debug/lib/python2.7/dist-packages:$PYTHONPATH" \
+    CATKIN_BINARY_DIR="/home/d/catkin_ws/debug" \
+    "/usr/bin/python" \
+    "/home/d/catkin_ws/src/robot_kinematic/kinematics/setup.py" \
+    build --build-base "/home/d/catkin_ws/debug/robot_kinematic/kinematics" \
+    install \
+    $DESTDIR_ARG \
+    --install-layout=deb --prefix="/usr/local" --install-scripts="/usr/local/bin"

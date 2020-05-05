@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/install
+
+Name: rqt_control_panel_plugin
+Description: Description of rqt_control_panel_plugin
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/d/catkin_ws/install/lib 
+Requires: 

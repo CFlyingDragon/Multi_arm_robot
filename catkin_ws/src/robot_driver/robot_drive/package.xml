@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <name>robot_drive</name>
+  <version>0.0.0</version>
+  <description>robot_drive multi package</description>
+
+  <maintainer email="enrique.fernandez.perdomo@gmail.com">Enrique Fernandez</maintainer>
+  <author email="enrique.fernandez.perdomo@gmail.com">Enrique Fernandez</author>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>ros_ethercat_driver</run_depend>
+  
+  <export>
+     <metapackage/>
+   </export>
+</package>

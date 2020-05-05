@@ -1,0 +1,15 @@
+<launch>
+	<rosparam file="$(find tan_gazebo)/config/control.yaml" command="load"/>
+ 
+  <node name="armt_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/armt" 
+    args="  joint1_position_controller
+            joint2_position_controller
+            joint3_position_controller
+            joint4_position_controller
+            joint5_position_controller
+            joint6_position_controller
+            joint7_position_controller
+"/>
+ 
+</launch>

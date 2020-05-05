@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/devel
+
+Name: kdl_kinematic
+Description: Description of kdl_kinematic
+Version: 0.0.0
+Cflags: -I/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include
+Libs: -L/home/d/catkin_ws/devel/lib -lchainjnttojacdotsolver
+Requires: roscpp rospy std_msgs

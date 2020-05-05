@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: action_test
+Description: Description of action_test
+Version: 0.0.0
+Cflags: -I/usr/local/include
+Libs: -L/usr/local/lib 
+Requires: 

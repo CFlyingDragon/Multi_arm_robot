@@ -1,0 +1,8 @@
+<library path="lib/libarmc_position_controller">
+  <class name="armc_controller/ArmcPositionController" 
+          type="armc_controller::ArmcPositionController" 
+          base_class_type="controller_interface::ControllerBase">
+    <description>The ArmcPositionControllerof hardware interface.</description>
+  </class>
+</library>
+

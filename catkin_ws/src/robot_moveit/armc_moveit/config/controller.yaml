@@ -1,0 +1,14 @@
+controller_manager_ns: controller_manager
+controller_list:
+  - name: armc/armc_joint_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - Joint1
+      - Joint2
+      - Joint3
+      - Joint4
+      - Joint5
+      - Joint6
+      - Joint7

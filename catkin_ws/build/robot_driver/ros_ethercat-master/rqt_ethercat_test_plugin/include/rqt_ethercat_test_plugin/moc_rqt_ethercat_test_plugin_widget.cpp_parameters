@@ -1,0 +1,7 @@
+-DROS_BUILD_SHARED_LIBS=1
+-DROS_BUILD_SHARED_LIBS=1
+-DROS_PACKAGE_NAME="rqt_ethercat_test_plugin"
+-DROSCONSOLE_BACKEND_LOG4CXX
+-o
+/home/d/catkin_ws/build/robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/include/rqt_ethercat_test_plugin/moc_rqt_ethercat_test_plugin_widget.cpp
+/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/include/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin_widget.h

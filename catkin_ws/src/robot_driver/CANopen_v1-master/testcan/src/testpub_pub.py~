@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+'''testpub ROS Node'''
+# license removed for brevity
+import rospy
+from testcan.msg import Frame, IpPos
+
+def talker():
+    '''testpub Publisher'''
+    pub = rospy.Publisher('ip_pos', IpPos, queue_size=10)
+    rospy.init_node('testpub', anonymous=True)
+    ip_pos = IpPos()
+    rate = rospy.Rate(10) # 10hz
+    step = 0
+    while not rospy.is_shutdown():
+        # hello_str = "hello world %s" % rospy.get_time()
+        # rospy.loginfo(hello_str)
+        ip_pos.pos = step
+        ip_pos.id = 0x07
+        pub.publish(ip_pos)
+        print 'seng ip position %s' %step
+        rate.sleep()
+        step = step + 10000
+
+if __name__ == '__main__':
+    try:
+        talker()
+    except rospy.ROSInterruptException:
+        pass

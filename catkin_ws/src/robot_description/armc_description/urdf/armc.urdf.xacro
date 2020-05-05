@@ -1,0 +1,543 @@
+<?xml version="1.0"?>
+<robot name="armc" xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:include filename="$(find armc_description)/urdf/armc.transmission.xacro" />
+  <xacro:include filename="$(find armc_description)/urdf/armc.gazebo.xacro" />
+
+  <xacro:macro name="cylinder_inertial" params="radius length mass *origin">
+    <inertial>
+      <mass value="${mass}" />
+      <xacro:insert_block name="origin" />
+      <inertia ixx="${0.0833333 * mass * (3 * radius * radius + length * length)}" ixy="0.0" ixz="0.0"
+        iyy="${0.0833333 * mass * (3 * radius * radius + length * length)}" iyz="0.0"
+        izz="${0.5 * mass * radius * radius}" />
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="armc_robot" params="prefix joint_limited
+    joint1_lower_limit:=${-pi}      joint1_upper_limit:=${pi}
+    joint2_lower_limit:=${-pi/2}    joint2_upper_limit:=${pi/2}
+    joint3_lower_limit:=${-pi}      joint3_upper_limit:=${pi}
+    joint4_lower_limit:=${-pi/2}    joint4_upper_limit:=${pi/2}
+    joint5_lower_limit:=${-pi}      joint5_upper_limit:=${pi}
+    joint6_lower_limit:=${-pi/2}    joint6_upper_limit:=${pi/2}
+    joint7_lower_limit:=${-pi*10}   joint7_upper_limit:=${pi*10}
+    transmission_hw_interface:=hardware_interface/PositionJointInterface
+    safety_limits:=false safety_pos_margin:=0.15
+    safety_k_position:=20">
+
+    <!-- Inertia parameters -->
+    <xacro:property name="base_mass"      value="4.0" />  <!-- This mass might be incorrect -->
+    <xacro:property name="joint1_mass"    value="3.7000" />
+    <xacro:property name="joint2_mass"    value="8.3930" />
+    <xacro:property name="joint3_mass"    value="2.2750" />
+    <xacro:property name="joint4_mass"    value="1.2190" />
+    <xacro:property name="joint5_mass"    value="1.2190" />
+    <xacro:property name="joint6_mass"    value="0.1879" />
+    <xacro:property name="joint7_mass"    value="0.1879" />
+
+    <xacro:property name="joint1_cog" value="0.0 0.00193 -0.02561" />
+    <xacro:property name="joint2_cog" value="0.0 -0.024201 0.2125" />
+    <xacro:property name="joint3_cog" value="0.0 0.0265 0.11993" />
+    <xacro:property name="joint4_cog" value="0.0 0.110949 0.01634" />
+    <xacro:property name="joint5_cog" value="0.0 0.0018 0.11099" />
+    <xacro:property name="joint6_cog" value="0.0 0.001159 0.0" />
+    <xacro:property name="joint7_cog" value="0.0 0.001159 0.0" />
+
+    <!-- Kinematic model -->
+    <!-- Properties from urcontrol.conf -->
+    <!--
+      DH for UR5:
+      a = [0.00000, -0.42500, -0.39225,  0.00000,  0.00000,  0.0000]
+      d = [0.089159,  0.00000,  0.00000,  0.10915,  0.09465,  0.0823]
+      alpha = [ 1.570796327, 0, 0, 1.570796327, -1.570796327, 0 ]
+      q_home_offset = [0, -1.570796327, 0, -1.570796327, 0, 0]
+      joint_direction = [-1, -1, 1, 1, 1, 1]
+      mass = [3.7000, 8.3930, 2.2750, 1.2190, 1.2190, 0.1879]
+      center_of_mass = [ [0, -0.02561, 0.00193], [0.2125, 0, 0.11336], [0.11993, 0.0, 0.0265], [0, -0.0018, 0.01634], [0, 0.0018,0.01634], [0, 0, -0.001159] ]
+    -->
+    <xacro:property name="d1" value="0.089159" />
+    <xacro:property name="d2" value="-0.42500" />
+    <xacro:property name="d3" value="-0.39225" />
+    <xacro:property name="d4" value="0.10915" />
+    <xacro:property name="d5" value="0.09465" />
+    <xacro:property name="d6" value="0.0823" />
+    <xacro:property name="d7" value="0.0823" />
+
+    <!-- link lengths used in model -->
+    <xacro:property name="joint1_height" value="${d1}" />
+    <xacro:property name="joint2_length" value="${d2}" />
+    <xacro:property name="joint3_length" value="${d3}" />
+    <xacro:property name="joint4_length" value="${d4 }" />
+    <xacro:property name="joint5_length" value="${d5}" />
+    <xacro:property name="joint6_length" value="${d6}" />
+    <xacro:property name="joint6_length" value="${d7}" />
+    <!--property name="joint1_height" value="0.089159" /-->
+    <!--property name="joint1_offset" value="0.13585" /-->  <!-- joint1_offset - joint3_offset + joint4_length = 0.10915 -->
+    <!--property name="joint2_length" value="0.42500" /-->
+    <!--property name="joint3_offset" value="0.1197" /-->       <!-- CAD measured -->
+    <!--property name="joint3_length" value="0.39225" /-->
+    <!--property name="joint4_length" value="0.093" /-->     <!-- CAD measured -->
+    <!--property name="joint5_length" value="0.09465" /-->   <!-- In CAD this distance is 0.930, but in the spec it is 0.09465 -->
+    <!--property name="joint6_length" value="0.0823" /-->
+
+    <xacro:property name="joint1_radius" value="0.060" />   <!-- manually measured -->
+    <xacro:property name="joint2_radius" value="0.054" />  <!-- manually measured -->
+    <xacro:property name="joint3_radius" value="0.060" />      <!-- manually measured -->
+    <xacro:property name="joint3_radius" value="0.040" />    <!-- manually measured -->
+    <xacro:property name="wrist_radius" value="0.045" />      <!-- manually measured -->
+
+    <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="2.7291E-05 6.0375E-05 0.070392"
+        rpy="0 0 0" />
+      <mass
+        value="0.30535" />
+      <inertia
+        ixx="0.00091531"
+        ixy="-2.4502E-07"
+        ixz="2.9378E-07"
+        iyy="0.00091481"
+        iyz="8.1214E-07"
+        izz="0.00047819" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Link1">
+    <inertial>
+      <origin
+        xyz="-9.6229E-07 -0.00081654 0.22221"
+        rpy="0 0 0" />
+      <mass
+        value="0.29195" />
+      <inertia
+        ixx="0.00091458"
+        ixy="1.0429E-07"
+        ixz="-1.9214E-10"
+        iyy="0.00078906"
+        iyz="-3.0542E-06"
+        izz="0.00046485" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint1"
+    type="continuous">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="60"
+      velocity="20" />
+  </joint>
+  <link
+    name="Link2">
+    <inertial>
+      <origin
+        xyz="0.0014965 -0.10428 0.0093553"
+        rpy="0 0 0" />
+      <mass
+        value="0.27082" />
+      <inertia
+        ixx="0.0013333"
+        ixy="1.4113E-05"
+        ixz="3.7731E-06"
+        iyy="0.00038012"
+        iyz="-0.00025532"
+        izz="0.0012777" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint2"
+    type="revolute">
+    <origin
+      xyz="3.8503E-05 0 0.24812"
+      rpy="-1.5708 0 0.0010635" />
+    <parent
+      link="Link1" />
+    <child
+      link="Link2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.9"
+      upper="1.9"
+      effort="60"
+      velocity="20" />
+  </joint>
+  <link
+    name="Link3">
+    <inertial>
+      <origin
+        xyz="9.915E-06 -0.002389 0.27731"
+        rpy="0 0 0" />
+      <mass
+        value="0.2313" />
+      <inertia
+        ixx="0.00069611"
+        ixy="2.3457E-07"
+        ixz="-1.9566E-08"
+        iyy="0.0006322"
+        iyz="1.2171E-05"
+        izz="0.00031231" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint3"
+    type="revolute">
+    <origin
+      xyz="-3.8503E-05 0.00011553 0"
+      rpy="1.5708 0 0.01473" />
+    <parent
+      link="Link2" />
+    <child
+      link="Link3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="40"
+      velocity="20" />
+  </joint>
+  <link
+    name="Link4">
+    <inertial>
+      <origin
+        xyz="-0.0013744 -0.093336 0.0092998"
+        rpy="0 0 0" />
+      <mass
+        value="0.20172" />
+      <inertia
+        ixx="0.00095508"
+        ixy="-1.0307E-05"
+        ixz="-2.5138E-06"
+        iyy="0.00025405"
+        iyz="-0.00017191"
+        izz="0.0009263" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint4"
+    type="revolute">
+    <origin
+      xyz="0 0 0.305"
+      rpy="-1.5708 0 0.0039406" />
+    <parent
+      link="Link3" />
+    <child
+      link="Link4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.9"
+      upper="1.9"
+      effort="40"
+      velocity="20" />
+  </joint>
+  <link
+    name="Link5">
+    <inertial>
+      <origin
+        xyz="-0.00035127 -0.0030192 0.26208"
+        rpy="0 0 0" />
+      <mass
+        value="0.20121" />
+      <inertia
+        ixx="0.00066636"
+        ixy="-4.914E-06"
+        ixz="2.9088E-06"
+        iyy="0.00062822"
+        iyz="2.2513E-05"
+        izz="0.00021695" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint5"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5707 0 -0.01473" />
+    <parent
+      link="Link4" />
+    <child
+      link="Link5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="15"
+      velocity="30" />
+  </joint>
+  <link
+    name="Link6">
+    <inertial>
+      <origin
+        xyz="3.2079E-05 -0.097036 0.0070198"
+        rpy="0 0 0" />
+      <mass
+        value="0.18667" />
+      <inertia
+        ixx="0.00082771"
+        ixy="-2.5635E-07"
+        ixz="2.8367E-08"
+        iyy="0.00020369"
+        iyz="-0.00012311"
+        izz="0.00081164" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint6"
+    type="revolute">
+    <origin
+      xyz="0 -1.7766E-05 0.306"
+      rpy="-1.5707 0 -0.12601" />
+    <parent
+      link="Link5" />
+    <child
+      link="Link6" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.9"
+      upper="1.9"
+      effort="15"
+      velocity="30" />
+  </joint>
+  <link
+    name="Link7">
+    <inertial>
+      <origin
+        xyz="-0.00013278 6.7991E-05 0.18508"
+        rpy="0 0 0" />
+      <mass
+        value="0.02843" />
+      <inertia
+        ixx="9.1165E-06"
+        ixy="-4.442E-08"
+        ixz="3.4836E-09"
+        iyy="9.0525E-06"
+        iyz="-1.7839E-09"
+        izz="1.76E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://armc_description/meshes/Link7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint7"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="Link6" />
+    <child
+      link="Link7" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="15"
+      velocity="30" />
+  </joint>
+
+    <xacro:armc_arm_transmission prefix="${prefix}" hw_interface="${transmission_hw_interface}" />
+    <xacro:armc_arm_gazebo prefix="${prefix}" />
+
+    <!-- Frame coincident with all-zeros TCP on UR controller -->
+
+  </xacro:macro>
+</robot>

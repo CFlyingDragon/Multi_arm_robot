@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: arm_hand
+Description: Description of arm_hand
+Version: 1.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

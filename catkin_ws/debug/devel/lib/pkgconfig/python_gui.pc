@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/debug/devel
+
+Name: python_gui
+Description: Description of python_gui
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/d/catkin_ws/debug/devel/lib 
+Requires: 

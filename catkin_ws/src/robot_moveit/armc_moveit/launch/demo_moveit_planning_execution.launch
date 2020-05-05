@@ -1,0 +1,37 @@
+﻿<launch>
+
+ <arg name="sim" default="true"/>
+  <!-- <rosparam command="load" file="$(find arm_moveit_config)/config/joint_names.yaml"/> -->
+
+  <include file="$(find armc_moveit)/launch/planning_context.launch" >
+    <arg name="load_robot_description" value="true" />
+  </include>
+
+  <!--<group if="$(arg sim)">
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/>
+    <rosparam param="/source_list">[/moveit/armc_controller_joint_states]</rosparam>
+  </node>
+  </group>-->
+
+  <remap if="$(arg sim)" from="/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/>
+
+<!-- We do not have a robot connected, so publish fake joint states -->
+ <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+   <param name="/use_gui" value="false"/>
+   <rosparam param="/source_list">[/armc/joint_states]</rosparam>
+ </node>
+
+
+  <include file="$(find armc_moveit)/launch/move_group.launch">
+    <arg name="publish_monitored_planning_scene" value="true" />
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="true"/>
+  </include>
+
+  <include file="$(find armc_moveit)/launch/moveit_rviz.launch">
+    <arg name="config" value="true"/>
+  </include>
+
+</launch>

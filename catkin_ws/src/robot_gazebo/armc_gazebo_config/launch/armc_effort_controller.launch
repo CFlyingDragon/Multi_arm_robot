@@ -1,0 +1,7 @@
+<launch>
+	<rosparam file="$(find armc_gazebo_config)/config/armc_controller.yaml" command="load"/>
+ 
+  <node name="armc_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/armc" args="armc_effort_controller"/>
+ 
+</launch>

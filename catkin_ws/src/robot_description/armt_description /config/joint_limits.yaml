@@ -1,0 +1,85 @@
+joint_limits:
+  joint1:
+    has_position_limits: true
+    min_position: -0.883
+    max_position: 5.398
+    has_velocity_limits: true
+    max_velocity: 2.0
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+    has_jerk_limits: false
+    max_jerk: 100.0
+    has_effort_limits: true
+    max_effort: 50.0
+  joint2:
+    has_position_limits: true
+    min_position: 33.91
+    max_position: 37.05
+    has_velocity_limits: true
+    max_velocity: 2.0
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+    has_jerk_limits: false
+    max_jerk: 100.0
+    has_effort_limits: true
+    max_effort: 50.0
+  joint3:
+    has_position_limits: true
+    min_position: -3.073
+    max_position: 3.207
+    has_velocity_limits: true
+    max_velocity: 2.0
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+    has_jerk_limits: false
+    max_jerk: 100.0
+    has_effort_limits: true
+    max_effort: 30.0
+  joint4:
+    has_position_limits: true
+    min_position: 81.98
+    max_position: 85.12
+    has_velocity_limits: true
+    max_velocity: 2.0
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+    has_jerk_limits: false
+    max_jerk: 100.0
+    has_effort_limits: true
+    max_effort: 30.0
+  joint5:
+    has_position_limits: true
+    min_position: 0.7
+    max_position: 6.98
+    has_velocity_limits: true
+    max_velocity: 2.0
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+    has_jerk_limits: false
+    max_jerk: 100.0
+    has_effort_limits: true
+    max_effort: 15.0
+  joint6:
+    has_position_limits: true
+    min_position: 35.51
+    max_position: 38.35
+    has_velocity_limits: true
+    max_velocity: 2.0
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+    has_jerk_limits: false
+    max_jerk: 100.0
+    has_effort_limits: true
+    max_effort: 15.0
+  joint7:
+    has_position_limits: true
+    min_position: -3.14
+    max_position: 3.14
+    has_velocity_limits: true
+    max_velocity: 2.0
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+    has_jerk_limits: false
+    max_jerk: 100.0
+    has_effort_limits: true
+    max_effort: 15.0

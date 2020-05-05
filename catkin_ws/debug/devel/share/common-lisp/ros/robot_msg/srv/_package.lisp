@@ -1,0 +1,10 @@
+(cl:defpackage robot_msg-srv
+  (:use )
+  (:export
+   "SETARMCCONFIGURE"
+   "<SETARMCCONFIGURE-REQUEST>"
+   "SETARMCCONFIGURE-REQUEST"
+   "<SETARMCCONFIGURE-RESPONSE>"
+   "SETARMCCONFIGURE-RESPONSE"
+  ))
+

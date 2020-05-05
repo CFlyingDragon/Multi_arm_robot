@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: armc_moveit_config1
+Description: Description of armc_moveit_config1
+Version: 0.3.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

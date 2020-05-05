@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1246</width>
+    <height>895</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>451</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QGroupBox" name="groupBox_pos">
+       <property name="title">
+        <string>操作空间位置图</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>400</y>
+      <width>451</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QGraphicsView" name="graphicsView"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_6">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>0</y>
+      <width>481</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QGroupBox" name="groupBox_force">
+       <property name="title">
+        <string>六维力图</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>400</y>
+      <width>481</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QFrame" name="frame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>461</width>
+          <height>371</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>0</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>内容显示区域</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>400</y>
+      <width>261</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QFrame" name="frame_6">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>10</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>待添加功能区</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>0</y>
+      <width>261</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QFrame" name="frame_5">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QPushButton" name="beginButton">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>90</y>
+          <width>221</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>开始</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="autoRepeat">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>false</bool>
+        </property>
+        <property name="autoRepeatDelay">
+         <number>400</number>
+        </property>
+        <property name="autoRepeatInterval">
+         <number>200</number>
+        </property>
+        <property name="autoDefault">
+         <bool>true</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="endbutton">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>220</y>
+          <width>221</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>停止</string>
+        </property>
+        <property name="autoDefault">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1246</width>
+     <height>35</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

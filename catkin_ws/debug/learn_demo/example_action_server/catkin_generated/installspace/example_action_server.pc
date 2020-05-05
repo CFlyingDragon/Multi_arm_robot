@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: example_action_server
+Description: Description of example_action_server
+Version: 0.0.0
+Cflags: -I/usr/local/include
+Libs: -L/usr/local/lib 
+Requires: 

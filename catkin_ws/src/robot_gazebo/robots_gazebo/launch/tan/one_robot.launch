@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="robot_name"/>
+    <arg name="init_pose"/>
+
+    <param name="robot_description"
+    command="$(find xacro)/xacro.py $(find arm_hand)/robots/armt.urdf.xacro" />
+
+    <!-- For using xacro file instead of URDF -->
+    <!--<param name="robot_description" command="$(find xacro)/xacro.py $(find r2d2_description)/urdf/r2d2.xacro"/>-->
+    <node name="spawn_tan" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose) -urdf -param robot_description -model $(arg robot_name)"/>
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+    <node pkg="robot_state_publisher" type="robot_state_publisher" 
+          name="robot_state_publisher" output="screen"/>
+   
+    <!-- All the stuff as from usual robot launch file go here -->
+    <!--<node name="random_walk" pkg="gazebo_multi" type="random_walk" args="$(arg robot_name)" output="screen"/>-->
+</launch>

@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/debug/devel
+
+Name: armc_gazebo
+Description: Description of armc_gazebo
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/d/catkin_ws/debug/devel/lib 
+Requires: 

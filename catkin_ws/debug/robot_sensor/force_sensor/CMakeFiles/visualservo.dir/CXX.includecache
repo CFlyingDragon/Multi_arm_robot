@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/d/catkin_ws/src/robot_sensor/force_sensor/include/force_sensor/global.h
+
+/home/d/catkin_ws/src/robot_sensor/force_sensor/src/global.cpp
+force_sensor/global.h
+/home/d/catkin_ws/src/robot_sensor/force_sensor/src/force_sensor/global.h
+
+/home/d/catkin_ws/src/robot_sensor/force_sensor/src/visualservo.cpp
+force_sensor/global.h
+/home/d/catkin_ws/src/robot_sensor/force_sensor/src/force_sensor/global.h
+math.h
+/home/d/catkin_ws/src/robot_sensor/force_sensor/src/math.h
+stdio.h
+-
+

@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/debug/devel
+
+Name: impedance_controler
+Description: Description of impedance_controler
+Version: 0.0.0
+Cflags: -I/home/d/catkin_ws/src/robot_driver/impedance_controler/include
+Libs: -L/home/d/catkin_ws/debug/devel/lib -limpedance_controler
+Requires: roscpp rospy std_msgs

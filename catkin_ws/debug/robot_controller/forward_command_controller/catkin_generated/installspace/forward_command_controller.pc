@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: forward_command_controller
+Description: Description of forward_command_controller
+Version: 0.15.0
+Cflags: -I/usr/local/include
+Libs: -L/usr/local/lib 
+Requires: controller_interface hardware_interface std_msgs realtime_tools

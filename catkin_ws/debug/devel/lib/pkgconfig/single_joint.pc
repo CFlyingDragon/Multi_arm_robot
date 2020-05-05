@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/debug/devel
+
+Name: single_joint
+Description: Description of single_joint
+Version: 1.0.0
+Cflags: 
+Libs: -L/home/d/catkin_ws/debug/devel/lib 
+Requires: 

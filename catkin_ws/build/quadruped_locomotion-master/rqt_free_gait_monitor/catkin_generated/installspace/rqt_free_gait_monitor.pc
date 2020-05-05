@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/install
+
+Name: rqt_free_gait_monitor
+Description: Description of rqt_free_gait_monitor
+Version: 0.3.0
+Cflags: -I/home/d/catkin_ws/install/include -I/usr/include
+Libs: -L/home/d/catkin_ws/install/lib /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+Requires: rqt_gui rqt_gui_cpp roscpp rospy std_msgs std_srvs free_gait_msgs

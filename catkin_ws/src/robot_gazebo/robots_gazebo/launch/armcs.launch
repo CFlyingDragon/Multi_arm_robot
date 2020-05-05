@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- No namespace here as we will share this description. Access with slash at the beginning -->
+  <param name="robot_description_chen"
+    command="$(find xacro)/xacro.py $(find armc_description)/robots/armc.xacro" />
+  <!-- BEGIN ROBOT MIR 1-->
+  <group ns="robot1">
+    <param name="tf_prefix" value="robot1_tf" />
+    <include file="$(find robots_gazebo)/launch/chen/robot.launch" >
+      <arg name="init_pose" value="-x -0.6 -y -0.5 -z 1" />
+      <arg name="robot_name"  value="Robot1" />
+    </include>
+    <include file="$(find robots_gazebo)/launch/chen/armc_position_controller.launch" />
+  </group>
+
+  <!-- BEGIN ROBOT MIR 2-->
+  <group ns="robot2">
+    <param name="tf_prefix" value="robot2_tf" />
+    <include file="$(find robots_gazebo)/launch/chen/robot.launch" >
+      <arg name="init_pose" value="-x 0.6 -y -0.5 -z 1" />
+      <arg name="robot_name"  value="Robot2" />
+    </include>
+    <include file="$(find robots_gazebo)/launch/chen/armc_position_controller.launch" />
+  </group>
+
+  <!-- BEGIN ROBOT ROBOTINO 3-->
+  <group ns="robot3">
+    <param name="tf_prefix" value="robot3_tf" />
+    <include file="$(find robots_gazebo)/launch/chen/robot.launch" >
+      <arg name="init_pose" value="-x 0 -y 0.5 -z 1" />
+      <arg name="robot_name"  value="Robot3" />
+    </include>
+    <include file="$(find robots_gazebo)/launch/chen/armc_position_controller.launch" />
+  </group>
+
+</launch>

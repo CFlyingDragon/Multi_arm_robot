@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: armc_controller
+Description: Description of armc_controller
+Version: 0.0.0
+Cflags: -I/usr/local/include
+Libs: -L/usr/local/lib 
+Requires: roscpp rospy std_msgs controller_interface hardware_interface realtime_tools robot_msg

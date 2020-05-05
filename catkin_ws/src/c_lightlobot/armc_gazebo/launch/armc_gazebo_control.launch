@@ -1,0 +1,21 @@
+﻿<launch>
+  <!-- Launch Gazebo  -->
+ <!-- <include file="$(find armc_gazebo)/launch/armc_world.launch" />-->
+
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find armc_gazebo)/controller/armc_gazebo_control.yaml" command="load"/>
+
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	output="screen" ns="/armc" args="joint_state_controller
+					  joint1_position_controller
+					  joint2_position_controller
+					  joint3_position_controller
+					  joint4_position_controller
+					  joint5_position_controller
+					  joint6_position_controller
+					  joint7_position_controller"/>
+
+</launch>

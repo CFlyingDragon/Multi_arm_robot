@@ -1,0 +1,6 @@
+set(rqt_ethercat_test_plugin_SETUP_PY_VERSION "0.0.0")
+set(rqt_ethercat_test_plugin_SETUP_PY_SCRIPTS "")
+set(rqt_ethercat_test_plugin_SETUP_PY_PACKAGES "rqt_ethercat_test_plugin")
+set(rqt_ethercat_test_plugin_SETUP_PY_PACKAGE_DIRS "src/rqt_ethercat_test_plugin")
+set(rqt_ethercat_test_plugin_SETUP_PY_MODULES "")
+set(rqt_ethercat_test_plugin_SETUP_PY_MODULE_DIRS "")

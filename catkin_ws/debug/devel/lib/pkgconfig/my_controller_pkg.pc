@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/debug/devel
+
+Name: my_controller_pkg
+Description: Description of my_controller_pkg
+Version: 0.0.0
+Cflags: -I/home/d/catkin_ws/src/demo/my_controller_pkg/include
+Libs: -L/home/d/catkin_ws/debug/devel/lib -lmy_controller_pkg
+Requires: 

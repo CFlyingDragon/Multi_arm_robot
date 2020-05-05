@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<launch>
+
+
+  <param name="robot_description" command="$(find xacro)/xacro '$(find armc_description)/robots/armc.urdf.xacro'
+  --inorder"/>
+  
+<rosparam command="load" file="$(find ros_ethercat_driver)/config/control.yaml" />
+<!--<rosparam command="load" file="$(find armc_description)/config/joint_limits.yaml" />-->
+
+<rosparam command="load" file="$(find ros_ethercat_driver)/config/motor_param.yaml" /> 
+<rosparam command="load" file="$(find armc_description)/config/joint_names_armc.yaml" />
+
+
+<node name="base_controller_spawner" pkg="controller_manager" type="spawner"
+      args="joint_state_publisher
+              all_joints_position_group_controller" />
+            
+<node name="base_controller_spawner_stopped" pkg="controller_manager" type="spawner"
+      args="--stopped 
+              all_joints_velocity_group_controller
+              all_joints_effort_group_controller" />
+
+<node name="controller_manager" pkg="armc_controller" type="switch_controller_manager" args="" output="screen" respawn="false">
+  <param name="/ethercat_card_name" value="eno1" type="str"/>
+  <param name="/slave_type" value="Twitter" type="str"/>
+  <param name="/pdo_type" value="PDOF" type="str"/>
+  <param name="/control_method" value="Joint Position" type="str"/>
+  <!-- <param name="/slave_type" value="GoldenTwitter" type="str"/>
+  <param name="/pdo_type" value="PDOA" type="str"/> -->
+</node>
+<!--get joint states and pub the robot tf-->
+<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+  <param name="publish_frequency" type="double" value="100.0" />
+  <param name="ignore_timestamp" type="bool" value="false" />
+</node>
+
+</launch>

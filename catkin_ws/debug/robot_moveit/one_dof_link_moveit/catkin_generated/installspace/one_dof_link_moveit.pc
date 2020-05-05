@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: one_dof_link_moveit
+Description: Description of one_dof_link_moveit
+Version: 0.3.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

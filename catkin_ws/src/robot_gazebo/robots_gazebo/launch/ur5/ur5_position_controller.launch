@@ -1,0 +1,10 @@
+<launch>
+	<rosparam file="$(find robots_gazebo)/config/ur5_controller.yaml" command="load"/>
+ 
+  <!--<node name="ur5_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/ur5" args="ur5_position_controller"/>-->
+
+  <node name="ur5_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="ur5_position_controller joint_state_controller"/>
+ 
+</launch>

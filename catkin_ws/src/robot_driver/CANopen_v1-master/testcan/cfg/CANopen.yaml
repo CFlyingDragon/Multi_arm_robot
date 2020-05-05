@@ -1,0 +1,13 @@
+enable_leg: false
+enable_arm: true
+enable_wheel: false
+enable_AP_feedback: false
+enable_RP_feedback: false
+enable_I_feedback: false
+enable_V_feedback: false
+enable_wheelspeed_feedback: false
+single_motor_test: false
+test_motor_id: 1
+enable_arm_absolute_encoder_feedback: false
+
+

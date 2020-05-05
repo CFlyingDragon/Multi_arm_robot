@@ -1,0 +1,1 @@
+/usr/bin/g++  -fPIC -g  -shared -Wl,-soname,libarmc_effort_controller.so -o ../../devel/lib/libarmc_effort_controller.so CMakeFiles/armc_effort_controller.dir/src/armc_effort_controller.cpp.o 

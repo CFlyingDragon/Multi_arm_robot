@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: gazebo_tutorials
+Description: Description of gazebo_tutorials
+Version: 0.0.0
+Cflags: 
+Libs: -L/usr/local/lib -lgazebo_tutorials
+Requires: roscpp gazebo_ros
