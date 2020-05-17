@@ -9,7 +9,7 @@
   <group ns="robot1">
     <param name="tf_prefix" value="robot1_tf" />
     <include file="$(find robots_gazebo)/launch/ur5/robot.launch" >
-      <arg name="init_pose" value="-x -0.5 -y -0.5 -z 1.2 -R 0 -P 0 -Y 3.14" />
+      <arg name="init_pose" value="-x -0.5 -y -0.5 -z 1.2 -R 0 -P 0 -Y 1.57" />
       <arg name="robot_name"  value="Robot1" />
     </include>
     <include file="$(find robots_gazebo)/launch/ur5/ur5_position_controller.launch" />
@@ -19,7 +19,7 @@
   <group ns="robot2">
     <param name="tf_prefix" value="robot2_tf" />
     <include file="$(find robots_gazebo)/launch/ur5/robot.launch" >
-      <arg name="init_pose" value="-x 0.5 -y -0.5 -z 1.2" />
+      <arg name="init_pose" value="-x 0.5 -y -0.5 -z 1.2 -R 0 -P 0 -Y 1.57" />
       <arg name="robot_name"  value="Robot2" />
     </include>
     <include file="$(find robots_gazebo)/launch/ur5/ur5_position_controller.launch" />

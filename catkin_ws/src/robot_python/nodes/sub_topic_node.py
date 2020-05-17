@@ -52,16 +52,15 @@ def listener1():
     rospy.sleep(2)
     print "a"
     #data = rospy.wait_for_message("/scan", LaserScan, )
+    k = 0
     while not rospy.is_shutdown():
         #msg1 = rospy.wait_for_message('six_axis_force_1', Float64MultiArray, timeout=None)
-        msg2 = rospy.wait_for_message('/joint_states', JointState, timeout=None)
+        msg2 = rospy.wait_for_message("/robot3/joint_states", JointState, timeout=None)
         #print "msg1: %s" % msg1
-        #print "msg2: %s" % msg2
-        q1 = msg2.position[0]
-        print "joint state position: %s" % q1
-
+        k = k+1
+        print "第",k,"个：", np.round(msg2.position,3)
     #print(data.ranges)
 
 
 if __name__ == '__main__':
-    listener2()
+    listener1()

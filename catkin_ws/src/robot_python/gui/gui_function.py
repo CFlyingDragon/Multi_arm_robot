@@ -268,7 +268,7 @@ def get_robot_parameter(flag):
 
 #============================关节角数据采集处理==============================#
 #解决仿真中采集个关节角间接性出现零的问题
-def joint_pos_Pretreatment(qq,qq_list,T):
+def joint_pos_Pretreatment(qq,q_list,T):
     '''
     :param qq:当前时刻采集到的关节值
     :param qq_list:前三个时刻的关节值
@@ -276,12 +276,16 @@ def joint_pos_Pretreatment(qq,qq_list,T):
     '''
     #用抛物线预测下一时刻的关节角
     n = len(qq)
+    qq_list = np.copy(q_list[:,0:n])
     #计算评估系数
     b = (3*qq_list[2,:] - 2*qq_list[1,:] - qq_list[0,:])/T*0.5
 
     qq_p = np.zeros(n)
     for i in range(n):
-        if (abs(qq[i] - qq_list[-1,i]) > 0.01 and abs(qq[i]) < pow(10,-3)):
+        if (abs(b[i]) > 5):
+            b[i] = b[i] / abs(b[i])
+        if (abs((qq[i] - qq_list[-1,i])/(1 + abs(qq_list[-1,i]))) > pow(10,-4)
+            and abs(qq[i]) < pow(10,-5)):
             qq_p[i] = qq_list[-1,i] + b[i]*T
         else:
             qq_p[i] = qq[i]

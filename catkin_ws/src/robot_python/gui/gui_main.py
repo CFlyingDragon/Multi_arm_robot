@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*-
-#本文档用于读取文件和写入文件
+#本文档用于GUI开发界面函数
 #程序员：陈永厅
 #版权：哈尔滨工业大学(深圳)
 #日期：初稿：2019.4.21
@@ -33,12 +33,15 @@ from circularPlan_form1 import Ui_CirForm1
 from linePlan_form1 import Ui_LineForm1
 from rundata_form import Ui_RunForm
 from test_form1 import Ui_TestForm1
+from teaching_form1 import Ui_TeachingForm1
 
 
 #自定义文件
 import gui_function as gf
 import gui_image as gi
 from robot_python import ImpedanceControl as imp
+from robot_python import TeachingLearning as tl
+from robot_python import FileOpen as fo
 
 
 #**********************************主窗口***************************************#
@@ -66,7 +69,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         fileMenu = menubar.addMenu('&File')
         planMenu = menubar.addMenu('&Plan')
         impedanceMenu = menubar.addMenu('Impedance')
-        controlMenu = menubar.addMenu('&Control')
+        teachMenu = menubar.addMenu('&Teaching')
         demoMenu = menubar.addMenu('&Demo')
         testMenu = menubar.addMenu('&Test')
         helpMenu = menubar.addMenu('&Help')
@@ -111,7 +114,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         openImp2.triggered.connect(self.gotoImp2)
         impedanceMenu.addAction(openImp2)
 
-        #实物控制控制菜单栏:
+        #示教菜单栏:
+        openteach1 = QAction(QIcon('exit.png'), 'Open teaching1', self)
+        openteach1.setStatusTip('Open teaching1 form1')
+        openteach1.triggered.connect(self.gototeach1)
+        teachMenu.addAction(openteach1)
 
         #案例菜单栏：运行给定数据
         openData = QAction(QIcon('exit.png'), 'Open run data', self)
@@ -212,7 +219,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                    "\n" + "q5:" + str(qq[4]) + "\n" + "q6:" + str(qq[5]) + \
                    "\n" + "q7:" + str(qq[6])
         self.textEdit.setText(msg_pos)
-        self.qq_b = np.copy(qq)
+        self.qq_b = np.copy(qq*np.pi/180.0)
 
     def read_joint_pos2(self):
         qq = np.zeros(7)
@@ -229,7 +236,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                   "\n" + "q5:" + str(qq[4]) + "\n" + "q6:" + str(qq[5]) + \
                   "\n" + "q7:" + str(qq[6])
         self.textEdit.setText(msg_pos)
-        self.qq_e = np.copy(qq)
+        self.qq_e = np.copy(qq*np.pi/180.0)
 
     #规划函数
     def plan(self):
@@ -251,9 +258,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         for i in range(self.n):
             qq[i] = msg.position[i]
             #qv[i] = msg.velocity[i]
-        #print "qq:",msg.position[0]
+
+        # 数据预处理
+        qq_list = np.array(self.state_qq_list[-4:-1])
+        qq_p = gf.joint_pos_Pretreatment(qq, qq_list, self.T)
+        #qq_p = qq
         self.state_t = self.state_t + self.T
-        self.state_qq_list.append(qq)
+        self.state_qq_list.append(qq_p)
         self.state_qv_list.append(qv)
         self.state_t_list.append(self.state_t)
         # 仅记录100个数据点
@@ -296,7 +307,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.flag = 1
 
         #运行话题
-        rospy.init_node('mainWindon_run!')
+        rospy.init_node('mainWindon_run')
         rospy.Subscriber(self.sub_path, JointState, self.joint_callback)
         pub = rospy.Publisher(self.pub_path, Float64MultiArray, queue_size=10)
 
@@ -401,17 +412,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.test1 = TestWindow1()
         self.test1.show()
 
+    def gototeach1(self):
+        self.hide()
+        self.teach1 =TeachWindow1()
+        self.teach1.show()
+
 #***********************************子窗口***************************************#
 # ================阻抗控制窗口1================#
 class ImpWindow1(QMainWindow, Ui_ImpForm1):
     # 建立全局变量
     state_f_list = list(np.zeros([1000, 6]))
     state_xx_list = list(np.zeros([1000, 6]))
+    state_qq_list = list(np.zeros([1000, 7]))
     state_t_list = list(np.zeros(1000))
     state_t = 0
     #接受到的数据
     f_state = np.zeros(6)
-    flag = 1  # 开始或停止标签
+    flag = 1  #
     arm_flag = False
     real_flag = False
     sub_pos_path = "/robot3/joint_states"
@@ -489,9 +506,9 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         self.p2.plot(t, f[:, 0], pen='b', name='f1', clear=True)
         self.p2.plot(t, f[:, 1], pen='g', name='f2', clear=False)
         self.p2.plot(t, f[:, 2], pen='r', name='f3', clear=False)
-        self.p1.plot(t, f[:, 3], pen='c', name='f4', clear=False)
-        self.p1.plot(t, f[:, 4], pen='m', name='f5', clear=False)
-        self.p1.plot(t, f[:, 5], pen='y', name='f6', clear=False)
+        self.p2.plot(t, f[:, 3], pen='c', name='f4', clear=False)
+        self.p2.plot(t, f[:, 4], pen='m', name='f5', clear=False)
+        self.p2.plot(t, f[:, 5], pen='y', name='f6', clear=False)
 
     # 计算初始位置
     def read_init_point(self):
@@ -650,24 +667,32 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         for i in range(self.n):
             qq[i] = msg.position[i]
 
+        # 数据预处理
+        qq_list = np.array(self.state_qq_list[-4:-1])
+        qq_p = gf.joint_pos_Pretreatment(qq, qq_list, self.T)
         # 正运动计算
-        xx = gf.get_begin_point(qq, self.flag)
+        xx = gf.get_begin_point(qq_p, self.flag)
 
         # 存储数据
-        self.qq_state = np.copy(qq)
+        self.qq_state = np.copy(qq_p)
         self.state_t = self.state_t + self.T
+        self.state_qq_list.append(self.qq_state)
         self.state_t_list.append(self.state_t)
         self.state_xx_list.append(xx)
         # 仅记录1000个数据点
         del self.state_t_list[0]
         del self.state_xx_list[0]
+        del self.state_qq_list[0]
 
     ##关节角订阅回调函数
     def force_callback(self, msg):
         f = np.zeros(6)
-        for i in range(3):
-            f[i] = msg.wrench.force[i]
-            f[i+3] = msg.wrench.torque[i]
+        f[0] = msg.wrench.force.x
+        f[1] = msg.wrench.force.y
+        f[2] = msg.wrench.force.z
+        f[3] = msg.wrench.torque.x
+        f[4] = msg.wrench.torque.y
+        f[5] = msg.wrench.torque.z
         # 存储数据
         self.f_state = np.copy(f)
         self.state_f_list.append(f)
@@ -706,7 +731,7 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         self.flag = 1
 
         # 运行话题
-        rospy.init_node('mainWindon_run!')
+        rospy.init_node('mainWindon_run')
         rospy.Subscriber(self.sub_pos_path, JointState, self.joint_callback)
         rospy.Subscriber(self.sub_force_path, WrenchStamped, self.force_callback)
         pub = rospy.Publisher(self.pub_path, Float64MultiArray, queue_size=10)
@@ -1492,6 +1517,200 @@ class LinePlanWindow1(QMainWindow, Ui_LineForm1):
         self.main_windon = MainWindow()
         self.main_windon.show()
 
+# ================示教窗口1================#
+class TeachWindow1(QMainWindow, Ui_TeachingForm1):
+    def __init__(self, parent=None):
+        super(TeachWindow1, self).__init__(parent)
+        self.setupUi(self)
+        self.initUI()
+        self.state_qq_list = list(np.zeros([1000, 7]))
+        self.state_xx_list = list(np.zeros([1000, 3]))
+        self.state_t_list = list(np.zeros(1000))
+        self.state_t = 0
+        self.T = 0.01
+        self.flag = 1  # 开始或停止标签
+        self.arm_flag = False
+        self.gazebo_flag = 0
+        self.sub_path = "/robot3/joint_states"
+        self.pub_path = "/robot3/armc_position_controller/command"
+        self.n = 7  # 机械臂关节数
+        #示教器标签
+        self.teach_flag = False
+        self.teach_creat = False
+
+    def initUI(self):
+        # ======================菜单栏功能模块=======================#
+        # 创建菜单
+        menubar = self.menuBar()
+        fileMenu = menubar.addMenu('&File')
+
+        # 文件菜单:返回主窗口
+        openMain = QAction(QIcon('exit.png'), 'main window ', self)
+        openMain.setShortcut('Ctrl+z')
+        openMain.setStatusTip('Return main window')
+        openMain.triggered.connect(self.gotoMain)
+        fileMenu.addAction(openMain)
+
+        # =======================绘图相关设置=======================#
+        self.p1, self.p2 = self.set_graph_ui()  # 设置绘图窗口
+
+        # =======================按钮功能模块=======================#
+        # 读取积分自适应阻抗参数MBKI
+        self.button_begin.clicked.connect(self.begin_function)
+        self.button_end.clicked.connect(self.off)
+        self.checkBox_UR5.stateChanged.connect(self.armc_or_ur5)
+        self.button_teach.clicked.connect(self.create_teaching)
+        self.button_begin_teach.clicked.connect(self.begin_teaching)
+        self.button_end_teach.clicked.connect(self.end_teaching)
+        self.button_teach_show.clicked.connect(self.show_msg)
+
+    # ===============按钮功能模块相关函数================#
+    # 采用pyqtgraph绘制曲线,添加画板
+    def set_graph_ui(self):
+        pg.setConfigOptions(antialias=True)  # pg全局变量设置函数，antialias=True开启曲线抗锯齿
+
+        win1 = pg.GraphicsLayoutWidget()  # 创建pg layout，可实现数据界面布局自动管理
+        win2 = pg.GraphicsLayoutWidget()
+
+        # pg绘图窗口可以作为一个widget添加到GUI中的graph_layout，当然也可以添加到Qt其他所有的容器中
+        self.horizontalLayout_1.addWidget(win1)
+        self.horizontalLayout_2.addWidget(win2)
+
+        p1 = win1.addPlot(title="joint pos")  # 添加第一个绘图窗口
+        p1.setLabel('left', text='pos/rad', color='#ffffff')  # y轴设置函数
+        p1.showGrid(x=True, y=True)  # 栅格设置函数
+        p1.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+        p1.setLabel('bottom', text='time', units='s')  # x轴设置函数
+        p1.addLegend(size=(50, 30))  # 可选择是否添加legend
+
+        p2 = win2.addPlot(title="TCP")  # 添加第一个绘图窗口
+        p2.setLabel('left', text='vel:mm/s', color='#ffffff')  # y轴设置函数
+        p2.showGrid(x=True, y=True)  # 栅格设置函数
+        p2.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+        p2.setLabel('bottom', text='time', units='s')  # x轴设置函数
+        p2.addLegend(size=(50, 30))
+        return p1, p2
+
+    # 绘画关节角和关节角速度曲线
+    def plot_joint(self, t1, qq, t2, xx):
+        # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
+        self.p1.plot(t1, qq[:, 0], pen='b', name='qq1', clear=True)
+        self.p1.plot(t1, qq[:, 1], pen='g', name='qq2', clear=False)
+        self.p1.plot(t1, qq[:, 2], pen='r', name='qq3', clear=False)
+        self.p1.plot(t1, qq[:, 3], pen='c', name='qq4', clear=False)
+        self.p1.plot(t1, qq[:, 4], pen='m', name='qq5', clear=False)
+        self.p1.plot(t1, qq[:, 5], pen='y', name='qq6', clear=False)
+        self.p1.plot(t1, qq[:, 6], pen='w', name='qq7', clear=False)
+        # 绘制操作空间位置图
+        self.p2.plot(t2, xx[:, 0], pen='b', name='x1', clear=True)
+        self.p2.plot(t2, xx[:, 1], pen='g', name='x2', clear=False)
+        self.p2.plot(t2, xx[:, 2], pen='r', name='x3', clear=False)
+
+    # 计算初始位置
+    def create_teaching(self):
+        #获取存储地址
+        self.data_path = self.lineEdit_data_dir.text()
+        # 建立示教器
+        self.teaching = tl.teaching(self.data_path)
+        self.teach_creat = True
+        msg = "成功创建示教器\n"
+        self.textEdit_1.setText(msg)
+
+    def begin_teaching(self):
+        self.teach_flag = True
+
+    def end_teaching(self):
+        self.teach_flag = False
+        self.teaching.write_data()
+
+    ##关节角订阅回调函数
+    def joint_callback(self, msg):
+        qq = np.zeros(self.n)
+        for i in range(self.n):
+            qq[i] = msg.position[i]
+
+        #记录示教信息
+        if(self.teach_creat == True and self.teach_flag == True):
+            self.teaching.get_joint_position(qq)
+
+        # 正运动计算
+        xx = gf.get_begin_point(qq, self.flag)
+
+        # 存储数据
+        self.state_t = self.state_t + self.T
+        self.state_qq = np.copy(qq)
+        self.state_qq_list.append(qq)
+        self.state_t_list.append(self.state_t)
+        self.state_xx_list.append(xx[0:3])
+        # 仅记录1000个数据点
+        del self.state_t_list[0]
+        del self.state_qq_list[0]
+        del self.state_xx_list[0]
+
+    ##末端力订阅线程
+    def thread_spin(self):
+        rospy.spin()
+
+    def off(self):
+        self.flag = 0
+
+    def realtime_plot(self):
+        plot_t = np.array(self.state_t_list)
+        plot_qq = np.array(self.state_qq_list)
+        plot_xx = np.array(self.state_xx_list)
+        self.plot_joint(plot_t, plot_qq, plot_t, plot_xx)
+
+    def armc_or_ur5(self):
+        # 运行该函数切换到ur5
+        self.sub_path = "/robot1/joint_states"
+        self.pub_path = "/robot1/ur5_position_controller/command"
+        self.arm_flag = True
+        self.n = 6
+
+    def begin_function(self):
+        # 运行标签启动
+        self.flag = 1
+
+        # 运行话题
+        rospy.init_node('MainWindonRun')
+        rospy.Subscriber(self.sub_path, JointState, self.joint_callback)
+        pub = rospy.Publisher(self.pub_path, Float64MultiArray, queue_size=10)
+
+        # 运行线程1,收话题线程
+        t1 = threading.Thread(target=self.thread_spin)  # 末端位置订阅线程
+        msg1 = "MainWindonRun"
+        self.textEdit_1.setText(msg1)
+        t1.start()
+
+        # 设置绘图,用Qtimer开线程处理（线程4）
+        self.timer_plot = QTimer()
+        self.timer_plot.timeout.connect(self.realtime_plot)
+        self.timer_plot.start(1000)
+
+        # 发送关节角度
+        rate = rospy.Rate(100)
+        k = 0
+        while not rospy.is_shutdown():
+            # 检测是否启动急停
+            if (self.flag == 0):
+                self.timer_plot.stop()
+                break
+            # 发送数据
+            command_data = Float64MultiArray()
+            command_data.data = np.zeros(self.n)
+            pub.publish(command_data)
+            QApplication.processEvents()
+            k = k + 1
+            rate.sleep()
+    def show_msg(self):
+        data = fo.read(self.data_path)
+        self.textEdit_1.setText(str(data))
+
+    def gotoMain(self):
+        self.hide()
+        self.main_windon = MainWindow()
+        self.main_windon.show()
+
 # ================运行规划好的数据窗口================#
 class RunDataWindow(QMainWindow, Ui_RunForm):
     # 建立全局变量,属性模块可以直接读取
@@ -1682,9 +1901,9 @@ class RunDataWindow(QMainWindow, Ui_RunForm):
 
     def armc_or_ur5(self):
         # 运行该函数切换到ur5
-        self.sub_pos_path = "/robot1/joint_states"
-        self.sub_force_path = "/robot1/ft_sensor_topic"
-        self.pub_path = "/robot1/ur5_position_controller/command"
+        self.sub_pos_path = "/robot2/joint_states"
+        self.sub_force_path = "/robot2/ft_sensor_topic"
+        self.pub_path = "/robot2/ur5_position_controller/command"
         self.arm_flag = True
         self.n = 6
 
@@ -1818,7 +2037,6 @@ class TestWindow1(QMainWindow, Ui_TestForm1):
         self.checkBox_UR5.stateChanged.connect(self.armc_or_ur5)
         self.button_plan_begin.clicked.connect(self.read_begin_point)
         self.button_plan_end.clicked.connect(self.read_end_point)
-        #self.button_plan__begin.clicked.connect(self.read_init_point)
 
     # ===============按钮功能模块相关函数================#
     # 采用pyqtgraph绘制曲线,添加画板
@@ -1952,8 +2170,8 @@ class TestWindow1(QMainWindow, Ui_TestForm1):
 
         #数据预处理
         qq_list = np.array(self.state_qq_list[-4:-1])
-        #qq_p = gf.joint_pos_Pretreatment(qq, qq_list , self.T)
-        qq_p = qq
+        qq_p = gf.joint_pos_Pretreatment(qq, qq_list , self.T)
+        #qq_p = qq
         #存储数据
         self.state_t = self.state_t + self.T
         self.state_qq_list.append(qq_p)
@@ -1983,16 +2201,13 @@ class TestWindow1(QMainWindow, Ui_TestForm1):
 
     def armc_or_ur5(self):
         # 运行该函数切换到ur5
-        self.sub_pos_path = "/robot1/joint_states"
-        self.sub_force_path = "/robot1/ft_sensor_topic"
-        self.pub_path = "/robot1/ur5_position_controller/command"
+        self.sub_pos_path = "/robot2/joint_states"
+        self.sub_force_path = "/robot2/ft_sensor_topic"
+        self.pub_path = "/robot2/ur5_position_controller/command"
         self.arm_flag = True
         self.n = 6
 
     def begin_function(self):
-        #初始化状态变量
-        for i in range(3):
-            self.state_qq_list[-i-1] = self.qq_list[0,:]
         # 运行标签启动
         self.flag = 1
 

@@ -10,7 +10,7 @@ import numpy.linalg as nla
 import math
 from math import pi
 
-#=================叉乘操作矩阵=================#
+#====================叉乘操作矩阵=====================#
 def cross_matrix(v):
 	'''
 		input:v三维向量
@@ -37,7 +37,8 @@ def vector2matrix(v1,v2):
 	M = np.dot(V1,V2)
 	return M
 
-#=================欧拉轴角到旋转矩阵rotate=================#
+#===============坐标姿态各种表示之间的转换===============#
+#欧拉轴角到旋转矩阵rotate
 def euler_axis2rot(n,theta):
 	'''
 		本函数将欧拉角转化为旋转矩阵
@@ -48,47 +49,21 @@ def euler_axis2rot(n,theta):
 	R = np.eye(3) + n_m*np.sin(theta) + np.dot(n_m,n_m)*(1 - np.cos(theta))
 	return R
 
-#=================相邻关节齐次变换矩阵=================#
-def  trans(theta,alpha,a,d):
-	'''
-		本函数用于求取n自由度机械臂正运动学
-		输入参数为DH参数，角度单位为rad，长度单位为mm
-		参数分别为theta,alpha,a,d，为0维常数值
-		返回齐次传递函数矩阵
-	'''
-	T = np.array([[math.cos(theta), -math.sin(theta)*math.cos(alpha), math.sin(theta)*math.sin(alpha),  a*math.cos(theta)],
-		[math.sin(theta), math.cos(theta)*math.cos(alpha),  -math.cos(theta)*math.sin(alpha), a*math.sin(theta)],
-		[0,               math.sin(alpha),                  math.cos(alpha),                  d                ],
-		[0,               0,                                0,                                  1              ]])
-	return T
-
-#=================ZYX欧拉角速度变为姿态角速度转化矩阵=================#
-def  J_euler_zyx(Phi):
-	'''
-		ZYX欧拉角速度变为姿态角速度转化矩阵
-		input:欧拉角
-		output:角速度变换矩阵
-	'''
-	J = np.array([[0, -np.sin(Phi[0]), np.cos(Phi[0])*np.cos(Phi[1])],
-		[0, np.cos(Phi[0]), np.sin(Phi[0])*np.cos(Phi[1])],
-		[1, 0, -np.sin(Phi[1])]])
-	return J
-
-#=================ZYX欧拉角转变为旋转矩阵=================#
-def  euler_zyx2rot(phi):
+#ZYX欧拉角转变为旋转矩阵
+def euler_zyx2rot(phi):
 	'''
 		ZYX欧拉角转变为旋转矩阵
 		input:欧拉角
 		output:旋转矩阵
 	'''
-	R = np.array([[np.cos(phi[0])*np.cos(phi[1]), np.cos(phi[0])*np.sin(phi[1])*np.sin(phi[2]) - np.sin(phi[0])*np.cos(phi[2]), 
+	R = np.array([[np.cos(phi[0])*np.cos(phi[1]), np.cos(phi[0])*np.sin(phi[1])*np.sin(phi[2]) - np.sin(phi[0])*np.cos(phi[2]),
 		np.cos(phi[0])*np.sin(phi[1])*np.cos(phi[2]) + np.sin(phi[0])*np.sin(phi[2])],
-		[np.sin(phi[0])*np.cos(phi[1]), np.sin(phi[0])*np.sin(phi[1])*np.sin(phi[2]) + np.cos(phi[0])*np.cos(phi[2]), 
+		[np.sin(phi[0])*np.cos(phi[1]), np.sin(phi[0])*np.sin(phi[1])*np.sin(phi[2]) + np.cos(phi[0])*np.cos(phi[2]),
 		np.sin(phi[0])*np.sin(phi[1])*np.cos(phi[2]) - np.cos(phi[0])*np.sin(phi[2])],
 		[-np.sin(phi[0]), np.cos(phi[1])*np.sin(phi[2]), np.cos(phi[1])*np.cos(phi[2])]])
 	return R
 
-#=================旋转矩阵转变为ZYX欧拉角=================#
+#旋转矩阵转变为ZYX欧拉角
 def  rot2euler_zyx(Re):
 	'''
 		ZYX欧拉角速度变为姿态角速度转化矩阵
@@ -119,7 +94,7 @@ def  rot2euler_zyx(Re):
 	euler_zyx[2] = gamma
 	return euler_zyx
 
-# =================齐次坐标系转换为六维坐标系=================#
+#齐次坐标系转换为六维坐标系
 def T_to_Xzyx(T):
 	'''
     :param T:齐次矩阵
@@ -133,7 +108,35 @@ def T_to_Xzyx(T):
 	X[3:6] = rot2euler_zyx(T[0:3,0:3])
 	return X
 
-#=================5次多项式插值待定参数求取=================#
+#ZYX欧拉角速度变为姿态角速度转化矩阵
+def  J_euler_zyx(Phi):
+	'''
+		ZYX欧拉角速度变为姿态角速度转化矩阵
+		input:欧拉角
+		output:角速度变换矩阵
+	'''
+	J = np.array([[0, -np.sin(Phi[0]), np.cos(Phi[0])*np.cos(Phi[1])],
+		[0, np.cos(Phi[0]), np.sin(Phi[0])*np.cos(Phi[1])],
+		[1, 0, -np.sin(Phi[1])]])
+	return J
+
+#==================相邻关节齐次变换矩阵================#
+def  trans(theta,alpha,a,d):
+	'''
+		本函数用于求取n自由度机械臂正运动学
+		输入参数为DH参数，角度单位为rad，长度单位为mm
+		参数分别为theta,alpha,a,d，为0维常数值
+		返回齐次传递函数矩阵
+	'''
+	T = np.array([[math.cos(theta), -math.sin(theta)*math.cos(alpha), math.sin(theta)*math.sin(alpha),  a*math.cos(theta)],
+		[math.sin(theta), math.cos(theta)*math.cos(alpha),  -math.cos(theta)*math.sin(alpha), a*math.sin(theta)],
+		[0,               math.sin(alpha),                  math.cos(alpha),                  d                ],
+		[0,               0,                                0,                                  1              ]])
+	return T
+
+#===================规划相关基础函数==================#
+#***5次多项式插值***#
+#5次多项式插值待定参数求取
 def interp5_param(q0,qv0,qa0,qf,qvf,qaf,tf):
 	'''
 		本函数用于求取5次多项式插值的参数a
@@ -153,7 +156,7 @@ def interp5_param(q0,qv0,qa0,qf,qvf,qaf,tf):
 		A[5,i] = (12*(qf[i] - q0[i]) - (60*qvf[i] + 6*qv0[i])*tf + (qaf[i] - qa0[i])*tf*tf)/(2*pow(tf,5))
 	return A
 
-#=================5次多项式插值求取给定时刻关节值=================#
+#5次多项式插值求取给定时刻关节值
 def interp5_data(A,t):
 	'''
 		本函数用于求取5次插值多项式对应关节的位置速度加速度
@@ -173,7 +176,7 @@ def interp5_data(A,t):
 		qa[i] = 2*a2[i] + 6*a3[i]*t + 12*a4[i]*pow(t,2) + 20*a5[i]*pow(t,3)
 	return [qq,qv,qa]
 
-#=================5次多项式插值求取求取一段时间的离散数值点，多变量=================#
+#5次多项式插值求取求取一段时间的离散数值点,多变量
 def interp5rdPoly(q0,qv0,qa0,qf,qvf,qaf,tf,dt):
 	'''
 		本函数用5项插值将离散数据连续化，多变量
@@ -213,7 +216,7 @@ def interp5rdPoly(q0,qv0,qa0,qf,qvf,qaf,tf,dt):
 			qa[i,j] = 2*a2[j] + 6*a3[j]*t + 12*a4[j]*pow(t,2) + 20*a5[j]*pow(t,3)
 	return [qq,qv,qa]
 
-#=================5次多项式插值求取求取一段时间的离散数值点，单变量=================#
+#5次多项式插值求取求取一段时间的离散数值点,单变量
 def interp5rdPoly1(q0,qv0,qa0,qf,qvf,qaf,tf,dt):
 	'''
 		本函数用5项插值将离散数据连续化,单变量
@@ -244,7 +247,8 @@ def interp5rdPoly1(q0,qv0,qa0,qf,qvf,qaf,tf,dt):
 		qa[i] = 2*a2 + 6*a3*t + 12*a4*pow(t,2) + 20*a5*pow(t,3)
 	return [qq,qv,qa]
 
-#=================三弯构造法求取三次样条曲线参数M=================#
+#***三次样条曲线***#
+#三弯构造法求取三次样条曲线参数M
 def spline_param(t,f,v0,vn):
 	'''
 		本函数用于求取三次样条曲线参数M
@@ -283,7 +287,7 @@ def spline_param(t,f,v0,vn):
 	#print h
 	return [m,h]
 	
-#=================三弯构造法求取三次单变量样条曲线=================#
+#三弯构造法求取三次单变量样条曲线
 def spline1(t,f,interval,v0,vn):
 	'''
 		三次样条曲线，n个采样点，第一边界条件的三弯距插值
@@ -315,7 +319,7 @@ def spline1(t,f,interval,v0,vn):
 	
 	return [s,vel,acc]
 
-#=================三弯构造法求取三次样条曲线特定时刻的值=================#
+#三弯构造法求取三次样条曲线特定时刻的值
 def spline_tt(t,f,current_time,m,h):
 	'''
 		三次样条曲线，n个采样点，第一边界条件的三弯距插值
@@ -343,7 +347,7 @@ def spline_tt(t,f,current_time,m,h):
 			acc = m[n-1]
 	return [s,vel,acc]
 
-#=================三弯构造法求取三次样条曲线特定时刻的值,有且仅有两个点=================#
+#三弯构造法求取三次样条曲线特定时刻的值,有且仅有两个点
 def spline_tt1(t,f,current_time,m,h):
 	'''
 		三次样条曲线，2个采样点，第一边界条件的三弯距插值
@@ -364,24 +368,23 @@ def spline_tt1(t,f,current_time,m,h):
 	
 	return [s,vel,acc]
 
-#=================机械臂关节极限判断，返回值为0或1=================#
-def exceed_joint_limit(qq,q_limit):
+#=================机械臂关节角极限及跳跃=================#
+#机械臂关节极限判断，返回值为0或1
+def exceed_joint_limit(qq,q_min,q_max):
 	'''
 		判断关节角是否超出限制
 		input:关节角，关节角范围
 		outpu：0,未超出，1超出
 	'''
 	n = len(qq)
-	q_min = q_limit[0,:]
-	q_max = q_limit[1,:]
 	limit = 0
 	for i in range(n):
-		if((qq[i] < q_min[i])|(qq[i] > q_max[i])):
+		if((qq[i] < q_min[i]) or (qq[i] > q_max[i])):
 			limit = 1
 			break
 	return limit
 
-#=================判断关节是否有跳变=================#
+#判断关节是否有跳变
 def joint_have_jump(qq,q_init,delt_max = 0.5):
 	'''
 		判断关节角是与上一时刻插值是否过大
@@ -396,79 +399,8 @@ def joint_have_jump(qq,q_init,delt_max = 0.5):
 			break
 	return jump_label
 
-#=================已知关节角求取臂形角=================#
-def arm_angle_by_joint(qq,DH_0):
-	'''
-		计算臂形角通过关节角
-		input:当前关节角，DH参数
-		outpu：臂型角
-	'''
-	theta = DH_0[:,0] + qq
-	alpha = DH_0[:,1]
-	a = DH_0[:,2]
-	d = DH_0[:,3]
-
-	Ai = trans(theta[0],alpha[0],a[0],d[0])
-	S = Ai[0:3,3]
-	for i in range(2):
-		Ai = np.dot(Ai,trans(theta[i+1],alpha[i+1],a[i+1],d[i+1]))
-	E = Ai[0:3,3]
-	for i in range(2):
-		Ai = np.dot(Ai,trans(theta[i+3],alpha[i+3],a[i+3],d[i+3]))
-	W = Ai[0:3,3]
-
-	V = np.array([0, 0, 1])
-	w = W - S
-	e = E - S
-
-	ww = w/nla.norm(w)
-	p = e - np.dot(ww,e)*ww
-
-	psi = np.arctan2(np.dot(ww,np.cross(V,p)),np.dot(V,p))
-
-	return psi
-
-#=================已知零力点求零力角=================#
-def zeros_force_angle(qq,DH_0,N):
-	'''
-		计算臂形角通过关节角
-		input:当前关节角，DH参数,零力点
-		outpu：臂型角
-	'''
-	theta = DH_0[:,0] + qq
-	alpha = DH_0[:,1]
-	a = DH_0[:,2]
-	d = DH_0[:,3]
-
-	Ai = trans(theta[0],alpha[0],a[0],d[0])
-	S = Ai[0:3,3]
-	E = np.copy(N)
-	for i in range(4):
-		Ai = np.dot(Ai,trans(theta[i+1],alpha[i+1],a[i+1],d[i+1]))
-	W = Ai[0:3,3]
-
-	V = np.array([0, 0, 1])
-	w = W - S
-	e = E - S
-
-	ww = w/nla.norm(w)
-	p = e - np.dot(ww,e)*ww
-
-	psi = np.arctan2(np.dot(ww,np.cross(V,p)),np.dot(V,p))
-
-	return psi
-
-#=================计算零力=================#
-def zeros_force(psi_n,psi_p,f_max = 10):
-	'''
-		计算臂形角通过关节角
-		input:零力角、感应角、力系数
-		outpu：零力
-	'''
-	f = f_max*((pi - (psi_p - psi_n))/(2*pi - (psi_p - psi_n)))
-	return f
-
-#=================建立U型函数=================#
+#================关节角角度选择==================#
+#建立U型函数
 def U_function(qq,q_max,q_min):
 	'''
 	:param qq:
@@ -492,3 +424,38 @@ def U_function(qq,q_max,q_min):
 	#print "f: %s" % f
 
 	return f
+
+#解析解8选一算法
+def qq_eight_choice(Q,qq_k):
+	'''
+	:param Q: 8组关节角，行排列
+	:param qq_k: 上一时刻关节角
+	:return:
+	'''
+	#定义当前关节角与上一时刻关节角的距离
+	delta_l = np.zeros(8)
+	#求取每组关节角与上一时刻关节角的距离
+	for i in range(8):
+		qq = Q[i, :]
+		delta_qq = qq - qq_k
+		delta_l[i] = nla.norm(delta_qq)
+	l_min_k = np.argmin(delta_l)
+	qq_choice =Q[l_min_k,:]
+	return qq_choice
+
+#将关节角计算到正负pi
+def qq_choose(qq):
+	'''
+		本函数用于选着关节角范围
+		input:qq为计算出的关节角
+		output:q关节角范围[-pi,pi]
+	'''
+	n = len(qq)
+	q = np.copy(qq)
+	for i in range(n):
+		while (q[i] > pi):
+			q[i] = q[i] - 2*pi
+		while (q[i] < - pi):
+			q[i] = q[i] + 2*pi
+	return q
+

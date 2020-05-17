@@ -312,26 +312,23 @@ def spline_test():
 #=================臂形角参数化求逆模块测试=================#
 def analysis_ikine_test():	
 	##初始位置
-	qr_init = np.array([0,100,0,60,0,30,0])*(pi/180)
+	qk = np.array([81,20,32,60,91,20,100])*(pi/180)
+	qr_init = np.array([80,20,30,60,90,20,100])*(pi/180)
 	Te = kin.fkine(theta0 + qr_init,alpha,a,d)
-	n = len(qr_init)
 
 	##臂形角参数化后求解逆运动学
-	psi = pi  
-	[q,current_psi,succeed_label] = kin.aa_ikine(Te,psi,qr_init)
-	#print np.around(Q*180/pi, decimals=6)
-	
-	##关节角选泽函数
-	#q = kin.analysis_ikine_chose(Q,qr_init)
-	print np.around(q*180/pi, decimals=6)
-	print current_psi
-	print succeed_label
-		
+	psi = pi
+	tt1 = time.clock()
+	[qq, succeed_label] = kin.arm_angle_ikine(Te, psi, qk, DH_0, q_min, q_max)
+	tt2 = time.clock()
+
+	print "第一种求解时间：",tt2-tt1
+
+	print"第一种方法：\n", np.around(qq * 180 / pi, decimals=3)
+
 	#正运动学求解解
-	T0_e = kin.fkine(theta0 + q,alpha,a,d)
-	##测试结果：当臂形角等于pi时，关节角发生突变
-	###解决办法：臂形角取值范围改为【-pi,pi)
-	print T0_e - Te
+	T0_e = kin.fkine(theta0 +qq,alpha,a,d)
+	print "关节角：\n",np.around(T0_e - Te,6)
 		
 #=================零空间运动规划测试模块=================#
 def null_space_plan_test():	
@@ -581,8 +578,7 @@ def ur5s_plan_test():
 	n = len(qq[0, :])
 	t = np.linspace(0, T * (k - 1), k)
 
-
-# =================臂形角参数化求逆模块测试=================#
+# =================加权最小范数法求逆模块测试=================#
 def w_ikine_test():
 	##初始位置
 	qr = np.array([90, 40, 30, 80, 0, 30, 90]) * (pi / 180)
@@ -592,7 +588,10 @@ def w_ikine_test():
 
 	##臂形角参数化后求解逆运动学
 	d_h0 = np.zeros(n)
+	tt1 = time.clock()
 	[qq, dh] = kin.w_ikine(DH_0,qr,q_max,q_min,d_h0,Te)
+	tt2 = time.clock()
+	print "逆运动学时间：",tt2 - tt1
 	# print np.around(Q*180/pi, decimals=6)
 
 	##关节角选泽函数
@@ -605,6 +604,64 @@ def w_ikine_test():
 	##测试结果：当臂形角等于pi时，关节角发生突变
 	###解决办法：臂形角取值范围改为【-pi,pi)
 	print T0_e - Te
+
+# =================雅克比两种求解方法=================#
+def jaco_test():
+	##初始位置
+	DH_0 = rp.DH0_ur5
+	qr = np.array([100, 50, 40, 80, 100, 30]) * (pi / 180)
+
+	#采用构造发求雅克比矩阵
+	t1 = time.clock()
+	Jaco1= kin.jacobian(DH_0, qr)
+	t2 = time.clock()
+
+	#采用迭代法求雅克比矩阵
+	Jaco2 = kin.jeco_0(DH_0, qr)
+	t3 = time.clock()
+
+	#信息显示
+	print "构造法求取雅克比：\n",np.around(Jaco1,6)
+	print "构造法求取雅克比所需时间：",t2 - t1
+	print "迭代法求取雅克比：\n", np.around(Jaco2,6)
+	print "迭代法求取雅克比所需时间：", t3 - t2
+
+# =================ur逆解测试=================#
+def ur_ikine_test():
+	##初始位置
+	DH_0 = rp.DH0_ur5
+	theta0 = DH_0[:,0]
+	alpha = DH_0[:,1]
+	a = DH_0[:,2]
+	d = DH_0[:,3]
+	qr = np.array([100, 50, 40, 80, 100, 30]) * (pi / 180)
+	qq_k = np.array([99, 52, 43, 81, 100, 31]) * (pi / 180)
+	n = 6
+
+	#正运动学求取末端位姿
+	tt1 = time.clock()
+	Te = kin.fkine(theta0 + qr, alpha, a, d)
+	tt2 = time.clock()
+
+	#采用解析解求8组逆解
+	Q = kin.ur_ikine(DH_0,Te)
+	tt3 = time.clock()
+	print np.around(Q*180/pi, decimals=6)
+	print "正解所需时间：", tt2 - tt1
+	print "逆解所需时间：", tt3 - tt2
+
+	# 正运动学求解解
+	for i in range(8):
+		qq = Q[i,:]
+		T0_e = kin.fkine(theta0 + qq, alpha, a, d)
+		print "第",i,"组误差：",np.around(T0_e - Te,7)
+
+	#求取唯一解
+	tt4 = time.clock()
+	qq = kin.ur_ikine_choice(DH_0,Te,qq_k)
+	tt5 = time.clock()
+	print np.around(qq* 180 / pi, decimals=6)
+	print "求唯一解所选要时间：", tt5 - tt4
 
 
 def main():
@@ -621,7 +678,7 @@ def main():
 	#circle_plan_demo()
 	
 	##臂型角参数化求逆模块测试
-	#analysis_ikine_test()
+	analysis_ikine_test()
 	
 	##零空间运动规划测试
 	#null_space_plan_test()
@@ -639,10 +696,16 @@ def main():
 	#arms_line_plan_test()
 
 	##加权最小范数求逆运动学
-	w_ikine_test()
+	#w_ikine_test()
 
 	##定点运动，关节空间规划
 	#joint_plan_test()
+
+	##ur解析解测试
+	#ur_ikine_test()
+
+	##雅克比测试
+	#jaco_test()
 	
 	print 'finish'
 

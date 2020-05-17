@@ -76,6 +76,9 @@
           <height>41</height>
          </rect>
         </property>
+        <property name="text">
+         <string>/robot3/joint_states</string>
+        </property>
        </widget>
        <widget class="QLabel" name="label_9">
         <property name="geometry">
@@ -98,6 +101,9 @@
           <width>381</width>
           <height>41</height>
          </rect>
+        </property>
+        <property name="text">
+         <string>/robot3/ft_sensor_topic</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_3">
@@ -528,6 +534,9 @@
           <height>41</height>
          </rect>
         </property>
+        <property name="text">
+         <string>/robot3/armc_position_controller/command</string>
+        </property>
        </widget>
       </widget>
      </item>
@@ -600,11 +609,6 @@
          <string>内容显示区域</string>
         </property>
        </widget>
-       <zorder>textEdit</zorder>
-       <zorder>progressBar</zorder>
-       <zorder>label_10</zorder>
-       <zorder>label_4</zorder>
-       <zorder>frame_6</zorder>
       </widget>
      </item>
     </layout>

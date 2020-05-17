@@ -80,3 +80,4 @@ def tool_to_base(X,C,Xw):
         Te = np.dot(np.inv(Tw_b[i,:,:]),Tw_t[i,:,:])
         Xe[i,:] = bf.T_to_Xzyx(Te)
     return Xe
+
