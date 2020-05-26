@@ -169,7 +169,7 @@ def multipointLine_armc(l):
 	
 	#规划直线较简单，直接在0号坐标系先规划
 	nodeNum = 100
-	X0_e = np.zeros([6,nodeNum])
+	X0_e = np.zeros([nodeNum, 6])
 	
 	#由姿态保持初始姿态不变，转为Euler_ZYX角
 	phi_zyx = np.array([0, pi/2, 0])
@@ -180,8 +180,8 @@ def multipointLine_armc(l):
 	
 	#0号坐标系下的位姿
 	for i in range(nodeNum): 
-		X0_e[0:3,i] = pe_b + (pe_e - pe_b)*np.sin((pi/2)*(i/(1.0*(nodeNum - 1))))
-		X0_e[3:6,i] = phi_zyx
+		X0_e[i, 0:3] = pe_b + (pe_e - pe_b)*np.sin((pi/2)*(i/(1.0*(nodeNum - 1))))
+		X0_e[i, 3:6] = phi_zyx
 		
 	return [qr_init,X0_e,T]
 

@@ -2,7 +2,7 @@
 #-*-coding:utf-8-*-
 #本文档用于规划中的末端轨迹求取,默认等时间取样
 #程序员：陈永厅
-#版权：哈尔滨工业大学
+#版权：哈尔滨工业大学BBb
 #日期：初稿：2019.11.26
 
 import numpy as np
@@ -109,7 +109,7 @@ def T_to_Xzyx(T):
 	return X
 
 #ZYX欧拉角速度变为姿态角速度转化矩阵
-def  J_euler_zyx(Phi):
+def J_euler_zyx(Phi):
 	'''
 		ZYX欧拉角速度变为姿态角速度转化矩阵
 		input:欧拉角
@@ -119,6 +119,73 @@ def  J_euler_zyx(Phi):
 		[0, np.cos(Phi[0]), np.sin(Phi[0])*np.cos(Phi[1])],
 		[1, 0, -np.sin(Phi[1])]])
 	return J
+
+#旋转矩阵到四元数
+def rot_to_quaternion(R):
+	'''
+	:param R:
+	:return:
+	'''
+	#四元数
+	Q = np.zeros(4)
+	if abs(1.0 + R[0, 0] + R[1, 1] + R[2, 2]) > math.pow(10, -6):
+		Q[0] = math.sqrt(1.0 + R[0, 0] + R[1, 1] + R[2, 2])/2.0
+		Q[1] = 0.25 * (R[2, 1] - R[1, 2]) / Q[0]
+		Q[2] = 0.25 * (R[0, 2] - R[2, 0]) / Q[0]
+		Q[3] = 0.25 * (R[1, 0] - R[0, 1]) / Q[0]
+
+	elif abs(1.0 + R[0, 0] - R[1, 1] - R[2, 2]) > math.pow(10, -6):
+		q = math.sqrt(1.0 + R[0, 0] - R[1, 1] - R[2, 2])/2.0
+		if (q*(R[1, 2] + R[2, 1]) > 0):
+			Q[1] = q
+		else:
+			Q[1] = -q
+		Q[0] = 0.25 * (R[1, 2] + R[2, 1]) / Q[1]
+		Q[2] = 0.25 * (R[0, 1] + R[1, 0]) / Q[1]
+		Q[3] = 0.25 * (R[0, 2] + R[2, 0]) / Q[1]
+
+	elif abs(1.0 - R[0, 0] + R[1, 1] - R[2, 2]) > math.pow(10, -6):
+		q = math.sqrt(1.0 - R[0, 0] + R[1, 1] - R[2, 2]) / 2.0
+		if (q * (R[0, 2] - R[2, 0]) > 0):
+			Q[2] = q
+		else:
+			Q[2] = -q
+		Q[0] = 0.25 * (R[0, 2] - R[2, 0]) / Q[2]
+		Q[1] = 0.25 * (R[0, 1] + R[1, 0]) / Q[2]
+		Q[3] = 0.25 * (R[1, 2] + R[2, 1]) / Q[2]
+	else:
+		q = math.sqrt(1.0 - R[0, 0] - R[1, 1] + R[2, 2]) / 2.0
+		if (q * (R[1, 0] - R[0, 1]) > 0):
+			Q[3] = q
+		else:
+			Q[3] = -q
+		Q[0] = 0.25 * (R[1, 0] - R[1, 2]) / Q[3]
+		Q[1] = 0.25 * (R[0, 2] + R[2, 0]) / Q[3]
+		Q[2] = 0.25 * (R[1, 2] + R[2, 1]) / Q[3]
+	return Q
+
+#四元数到旋转矩阵
+def quaternion_to_rot(Q):
+	'''
+	:param Q:
+	:return:
+	'''
+	#建立旋转矩阵
+	R = np.zeros([3, 3])
+
+	#求取对应值
+	R[0, 0] = Q[0] ** 2 + Q[1] ** 2 - Q[2] ** 2 - Q[3] ** 2
+	R[1, 1] = Q[0] ** 2 - Q[1] ** 2 + Q[2] ** 2 - Q[3] ** 2
+	R[2, 2] = Q[0] ** 2 - Q[1] ** 2 - Q[2] ** 2 + Q[3] ** 2
+
+	R[0, 1] = 2 * (Q[1] * Q[2] - Q[3] * Q[0])
+	R[0, 2] = 2 * (Q[1] * Q[3] + Q[2] * Q[0])
+	R[1, 0] = 2 * (Q[1] * Q[2] + Q[3] * Q[0])
+	R[1, 2] = 2 * (Q[2] * Q[3] - Q[1] * Q[0])
+	R[2, 0] = 2 * (Q[1] * Q[3] - Q[2] * Q[0])
+	R[2, 1] = 2 * (Q[2] * Q[3] - Q[1] * Q[0])
+	return R
+
 
 #==================相邻关节齐次变换矩阵================#
 def  trans(theta,alpha,a,d):
@@ -458,4 +525,51 @@ def qq_choose(qq):
 		while (q[i] < - pi):
 			q[i] = q[i] + 2*pi
 	return q
+
+#===================观测器=====================#
+#***高增益观测器***#
+#高增益观测器,采用双曲线性变化离散化，求取观测值的导数
+def high_gain_observer(qq,qv,T,alpha1=10,alpha2=10):
+	'''
+	:param qq: 前三个时刻的采集值
+	:param qv: 前两个时刻的评估值
+	:param alpha1: 观测器参数
+	:param alpha2:
+	:param T: 采样周期
+	:return:
+	'''
+	#中间参数
+	b = 2*alpha2/T*(4+2*alpha1+alpha2)
+	a1 = (2*alpha2 - 8)/(4 + 2*alpha1 + alpha2)
+	a2 = (4 - 2*alpha1 + alpha2)/(4 + 2*alpha1 + alpha2)
+
+	#求当前时刻的评估速度
+	q_v = (b*qq[0] - b*qq[2] - qv[0] - a1*qv[1])/a2
+
+	#更新速度系列
+	qv_new = np.zeros(2)
+	qv_new[0] = qv[1]
+	qv_new[1] = q_v
+	return qv_new
+
+#高增益观测测器，观测多变量
+def high_gain_observer_multi_var(qq,qv,T):
+	'''
+	:param qq:
+	:param qv:
+	:param T:
+	:return:
+	'''
+	#观测变量个数
+	n = len(qq[0,:])
+	#评估的导数
+	qv_new = np.zeros([2,n])
+	for i in range(n):
+		qv_new[:,i] = high_gain_observer(qq[:,i],qv[:,i],T)
+	return qv_new
+
+
+
+
+
 

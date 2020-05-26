@@ -8,6 +8,22 @@ import numpy as np
 import BaseFunction as bf
 
 #=================求取基座标系与世界坐标系之间的齐次变换矩阵=================#
+#单臂
+def base_to_world1(X):
+    '''
+    :param X: 机械臂的基座六维坐标系，X为6
+    :return:
+    '''
+    #建立初始值
+
+    T = np.zeros([4,4])
+    #转化为齐次矩阵,RPY与zyx欧拉角等价
+    T[0:3,0:3] = bf.euler_zyx2rot(X[3:6])
+    T[0:3,3] = X[0:3]
+    T[3,3] = 1
+    return T
+
+#多臂
 def base_to_world(X):
     '''
     :param X: 机械臂的基座六维坐标系，X为n*6
@@ -80,4 +96,3 @@ def tool_to_base(X,C,Xw):
         Te = np.dot(np.inv(Tw_b[i,:,:]),Tw_t[i,:,:])
         Xe[i,:] = bf.T_to_Xzyx(Te)
     return Xe
-

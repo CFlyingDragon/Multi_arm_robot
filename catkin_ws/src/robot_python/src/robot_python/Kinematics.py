@@ -63,7 +63,7 @@ def arm_angle_by_joint(qq,DH_0):
 
 #================建立n自由度机械臂正运动学==============#
 #输入某时刻对应的DH,返回齐次矩阵
-def   fkine(theta,alpha,a,d):
+def fkine(theta,alpha,a,d):
 	'''
 		本函数用于求取n自由度机械臂正运动学
 		输入参数为DH参数，角度单位为rad，长度单位为mm
@@ -729,6 +729,335 @@ def arm_angle_ikine(Te, psi, qk, DH_0, qq_min, qq_max):
 		succeed_label = False
 
 	return [q, succeed_label]
+
+# ============采用解析解求取SRS无偏置型机器人避关节极限逆运动学==============#
+#***基于双臂型角求解析解,DH参数特定（初始角为0),运行时间0.6ms***#
+#采用z0与sw做参考面，求取第一臂形角8组解,求取运行时间0.3ms
+def arm_angle_ikine_first_limit(DH,Te):
+	'''
+	:param DH:
+	:param Te:
+	:return:
+	'''
+	#DH参数
+	d1 = DH[0, 3]
+	d3 = DH[2, 3]
+	d5 = DH[4, 3]
+	d7 = DH[6, 3]
+	#求取SW
+	s = np.array([0,0,d1])
+	z0 = np.array([0,0,1])
+	w = Te[0:3,3] - d7*Te[0:3,2]
+	sw = w - s
+	l_sw = nla.norm(sw)
+	u_sw = sw/l_sw
+	#***求取关节角4,第二个参数分别代表q4两组解***#
+	#计算beta值
+	beta = np.arccos((d3**2 + d5**2 - l_sw**2)/(2*d3*d5))
+	#关节角
+	qq4_1 = pi - beta #上
+	qq4_2 = beta - pi #下
+	qq4 = np.array([qq4_1,qq4_2])
+
+	#求解关节中心点旋转矩阵,由于关节极限对称,所以为0
+	R_03_mid = np.array([[1, 0, 0],
+						 [0, 0, 1],
+						 [0, -1, 0]])
+
+	R_74_mid = np.array([[1, 0, 0],
+						 [0, 1, 0],
+						 [0, 0, 1]])
+
+	# ***求取关节角1,2,3,第三个参数分别代表q2两组解***#
+	#求取夹角alpha
+	alpha_ = np.arccos((d3**2 + l_sw**2 - d5**2)/(2*d3*l_sw))
+	#定义转轴,用于求y_3_0
+	V = z0 #参考轴,第一参考轴
+	l = np.cross(sw,V)  #参考平面法向量
+	u_l = l/nla.norm(l)
+
+	#对应上下臂形
+	alpha = np.array([alpha_, - alpha_])
+
+	#定义8组关节角
+	Q = np.zeros([8,7])
+
+	#i=0代表上臂形,i=1代表下臂形
+	for i in range(2):
+		# 求变换矩阵,第二个下标是参考坐标系
+		R4_3 = np.array([[math.cos(qq4[i]), 0, math.sin(qq4[i])],
+						 [math.sin(qq4[i]), 0, -math.cos(qq4[i])],
+						 [0			, 1, 0]])
+
+		#**求取初始R03**#
+		#求取y3_0
+		y3_0 = -np.dot(bf.euler_axis2rot(u_l, alpha[i]), u_sw)
+		#求取x3_0
+		x3_0 = (sw + (d3 + d5 * np.cos(qq4[i])) * y3_0) / (d5 * np.sin(qq4[i]))
+		#求取z3_0
+		z3_0 = np.cross(x3_0,y3_0)
+		z3_0 = z3_0/nla.norm(z3_0)
+
+		#求取坐标系3在初始位置下在基座标系中的表示
+		R_03_0 = np.zeros([3,3])
+		R_03_0[:, 0] = x3_0
+		R_03_0[:, 1] = y3_0
+		R_03_0[:, 2] = z3_0
+
+		#**求臂型角,基于关节角最小化**#
+		#求取去q1,q2,q3对应重点R_psi_mid1
+		R_psi_mid1 = np.dot(R_03_mid, R_03_0.T)
+		Q_psi_mid1 = bf.rot_to_quaternion(R_psi_mid1)
+
+		#求取去q5,q6,q7对应重点R_psi_mid2
+		R_psi_mid2 = np.dot(np.dot(Te[0:3, 0:3], R_74_mid),np.dot(R_03_0, R4_3).T)
+		Q_psi_mid2 = bf.rot_to_quaternion(R_psi_mid2)
+
+		#求取四元数中点值
+		Q_mid = (Q_psi_mid1 + Q_psi_mid2)/2.0
+
+		#获得优化臂型角
+		psi = 0.0
+		if (abs(Q_mid[0]) < math.pow(10, -6)):
+			psi = -pi
+		else:
+			psi = math.atan(np.dot(Q_mid[1:4], u_sw)/Q_mid[0])
+
+		# 求取臂型角到到旋转矩阵
+		R_psi = bf.euler_axis2rot(u_sw, psi)
+
+		#求取3号坐标系在任意位置在基坐标系中的表示
+		R_03 = np.dot(R_psi,R_03_0)
+
+		#求取关节角2,有两组解
+		qq2_1 = np.arctan2(np.sqrt(1 - R_03[2, 1] ** 2), -R_03[2,1])
+		qq2_2 = np.arctan2(-np.sqrt(1 - R_03[2, 1] ** 2), -R_03[2, 1])
+
+		#求取关节角1
+		qq1_1 = np.arctan2(-R_03[1, 1] * np.sin(qq2_1), -R_03[0, 1] * np.sin(qq2_1))
+		qq1_2 = np.arctan2(-R_03[1, 1] * np.sin(qq2_2), -R_03[0, 1] * np.sin(qq2_2))
+
+		#求取关节角3
+		qq3_1 = np.arctan2(R_03[2, 2] * np.sin(qq2_1), -R_03[2, 0] * np.sin(qq2_1))
+		qq3_2 = np.arctan2(R_03[2, 2] * np.sin(qq2_2), -R_03[2, 0] * np.sin(qq2_2))
+
+		#****求取关节角5,6,7****#
+
+		R4 = np.dot(R_psi,np.dot(R_03_0,R4_3))
+		R4_7 = np.dot(Te[0:3,0:3].T,R4)
+		R_47 = R4_7.T
+
+		#求取关节角6,存在两组解
+		qq6_1 = np.arctan2(np.sqrt(1 - R_47[2, 2] ** 2), R_47[2, 2])
+		qq6_2 = np.arctan2(-np.sqrt(1 - R_47[2, 2] ** 2), R_47[2, 2])
+
+		# 求取关节角1
+		qq5_1 = np.arctan2(R_47[1, 2] * np.sin(qq6_1), R_47[0, 2] * np.sin(qq6_1))
+		qq5_2 = np.arctan2(R_47[1, 2] * np.sin(qq6_2), R_47[0, 2] * np.sin(qq6_2))
+
+		# 求取关节角3
+		qq7_1 = np.arctan2(R_47[2, 1] * np.sin(qq6_1), -R_47[2, 0] * np.sin(qq6_1))
+		qq7_2 = np.arctan2(R_47[2, 1] * np.sin(qq6_2), -R_47[2, 0] * np.sin(qq6_2))
+
+		#求解8组解
+		q = np.array([[qq1_1, qq2_1, qq3_1, qq4[i], qq5_1, qq6_1, qq7_1],
+					  [qq1_1, qq2_1, qq3_1, qq4[i], qq5_2, qq6_2, qq7_2],
+					  [qq1_2, qq2_2, qq3_2, qq4[i], qq5_1, qq6_1, qq7_1],
+					  [qq1_2, qq2_2, qq3_2, qq4[i], qq5_2, qq6_2, qq7_2]])
+		if(i==0):
+			Q[0:4,:] = q
+		else:
+			Q[4:8,:] = q
+	return Q
+
+#采用x0与sw做参考面，求取第二臂形角8组解，时间0.3ms
+def arm_angle_ikine_second_limit(DH,Te):
+	'''
+	:param DH:
+	:param psi:
+	:param Te:
+	:return:
+	'''
+	#DH参数
+	d1 = DH[0, 3]
+	d3 = DH[2, 3]
+	d5 = DH[4, 3]
+	d7 = DH[6, 3]
+	#求取SW
+	s = np.array([0,0,d1])
+	x0 = np.array([1,0,0])
+	w = Te[0:3,3] - d7*Te[0:3,2]
+	sw = w - s
+	l_sw = nla.norm(sw)
+	u_sw = sw/l_sw
+
+	#***求取关节角4,第二个参数分别代表q4两组解***#
+	#计算beta值
+	beta = np.arccos((d3**2 + d5**2 - l_sw**2)/(2*d3*d5))
+	#关节角
+	qq4_1 = pi - beta #上
+	qq4_2 = beta - pi #下
+	qq4 = np.array([qq4_1,qq4_2])
+
+	# 求解关节中心点旋转矩阵,由于关节极限对称,所以为0
+	R_03_mid = np.array([[1, 0, 0],
+						 [0, 0, 1],
+						 [0, -1, 0]])
+
+	R_74_mid = np.array([[1, 0, 0],
+						 [0, 1, 0],
+						 [0, 0, 1]])
+
+	# ***求取关节角1,2,3,第三个参数分别代表q2两组解***#
+	#求取夹角alpha
+	alpha_ = np.arccos((d3**2 + l_sw**2 - d5**2)/(2*d3*l_sw))
+	#定义转轴,用于求y_3_0
+	V = x0 #定义参考轴,第二参考轴
+	l = np.cross(sw,V) #参考平面法向量
+	u_l = l/nla.norm(l)
+
+	#对应上下臂形
+	alpha = np.array([alpha_, - alpha_])
+
+	#定义8组关节角
+	Q = np.zeros([8,7])
+
+	#i=0代表上臂形,i=1代表下臂形
+	for i in range(2):
+		# 求变换矩阵,第二个下标是参考坐标系
+		R4_3 = np.array([[math.cos(qq4[i]), 0, math.sin(qq4[i])],
+						 [math.sin(qq4[i]), 0, -math.cos(qq4[i])],
+						 [0		, 1, 0]])
+
+		#求取y3_0
+		y3_0 = -np.dot(bf.euler_axis2rot(u_l, alpha[i]), u_sw)
+		#求取x3_0
+		x3_0 = (sw + (d3 + d5 * np.cos(qq4[i])) * y3_0) / (d5 * np.sin(qq4[i]))
+		#求取z3_0
+		z3_0 = np.cross(x3_0,y3_0)
+		z3_0 = z3_0/nla.norm(z3_0)
+
+		#求取坐标系3在初始位置下在基座标系中的表示
+		R_03_0 = np.zeros([3,3])
+		R_03_0[:, 0] = x3_0
+		R_03_0[:, 1] = y3_0
+		R_03_0[:, 2] = z3_0
+
+		# **求臂型角,基于关节角最小化**#
+		# 求取去q1,q2,q3对应重点R_psi_mid1
+		R_psi_mid1 = np.dot(R_03_mid, R_03_0.T)
+		Q_psi_mid1 = bf.rot_to_quaternion(R_psi_mid1)
+
+		# 求取去q5,q6,q7对应重点R_psi_mid2
+		R_psi_mid2 = np.dot(np.dot(Te[0:3, 0:3], R_74_mid), np.dot(R_03_0, R4_3).T)
+		Q_psi_mid2 = bf.rot_to_quaternion(R_psi_mid2)
+
+		# 求取四元数中点值
+		Q_mid = (Q_psi_mid1 + Q_psi_mid2) / 2.0
+
+		# 获得优化臂型角
+		psi = 0.0
+		if (abs(Q_mid[0]) < math.pow(10, -6)):
+			psi = -pi
+		else:
+			psi = math.atan(np.dot(Q_mid[1:4], u_sw) / Q_mid[0])
+
+		# 求取臂型角到到旋转矩阵
+		R_psi = bf.euler_axis2rot(u_sw, psi)
+
+		#求取3号坐标系在任意位置在基坐标系中的表示
+		R_03 = np.dot(R_psi,R_03_0)
+
+		#求取关节角2,有两组解
+		qq2_1 = np.arctan2(np.sqrt(1 - R_03[2, 1] ** 2), -R_03[2,1])
+		qq2_2 = np.arctan2(-np.sqrt(1 - R_03[2, 1] ** 2), -R_03[2, 1])
+
+		#求取关节角1
+		qq1_1 = np.arctan2(-R_03[1, 1] * np.sin(qq2_1), -R_03[0, 1] * np.sin(qq2_1))
+		qq1_2 = np.arctan2(-R_03[1, 1] * np.sin(qq2_2), -R_03[0, 1] * np.sin(qq2_2))
+
+		#求取关节角3
+		qq3_1 = np.arctan2(R_03[2, 2] * np.sin(qq2_1), -R_03[2, 0] * np.sin(qq2_1))
+		qq3_2 = np.arctan2(R_03[2, 2] * np.sin(qq2_2), -R_03[2, 0] * np.sin(qq2_2))
+
+		#****求取关节角5,6,7****#
+		#求变换矩阵,第二个下标是参考坐标系
+		R4_3 = np.array([[np.cos(qq4[i]), 0, np.sin(qq4[i])],
+						 [np.sin(qq4[i]), 0, -np.cos(qq4[i])],
+						 [0				, 1, 0]])
+		R4 = np.dot(R_psi,np.dot(R_03_0,R4_3))
+		R4_7 = np.dot(Te[0:3,0:3].T,R4)
+		R_47 = R4_7.T
+
+		#求取关节角6,存在两组解
+		qq6_1 = np.arctan2(np.sqrt(1 - R_47[2, 2] ** 2), R_47[2, 2])
+		qq6_2 = np.arctan2(-np.sqrt(1 - R_47[2, 2] ** 2), R_47[2, 2])
+
+		# 求取关节角1
+		qq5_1 = np.arctan2(R_47[1, 2] * np.sin(qq6_1), R_47[0, 2] * np.sin(qq6_1))
+		qq5_2 = np.arctan2(R_47[1, 2] * np.sin(qq6_2), R_47[0, 2] * np.sin(qq6_2))
+
+		# 求取关节角3
+		qq7_1 = np.arctan2(R_47[2, 1] * np.sin(qq6_1), -R_47[2, 0] * np.sin(qq6_1))
+		qq7_2 = np.arctan2(R_47[2, 1] * np.sin(qq6_2), -R_47[2, 0] * np.sin(qq6_2))
+
+		#求解8组解
+		q = np.array([[qq1_1, qq2_1, qq3_1, qq4[i], qq5_1, qq6_1, qq7_1],
+					  [qq1_1, qq2_1, qq3_1, qq4[i], qq5_2, qq6_2, qq7_2],
+					  [qq1_2, qq2_2, qq3_2, qq4[i], qq5_1, qq6_1, qq7_1],
+					  [qq1_2, qq2_2, qq3_2, qq4[i], qq5_2, qq6_2, qq7_2]])
+		if(i==0):
+			Q[0:4,:] = q
+		else:
+			Q[4:8,:] = q
+	return Q
+
+#选择求取关节所需参考面,并调用对应算法求取8组关节角
+def arm_angle_all_ikine_limit( DH_0,Te):
+	'''
+	:param DH_0:
+	:param psi:
+	:param Te:
+	:return:
+	'''
+	##判断臂形角是否奇异
+	d1 = DH_0[0, 3]
+	d7 = DH_0[6, 3]
+	s = np.array([0, 0, d1])
+	w = Te[0:3, 3] - d7 * Te[0:3, 2]
+	sw = w - s
+	if (np.abs(sw[0] < pow(10, -6)) and np.abs(sw[1] < pow(10, -6))):
+		print "臂形角奇异,采用第二臂形角求解"
+		#调用第二臂形角计算
+		Q = arm_angle_ikine_second_limit(DH_0, Te)
+	else:
+		Q = arm_angle_ikine_first_limit(DH_0, Te)
+	return Q
+
+#基于臂型角逆解运算,单一值输出接口,运行时间0.4ms
+def arm_angle_ikine_limit(Te, qk, DH_0, qq_min, qq_max):
+	'''
+	:param Te:末端矩阵
+	:param psi:第一臂形角
+	:param qk:上一时刻关节角
+	:param DH_0:
+	:param q_min:
+	:param qq_max:
+	:return:关节角和求解标签
+	'''
+	#建立求解是否成功标签
+	succeed_label = True  # 默认成功求逆
+
+	#调用求解函数求取8组解
+	Q = arm_angle_all_ikine_limit(DH_0,Te)
+
+	[q,limit_flag] = arm_angle_ikine_chose(Q, qk, qq_min,qq_max)
+	if(limit_flag):
+		print "求解失败！"
+		succeed_label = False
+
+	return [q, succeed_label]
+
 
 #=================UR构型解析解，DH坐标系需要满足要求=================#
 #建立解ms+nc=d的求解函数

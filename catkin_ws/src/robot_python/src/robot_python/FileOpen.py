@@ -10,7 +10,7 @@ import numpy as np
 def read(path):
 	''' read 函数用于读取数据,数据由单空格隔开
 		输入参数：path 读取文件的路径
-		返回参数：数组，列表格式
+		返回参数：数组
 	'''
 	read_data = []
 	with open(path, 'r') as file_to_read:
@@ -22,9 +22,15 @@ def read(path):
 			line=line.split(" ") #用空格拆分数据
 			
 			line = line[:-1]  #切片去除末尾转行符	
-			read_data .append(line)
-	read_data = read_data
-	return read_data
+			read_data.append(line)
+	read_data = np.array(read_data)
+	num = len(read_data[:, 0])
+	n = len(read_data[0, :])
+	data_array = np.zeros([num, n])
+	for i in range(num):
+		for j in range(n):
+			data_array[i, j] = read_data[i, j]
+	return data_array
 
 #将数据写入文件，用单空格分隔数据，末尾转行
 def write(write_data,path):

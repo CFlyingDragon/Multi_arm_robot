@@ -8,6 +8,7 @@ import numpy as np
 from math import pi
 import os
 import time
+import matplotlib.pyplot as plt
 
 #自定义函数模块
 from robot_python import Kinematics as kin
@@ -312,14 +313,15 @@ def spline_test():
 #=================臂形角参数化求逆模块测试=================#
 def analysis_ikine_test():	
 	##初始位置
-	qk = np.array([81,20,32,60,91,20,100])*(pi/180)
-	qr_init = np.array([80,20,30,60,90,20,100])*(pi/180)
+	qk = np.array([170,80,170,60,-170,80,160])*(pi/180)
+	qr_init = np.array([170,80,-170,80,-170,80,160])*(pi/180)
 	Te = kin.fkine(theta0 + qr_init,alpha,a,d)
 
 	##臂形角参数化后求解逆运动学
 	psi = pi
 	tt1 = time.clock()
-	[qq, succeed_label] = kin.arm_angle_ikine(Te, psi, qk, DH_0, q_min, q_max)
+	#[qq, succeed_label] = kin.arm_angle_ikine(Te, psi, qk, DH_0, q_min, q_max)
+	[qq, succeed_label] = kin.arm_angle_ikine_limit(Te, qk, DH_0, q_min, q_max)
 	tt2 = time.clock()
 
 	print "第一种求解时间：",tt2-tt1
@@ -663,6 +665,96 @@ def ur_ikine_test():
 	print np.around(qq* 180 / pi, decimals=6)
 	print "求唯一解所选要时间：", tt5 - tt4
 
+# =================高增益观测器测试==================#
+def high_gain_observer_test():
+	#生成数据
+	T = 0.01
+	num = 1000
+	t = np.linspace(0,T*(num-1),num)
+	theta = 1*t
+	qq = np.sin(theta)
+	qv = np.cos(theta)
+	#采用评估器生成速度
+	qv_ass = np.zeros(num)
+	qv_array = np.zeros(2)
+	qq_list = list(np.zeros(3))
+	for i in range(num):
+		qq_list.append(qq[i])
+		del qq_list[0]
+		qq_array = np.array(qq_list)
+		#求取数据
+		qv_array = bf.high_gain_observer(qq_array,qv_array,T)
+		qv_ass[i] = qv_array[-1]
+
+	#调用绘图工具绘制图像
+	plt.figure()
+	plt.plot(t,qv, label='wish', color='b')
+	plt.plot(t,qv_ass, label='assessment', color='r')
+	plt.title("High gain observer")
+	plt.xlabel("t/s")
+	plt.ylabel("qv")
+	plt.legend()
+	plt.show()
+
+#=================示教学习数据,直线规划=================#
+def teach_line_plan_test():
+	##直线轨迹测试
+	l = 0.2
+	[qr_init,X0_e,T] = enp.multipointLine_armc(l)
+	n = len(qr_init)
+
+	#从家点运动到初始位置
+	[qq1,qv1,qa1] = jp.home_to_init(qr_init)
+	k1 = len(qq1[:, 0])
+
+	#停顿点
+	qq2 = jp.keep_pos(400,qq1[-1, :])
+	k2 = len(qq2[:, 0])
+
+	#位置级求逆函数测试测试
+	[qq3,qv3,qa3] = pap.multipoint_plan_position(qr_init,X0_e,T)
+	k3 = len(qq3[:, 0])
+
+	#合成完整路径
+	kk1 = k1; kk2 = k1 + k2; kk3 = k1 + k2 + k3;
+	qq = np.zeros([kk3, n])
+	qq[0:kk1, :] = qq1
+	qq[kk1:kk2, :] = qq2
+	qq[kk2:kk3, :] = qq3
+
+
+	#关节点写入文档
+	parent_path = os.path.abspath('..')
+	file_name = "data/teaching/teaching_data.txt"
+	path = os.path.join(parent_path,file_name)
+	FileOpen.write(qq,path)
+
+	#时间变量
+	k = len(qq[:, 0]); n = len(qq[0, :])
+	t = np.linspace(0,T*(k-1),k)
+
+	#关节空间单变量随时间绘图
+	for i in range(n):
+		i_string = "qq " + str(i+1) + "plot"
+		MyPlot.plot2d(t,qq[:, i], i_string)
+
+	#正运动学求解末端位位置
+	Xe = np.zeros([k, 6])
+	for i in range(k):
+		T0_e = kin.fkine(theta0 + qq[i,:],alpha,a,d)
+		Xe[i, 0:3] = T0_e[0:3,3]
+		Xe[i, 3:6] = T0_e[0:3,1]
+
+	#笛卡尔单变量随时间绘图
+	for i in range(6):
+		i_string = "Xe " + str(i+1) + "plot"
+		MyPlot.plot2d(t,Xe[:,i], i_string)
+
+	#末端轨迹三维图
+	xx = np.around(Xe[:, 0], decimals=6)
+	yy = np.around(Xe[:, 1], decimals=6)
+	zz = np.around(Xe[:, 2], decimals=6)
+	MyPlot.plot3d(xx,yy,zz,"3D plot")
 
 def main():
 	##末端点规划测试
@@ -706,6 +798,12 @@ def main():
 
 	##雅克比测试
 	#jaco_test()
+
+	##高增益观测器测试
+	#high_gain_observer_test()
+
+	##示教直线规划测试
+	#teach_line_plan_test()
 	
 	print 'finish'
 
