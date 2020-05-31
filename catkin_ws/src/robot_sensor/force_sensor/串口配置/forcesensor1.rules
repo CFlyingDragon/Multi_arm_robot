@@ -1,0 +1,2 @@
+KERNEL=="ttyUSB0", ATTRS{devpath}=="2", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE:="0777", SYMLINK+="forcesensor1"
+KERNEL=="ttyUSB1", ATTRS{devpath}=="3", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE:="0777", SYMLINK+="forcesensor2"

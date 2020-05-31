@@ -552,11 +552,3 @@
 /home/d/catkin_ws/build/robot_description/armt_description /CMakeFiles/install/local.dir
 /home/d/catkin_ws/build/robot_description/armt_description /CMakeFiles/edit_cache.dir
 /home/d/catkin_ws/build/robot_description/armt_description /CMakeFiles/test.dir
-/home/d/catkin_ws/build/robot_description/ur5_description /CMakeFiles/install.dir
-/home/d/catkin_ws/build/robot_description/ur5_description /CMakeFiles/list_install_components.dir
-/home/d/catkin_ws/build/robot_description/ur5_description /CMakeFiles/rebuild_cache.dir
-/home/d/catkin_ws/build/robot_description/ur5_description /CMakeFiles/ur5_description_xacro_generated_to_devel_space_.dir
-/home/d/catkin_ws/build/robot_description/ur5_description /CMakeFiles/test.dir
-/home/d/catkin_ws/build/robot_description/ur5_description /CMakeFiles/install/strip.dir
-/home/d/catkin_ws/build/robot_description/ur5_description /CMakeFiles/install/local.dir
-/home/d/catkin_ws/build/robot_description/ur5_description /CMakeFiles/edit_cache.dir

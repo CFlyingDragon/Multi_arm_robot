@@ -3090,19 +3090,6 @@ armt_description_xacro_generated_to_devel_space_/fast:
 	$(MAKE) -f "robot_description/armt_description /CMakeFiles/armt_description_xacro_generated_to_devel_space_.dir/build.make" "robot_description/armt_description /CMakeFiles/armt_description_xacro_generated_to_devel_space_.dir/build"
 .PHONY : armt_description_xacro_generated_to_devel_space_/fast
 
-#=============================================================================
-# Target rules for targets named ur5_description_xacro_generated_to_devel_space_
-
-# Build rule for target.
-ur5_description_xacro_generated_to_devel_space_: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ur5_description_xacro_generated_to_devel_space_
-.PHONY : ur5_description_xacro_generated_to_devel_space_
-
-# fast build rule for target.
-ur5_description_xacro_generated_to_devel_space_/fast:
-	$(MAKE) -f "robot_description/ur5_description /CMakeFiles/ur5_description_xacro_generated_to_devel_space_.dir/build.make" "robot_description/ur5_description /CMakeFiles/ur5_description_xacro_generated_to_devel_space_.dir/build"
-.PHONY : ur5_description_xacro_generated_to_devel_space_/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -3341,7 +3328,6 @@ help:
 	@echo "... armc_description_xacro_generated_to_devel_space_"
 	@echo "... joint_command_interface_armc"
 	@echo "... armt_description_xacro_generated_to_devel_space_"
-	@echo "... ur5_description_xacro_generated_to_devel_space_"
 .PHONY : help
 
 

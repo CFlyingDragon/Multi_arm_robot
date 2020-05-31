@@ -170,7 +170,6 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/d/catkin_ws/build/c_lightlobot/armc_moveit_config/cmake_install.cmake")
   include("/home/d/catkin_ws/build/robot_moveit/armc_moveit_config1/cmake_install.cmake")
   include("/home/d/catkin_ws/build/robot_description/armt_description /cmake_install.cmake")
-  include("/home/d/catkin_ws/build/robot_description/ur5_description /cmake_install.cmake")
 
 endif()
 
