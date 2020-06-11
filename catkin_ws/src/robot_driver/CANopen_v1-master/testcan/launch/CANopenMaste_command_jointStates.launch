@@ -1,0 +1,13 @@
+<launch>
+  <!--启主节点-->
+  <node pkg="testcan" type="canopenexample" respawn="false" name="canopenexample" output="screen">
+    <rosparam file="$(find testcan)/cfg/CANopen.yaml" command="load"/>
+  </node>
+
+  <!--启动命令中转命令-->
+  <node pkg="testcan" type="joint_command_transfer_node" respawn="false" name="joint_command_transfer_node" output="screen" launch-prefix="xterm -e"/>
+  
+  <!--启动关节状态发送窗口-->
+  <node pkg="testcan" type="joint_command_transfer_node" respawn="false" name="joint_command_transfer_node" output="screen" launch-prefix="xterm -e"/>
+   
+</launch>

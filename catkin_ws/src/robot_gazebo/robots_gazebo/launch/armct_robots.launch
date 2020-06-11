@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- No namespace here as we will share this description. Access with slash at the beginning -->
+  <param name="robot_description_tan"
+    command="$(find xacro)/xacro.py '$(find armt_description)/robots/armt.xacro'" />
+  <param name="robot_description_chen"
+    command="$(find xacro)/xacro.py '$(find armc_description)/robots/armc.xacro'" />
+  <!-- BEGIN ROBOT MIR 1-->
+  <group ns="robot1">
+    <param name="tf_prefix" value="robot1_tf" />
+    <include file="$(find robots_gazebo)/launch/tan/robot.launch" >
+      <arg name="init_pose" value="-x 0.6 -y 0 -z 1 -R 0 -P 0 -Y 0" />
+      <arg name="robot_name"  value="Robot1" />
+    </include>
+    <include file="$(find robots_gazebo)/launch/tan/armt_position_controller.launch" />
+  </group>
+
+  <!--BEGIN ROBOT ROBOTINO 2-->
+  <group ns="robot2">
+    <param name="tf_prefix" value="robot2_tf" />
+    <include file="$(find robots_gazebo)/launch/chen/robot.launch" >
+      <arg name="init_pose" value="-x -0.6 -y 0 -z 1" />
+      <arg name="robot_name"  value="Robot2" />
+    </include>
+    <include file="$(find robots_gazebo)/launch/chen/armc_position_controller.launch" />
+  </group>
+
+</launch>

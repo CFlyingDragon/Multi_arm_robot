@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.3)
+﻿cmake_minimum_required(VERSION 2.8.3)
 project(testcan)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
@@ -8,7 +8,12 @@ add_compile_options(-Wno-narrowing)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  message_generation
+  roscpp
+  dynamic_reconfigure
+  sensor_msgs
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -35,12 +40,7 @@ find_package(catkin REQUIRED)
 ##     * add a run_depend tag for "message_runtime"
 ## * In this file (CMakeLists.txt):
 ##   * add "message_generation" and every package in MSG_DEP_SET to
-find_package(catkin REQUIRED COMPONENTS
-  message_generation
-  roscpp
-  dynamic_reconfigure
-  sensor_msgs
-)
+
 ##   * add "message_runtime" and every package in MSG_DEP_SET to
 ##     catkin_package(CATKIN_DEPENDS ...)
 ##   * uncomment the add_*_files sections below as needed
@@ -312,9 +312,20 @@ add_executable(arm_joint_states_publisher_node src/arm_joint_states_publisher.cp
 target_link_libraries(arm_joint_states_publisher_node
   ${catkin_LIBRARIES} canopen_vci_ros)
 
+add_executable(joint_states_publisher_node src/joint_states_publisher.cpp)
+target_link_libraries(joint_states_publisher_node
+  ${catkin_LIBRARIES} canopen_vci_ros)
+
 add_executable(joint_command_canopen_interface_node
   src/joint_command_interface.cpp
 )
 target_link_libraries(joint_command_canopen_interface_node
+  ${catkin_LIBRARIES}
+)
+
+add_executable(joint_command_transfer_node
+  src/joint_command_transfer.cpp
+)
+target_link_libraries(joint_command_transfer_node
   ${catkin_LIBRARIES}
 )

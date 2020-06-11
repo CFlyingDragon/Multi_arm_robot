@@ -166,6 +166,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/rule
+.PHONY : robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/rule
+
+# Convenience name for target.
+joint_command_transfer_node: robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/rule
+
+.PHONY : joint_command_transfer_node
+
+# fast build rule for target.
+joint_command_transfer_node/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/build
+.PHONY : joint_command_transfer_node/fast
+
+# Convenience name for target.
 robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_canopen_interface_node.dir/rule:
 	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_canopen_interface_node.dir/rule
 .PHONY : robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_canopen_interface_node.dir/rule
@@ -179,6 +194,21 @@ joint_command_canopen_interface_node: robot_driver/CANopen_v1-master/testcan/CMa
 joint_command_canopen_interface_node/fast:
 	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_canopen_interface_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_canopen_interface_node.dir/build
 .PHONY : joint_command_canopen_interface_node/fast
+
+# Convenience name for target.
+robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/rule
+.PHONY : robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/rule
+
+# Convenience name for target.
+joint_states_publisher_node: robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/rule
+
+.PHONY : joint_states_publisher_node
+
+# fast build rule for target.
+joint_states_publisher_node/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/build
+.PHONY : joint_states_publisher_node/fast
 
 # Convenience name for target.
 robot_driver/CANopen_v1-master/testcan/CMakeFiles/csp2_example.dir/rule:
@@ -807,6 +837,60 @@ src/joint_command_interface.cpp.s:
 	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_canopen_interface_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_canopen_interface_node.dir/src/joint_command_interface.cpp.s
 .PHONY : src/joint_command_interface.cpp.s
 
+src/joint_command_transfer.o: src/joint_command_transfer.cpp.o
+
+.PHONY : src/joint_command_transfer.o
+
+# target to build an object file
+src/joint_command_transfer.cpp.o:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/src/joint_command_transfer.cpp.o
+.PHONY : src/joint_command_transfer.cpp.o
+
+src/joint_command_transfer.i: src/joint_command_transfer.cpp.i
+
+.PHONY : src/joint_command_transfer.i
+
+# target to preprocess a source file
+src/joint_command_transfer.cpp.i:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/src/joint_command_transfer.cpp.i
+.PHONY : src/joint_command_transfer.cpp.i
+
+src/joint_command_transfer.s: src/joint_command_transfer.cpp.s
+
+.PHONY : src/joint_command_transfer.s
+
+# target to generate assembly for a file
+src/joint_command_transfer.cpp.s:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/src/joint_command_transfer.cpp.s
+.PHONY : src/joint_command_transfer.cpp.s
+
+src/joint_states_publisher.o: src/joint_states_publisher.cpp.o
+
+.PHONY : src/joint_states_publisher.o
+
+# target to build an object file
+src/joint_states_publisher.cpp.o:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/src/joint_states_publisher.cpp.o
+.PHONY : src/joint_states_publisher.cpp.o
+
+src/joint_states_publisher.i: src/joint_states_publisher.cpp.i
+
+.PHONY : src/joint_states_publisher.i
+
+# target to preprocess a source file
+src/joint_states_publisher.cpp.i:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/src/joint_states_publisher.cpp.i
+.PHONY : src/joint_states_publisher.cpp.i
+
+src/joint_states_publisher.s: src/joint_states_publisher.cpp.s
+
+.PHONY : src/joint_states_publisher.s
+
+# target to generate assembly for a file
+src/joint_states_publisher.cpp.s:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/src/joint_states_publisher.cpp.s
+.PHONY : src/joint_states_publisher.cpp.s
+
 src/keyboard_move.o: src/keyboard_move.cpp.o
 
 .PHONY : src/keyboard_move.o
@@ -898,7 +982,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... install/local"
+	@echo "... joint_command_transfer_node"
 	@echo "... joint_command_canopen_interface_node"
+	@echo "... joint_states_publisher_node"
 	@echo "... csp2_example"
 	@echo "... arm_example"
 	@echo "... _testcan_generate_messages_check_deps_Frame"
@@ -952,6 +1038,12 @@ help:
 	@echo "... src/joint_command_interface.o"
 	@echo "... src/joint_command_interface.i"
 	@echo "... src/joint_command_interface.s"
+	@echo "... src/joint_command_transfer.o"
+	@echo "... src/joint_command_transfer.i"
+	@echo "... src/joint_command_transfer.s"
+	@echo "... src/joint_states_publisher.o"
+	@echo "... src/joint_states_publisher.i"
+	@echo "... src/joint_states_publisher.s"
 	@echo "... src/keyboard_move.o"
 	@echo "... src/keyboard_move.i"
 	@echo "... src/keyboard_move.s"

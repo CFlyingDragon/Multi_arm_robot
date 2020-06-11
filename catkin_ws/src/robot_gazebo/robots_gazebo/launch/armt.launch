@@ -18,7 +18,7 @@
   </include>
 
   <param name="robot_description" command="$(find xacro)/xacro.py 
-      $(find arm_hand)/robots/armt.urdf.xacro"/>
+      '$(find armt_description)/robot/armt.xacro'"/>
   <node name="robot1_spawn" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
       args="-x 1 -y 1 -z 0 -urdf -param robot_description -model robot1" />
 

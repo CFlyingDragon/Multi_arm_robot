@@ -1,0 +1,18 @@
+<launch>
+  <arg
+    name="model" />
+  <arg
+    name="gui"
+    default="False" />
+  <param
+    name="robot_description"
+    textfile="$(find armc_description)/robot/armc.xacro" />
+  <param
+    name="use_gui"
+    value="$(arg gui)" />
+  <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find armc_description)/urdf.rviz" />
+</launch>

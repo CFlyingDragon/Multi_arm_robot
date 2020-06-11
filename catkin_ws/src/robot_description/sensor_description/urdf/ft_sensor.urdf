@@ -3,7 +3,7 @@
      Commit Version: 1.5.0-0-g9aa0fdb  Build Version: 1.5.7004.21443
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
-  name="my_arm">
+  name="my_sensor">
   <link
     name="sensor_link">
     <inertial>

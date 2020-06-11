@@ -16,7 +16,7 @@ from robot_python import FileOpen
 def talker():
     #建立节点
     #pub = rospy.Publisher("/armc/armc_position_controller/command", Float64MultiArray, queue_size=1)
-    pub = rospy.Publisher("/all_joints_position_group_controller/command", Float64MultiArray, queue_size=1)
+    pub = rospy.Publisher("/armc/joint_positions_controller/command", Float64MultiArray, queue_size=1)
     rospy.init_node("joint_position_command", anonymous=True)
     rate = rospy.Rate(400) # 10hz
 

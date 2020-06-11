@@ -679,10 +679,16 @@ armc_effort_controller_LIB_DEPENDS:STATIC=
 armc_effort_position_controller_LIB_DEPENDS:STATIC=
 
 //Value Computed by CMake
-armc_gazebo_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/c_lightlobot/armc_gazebo
+armc_gazebo1_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/c_lightlobot/armc_gazebo1
 
 //Value Computed by CMake
-armc_gazebo_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/c_lightlobot/armc_gazebo
+armc_gazebo1_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/c_lightlobot/armc_gazebo1
+
+//Value Computed by CMake
+armc_gazebo_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/robot_gazebo/armc_gazebo
+
+//Value Computed by CMake
+armc_gazebo_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/robot_gazebo/armc_gazebo
 
 //Value Computed by CMake
 armc_gazebo_config_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/robot_gazebo/armc_gazebo_config
@@ -722,6 +728,12 @@ armt_description_BINARY_DIR:STATIC='/home/d/catkin_ws/debug/robot_description/ar
 
 //Value Computed by CMake
 armt_description_SOURCE_DIR:STATIC='/home/d/catkin_ws/src/robot_description/armt_description '
+
+//Value Computed by CMake
+armt_gazebo_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/robot_gazebo/armt_gazebo
+
+//Value Computed by CMake
+armt_gazebo_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/robot_gazebo/armt_gazebo
 
 //Value Computed by CMake
 balance_controller_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/robot_controller/balance_controller

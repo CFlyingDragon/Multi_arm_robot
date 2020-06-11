@@ -4,7 +4,7 @@
 
   <xacro:include filename="$(find armt_description)/robots/arm.gazebo" />
   <xacro:include filename="$(find armt_description)/robots/position_transmition.xacro" />
-  <!-- simple  joints macros configure the joint driver and param-->
+  <!-- simple joints macros configure the joint driver and param-->
   <xacro:armt_joint joint_prefix="1"> </xacro:armt_joint>
   <xacro:armt_joint joint_prefix="2"> </xacro:armt_joint>
   <xacro:armt_joint joint_prefix="3"> </xacro:armt_joint>
@@ -13,14 +13,12 @@
   <xacro:armt_joint joint_prefix="6"> </xacro:armt_joint>
   <xacro:armt_joint joint_prefix="7"> </xacro:armt_joint>
 
-<link name="world"/>
-
-<joint name="fixed" type="fixed">
-  <parent link="world"/>
-  <child link="base_link"/>
-</joint>
-
-<link
+  <link name="world"/>
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+  <link
   name="base_link">
   <inertial>
     <origin
@@ -42,7 +40,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/base_link.STL" />
+        filename="package://armt_description/meshes/base_link.STL" />
     </geometry>
     <material
       name="">
@@ -56,7 +54,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/base_link.STL" />
+        filename="package://armt_description/meshes/base_link.STL" />
     </geometry>
   </collision>
 </link>
@@ -82,7 +80,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link1.STL" />
+        filename="package://armt_description/meshes/link1.STL" />
     </geometry>
     <material
       name="">
@@ -96,7 +94,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link1.STL" />
+        filename="package://armt_description/meshes/link1.STL" />
     </geometry>
   </collision>
 </link>
@@ -140,7 +138,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link2.STL" />
+        filename="package://armt_description/meshes/link2.STL" />
     </geometry>
     <material
       name="">
@@ -154,7 +152,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link2.STL" />
+        filename="package://armt_description/meshes/link2.STL" />
     </geometry>
   </collision>
 </link>
@@ -198,7 +196,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link3.STL" />
+        filename="package://armt_description/meshes/link3.STL" />
     </geometry>
     <material
       name="">
@@ -212,7 +210,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link3.STL" />
+        filename="package://armt_description/meshes/link3.STL" />
     </geometry>
   </collision>
 </link>
@@ -256,7 +254,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link4.STL" />
+        filename="package://armt_description/meshes/link4.STL" />
     </geometry>
     <material
       name="">
@@ -270,7 +268,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link4.STL" />
+        filename="package://armt_description/meshes/link4.STL" />
     </geometry>
   </collision>
 </link>
@@ -314,7 +312,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link5.STL" />
+        filename="package://armt_description/meshes/link5.STL" />
     </geometry>
     <material
       name="">
@@ -328,7 +326,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link5.STL" />
+        filename="package://armt_description/meshes/link5.STL" />
     </geometry>
   </collision>
 </link>
@@ -372,7 +370,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link6.STL" />
+        filename="package://armt_description/meshes/link6.STL" />
     </geometry>
     <material
       name="">
@@ -386,7 +384,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link6.STL" />
+        filename="package://armt_description/meshes/link6.STL" />
     </geometry>
   </collision>
 </link>
@@ -430,7 +428,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link7.STL" />
+        filename="package://armt_description/meshes/link7.STL" />
     </geometry>
     <material
       name="">
@@ -444,7 +442,7 @@
       rpy="0 0 0" />
     <geometry>
       <mesh
-        filename="package://arm_hand/meshes/link7.STL" />
+        filename="package://armt_description/meshes/link7.STL" />
     </geometry>
   </collision>
 </link>
@@ -465,5 +463,65 @@
       upper="3"
       effort="100"
       velocity="2" />
+</joint>
+<link
+  name="sensor_link">
+  <inertial>
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <mass
+      value="0.10567" />
+    <inertia
+      ixx="7.1441E-05"
+      ixy="1.6499E-08"
+      ixz="-4.9269E-09"
+      iyy="7.146E-05"
+      iyz="-8.5336E-09"
+      izz="0.00013366" />
+  </inertial>
+  <visual>
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <geometry>
+      <mesh
+        filename="package://armt_description/meshes/sensor_link.STL" />
+    </geometry>
+    <material
+      name="">
+      <color
+        rgba="1 0 0 1" />
+    </material>
+  </visual>
+  <collision>
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <geometry>
+      <mesh
+        filename="package://armt_description/meshes/sensor_link.STL" />
+    </geometry>
+  </collision>
+</link>
+<joint
+  name="sensor_joint"
+  type="revolute">
+  <origin
+    xyz="0 0 0"
+    rpy="0 0 0.12101" />
+  <parent
+    link="link7" />
+  <child
+    link="sensor_link" />
+  <axis
+    xyz="0 0 1" />
+  <limit
+    lower="0"
+    upper="0"
+    effort="0"
+    velocity="0" />
+  <safety_controller
+    k_velocity="0" />
 </joint>
 </robot>

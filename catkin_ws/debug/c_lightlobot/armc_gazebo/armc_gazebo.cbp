@@ -997,18 +997,6 @@
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/catkin/cmake/catkinConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\" />
       </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/catkin/cmake/catkinConfig-version.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\" />
-      </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/catkin/cmake/catkinConfig.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\" />
-      </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/catkin/cmake/catkinConfig-version.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\" />
-      </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/catkin/cmake/catkinConfig.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\" />
-      </Unit>
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/catkin/cmake/platform/lsb.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\platform\" />
       </Unit>

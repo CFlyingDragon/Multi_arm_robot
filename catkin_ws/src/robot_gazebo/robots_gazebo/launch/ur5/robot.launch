@@ -11,13 +11,4 @@
      args="$(arg init_pose) -urdf -param /robot_description_ur5 -model $(arg robot_name)"
      respawn="false" output="screen" />
 
-
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node> 
-  <!-- start robot state publisher -->
-  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
-    <param name="publish_frequency" type="double" value="100.0" />
-  </node>
-
-    <!-- The odometry estimator, throttling, fake laser etc. go here -->
-
 </launch>

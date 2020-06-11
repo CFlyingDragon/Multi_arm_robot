@@ -1,0 +1,16 @@
+<launch>
+ 
+  <!-- load urdf to Gazebo  -->
+  <include file="$(find armc_gazebo)/launch/armc_world.launch" />   
+ 
+  <!-- JointStateController and robot state publisher -->
+  <include file="$(find armc_gazebo)/launch/armc_gazebo_states.launch" />   
+ 
+  <!-- ros_control TrajectoryController -->
+  <include file="$(find armc_gazebo)/launch/armc_trajectory_controller.launch" />    
+ 
+  <!-- moveit move group -->
+  <include file="$(find armc_moveit)/launch/demo_moveit_planning_execution.launch" />    
+ 
+ 
+</launch>

@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: armt_gazebo
+Description: Description of armt_gazebo
+Version: 0.0.0
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

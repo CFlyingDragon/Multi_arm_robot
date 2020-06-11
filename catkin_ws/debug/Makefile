@@ -894,6 +894,19 @@ sensor_description_xacro_generated_to_devel_space_/fast:
 .PHONY : sensor_description_xacro_generated_to_devel_space_/fast
 
 #=============================================================================
+# Target rules for targets named joint_command_transfer_node
+
+# Build rule for target.
+joint_command_transfer_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 joint_command_transfer_node
+.PHONY : joint_command_transfer_node
+
+# fast build rule for target.
+joint_command_transfer_node/fast:
+	$(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_transfer_node.dir/build
+.PHONY : joint_command_transfer_node/fast
+
+#=============================================================================
 # Target rules for targets named joint_command_canopen_interface_node
 
 # Build rule for target.
@@ -905,6 +918,19 @@ joint_command_canopen_interface_node: cmake_check_build_system
 joint_command_canopen_interface_node/fast:
 	$(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_canopen_interface_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_canopen_interface_node.dir/build
 .PHONY : joint_command_canopen_interface_node/fast
+
+#=============================================================================
+# Target rules for targets named joint_states_publisher_node
+
+# Build rule for target.
+joint_states_publisher_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 joint_states_publisher_node
+.PHONY : joint_states_publisher_node
+
+# fast build rule for target.
+joint_states_publisher_node/fast:
+	$(MAKE) -f robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/build.make robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_states_publisher_node.dir/build
+.PHONY : joint_states_publisher_node/fast
 
 #=============================================================================
 # Target rules for targets named csp2_example
@@ -1800,7 +1826,7 @@ trajectory_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 trajectory_msgs_generate_messages_py/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build
 .PHONY : trajectory_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -1813,7 +1839,7 @@ trajectory_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 trajectory_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_lisp.dir/build
 .PHONY : trajectory_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1826,7 +1852,7 @@ trajectory_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 trajectory_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/build
 .PHONY : trajectory_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1839,7 +1865,7 @@ std_srvs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_lisp/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
 .PHONY : std_srvs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1852,7 +1878,7 @@ gazebo_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 gazebo_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
 .PHONY : gazebo_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1865,7 +1891,7 @@ std_srvs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_eus/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build
 .PHONY : std_srvs_generate_messages_eus/fast
 
 #=============================================================================
@@ -1878,7 +1904,7 @@ std_srvs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_py/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build
 .PHONY : std_srvs_generate_messages_py/fast
 
 #=============================================================================
@@ -1891,7 +1917,7 @@ gazebo_ros_gencfg: cmake_check_build_system
 
 # fast build rule for target.
 gazebo_ros_gencfg/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/build
 .PHONY : gazebo_ros_gencfg/fast
 
 #=============================================================================
@@ -1904,7 +1930,7 @@ trajectory_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 trajectory_msgs_generate_messages_eus/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build
 .PHONY : trajectory_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -1917,7 +1943,7 @@ std_srvs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_nodejs/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
 .PHONY : std_srvs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -1930,7 +1956,7 @@ gazebo_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 gazebo_msgs_generate_messages_py/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
 .PHONY : gazebo_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -1943,7 +1969,7 @@ gazebo_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 gazebo_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build
 .PHONY : gazebo_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1956,7 +1982,7 @@ trajectory_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 trajectory_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build
 .PHONY : trajectory_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -1969,7 +1995,7 @@ std_srvs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_cpp/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
 .PHONY : std_srvs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1982,7 +2008,7 @@ gazebo_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 gazebo_msgs_generate_messages_eus/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/build
 .PHONY : gazebo_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -1995,7 +2021,7 @@ gazebo_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 gazebo_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f c_lightlobot/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build.make c_lightlobot/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f robot_gazebo/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build.make robot_gazebo/armc_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build
 .PHONY : gazebo_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -2010,19 +2036,6 @@ gazebo_tutorials: cmake_check_build_system
 gazebo_tutorials/fast:
 	$(MAKE) -f robot_gazebo/gazebo_ros_demos/gazebo_tutorials/CMakeFiles/gazebo_tutorials.dir/build.make robot_gazebo/gazebo_ros_demos/gazebo_tutorials/CMakeFiles/gazebo_tutorials.dir/build
 .PHONY : gazebo_tutorials/fast
-
-#=============================================================================
-# Target rules for targets named joint_tan_command_node
-
-# Build rule for target.
-joint_tan_command_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 joint_tan_command_node
-.PHONY : joint_tan_command_node
-
-# fast build rule for target.
-joint_tan_command_node/fast:
-	$(MAKE) -f robot_gazebo/tan_gazebo/CMakeFiles/joint_tan_command_node.dir/build.make robot_gazebo/tan_gazebo/CMakeFiles/joint_tan_command_node.dir/build
-.PHONY : joint_tan_command_node/fast
 
 #=============================================================================
 # Target rules for targets named _run_tests_ur_gazebo_roslaunch-check
@@ -3159,7 +3172,9 @@ help:
 	@echo "... actionlib_msgs_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_py"
 	@echo "... sensor_description_xacro_generated_to_devel_space_"
+	@echo "... joint_command_transfer_node"
 	@echo "... joint_command_canopen_interface_node"
+	@echo "... joint_states_publisher_node"
 	@echo "... csp2_example"
 	@echo "... arm_example"
 	@echo "... _testcan_generate_messages_check_deps_Frame"
@@ -3245,7 +3260,6 @@ help:
 	@echo "... gazebo_msgs_generate_messages_eus"
 	@echo "... gazebo_msgs_generate_messages_nodejs"
 	@echo "... gazebo_tutorials"
-	@echo "... joint_tan_command_node"
 	@echo "... _run_tests_ur_gazebo_roslaunch-check"
 	@echo "... run_tests_ur_gazebo_roslaunch-check_tests_roslaunch_test.xml"
 	@echo "... run_tests_ur_gazebo_roslaunch-check"

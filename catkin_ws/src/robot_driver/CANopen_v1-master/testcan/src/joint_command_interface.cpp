@@ -47,11 +47,11 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-JointCommand::JointCommand(){};
+JointCommand::JointCommand(){}
 
 void JointCommand::registerNodeHandle(ros::NodeHandle& _nh){
     nh = _nh;
-};
+}
 
 void JointCommand::registerPubSub(){
     pos_pub = nh.advertise<testcan::IpPos>("/canopenexample/ip_pos",8);

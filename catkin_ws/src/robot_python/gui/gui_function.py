@@ -160,19 +160,17 @@ def publisher_3arms(data_path1,data_path2,data_path3):
 
 # ===============================规划模块================================#
 #主界面中，用于规划关节空间点到点的运动
-def q_joint_space_plan(qq_b,qq_e):
+def q_joint_space_plan(qq_b, qq_e, T=0.01):
     '''
     :param qq_b: 规划起始点
     :param qq_e: 规划终止点
     :return:
     '''
-    #给定运动速度1rmp/min
-    vel = 1*2*pi/60.0
+    #给定运动速度5rmp/min
+    vel = 5*2*pi/60.0
     #关节角度转换到弧度单位rad
     qqb = qq_b
     qqe = qq_e
-    #选取周期
-    T = 0.01
     #计算总时长
 
     q_max = np.max(np.abs(qqe - qqb))
@@ -180,7 +178,19 @@ def q_joint_space_plan(qq_b,qq_e):
     if(t < pow(10,-6)):
         t = 1
     [qq,qv,qa] = jp.pos1_to_pos2(qqb, qqe, T, t)
-    return [qq,qv,T]
+    return [qq, qv, T]
+
+#关节空间规划,给定时间
+def q_joint_space_plan_time(qq_b, qq_e, T=0.01,t=10):
+    '''
+    :param qq_b:
+    :param qq_e:
+    :param T:
+    :param t:
+    :return:
+    '''
+    [qq, qv, qa] = jp.pos1_to_pos2(qq_b, qq_e, T, t)
+    return [qq, qv, qa]
 
 def get_begin_point(qr_init,flag):
     '''
@@ -189,7 +199,7 @@ def get_begin_point(qr_init,flag):
     :return:
     '''
     # 默认参数armc
-    DH0 = rp.DHf_armc
+    DH0 = rp.DHfa_armc
     qq = np.copy(qr_init)
     # 勾选时，ur5
     if flag == True:
@@ -256,7 +266,7 @@ def line_plan(qr_init,Xb,Xe,T,t,flag):
 #===============================自适应阻抗控制================================#
 def get_robot_parameter(flag):
     # 默认参数armc
-    DH0 = rp.DHf_armc
+    DH0 = rp.DHfa_armc
     qq_max = rp.q_max_armc
     qq_min = rp.q_min_armc
     # 勾选时，ur5

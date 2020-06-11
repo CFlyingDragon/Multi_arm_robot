@@ -1,10 +1,18 @@
 <launch>
 	<rosparam file="$(find robots_gazebo)/config/armc_controller.yaml" command="load"/>
  
-  <!--<node name="armc_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="/armc" args="armc_position_controller"/>-->
-
+ <!--启动位置控制器-->
   <node name="armc_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" args="armc_position_controller joint_state_controller"/>
+    output="screen" args="armc_position_controller"/>
+  
+  <!--加载关节状态控制器-->
+  <node name="joint_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+		output="screen" args="joint_state_controller" />
+  
+  <!-- 转换关节状态到TF transforms来加载rviz -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+	      respawn="false" output="screen">
+    <!--<remap from="/joint_states" to="armc/joint_states" />-->
+  </node>
  
 </launch>

@@ -1,4 +1,4 @@
-#include "ros/ros.h"
+﻿#include "ros/ros.h"
 #include "testcan/IpPos.h"
 #include "iostream"
 #include "fstream"
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     ros::Publisher pos_pub = nh_.advertise<testcan::IpPos>("/canopenexample/ip_pos",8);
     
     usleep(500000);
-    ifstream infile("catkin_ws/src/CANopen_v1-master/testcan/data/testqq.txt");
+    ifstream infile("catkin_ws/src/robot_driver/CANopen_v1-master/testcan/data/testqq.txt");
     double j1,j2,j3,j4,j5,j6,j7;
     // infile>>j1>>j2>>j3>>j4>>j5>>j6>>j7;
     // cout<<"j1"<<j1<<"j2"<<j2<<"j3"<<j3<<"j4"<<j4<<"j5"<<j5<<"j6"<<j6<<"j7"<<j7;

@@ -701,6 +701,12 @@ armt_description_BINARY_DIR:STATIC='/home/d/catkin_ws/build/robot_description/ar
 armt_description_SOURCE_DIR:STATIC='/home/d/catkin_ws/src/robot_description/armt_description '
 
 //Value Computed by CMake
+armt_gazebo_BINARY_DIR:STATIC=/home/d/catkin_ws/build/robot_gazebo/armt_gazebo
+
+//Value Computed by CMake
+armt_gazebo_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/robot_gazebo/armt_gazebo
+
+//Value Computed by CMake
 balance_controller_BINARY_DIR:STATIC=/home/d/catkin_ws/build/robot_driver/balance_controller
 
 //Value Computed by CMake

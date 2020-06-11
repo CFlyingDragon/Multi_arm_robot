@@ -65,7 +65,7 @@ def euler_zyx2rot(phi):
 	return R
 
 #旋转矩阵转变为ZYX欧拉角
-def  rot2euler_zyx(Re):
+def rot2euler_zyx(Re):
 	'''
 		ZYX欧拉角速度变为姿态角速度转化矩阵
 		input:旋转矩阵

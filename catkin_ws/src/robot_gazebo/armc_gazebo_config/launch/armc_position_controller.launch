@@ -1,7 +1,0 @@
-<launch>
-	<rosparam file="$(find armc_gazebo_config)/config/trajectory_control.yaml" command="load"/>
- 
-  <node name="armc_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="/armc" args="armc_position_controller"/>
- 
-</launch>

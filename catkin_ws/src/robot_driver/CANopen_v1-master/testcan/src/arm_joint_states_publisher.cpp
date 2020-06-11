@@ -18,14 +18,14 @@ public:
     void init();
     void PosFeedCallback(const testcan::Frame::ConstPtr &can_msg);
 private:
-    int init_structure_motor_pos[7] = {                                                            //电机初始化
-        27603,
-        258408,
-        216098,
-        126354,
-        119294,
-        252011,
-        -244491,
+int init_structure_motor_pos[7] = {                                                            //电机初始化
+   27611,//38534,//61995,//37542,
+   258387,//259133,//258396
+   216098,//216283,//216265,
+   126361,//126354,//147464,//127610,
+   119294,//31699,//85491,
+   251734,//251963,//261785,//175998,
+   24472,//10170,//21034,
             };
     int last_motor_pos, last_out_pos, motor_pos, out_pos;
     testcan::IpPos cur_pos_msg, absolute_pos_msg, vel_msg,Ic_msg, ip_pos_msg;
