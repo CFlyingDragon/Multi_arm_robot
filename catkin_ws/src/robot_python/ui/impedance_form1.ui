@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>ImpForm1</class>
+ <widget class="QMainWindow" name="ImpForm1">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -77,7 +77,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>/robot3/joint_states</string>
+         <string>/armc/joint_states</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_9">
@@ -103,7 +103,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>/robot3/ft_sensor_topic</string>
+         <string>/ft_sensor_topic</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_3">
@@ -222,7 +222,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>0</string>
+          <string>1</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_m2">
@@ -248,7 +248,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>0</string>
+          <string>100</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_b5">
@@ -378,7 +378,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>0</string>
+          <string>1000</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_k5">
@@ -430,7 +430,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>0</string>
+          <string>2</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_i5">
@@ -535,7 +535,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>/robot3/armc_position_controller/command</string>
+         <string>/armc/joint_positions_controller/command</string>
         </property>
        </widget>
       </widget>
@@ -932,7 +932,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>0</string>
+          <string>-10</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_48">
@@ -1040,9 +1040,9 @@
         <property name="geometry">
          <rect>
           <x>180</x>
-          <y>0</y>
+          <y>-10</y>
           <width>191</width>
-          <height>411</height>
+          <height>421</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -1088,7 +1088,7 @@
           <bool>false</bool>
          </property>
         </widget>
-        <widget class="QPushButton" name="button_end">
+        <widget class="QPushButton" name="button_stop">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -1110,17 +1110,10 @@
            <x>0</x>
            <y>180</y>
            <width>181</width>
-           <height>81</height>
+           <height>51</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QCheckBox" name="checkBox_UR5">
-            <property name="text">
-             <string>UR5勾  armc默认</string>
-            </property>
-           </widget>
-          </item>
           <item>
            <widget class="QCheckBox" name="checkBox_real">
             <property name="text">
@@ -1133,14 +1126,30 @@
         <widget class="QPushButton" name="button_read">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>300</y>
-           <width>161</width>
+           <x>40</x>
+           <y>330</y>
+           <width>111</width>
            <height>61</height>
           </rect>
          </property>
          <property name="text">
           <string>读取参数</string>
+         </property>
+         <property name="autoDefault">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="button_receive">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>250</y>
+           <width>111</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>启动节点</string>
          </property>
          <property name="autoDefault">
           <bool>true</bool>
@@ -1211,7 +1220,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>0</string>
+          <string>60</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_13">
@@ -1250,7 +1259,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>0</string>
+          <string>90</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_14">
@@ -1328,7 +1337,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>0</string>
+          <string>30</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_18">

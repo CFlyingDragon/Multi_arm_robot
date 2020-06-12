@@ -270,7 +270,7 @@ def get_robot_parameter(flag):
     qq_max = rp.q_max_armc
     qq_min = rp.q_min_armc
     # 勾选时，ur5
-    if flag == 1:
+    if flag:
         DH0 = rp.DH0_ur5
         qq_max = rp.q_max_ur5
         qq_min = rp.q_min_ur5

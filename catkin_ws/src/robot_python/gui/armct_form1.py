@@ -122,11 +122,14 @@ class Ui_ArmctForm1(object):
         self.label_18.setGeometry(QtCore.QRect(160, 0, 151, 31))
         self.label_18.setObjectName("label_18")
         self.radioButton_robot1 = QtWidgets.QRadioButton(self.frame_2)
-        self.radioButton_robot1.setGeometry(QtCore.QRect(90, 40, 91, 25))
+        self.radioButton_robot1.setGeometry(QtCore.QRect(40, 40, 91, 25))
         self.radioButton_robot1.setObjectName("radioButton_robot1")
         self.radioButton_robot2 = QtWidgets.QRadioButton(self.frame_2)
-        self.radioButton_robot2.setGeometry(QtCore.QRect(300, 40, 91, 25))
+        self.radioButton_robot2.setGeometry(QtCore.QRect(190, 40, 91, 25))
         self.radioButton_robot2.setObjectName("radioButton_robot2")
+        self.radioButton_all = QtWidgets.QRadioButton(self.frame_2)
+        self.radioButton_all.setGeometry(QtCore.QRect(320, 40, 91, 25))
+        self.radioButton_all.setObjectName("radioButton_all")
         self.horizontalLayout.addWidget(self.frame_2)
         self.button_refresh = QtWidgets.QPushButton(self.frame_4)
         self.button_refresh.setGeometry(QtCore.QRect(280, 310, 161, 61))
@@ -267,7 +270,7 @@ class Ui_ArmctForm1(object):
 
     def retranslateUi(self, ArmctForm1):
         _translate = QtCore.QCoreApplication.translate
-        ArmctForm1.setWindowTitle(_translate("ArmctForm1", "Armct关节空间控制"))
+        ArmctForm1.setWindowTitle(_translate("ArmctForm1", "MainWindow"))
         self.label.setText(_translate("ArmctForm1", "运行内容显示框"))
         self.label_15.setText(_translate("ArmctForm1", "进度："))
         self.label_19.setText(_translate("ArmctForm1", "选择需要绘制状态图机械臂"))
@@ -284,6 +287,7 @@ class Ui_ArmctForm1(object):
         self.label_18.setText(_translate("ArmctForm1", "选择操作的机械臂"))
         self.radioButton_robot1.setText(_translate("ArmctForm1", "armt"))
         self.radioButton_robot2.setText(_translate("ArmctForm1", "armc"))
+        self.radioButton_all.setText(_translate("ArmctForm1", "all"))
         self.button_refresh.setText(_translate("ArmctForm1", "刷新选择按钮"))
         self.label_4.setText(_translate("ArmctForm1", "q4:"))
         self.lineEdit_q5.setText(_translate("ArmctForm1", "0"))

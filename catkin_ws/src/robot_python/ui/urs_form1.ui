@@ -407,7 +407,7 @@
              <string>robot3</string>
             </property>
            </widget>
-           <widget class="QRadioButton" name="radioButton_robot3_3">
+           <widget class="QRadioButton" name="radioButton_all">
             <property name="geometry">
              <rect>
               <x>350</x>
