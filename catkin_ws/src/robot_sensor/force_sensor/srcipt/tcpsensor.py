@@ -17,7 +17,6 @@ from geometry_msgs.msg import WrenchStamped
 
 #设置全局变量
 F = np.zeros(6)
-
 def tcp_connect():
     #设置IP和端口号
     IP_ADDR	= '192.168.0.108'

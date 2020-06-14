@@ -400,7 +400,7 @@ class Ui_ImpForm1(object):
 
     def retranslateUi(self, ImpForm1):
         _translate = QtCore.QCoreApplication.translate
-        ImpForm1.setWindowTitle(_translate("ImpForm1", "MainWindow"))
+        ImpForm1.setWindowTitle(_translate("ImpForm1", "阻抗参数调试窗口"))
         self.label_8.setText(_translate("ImpForm1", "Sub_qq:"))
         self.lineEdit_sub_qq.setText(_translate("ImpForm1", "/armc/joint_states"))
         self.label_9.setText(_translate("ImpForm1", "Sub_F:"))

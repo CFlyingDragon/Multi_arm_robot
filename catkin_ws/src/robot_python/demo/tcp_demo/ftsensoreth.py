@@ -27,8 +27,8 @@
 import struct
 import socket
 
-IP_ADDR	= '192.168.0.100';
-PORT	= 2001;
+IP_ADDR	= '192.168.0.108'
+PORT = 4008
 
 CMD_TYPE_SENSOR_TRANSMIT 	= '07'
 SENSOR_TRANSMIT_TYPE_START 	= '01'

@@ -48,8 +48,8 @@ from robot_python import FileOpen as fo
 #**********************************主窗口***************************************#
 class MainWindow(QMainWindow, Ui_MainWindow):
     #建立全局变量
-    state_qq_list = list(np.zeros([1000,7]))
-    state_f_list = list(np.zeros([1000,6]))
+    state_qq_list = list(np.zeros([1000, 7]))
+    state_f_list = list(np.zeros([1000, 6]))
     state_t_list = list(np.zeros(1000))
     state_t = 0
 
@@ -304,7 +304,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # 运行话题
         rospy.init_node('upper_controller_node')
         rospy.Subscriber(self.sub_pos_path, JointState, self.joint_callback)
-        rospy.Subscriber(self.sub_force_path, JointState, self.force_callback)
+        rospy.Subscriber(self.sub_force_path, WrenchStamped, self.force_callback)
         self.pub = rospy.Publisher(self.pub_path, Float64MultiArray, queue_size=100)
 
         # 运行线程1,收话题线程
@@ -345,9 +345,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             #发送数据
             command_data = Float64MultiArray()
             if (k < kk):
-                command_data.data = self.qq_list[k, 0:self.n]
+                command_data.data = self.command_qq_list[k, 0:self.n]
             else:
-                command_data.data = self.qq_list[-1, 0:self.n]
+                command_data.data = self.command_qq_list[-1, 0:self.n]
             self.pub.publish(command_data)
             if(k%10==0):
                 pub_msg = "armc" + "第" + str(k) + "次" + "publisher data is: " + '\n'\
@@ -1373,7 +1373,7 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         qq = qq * np.pi / 180.0
 
         # 计算初始位置
-        xx_b = gf.get_begin_point(qq, self.arm_flag)
+        xx_b = gf.get_begin_point(qq, False)
 
         # 转换到显示单位
         xx = np.copy(xx_b)  # 转化为mm显示
@@ -1504,21 +1504,13 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         for i in range(self.n):
             qq[i] = msg.position[i]
 
-        # 数据预处理
-        qq_list = np.array(self.state_qq_list[-4:-1])
-        qq_p = gf.joint_pos_Pretreatment(qq, qq_list, self.T)
-        # 正运动计算
-        xx = gf.get_begin_point(qq_p, self.flag)
-
         # 存储数据
-        self.qq_state = np.copy(qq_p)
+        self.qq_state = np.copy(qq)
         self.state_t = self.state_t + self.T
         self.state_qq_list.append(self.qq_state)
         self.state_t_list.append(self.state_t)
-        self.state_xx_list.append(xx)
         # 仅记录1000个数据点
         del self.state_t_list[0]
-        del self.state_xx_list[0]
         del self.state_qq_list[0]
 
     ##关节角订阅回调函数
@@ -1563,7 +1555,7 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         # 运行话题
         rospy.init_node('upper_controller_node')
         rospy.Subscriber(self.sub_pos_path, JointState, self.joint_callback)
-        rospy.Subscriber(self.sub_force_path, JointState, self.force_callback)
+        rospy.Subscriber(self.sub_force_path, WrenchStamped, self.force_callback)
         self.pub = rospy.Publisher(self.pub_path, Float64MultiArray, queue_size=100)
 
         # 运行线程1,收话题线程
