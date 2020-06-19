@@ -37,9 +37,9 @@ from robot_python import FileOpen as fo
 #**********************************主窗口***************************************#
 class PlotWindow(QMainWindow, Ui_PlotMainWindow):
     #建立全局变量
-    state_qq_list = list(np.zeros([100,7]))
-    state_f_list = list(np.zeros([100,6]))
-    state_t_list = list(np.zeros(100))
+    state_qq_list = list(np.zeros([1000,7]))
+    state_f_list = list(np.zeros([1000,6]))
+    state_t_list = list(np.zeros(1000))
     state_t = 0
 
     #构造函数
@@ -328,13 +328,13 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
 
     def run_topic(self):
         # 运行话题
-        rospy.init_node('upper_controller_node')
+        rospy.init_node('real_plot_node')
         rospy.Subscriber(self.sub_pos_path, JointState, self.joint_callback)
         rospy.Subscriber(self.sub_force_path, WrenchStamped, self.force_callback)
 
         # 运行线程1,收话题线程
         t1 = threading.Thread(target=self.thread_spin)  # 末端位置订阅线程
-        msg_tip = "upper_controller_node run!"
+        msg_tip = "real_plot_node run!"
         self.textEdit.setText(msg_tip)
         t1.start()
 
@@ -351,10 +351,9 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
         while not rospy.is_shutdown():
             #判断是否停止
             if (not self.run_flag):
-                self.timer_p.stop()
                 self.timer_plot.stop()
                 break
-
+            QApplication.processEvents()
             rate.sleep()
 
 if __name__ == '__main__':

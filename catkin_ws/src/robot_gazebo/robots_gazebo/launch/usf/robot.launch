@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <arg name="robot_name"/>
+    <arg name="init_pose"/>
+
+    <param name="robot_description"
+    command="$(find xacro)/xacro.py $(find unknown_surface)/robots/unknown_surface.xacro" />
+
+    <node name="spawn_minibot_model" pkg="gazebo_ros" type="spawn_model"
+     args="$(arg init_pose) -urdf -param /robot_description_usf -model $(arg robot_name)"
+     respawn="false" output="screen" />
+
+</launch>

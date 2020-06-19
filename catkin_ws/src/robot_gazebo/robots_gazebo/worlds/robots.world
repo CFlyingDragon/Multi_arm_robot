@@ -1968,10 +1968,10 @@
       <pose frame=''>-0.051227 0.102 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>1199 53000000</sim_time>
-      <real_time>65 41375468</real_time>
-      <wall_time>1578917458 259624111</wall_time>
-      <iterations>64663</iterations>
+      <sim_time>1567 241000000</sim_time>
+      <real_time>16 196455780</real_time>
+      <wall_time>1592563611 72156687</wall_time>
+      <iterations>16097</iterations>
       <model name='cafe_table'>
         <pose frame=''>0 -2.5 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -1983,12 +1983,22 @@
         </link>
       </model>
       <model name='coke_can'>
-        <pose frame=''>0.131973 0.213814 0.959868 -0.011217 0.004028 0.131599</pose>
+        <pose frame=''>1.2e-05 0.29999 0.960611 -0.002136 -0.005527 0.000591</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>0.131973 0.213814 0.959868 -0.011217 0.004028 0.131599</pose>
+          <pose frame=''>1.2e-05 0.29999 0.960611 -0.002136 -0.005527 0.000591</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
+          <acceleration>0.051645 0.021657 0.042346 -0.122946 0.352207 -0.217057</acceleration>
+          <wrench>0.020142 0.008446 0.016515 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='coke_can_0'>
+        <pose frame=''>-0.016645 -2.3157 0.770317 -0.011251 -0.006216 0.000972</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-0.016645 -2.3157 0.770317 -0.011251 -0.006216 0.000972</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 -1e-06 0 4e-06 3e-06 -3e-06</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
@@ -2040,14 +2050,24 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='wood_cube_40cm'>
-        <pose frame=''>-1.8e-05 -0.499996 1.01067 -3e-06 -0.000378 2e-06</pose>
+      <model name='wood_cube_10cm'>
+        <pose frame=''>-0.0001 -0.650003 1.15658 0.00038 -0.000301 2e-06</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-3.7e-05 -0.499996 1.06067 -3e-06 -0.000378 2e-06</pose>
+          <pose frame=''>-0.000115 -0.650022 1.20658 0.00038 -0.000301 2e-06</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.003951 -0.4614 0.009051 -1.47393 0.041287 0.001785</acceleration>
-          <wrench>0.015143 -1.76835 0.034689 0 -0 0</wrench>
+          <acceleration>-0.002716 0.002896 0.000111 -0.013463 -0.012235 -1.6e-05</acceleration>
+          <wrench>-0.001403 0.001496 5.7e-05 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='wood_cube_40cm'>
+        <pose frame=''>-0.000482 -0.650232 1.01065 0.00038 -0.000301 -0.002336</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-0.000497 -0.650251 1.06065 0.00038 -0.000301 -0.002336</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='wood_cube_5cm'>
@@ -2109,7 +2129,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>-2.81954 0.15261 4.00771 -0 0.977797 -0.283727</pose>
+        <pose frame=''>-1.06175 -1.45901 1.9709 0 0.561796 0.579453</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
@@ -2482,18 +2502,136 @@
       </link>
       <pose frame=''>0.027354 2.83703 0 0 -0 0</pose>
     </model>
-    <model name='wood_cube_40cm'>
+    <model name='wood_cube_10cm'>
       <link name='link'>
         <pose frame=''>0 0 0.05 0 -0 0</pose>
         <inertial>
-          <mass>3.83257</mass>
+          <mass>0.5167</mass>
           <inertia>
-            <ixx>0.0260137</ixx>
+            <ixx>0.000861167</ixx>
             <ixy>0</ixy>
             <ixz>0</ixz>
-            <iyy>0.0226675</iyy>
+            <iyy>0.000861167</iyy>
             <iyz>0</iyz>
-            <izz>0.0246631</izz>
+            <izz>0.000861167</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <poissons_ratio>0.347</poissons_ratio>
+              <elastic_modulus>8.8e+09</elastic_modulus>
+              <ode>
+                <kp>100000</kp>
+                <kd>100</kd>
+                <max_vel>100</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <torsional>
+                <coefficient>1</coefficient>
+                <use_patch_radius>0</use_patch_radius>
+                <surface_radius>0.01</surface_radius>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>0.701026 -1.74314 0 0 -0 0</pose>
+    </model>
+    <model name='coke_can_0'>
+      <link name='link'>
+        <inertial>
+          <pose frame=''>-0.01 -0.012 0.15 0 -0 0</pose>
+          <mass>0.39</mass>
+          <inertia>
+            <ixx>0.00058</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00058</iyy>
+            <iyz>0</iyz>
+            <izz>0.00019</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <pose frame=''>0 0 -0.46 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://coke_can/meshes/coke_can.dae</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+                <min_depth>0.001</min_depth>
+                <max_vel>0.1</max_vel>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose frame=''>0 0 -0.46 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://coke_can/meshes/coke_can.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>-0.410752 -1.61544 0 0 -0 0</pose>
+    </model>
+    <model name='wood_cube_40cm'>
+      <link name='link'>
+        <pose frame=''>0 -0 0.05 0 -0 0</pose>
+        <inertial>
+          <mass>1.68019</mass>
+          <inertia>
+            <ixx>0.0114043</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00616284</iyy>
+            <iyz>0</iyz>
+            <izz>0.00703768</izz>
           </inertia>
           <pose frame=''>0 0 0 0 -0 0</pose>
         </inertial>
@@ -2502,7 +2640,7 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.182681 0.209402 0.19391</size>
+              <size>0.080089 0.209402 0.19391</size>
             </box>
           </geometry>
           <material>
@@ -2526,7 +2664,7 @@
           <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <box>
-              <size>0.182681 0.209402 0.19391</size>
+              <size>0.080089 0.209402 0.19391</size>
             </box>
           </geometry>
           <surface>
@@ -2578,7 +2716,7 @@
       </link>
       <static>0</static>
       <allow_auto_disable>1</allow_auto_disable>
-      <pose frame=''>-1.211 3.0071 -0.001013 0 -0 0</pose>
+      <pose frame=''>-0.000482 -0.650232 1.01065 0.00038 -0.000301 -0.002336</pose>
     </model>
   </world>
 </sdf>

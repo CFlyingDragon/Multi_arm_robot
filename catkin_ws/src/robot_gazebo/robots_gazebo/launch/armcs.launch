@@ -16,21 +16,20 @@
   <!-- BEGIN ROBOT MIR 2-->
   <group ns="robot2">
     <param name="tf_prefix" value="robot2_tf" />
-    <include file="$(find robots_gazebo)/launch/chen/robot.launch" >
+    <include file="$(find robots_gazebo)/launch/usf/robot.launch" >
       <arg name="init_pose" value="-x 0.6 -y -0.5 -z 1" />
       <arg name="robot_name"  value="Robot2" />
     </include>
-    <include file="$(find robots_gazebo)/launch/chen/armc_position_controller.launch" />
   </group>
 
   <!-- BEGIN ROBOT ROBOTINO 3-->
-  <group ns="robot3">
+  <!--<group ns="robot3">
     <param name="tf_prefix" value="robot3_tf" />
     <include file="$(find robots_gazebo)/launch/chen/robot.launch" >
       <arg name="init_pose" value="-x 0 -y 0.5 -z 1" />
       <arg name="robot_name"  value="Robot3" />
     </include>
     <include file="$(find robots_gazebo)/launch/chen/armc_position_controller.launch" />
-  </group>
+  </group>-->
 
 </launch>

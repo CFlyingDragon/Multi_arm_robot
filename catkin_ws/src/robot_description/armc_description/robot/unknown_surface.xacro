@@ -1,0 +1,51 @@
+<?xml version='1.0'?>
+
+<robot name="armc" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- simple joints macros configure the joint driver and param-->
+  <link name="world"/>
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+  <link
+    name="base_link">
+   <inertial>
+      <origin
+        xyz="-5.847E-17 3.8124E-17 0.0069755"
+        rpy="0 0 0" />
+      <mass
+        value="0.70432" />
+      <inertia
+        ixx="0.007332"
+        ixy="1.4008E-18"
+        ixz="7.9025E-19"
+        iyy="0.0023652"
+        iyz="9.4998E-18"
+        izz="0.0096623" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="//armc_description/meshes/my_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="//armc_description/meshes/my_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

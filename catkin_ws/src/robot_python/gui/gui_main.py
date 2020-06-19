@@ -3,7 +3,7 @@
 #本文档用于GUI开发界面函数
 #程序员：陈永厅
 #版权：哈尔滨工业大学(深圳)
-#日期：初稿：2019.4.21
+#日期：初稿：2020.4.21
 #系统函数
 import sys
 import numpy as np
@@ -29,6 +29,8 @@ import threading
 #界面函数
 from main_windon import Ui_MainWindow
 from urs_form1 import Ui_UrsForm1
+from urs_form2 import Ui_UrsForm2
+from urs_form3 import Ui_UrsForm3
 from armct_form1 import Ui_ArmctForm1
 from impedance_form1 import Ui_ImpForm1
 from impedance_form2 import Ui_ImpForm2
@@ -96,11 +98,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         fileMenu.addAction(exitAction)
 
         # -------------------URs菜单-------------------#
-        openUrs1 = QAction(QIcon('exit.png'), 'Open circular1 plan', self)
+        #3个UR机械臂关节空间规划
+        openUrs1 = QAction(QIcon('exit.png'), 'Open URs joint plan', self)
         openUrs1.setShortcut('Ctrl+c')
-        openUrs1.setStatusTip('Open circular1 plan form')
+        openUrs1.setStatusTip('Open URs joint plan form')
         openUrs1.triggered.connect(self.gotoUrs1)
         ursMenu.addAction(openUrs1)
+
+        #2个UR机械臂搬运物体
+        openUrs2 = QAction(QIcon('exit.png'), 'Open URs move object', self)
+        openUrs2.setShortcut('Ctrl+c')
+        openUrs2.setStatusTip('Open URs move object form')
+        openUrs2.triggered.connect(self.gotoUrs2)
+        ursMenu.addAction(openUrs2)
+
+        # 3个UR机械臂初始位置调整
+        openUrs3 = QAction(QIcon('exit.png'), 'Open URs go init', self)
+        openUrs3.setShortcut('Ctrl+c')
+        openUrs3.setStatusTip('Open URs go init form')
+        openUrs3.triggered.connect(self.gotoUrs3)
+        ursMenu.addAction(openUrs3)
 
         # -------------------armct菜单-------------------#
         openArmct1 = QAction(QIcon('exit.png'), 'Open Armc_Armt Form1', self)
@@ -404,6 +421,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.urs1 = UrsWindow1()
         self.urs1.show()
 
+    def gotoUrs2(self):
+        self.hide()
+        self.urs2 = UrsWindow2()
+        self.urs2.show()
+
+    def gotoUrs3(self):
+        self.hide()
+        self.urs3 = UrsWindow3()
+        self.urs3.show()
+
     def gotoArmct1(self):
         self.hide()
         self.armct1 = ArmctWindow1()
@@ -437,6 +464,10 @@ class UrsWindow1(QMainWindow, Ui_UrsForm1):
         self.robot1_2_flag = False
         self.robot2_2_flag = False
         self.robot3_2_flag = False
+
+        self.state_qq1 = np.zeros(6)
+        self.state_qq2 = np.zeros(6)
+        self.state_qq3 = np.zeros(6)
 
         self.sub_force1_path = "/robot1/ft_sensor_topic"
         self.sub_pos1_path = "/robot1/joint_states"
@@ -586,17 +617,40 @@ class UrsWindow1(QMainWindow, Ui_UrsForm1):
 
     #给定初始位置
     def init(self):
-        qq = np.array([0, -90, 0, -90, 0, 0])
-        self.lineEdit_q1.setText(str(qq[0]))
-        self.lineEdit_q2.setText(str(qq[1]))
-        self.lineEdit_q3.setText(str(qq[2]))
-        self.lineEdit_q4.setText(str(qq[3]))
-        self.lineEdit_q5.setText(str(qq[4]))
-        self.lineEdit_q6.setText(str(qq[5]))
+        msg = ""
+        if (self.robot1_flag or self.all_flag):
+            qq = np.array([-90, -120, -120, 60, 90, 0])
+            self.lineEdit_q1.setText(str(qq[0]))
+            self.lineEdit_q2.setText(str(qq[1]))
+            self.lineEdit_q3.setText(str(qq[2]))
+            self.lineEdit_q4.setText(str(qq[3]))
+            self.lineEdit_q5.setText(str(qq[4]))
+            self.lineEdit_q6.setText(str(qq[5]))
+
+        if (self.robot2_flag or self.all_flag):
+            qq = np.array([-90, -60, 120, 120, -90, 0])
+            self.lineEdit_q1.setText(str(qq[0]))
+            self.lineEdit_q2.setText(str(qq[1]))
+            self.lineEdit_q3.setText(str(qq[2]))
+            self.lineEdit_q4.setText(str(qq[3]))
+            self.lineEdit_q5.setText(str(qq[4]))
+            self.lineEdit_q6.setText(str(qq[5]))
+
+        if (self.robot3_flag or self.all_flag):
+            qq = np.array([90, -135, 135, 180, -90, 0])
+            self.lineEdit_q1.setText(str(qq[0]))
+            self.lineEdit_q2.setText(str(qq[1]))
+            self.lineEdit_q3.setText(str(qq[2]))
+            self.lineEdit_q4.setText(str(qq[3]))
+            self.lineEdit_q5.setText(str(qq[4]))
+            self.lineEdit_q6.setText(str(qq[5]))
+
+        if (not (self.robot1_flag or self.robot2_flag or self.robot3_flag or self.all_flag)):
+            msg = "没有选中机械臂！\n"
 
     # 给定家点位置
     def home(self):
-        qq = np.array([0, 0, 0, 0, 0, 0])
+        qq = np.array([0, -90, 0, -90, 0, 0])
         self.lineEdit_q1.setText(str(qq[0]))
         self.lineEdit_q2.setText(str(qq[1]))
         self.lineEdit_q3.setText(str(qq[2]))
@@ -608,10 +662,9 @@ class UrsWindow1(QMainWindow, Ui_UrsForm1):
     def plan(self):
         msg = ""
         if (self.robot1_flag or self.all_flag):
-            #获得规划起点
-            qq_b = np.array(self.state_qq_list1[-1])
+            qq_b1 = np.array(self.state_qq_list1[-2])
             #调用规划函数
-            [qq,qv,qa] = gf.q_joint_space_plan_time(qq_b, self.qq_wish_pos[0, :])
+            [qq,qv,qa] = gf.q_joint_space_plan_time(qq_b1, self.qq_wish_pos[0, :])
             #调用绘图函数
             k =len(qq[:, 0])
             t = np.linspace(0, self.T*(k-1), k)
@@ -623,10 +676,9 @@ class UrsWindow1(QMainWindow, Ui_UrsForm1):
             msg = msg + msg1
 
         if (self.robot2_flag or self.all_flag):
-            #获得规划起点
-            qq_b = np.array(self.state_qq_list2[-1])
+            qq_b2 = np.array(self.state_qq_list2[-2])
             #调用规划函数
-            [qq,qv,qa] = gf.q_joint_space_plan_time(qq_b, self.qq_wish_pos[1, :])
+            [qq,qv,qa] = gf.q_joint_space_plan_time(qq_b2, self.qq_wish_pos[1, :])
             #调用绘图函数
             k =len(qq[:, 0])
             t = np.linspace(0, self.T*(k-1), k)
@@ -638,10 +690,9 @@ class UrsWindow1(QMainWindow, Ui_UrsForm1):
             msg = msg + msg2
 
         if (self.robot3_flag or self.all_flag):
-            #获得规划起点
-            qq_b = np.array(self.state_qq_list3[-1])
+            qq_b3 = np.array(self.state_qq_list3[-2])
             #调用规划函数
-            [qq,qv,qa] = gf.q_joint_space_plan_time(qq_b, self.qq_wish_pos[2, :])
+            [qq,qv,qa] = gf.q_joint_space_plan_time(qq_b3, self.qq_wish_pos[2, :])
             #调用绘图函数
             k =len(qq[:, 0])
             t = np.linspace(0, self.T*(k-1), k)
@@ -663,8 +714,12 @@ class UrsWindow1(QMainWindow, Ui_UrsForm1):
         for i in range(self.n):
             qq[i] = msg.position[i]
 
+        qq_r = np.copy(qq)
+        qq_r[0] = qq[2]
+        qq_r[2] = qq[0]
         self.state_t = self.state_t + self.T
-        self.state_qq_list1.append(qq)
+        self.state_qq_list1.append(qq_r)
+        self.state_qq1 = qq_r
         self.state_t_list.append(self.state_t)
         # 仅记录100个数据点
         del self.state_t_list[0]
@@ -675,7 +730,11 @@ class UrsWindow1(QMainWindow, Ui_UrsForm1):
         for i in range(self.n):
             qq[i] = msg.position[i]
 
-        self.state_qq_list2.append(qq)
+        qq_r = np.copy(qq)
+        qq_r[0] = qq[2]
+        qq_r[2] = qq[0]
+        self.state_qq_list2.append(qq_r)
+        self.state_qq2 = qq_r
         # 仅记录100个数据点
         del self.state_qq_list2[0]
 
@@ -684,7 +743,11 @@ class UrsWindow1(QMainWindow, Ui_UrsForm1):
         for i in range(self.n):
             qq[i] = msg.position[i]
 
-        self.state_qq_list3.append(qq)
+        qq_r = np.copy(qq)
+        qq_r[0] = qq[2]
+        qq_r[2] = qq[0]
+        self.state_qq_list3.append(qq_r)
+        self.state_qq3 = qq_r
         # 仅记录100个数据点
         del self.state_qq_list3[0]
 
@@ -771,15 +834,15 @@ class UrsWindow1(QMainWindow, Ui_UrsForm1):
         # 运行话题
         rospy.init_node('upper_controller_node')
         rospy.Subscriber(self.sub_pos1_path, JointState, self.joint_callback1)
-        rospy.Subscriber(self.sub_force1_path, JointState, self.force_callback1)
+        rospy.Subscriber(self.sub_force1_path, WrenchStamped, self.force_callback1)
         self.pub1 = rospy.Publisher(self.pub1_path, Float64MultiArray, queue_size=100)
 
         rospy.Subscriber(self.sub_pos2_path, JointState, self.joint_callback2)
-        rospy.Subscriber(self.sub_force2_path, JointState, self.force_callback2)
+        rospy.Subscriber(self.sub_force2_path, WrenchStamped, self.force_callback2)
         self.pub2 = rospy.Publisher(self.pub2_path, Float64MultiArray, queue_size=100)
 
         rospy.Subscriber(self.sub_pos3_path, JointState, self.joint_callback3)
-        rospy.Subscriber(self.sub_force3_path, JointState, self.force_callback3)
+        rospy.Subscriber(self.sub_force3_path, WrenchStamped, self.force_callback3)
         self.pub3 = rospy.Publisher(self.pub3_path, Float64MultiArray, queue_size=100)
 
         # 运行线程1,收话题线程
@@ -836,6 +899,972 @@ class UrsWindow1(QMainWindow, Ui_UrsForm1):
                     command_data.data = self.command_qq_list1[-1, 0:self.n]
                 self.pub1.publish(command_data)
                 if(k==0):
+                    msg = msg + "robot1已发送！\n"
+            if (self.robot2_flag or self.all_flag):
+                command_data = Float64MultiArray()
+                if (k < kk):
+                    command_data.data = self.command_qq_list2[k, 0:self.n]
+                else:
+                    command_data.data = self.command_qq_list2[-1, 0:self.n]
+                self.pub2.publish(command_data)
+                if (k == 0):
+                    msg = msg + "robot2已发送！\n"
+            if (self.robot3_flag or self.all_flag):
+                command_data = Float64MultiArray()
+                if (k < kk):
+                    command_data.data = self.command_qq_list3[k, 0:self.n]
+                else:
+                    command_data.data = self.command_qq_list3[-1, 0:self.n]
+                self.pub3.publish(command_data)
+                if (k == 0):
+                    msg = msg + "robot3已发送！\n"
+
+            if (not (self.robot1_flag or self.robot2_flag or self.robot3_flag or self.all_flag)):
+                msg = "没有选中机械臂！\n"
+
+            self.textEdit.setText(msg)
+            QApplication.processEvents()
+            k = k + 1
+            rate.sleep()
+
+    # ===============窗口跳转函数================#
+    def gotoMain(self):
+        self.hide()
+        self.main_windon = MainWindow()
+        self.main_windon.show()
+
+# ================三个UR5协同控制================#
+class UrsWindow2(QMainWindow, Ui_UrsForm2):
+    # 建立全局变量
+    state_qq_list1 = list(np.zeros([1000, 6]))
+    state_f_list1 = list(np.zeros([1000, 6]))
+    state_qq_list2 = list(np.zeros([1000, 6]))
+    state_f_list2 = list(np.zeros([1000, 6]))
+    state_t_list = list(np.zeros(1000))
+    state_t = 0.0
+
+    def __init__(self, parent=None):
+        super(UrsWindow2, self).__init__(parent)
+        self.T = 0.01
+        self.run_flag = True  # 开始或停止标签
+        self.real_flag = False
+        self.gazebo_flag = False
+
+        self.robot1_flag = False
+        self.robot2_flag = False
+        self.all_flag = True
+
+        self.robot1_2_flag = True
+        self.robot2_2_flag = False
+
+        self.init_flag = False
+        self.move_flag = False
+        self.home_flag = False
+
+        self.state_qq1 = np.zeros(6)
+        self.state_qq2 = np.zeros(6)
+
+        self.sub_force1_path = "/robot1/ft_sensor_topic"
+        self.sub_pos1_path = "/robot1/joint_states"
+        self.pub1_path = "/robot1/ur5_position_controller/command"
+        self.sub_force2_path = "/robot2/ft_sensor_topic"
+        self.sub_pos2_path = "/robot2/joint_states"
+        self.pub2_path = "/robot2/ur5_position_controller/command"
+
+        self.n = 6  # 机械臂关节数
+
+        self.setupUi(self)
+        self.initUI()
+
+    def initUI(self):
+        # ======================菜单栏功能模块=======================#
+        # 创建菜单
+        menubar = self.menuBar()
+        mainMenu = menubar.addMenu('&Main')
+
+        # 文件菜单:返回主窗口
+        openMain = QAction(QIcon('exit.png'), 'main window ', self)
+        openMain.setShortcut('Ctrl+z')
+        openMain.setStatusTip('Return main window')
+        openMain.triggered.connect(self.gotoMain)
+        mainMenu.addAction(openMain)
+
+        # =======================绘图相关设置=======================#
+        self.p1, self.p2 = self.set_graph_ui()  # 设置绘图窗口
+
+        # =======================按钮功能模块=======================#
+        self.button_begin.clicked.connect(self.begin_function)
+        self.button_stop.clicked.connect(self.stop)
+        self.button_read_data.clicked.connect(self.read_pos)
+        self.button_receive.clicked.connect(self.run_topic)
+        self.button_refresh.clicked.connect(self.refresh_radioButton)
+        self.button_work.clicked.connect(self.go_move)
+        self.button_init_plan.clicked.connect(self.go_init)
+        self.button_end_plan.clicked.connect(self.go_home)
+
+    # ===============按钮功能模块相关函数================#
+    # 采用pyqtgraph绘制曲线,添加画板
+    def set_graph_ui(self):
+        pg.setConfigOptions(antialias=True)  # pg全局变量设置函数，antialias=True开启曲线抗锯齿
+
+        win1 = pg.GraphicsLayoutWidget()  # 创建pg layout，可实现数据界面布局自动管理
+        win2 = pg.GraphicsLayoutWidget()
+
+        # pg绘图窗口可以作为一个widget添加到GUI中的graph_layout，当然也可以添加到Qt其他所有的容器中
+        self.horizontalLayout_1.addWidget(win1)
+        self.horizontalLayout_2.addWidget(win2)
+
+        p1 = win1.addPlot(title="joint pos")  # 添加第一个绘图窗口
+        p1.setLabel('left', text='pos/rad', color='#ffffff')  # y轴设置函数
+        p1.showGrid(x=True, y=True)  # 栅格设置函数
+        p1.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+        p1.setLabel('bottom', text='time', units='s')  # x轴设置函数
+        p1.addLegend(size=(50, 30))  # 可选择是否添加legend
+
+        p2 = win2.addPlot(title="force")  # 添加第一个绘图窗口
+        p2.setLabel('left', text='force/N', color='#ffffff')  # y轴设置函数
+        p2.showGrid(x=True, y=True)  # 栅格设置函数
+        p2.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+        p2.setLabel('bottom', text='time', units='s')  # x轴设置函数
+        p2.addLegend(size=(50, 30))
+        return p1, p2
+
+    # 绘画关节角和关节角速度曲线
+    def plot_joint(self, t1, qq):
+        # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
+        self.p1.plot(t1, qq[:, 0], pen='b', name='qq1', clear=True)
+        self.p1.plot(t1, qq[:, 1], pen='g', name='qq2', clear=False)
+        self.p1.plot(t1, qq[:, 2], pen='r', name='qq3', clear=False)
+        self.p1.plot(t1, qq[:, 3], pen='c', name='qq4', clear=False)
+        self.p1.plot(t1, qq[:, 4], pen='m', name='qq5', clear=False)
+        self.p1.plot(t1, qq[:, 5], pen='y', name='qq6', clear=False)
+
+    # 绘画关节角和关节角速度曲线
+    def plot_force(self, t2, f):
+        # 绘制力图
+        self.p2.plot(t2, f[:, 0], pen='b', name='F1', clear=True)
+        self.p2.plot(t2, f[:, 1], pen='g', name='F2', clear=False)
+        self.p2.plot(t2, f[:, 2], pen='r', name='F3', clear=False)
+        self.p2.plot(t2, f[:, 3], pen='c', name='F4', clear=False)
+        self.p2.plot(t2, f[:, 4], pen='m', name='F5', clear=False)
+        self.p2.plot(t2, f[:, 5], pen='y', name='F6', clear=False)
+
+    # 刷新按钮
+    def refresh_radioButton(self):
+        self.robot1_flag = self.radioButton_robot1.isChecked()
+        self.robot2_flag = self.radioButton_robot2.isChecked()
+        self.all_flag = self.radioButton_all.isChecked()
+
+        self.robot1_2_flag = self.radioButton_robot1_2.isChecked()
+        self.robot2_2_flag = self.radioButton_robot2_2.isChecked()
+
+        self.real_flag = self.radioButton_real.isChecked()
+        self.gazebo_flag = self.radioButton_gazebo.isChecked()
+
+        msg = "按钮状态已刷新！\n"
+        self.textEdit.setText(msg)
+
+    def go_init(self):
+        self.init_flag = True
+        self.move_flag = False
+        self.home_flag = False
+
+        if(self.robot1_flag or self.all_flag):
+            # 获得规划起点
+            qq_b1 = np.array(self.state_qq_list1[-1])
+            # 调用规划函数
+            [qq1, qv, qa] = gf.q_joint_space_plan_time(qq_b1, self.robot1_command_qq[0, :],
+                                                      self.T, self.t)
+            # 调用绘图函数
+            k1 = len(qq1[:, 0])
+            t1 = np.linspace(0, self.T * (k1 - 1), k1)
+            # 绘制关节角位置图
+            self.plot_joint(t1, qq1)
+            # 将规划好的位置定义为全局变量
+            self.command_qq1_init = np.copy(qq1)
+
+        if (self.robot2_flag or self.all_flag):
+            # 获得规划起点
+            qq_b2 = np.array(self.state_qq_list2[-1])
+            # 调用规划函数
+            [qq2, qv, qa] = gf.q_joint_space_plan_time(qq_b2, self.robot2_command_qq[0, :],
+                                                      self.T, self.t)
+            # 调用绘图函数
+            k2 = len(qq2[:, 0])
+            t2 = np.linspace(0, self.T * (k2 - 1), k2)
+            # 绘制关节角位置图
+            self.plot_force(t2, qq2)
+            # 将规划好的位置定义为全局变量
+            self.command_qq2_init = np.copy(qq2)
+
+        msg = "运动到初始点已规划！\n"
+        self.textEdit.setText(msg)
+
+    def go_move(self):
+        self.init_flag = False
+        self.move_flag = True
+        self.home_flag = False
+
+        msg = "已切换到搬运模式！\n"
+        self.textEdit.setText(msg)
+
+    def go_home(self):
+        self.init_flag = False
+        self.move_flag = False
+        self.home_flag = True
+
+        # 获得规划终点
+        qq_home = np.array([0, 0, 0, 0, 0, 0, 0.0])
+
+        if (self.robot1_flag or self.all_flag):
+            # 获得规划起点
+            qq_b1 = np.array(self.state_qq_list1[-1])
+            # 调用规划函数
+            [qq1, qv, qa] = gf.q_joint_space_plan_time(qq_b1, qq_home, self.T, self.t)
+            # 调用绘图函数
+            k1 = len(qq1[:, 0])
+            t1 = np.linspace(0, self.T * (k1 - 1), k1)
+            # 绘制关节角位置图
+            self.plot_joint(t1, qq1)
+            # 将规划好的位置定义为全局变量
+            self.command_qq1_home = np.copy(qq1)
+
+        if (self.robot2_flag or self.all_flag):
+            # 获得规划起点
+            qq_b2 = np.array(self.state_qq_list2[-1])
+            # 调用规划函数
+            [qq2, qv, qa] = gf.q_joint_space_plan_time(qq_b2, qq_home, self.T, self.t)
+            # 调用绘图函数
+            k2 = len(qq2[:, 0])
+            t2 = np.linspace(0, self.T * (k2 - 1), k2)
+            # 绘制关节角位置图
+            self.plot_force(t2, qq2)
+            # 将规划好的位置定义为全局变量
+            self.command_qq2_home = np.copy(qq2)
+
+        msg = "运动到家点已规划！\n"
+        self.textEdit.setText(msg)
+
+    #读取数据
+    def read_pos(self):
+        #读取数据
+        if(self.robot1_flag or self.all_flag):
+            pos_path1 = str(self.lineEdit_data_1.text())
+            self.robot1_command_qq = fo.read(pos_path1)
+            # 调用绘图函数
+            k = len(self.robot1_command_qq)
+            t = np.linspace(0, self.T * (k - 1), k)
+            # 绘制关节角位置速度图
+            self.plot_joint(t, self.robot1_command_qq)
+
+        if(self.robot2_flag or self.all_flag):
+            pos_path2 = str(self.lineEdit_data_2.text())
+            self.robot2_command_qq = fo.read(pos_path2)
+            # 调用绘图函数
+            k = len(self.robot2_command_qq)
+            t = np.linspace(0, self.T * (k - 1), k)
+            # 绘制关节角位置速度图
+            self.plot_force(t, self.robot2_command_qq)
+
+
+
+        msg = "位置已读取！"
+        self.read_pos_flag = True
+        self.textEdit.setText(msg)
+
+    ##关节角订阅回调函数
+    def joint_callback1(self, msg):
+        qq = np.zeros(self.n)
+        for i in range(self.n):
+            qq[i] = msg.position[i]
+
+        #反馈关节有问题，改
+        qq_r = np.copy(qq)
+        qq_r[0] = qq[2]
+        qq_r[2] = qq[0]
+        self.state_t = self.state_t + self.T
+        self.state_qq_list1.append(qq_r)
+        self.state_qq1 = qq_r
+        self.state_t_list.append(self.state_t)
+        # 仅记录100个数据点
+        del self.state_t_list[0]
+        del self.state_qq_list1[0]
+
+    def joint_callback2(self, msg):
+        qq = np.zeros(self.n)
+        for i in range(self.n):
+            qq[i] = msg.position[i]
+        qq_r = np.copy(qq)
+        qq_r[0] = qq[2]
+        qq_r[2] = qq[0]
+        self.state_qq_list2.append(qq_r)
+        self.state_qq2 = qq_r
+        # 仅记录100个数据点
+        del self.state_qq_list2[0]
+
+    ##关节角订阅回调函数
+    def force_callback1(self, msg):
+        f = np.zeros(6)
+        f[0] = msg.wrench.force.x
+        f[1] = msg.wrench.force.y
+        f[2] = msg.wrench.force.z
+        f[3] = msg.wrench.torque.x
+        f[4] = msg.wrench.torque.y
+        f[5] = msg.wrench.torque.z
+        # 存储数据
+        self.state_f_list1.append(f)
+        # 仅记录1000个数据点
+        del self.state_f_list1[0]
+
+    def force_callback2(self, msg):
+        f = np.zeros(6)
+        f[0] = msg.wrench.force.x
+        f[1] = msg.wrench.force.y
+        f[2] = msg.wrench.force.z
+        f[3] = msg.wrench.torque.x
+        f[4] = msg.wrench.torque.y
+        f[5] = msg.wrench.torque.z
+        # 存储数据
+        self.state_f_list2.append(f)
+        # 仅记录1000个数据点
+        del self.state_f_list2[0]
+
+    ##末端力订阅线程
+    def thread_spin(self):
+        rospy.spin()
+
+    def probar_show(self):
+        self.step_p = self.step_p + 1
+        self.progressBar.setValue(self.step_p)
+        if (self.step_p > 99):
+            self.timer_p.stop()
+
+    def stop(self):
+        self.run_flag = False
+
+    def realtime_plot(self):
+        if (self.robot1_2_flag):
+            plot_t = np.array(self.state_t_list)
+            plot_qq = np.array(self.state_qq_list1)
+            plot_f = np.array(self.state_f_list1)
+            self.plot_joint(plot_t, plot_qq)
+            self.plot_force(plot_t, plot_f)
+
+        if (self.robot2_2_flag):
+            plot_t = np.array(self.state_t_list)
+            plot_qq = np.array(self.state_qq_list2)
+            plot_f = np.array(self.state_f_list2)
+            self.plot_joint(plot_t, plot_qq)
+            self.plot_force(plot_t, plot_f)
+
+    def run_topic(self):
+        # 读取时间
+        self.T = float(self.lineEdit_T.text())
+        self.t = float(self.lineEdit_t.text())
+
+        msg_time = "获取时间：\n" + "周期T：" + str(self.T) + \
+                   "\n规划时长：" + str(self.t) + "\n"
+
+        # 运行话题
+        rospy.init_node('upper_controller_node')
+        rospy.Subscriber(self.sub_pos1_path, JointState, self.joint_callback1)
+        rospy.Subscriber(self.sub_force1_path, WrenchStamped, self.force_callback1)
+        self.pub1 = rospy.Publisher(self.pub1_path, Float64MultiArray, queue_size=100)
+
+        rospy.Subscriber(self.sub_pos2_path, JointState, self.joint_callback2)
+        rospy.Subscriber(self.sub_force2_path, WrenchStamped, self.force_callback2)
+        self.pub2 = rospy.Publisher(self.pub2_path, Float64MultiArray, queue_size=100)
+
+        # 运行线程1,收话题线程
+        t1 = threading.Thread(target=self.thread_spin)  # 末端位置订阅线程
+        msg_tip = "upper_controller_node run!"
+
+        msg = msg_time + msg_tip
+        self.textEdit.setText(msg)
+        t1.start()
+
+    def begin_function(self):
+        # 运行标签启动
+        self.run_flag = True
+
+        kk = 0
+        command_qq_list1 = []
+        command_qq_list2 = []
+
+        # 求取数据长度
+        if (self.robot1_flag):
+            if(self.init_flag):
+                kk = len(self.command_qq1_init)
+                command_qq_list1 = self.command_qq1_init
+            elif(self.home_flag):
+                kk = len(self.command_qq1_home)
+                command_qq_list1 = self.command_qq1_home
+            else:
+                kk = len(self.robot1_command_qq)
+                command_qq_list1 = self.robot1_command_qq
+        if (self.robot2_flag):
+            if (self.init_flag):
+                kk = len(self.command_qq2_init)
+                command_qq_list2 = self.command_qq2_init
+            elif (self.home_flag):
+                kk = len(self.command_qq2_home)
+                command_qq_list2 = self.command_qq2_home
+            else:
+                kk = len(self.robot2_command_qq)
+                command_qq_list2 = self.robot2_command_qq
+        if (self.all_flag):
+            if (self.init_flag):
+                kk = len(self.command_qq1_init)
+                command_qq_list1 = self.command_qq1_init
+                command_qq_list2 = self.command_qq2_init
+            elif (self.home_flag):
+                kk = len(self.command_qq1_home)
+                command_qq_list1 = self.command_qq1_home
+                command_qq_list2 = self.command_qq2_home
+            else:
+                kk = len(self.robot1_command_qq)
+                command_qq_list1 = self.robot1_command_qq
+                command_qq_list2 = self.robot2_command_qq
+        # 进度条显示时间间隔
+        show_time = int(kk * self.T * 10)
+
+        # 设置ProgressBar,用Qtimer开线程处理（线程3）
+        self.step_p = 0
+        self.timer_p = QTimer()
+        self.timer_p.timeout.connect(self.probar_show)
+        self.timer_p.start(show_time)
+
+        # 设置绘图,用Qtimer开线程处理（线程4）
+        self.timer_plot = QTimer()
+        self.timer_plot.timeout.connect(self.realtime_plot)
+        self.timer_plot.start(1000)
+
+        # 发送关节角度
+        rate = rospy.Rate(100)
+        k = 0
+        while not rospy.is_shutdown():
+            # 检测是否启动急停
+            if (not self.run_flag):
+                self.timer_p.stop()
+                self.timer_plot.stop()
+                break
+            # 发送数据
+            msg = "已发送机器人：\n"
+            if (self.robot1_flag or self.all_flag):
+                command_data = Float64MultiArray()
+                if (k < kk):
+                    command_data.data = command_qq_list1[k, 0:self.n]
+                else:
+                    command_data.data = command_qq_list1[-1, 0:self.n]
+                self.pub1.publish(command_data)
+                if (k == 0):
+                    msg = msg + "robot1已发送！\n"
+            if (self.robot2_flag or self.all_flag):
+                command_data = Float64MultiArray()
+                if (k < kk):
+                    command_data.data = command_qq_list2[k, 0:self.n]
+                else:
+                    command_data.data = command_qq_list2[-1, 0:self.n]
+                self.pub2.publish(command_data)
+                if (k == 0):
+                    msg = msg + "robot2已发送！\n"
+
+            if (not (self.robot1_flag or self.robot2_flag or self.all_flag)):
+                msg = "没有选中机械臂！\n"
+
+            self.textEdit.setText(msg)
+            QApplication.processEvents()
+            k = k + 1
+            rate.sleep()
+
+    # ===============窗口跳转函数================#
+    def gotoMain(self):
+        self.hide()
+        self.main_windon = MainWindow()
+        self.main_windon.show()
+
+# ================三个UR5协同控制================#
+class UrsWindow3(QMainWindow, Ui_UrsForm3):
+    # 建立全局变量
+    state_qq_list1 = list(np.zeros([1000, 6]))
+    state_f_list1 = list(np.zeros([1000, 6]))
+    state_qq_list2 = list(np.zeros([1000, 6]))
+    state_f_list2 = list(np.zeros([1000, 6]))
+    state_qq_list3 = list(np.zeros([1000, 6]))
+    state_f_list3 = list(np.zeros([1000, 6]))
+    state_t_list = list(np.zeros(1000))
+    state_t = 0.0
+
+    def __init__(self, parent=None):
+        super(UrsWindow3, self).__init__(parent)
+        self.T = 0.01
+        self.run_flag = True  # 开始或停止标签
+        self.real_flag = False
+        self.gazebo_flag = False
+
+        self.robot1_flag = False
+        self.robot2_flag = False
+        self.robot3_flag = False
+        self.all_flag = False
+
+        self.robot1_2_flag = False
+        self.robot2_2_flag = False
+        self.robot3_2_flag = False
+
+        self.sub_force1_path = "/robot1/ft_sensor_topic"
+        self.sub_pos1_path = "/robot1/joint_states"
+        self.pub1_path = "/robot1/ur5_position_controller/command"
+        self.sub_force2_path = "/robot2/ft_sensor_topic"
+        self.sub_pos2_path = "/robot2/joint_states"
+        self.pub2_path = "/robot2/ur5_position_controller/command"
+        self.sub_force3_path = "/robot3/ft_sensor_topic"
+        self.sub_pos3_path = "/robot3/joint_states"
+        self.pub3_path = "/robot3/ur5_position_controller/command"
+
+        self.n = 6  # 机械臂关节数
+        self.qq_wish_pos = np.zeros([3, 6])
+        self.qq_wish_state = np.zeros([3, 6])
+
+        self.setupUi(self)
+        self.initUI()
+
+    def initUI(self):
+        # ======================菜单栏功能模块=======================#
+        # 创建菜单
+        menubar = self.menuBar()
+        mainMenu = menubar.addMenu('&Main')
+
+        # 文件菜单:返回主窗口
+        openMain = QAction(QIcon('exit.png'), 'main window ', self)
+        openMain.setShortcut('Ctrl+z')
+        openMain.setStatusTip('Return main window')
+        openMain.triggered.connect(self.gotoMain)
+        mainMenu.addAction(openMain)
+
+        # =======================绘图相关设置=======================#
+        self.p1, self.p2 = self.set_graph_ui()  # 设置绘图窗口
+
+        # =======================按钮功能模块=======================#
+        self.button_begin.clicked.connect(self.begin_function)
+        self.button_stop.clicked.connect(self.stop)
+        self.button_read.clicked.connect(self.read_wish_pos)
+        self.button_receive.clicked.connect(self.run_topic)
+        self.button_refresh.clicked.connect(self.refresh_radioButton)
+        self.button_plan.clicked.connect(self.plan)
+        self.button_home.clicked.connect(self.home)
+        self.button_init.clicked.connect(self.init)
+        self.button_state.clicked.connect(self.get_current_state)
+
+    # ===============按钮功能模块相关函数================#
+    # 采用pyqtgraph绘制曲线,添加画板
+    def set_graph_ui(self):
+        pg.setConfigOptions(antialias=True)  # pg全局变量设置函数，antialias=True开启曲线抗锯齿
+
+        win1 = pg.GraphicsLayoutWidget()  # 创建pg layout，可实现数据界面布局自动管理
+        win2 = pg.GraphicsLayoutWidget()
+
+        # pg绘图窗口可以作为一个widget添加到GUI中的graph_layout，当然也可以添加到Qt其他所有的容器中
+        self.horizontalLayout_1.addWidget(win1)
+        self.horizontalLayout_2.addWidget(win2)
+
+        p1 = win1.addPlot(title="joint pos")  # 添加第一个绘图窗口
+        p1.setLabel('left', text='pos/rad', color='#ffffff')  # y轴设置函数
+        p1.showGrid(x=True, y=True)  # 栅格设置函数
+        p1.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+        p1.setLabel('bottom', text='time', units='s')  # x轴设置函数
+        p1.addLegend(size=(50, 30))  # 可选择是否添加legend
+
+        p2 = win2.addPlot(title="force")  # 添加第一个绘图窗口
+        p2.setLabel('left', text='force/N', color='#ffffff')  # y轴设置函数
+        p2.showGrid(x=True, y=True)  # 栅格设置函数
+        p2.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+        p2.setLabel('bottom', text='time', units='s')  # x轴设置函数
+        p2.addLegend(size=(50, 30))
+        return p1, p2
+
+    # 绘画关节角和关节角速度曲线
+    def plot_joint(self, t1, qq, t2, f):
+        # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
+        self.p1.plot(t1, qq[:, 0], pen='b', name='qq1', clear=True)
+        self.p1.plot(t1, qq[:, 1], pen='g', name='qq2', clear=False)
+        self.p1.plot(t1, qq[:, 2], pen='r', name='qq3', clear=False)
+        self.p1.plot(t1, qq[:, 3], pen='c', name='qq4', clear=False)
+        self.p1.plot(t1, qq[:, 4], pen='m', name='qq5', clear=False)
+        self.p1.plot(t1, qq[:, 5], pen='y', name='qq6', clear=False)
+
+        # 绘制速度图
+        self.p2.plot(t2, f[:, 0], pen='b', name='F1', clear=True)
+        self.p2.plot(t2, f[:, 1], pen='g', name='F2', clear=False)
+        self.p2.plot(t2, f[:, 2], pen='r', name='F3', clear=False)
+        self.p2.plot(t2, f[:, 3], pen='c', name='F4', clear=False)
+        self.p2.plot(t2, f[:, 4], pen='m', name='F5', clear=False)
+        self.p2.plot(t2, f[:, 5], pen='y', name='F6', clear=False)
+
+    # 刷新按钮
+    def refresh_radioButton(self):
+        self.robot1_flag = self.radioButton_robot1.isChecked()
+        self.robot2_flag = self.radioButton_robot2.isChecked()
+        self.robot3_flag = self.radioButton_robot3.isChecked()
+        self.all_flag = self.radioButton_all.isChecked()
+
+        self.robot1_2_flag = self.radioButton_robot1_2.isChecked()
+        self.robot2_2_flag = self.radioButton_robot2_2.isChecked()
+        self.robot3_2_flag = self.radioButton_robot3_2.isChecked()
+
+        self.real_flag = self.radioButton_real.isChecked()
+        self.gazebo_flag = self.radioButton_gazebo.isChecked()
+
+        msg = "按钮状态已刷新！\n"
+        self.textEdit.setText(msg)
+
+    # 读取给定关节角度
+    def read_wish_pos(self):
+        qq = np.zeros(6)
+        qq[0] = self.lineEdit_q1.text()
+        qq[1] = self.lineEdit_q2.text()
+        qq[2] = self.lineEdit_q3.text()
+        qq[3] = self.lineEdit_q4.text()
+        qq[4] = self.lineEdit_q5.text()
+        qq[5] = self.lineEdit_q6.text()
+
+        qq_state = np.zeros(6)
+        qq_state[0] = self.lineEdit_q1_3.text()
+        qq_state[1] = self.lineEdit_q2_3.text()
+        qq_state[2] = self.lineEdit_q3_3.text()
+        qq_state[3] = self.lineEdit_q4_3.text()
+        qq_state[4] = self.lineEdit_q5_3.text()
+        qq_state[5] = self.lineEdit_q6_3.text()
+
+        msg = ""
+        if (self.robot1_flag or self.all_flag):
+            msg_pos1 = "robot1规划目标点:\n" + \
+                       "q1:" + str(qq[0]) + "\n" + "q2:" + str(qq[1]) + \
+                       "\n" + "q3:" + str(qq[2]) + "\n" + "q4:" + str(qq[3]) + \
+                       "\n" + "q5:" + str(qq[4]) + "\n" + "q6:" + str(qq[5]) + \
+                       "\n"
+
+            self.qq_wish_pos[0, :] = np.copy(qq * np.pi / 180.0)
+            self.qq_wish_state[0, :] = np.copy(qq_state * np.pi / 180.0)
+            msg = msg + msg_pos1
+
+        if (self.robot2_flag or self.all_flag):
+            msg_pos = "robot2规划目标点:\n" + \
+                      "q1:" + str(qq[0]) + "\n" + "q2:" + str(qq[1]) + \
+                      "\n" + "q3:" + str(qq[2]) + "\n" + "q4:" + str(qq[3]) + \
+                      "\n" + "q5:" + str(qq[4]) + "\n" + "q6:" + str(qq[5]) + \
+                      "\n"
+            self.qq_wish_pos[1, :] = np.copy(qq * np.pi / 180.0)
+            self.qq_wish_state[1, :] = np.copy(qq_state * np.pi / 180.0)
+            msg = msg + msg_pos
+
+        if (self.robot3_flag or self.all_flag):
+            msg_pos = "robot3规划目标点:\n" + \
+                      "q1:" + str(qq[0]) + "\n" + "q2:" + str(qq[1]) + \
+                      "\n" + "q3:" + str(qq[2]) + "\n" + "q4:" + str(qq[3]) + \
+                      "\n" + "q5:" + str(qq[4]) + "\n" + "q6:" + str(qq[5]) + \
+                      "\n"
+            self.qq_wish_pos[2, :] = np.copy(qq * np.pi / 180.0)
+            self.qq_wish_state[2, :] = np.copy(qq_state * np.pi / 180.0)
+            msg = msg + msg_pos
+
+        if (not (self.robot1_flag or self.robot2_flag or self.robot3_flag or self.all_flag)):
+            msg = "没有选中机械臂！！！"
+
+        self.textEdit.setText(msg)
+
+    #获取当前状态
+    def get_current_state(self):
+        qq = np.zeros(6)
+        if(self.robot1_flag or self.all_flag):
+            qq = np.array(self.state_qq_list1[-1])
+
+        if (self.robot2_flag or self.all_flag):
+            qq = np.array(self.state_qq_list2[-1])
+
+        if (self.robot3_flag or self.all_flag):
+            qq = np.array(self.state_qq_list3[-1])
+
+        qq = np.around(qq*180/np.pi, 3)
+        #采集关节角存在问题，1、3互换
+        self.lineEdit_q1_3.setText(str(qq[2]))
+        self.lineEdit_q2_3.setText(str(qq[1]))
+        self.lineEdit_q3_3.setText(str(qq[0]))
+        self.lineEdit_q4_3.setText(str(qq[3]))
+        self.lineEdit_q5_3.setText(str(qq[4]))
+        self.lineEdit_q6_3.setText(str(qq[5]))
+
+    # 给定初始位置
+    def init(self):
+        msg = ""
+        if (self.robot1_flag or self.all_flag):
+            qq = np.array([-90, -60, -120, 60, 90, 0])
+            self.lineEdit_q1.setText(str(qq[0]))
+            self.lineEdit_q2.setText(str(qq[1]))
+            self.lineEdit_q3.setText(str(qq[2]))
+            self.lineEdit_q4.setText(str(qq[3]))
+            self.lineEdit_q5.setText(str(qq[4]))
+            self.lineEdit_q6.setText(str(qq[5]))
+
+        if (self.robot2_flag or self.all_flag):
+            qq = np.array([-90, -60, 120, 120, -90, 0])
+            self.lineEdit_q1.setText(str(qq[0]))
+            self.lineEdit_q2.setText(str(qq[1]))
+            self.lineEdit_q3.setText(str(qq[2]))
+            self.lineEdit_q4.setText(str(qq[3]))
+            self.lineEdit_q5.setText(str(qq[4]))
+            self.lineEdit_q6.setText(str(qq[5]))
+
+        if (self.robot3_flag or self.all_flag):
+            qq = np.array([90, -135, 135, 180, -90, 0])
+            self.lineEdit_q1.setText(str(qq[0]))
+            self.lineEdit_q2.setText(str(qq[1]))
+            self.lineEdit_q3.setText(str(qq[2]))
+            self.lineEdit_q4.setText(str(qq[3]))
+            self.lineEdit_q5.setText(str(qq[4]))
+            self.lineEdit_q6.setText(str(qq[5]))
+
+        if (not (self.robot1_flag or self.robot2_flag or self.robot3_flag or self.all_flag)):
+            msg = "没有选中机械臂！\n"
+
+    # 给定家点位置
+    def home(self):
+        qq = np.array([0, -90, 0, -90, 0, 0])
+        self.lineEdit_q1.setText(str(qq[0]))
+        self.lineEdit_q2.setText(str(qq[1]))
+        self.lineEdit_q3.setText(str(qq[2]))
+        self.lineEdit_q4.setText(str(qq[3]))
+        self.lineEdit_q5.setText(str(qq[4]))
+        self.lineEdit_q6.setText(str(qq[5]))
+
+    # 规划函数
+    def plan(self):
+        msg = ""
+        if (self.robot1_flag or self.all_flag):
+            # 调用规划函数
+            [qq, qv, qa] = gf.q_joint_space_plan_time(self.qq_wish_state[0, :], self.qq_wish_pos[0, :])
+            # 调用绘图函数
+            k = len(qq[:, 0])
+            t = np.linspace(0, self.T * (k - 1), k)
+            # 绘制关节角位置速度图
+            self.plot_joint(t, qq, t, np.zeros([k, 6]))
+            # 将规划好的位置定义为全局变量
+            self.command_qq_list1 = np.copy(qq)
+            msg1 = "robot1已规划！\n"
+            msg = msg + msg1
+
+        if (self.robot2_flag or self.all_flag):
+            # 调用规划函数
+            [qq, qv, qa] = gf.q_joint_space_plan_time(self.qq_wish_state[1, :], self.qq_wish_pos[1, :])
+            # 调用绘图函数
+            k = len(qq[:, 0])
+            t = np.linspace(0, self.T * (k - 1), k)
+            # 绘制关节角位置速度图
+            self.plot_joint(t, qq, t, np.zeros([k, 6]))
+            # 将规划好的位置定义为全局变量
+            self.command_qq_list2 = np.copy(qq)
+            msg2 = "robot2已规划！\n"
+            msg = msg + msg2
+
+        if (self.robot3_flag or self.all_flag):
+            # 调用规划函数
+            [qq, qv, qa] = gf.q_joint_space_plan_time(self.qq_wish_state[2, :], self.qq_wish_pos[2, :])
+            # 调用绘图函数
+            k = len(qq[:, 0])
+            t = np.linspace(0, self.T * (k - 1), k)
+            # 绘制关节角位置速度图
+            self.plot_joint(t, qq, t, np.zeros([k, 6]))
+            # 将规划好的位置定义为全局变量
+            self.command_qq_list3 = np.copy(qq)
+            msg3 = "robot3已规划！\n"
+            msg = msg + msg3
+
+        if (not (self.robot1_flag or self.robot2_flag or self.robot3_flag or self.all_flag)):
+            msg = "没有选中机械臂！\n"
+
+        self.textEdit.setText(msg)
+
+    ##关节角订阅回调函数
+    def joint_callback1(self, msg):
+        qq = np.zeros(self.n)
+        for i in range(self.n):
+            qq[i] = msg.position[i]
+
+        self.state_t = self.state_t + self.T
+        self.state_qq_list1.append(qq)
+        self.state_qq1 = qq
+        self.state_t_list.append(self.state_t)
+        # 仅记录100个数据点
+        del self.state_t_list[0]
+        del self.state_qq_list1[0]
+
+    def joint_callback2(self, msg):
+        qq = np.zeros(self.n)
+        for i in range(self.n):
+            qq[i] = msg.position[i]
+
+        self.state_qq_list2.append(qq)
+        self.state_qq2 = qq
+        # 仅记录100个数据点
+        del self.state_qq_list2[0]
+
+    def joint_callback3(self, msg):
+        qq = np.zeros(self.n)
+        for i in range(self.n):
+            qq[i] = msg.position[i]
+
+        self.state_qq_list3.append(qq)
+        self.state_qq3 = qq
+        # 仅记录100个数据点
+        del self.state_qq_list3[0]
+
+    ##关节角订阅回调函数
+    def force_callback1(self, msg):
+        f = np.zeros(6)
+        f[0] = msg.wrench.force.x
+        f[1] = msg.wrench.force.y
+        f[2] = msg.wrench.force.z
+        f[3] = msg.wrench.torque.x
+        f[4] = msg.wrench.torque.y
+        f[5] = msg.wrench.torque.z
+        # 存储数据
+        self.state_f_list1.append(f)
+        # 仅记录1000个数据点
+        del self.state_f_list1[0]
+
+    def force_callback2(self, msg):
+        f = np.zeros(6)
+        f[0] = msg.wrench.force.x
+        f[1] = msg.wrench.force.y
+        f[2] = msg.wrench.force.z
+        f[3] = msg.wrench.torque.x
+        f[4] = msg.wrench.torque.y
+        f[5] = msg.wrench.torque.z
+        # 存储数据
+        self.state_f_list2.append(f)
+        # 仅记录1000个数据点
+        del self.state_f_list2[0]
+
+    def force_callback3(self, msg):
+        f = np.zeros(6)
+        f[0] = msg.wrench.force.x
+        f[1] = msg.wrench.force.y
+        f[2] = msg.wrench.force.z
+        f[3] = msg.wrench.torque.x
+        f[4] = msg.wrench.torque.y
+        f[5] = msg.wrench.torque.z
+        # 存储数据
+        self.state_f_list3.append(f)
+        # 仅记录1000个数据点
+        del self.state_f_list3[0]
+
+    ##末端力订阅线程
+    def thread_spin(self):
+        rospy.spin()
+
+    def probar_show(self):
+        self.step_p = self.step_p + 1
+        self.progressBar.setValue(self.step_p)
+        if (self.step_p > 99):
+            self.timer_p.stop()
+
+    def stop(self):
+        self.run_flag = False
+
+    def realtime_plot(self):
+        if (self.robot1_2_flag):
+            plot_t = np.array(self.state_t_list)
+            plot_qq = np.array(self.state_qq_list1)
+            plot_f = np.array(self.state_f_list1)
+            self.plot_joint(plot_t, plot_qq, plot_t, plot_f)
+
+        if (self.robot2_2_flag):
+            plot_t = np.array(self.state_t_list)
+            plot_qq = np.array(self.state_qq_list2)
+            plot_f = np.array(self.state_f_list2)
+            self.plot_joint(plot_t, plot_qq, plot_t, plot_f)
+
+        if (self.robot3_2_flag):
+            plot_t = np.array(self.state_t_list)
+            plot_qq = np.array(self.state_qq_list3)
+            plot_f = np.array(self.state_f_list3)
+            self.plot_joint(plot_t, plot_qq, plot_t, plot_f)
+
+    def run_topic(self):
+        # 读取时间
+        self.T = float(self.lineEdit_T.text())
+        self.t = float(self.lineEdit_t.text())
+
+        msg_time = "获取时间：\n" + "周期T：" + str(self.T) + \
+                   "\n规划时长：" + str(self.t) + "\n"
+
+        # 运行话题
+        rospy.init_node('upper_controller_node')
+        rospy.Subscriber(self.sub_pos1_path, JointState, self.joint_callback1)
+        rospy.Subscriber(self.sub_force1_path, WrenchStamped, self.force_callback1)
+        self.pub1 = rospy.Publisher(self.pub1_path, Float64MultiArray, queue_size=100)
+
+        rospy.Subscriber(self.sub_pos2_path, JointState, self.joint_callback2)
+        rospy.Subscriber(self.sub_force2_path, WrenchStamped, self.force_callback2)
+        self.pub2 = rospy.Publisher(self.pub2_path, Float64MultiArray, queue_size=100)
+
+        rospy.Subscriber(self.sub_pos3_path, JointState, self.joint_callback3)
+        rospy.Subscriber(self.sub_force3_path, WrenchStamped, self.force_callback3)
+        self.pub3 = rospy.Publisher(self.pub3_path, Float64MultiArray, queue_size=100)
+
+        # 运行线程1,收话题线程
+        t1 = threading.Thread(target=self.thread_spin)  # 末端位置订阅线程
+        msg_tip = "upper_controller_node run!"
+
+        msg = msg_time + msg_tip
+        self.textEdit.setText(msg)
+        t1.start()
+
+    def begin_function(self):
+        # 运行标签启动
+        self.run_flag = True
+
+        # 求取数据长度
+        if (self.robot1_flag):
+            kk = len(self.command_qq_list1)
+        if (self.robot2_flag):
+            kk = len(self.command_qq_list2)
+        if (self.robot3_flag):
+            kk = len(self.command_qq_list3)
+        if (self.all_flag):
+            kk = len(self.command_qq_list1)
+        # 进度条显示时间间隔
+        show_time = int(kk * self.T * 10)
+
+        # 设置ProgressBar,用Qtimer开线程处理（线程3）
+        self.step_p = 0
+        self.timer_p = QTimer()
+        self.timer_p.timeout.connect(self.probar_show)
+        self.timer_p.start(show_time)
+
+        # 设置绘图,用Qtimer开线程处理（线程4）
+        self.timer_plot = QTimer()
+        self.timer_plot.timeout.connect(self.realtime_plot)
+        self.timer_plot.start(1000)
+
+        # 发送关节角度
+        rate = rospy.Rate(100)
+        k = 0
+        while not rospy.is_shutdown():
+            # 检测是否启动急停
+            if (not self.run_flag):
+                self.timer_p.stop()
+                self.timer_plot.stop()
+                break
+            # 发送数据
+            msg = "已发送机器人：\n"
+            if (self.robot1_flag or self.all_flag):
+                command_data = Float64MultiArray()
+                if (k < kk):
+                    command_data.data = self.command_qq_list1[k, 0:self.n]
+                else:
+                    command_data.data = self.command_qq_list1[-1, 0:self.n]
+                self.pub1.publish(command_data)
+                if (k == 0):
                     msg = msg + "robot1已发送！\n"
             if (self.robot2_flag or self.all_flag):
                 command_data = Float64MultiArray()
@@ -1569,7 +2598,7 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         self.run_flag = True
 
         # 创建阻抗自适应阻抗实例
-        imp_arm1 = imp.IMPController_iter()
+        imp_arm1 = imp.IIMPController_diff()
 
         #输入参数
         [DH0, q_max, q_min] = gf.get_robot_parameter(False)
@@ -1577,15 +2606,15 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         imp_arm1.get_period(self.T)
 
         # 设置ProgressBar,用Qtimer开线程处理（线程3）
-        self.step_p = 0
-        self.timer_p = QTimer()
-        self.timer_p.timeout.connect(self.probar_show)
-        self.timer_p.start(100)
+        # self.step_p = 0
+        # self.timer_p = QTimer()
+        # self.timer_p.timeout.connect(self.probar_show)
+        # self.timer_p.start(100)
 
         # 设置绘图,用Qtimer开线程处理（线程4）
-        self.timer_plot = QTimer()
-        self.timer_plot.timeout.connect(self.realtime_plot)
-        self.timer_plot.start(1000)
+        # self.timer_plot = QTimer()
+        # self.timer_plot.timeout.connect(self.realtime_plot)
+        # self.timer_plot.start(1000)
 
         # 发送关节角度
         rate = rospy.Rate(100)
@@ -1593,9 +2622,10 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         while not rospy.is_shutdown():
             # 检测是否启动急停
             if (not self.run_flag):
-                self.timer_plot.stop()
-                self.timer_p.stop()
+                # self.timer_plot.stop()
+                # self.timer_p.stop()
                 break
+            t1 = time.time()
             #实时调整阻抗参数
             imp_arm1.get_imp_parameter(self.M, self.B, self.K, self.I)
             #读取期望位姿和关节角
@@ -1611,6 +2641,7 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
             command_data.data = qr
             self.pub.publish(command_data)
             #显示数据
+
             if (k % 10 == 0):
                 pub_msg = "armc" + "第" + str(k) + "次" + "publisher data is: " + '\n' \
                                                                                 "q1:" + str(
@@ -1627,6 +2658,8 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
                 self.textEdit.setText(pub_msg)
             QApplication.processEvents()
             k = k + 1
+            t2 = time.time()
+            print "阻抗时间：", (t2 - t1)
             rate.sleep()
 
     def gotoMain(self):
@@ -1756,7 +2789,7 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
             msg = "期望恒力\n" + \
                         "F:" + "[" + str(f[0]) + "," + str(f[1]) + "," + \
                         str(f[2]) + "," + str(f[3]) + "," + str(f[4]) + \
-                        "," + str(f[5]) + "," + str(f[6]) + "]" + "\n"
+                        "," + str(f[5]) + "]" + "\n"
             # 转化为输入单位，并保存到全局变量
             m = len(self.command_qq_imp)
             self.command_force = np.zeros([m, 6])
@@ -1795,6 +2828,7 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
         self.plot_joint(t, self.command_qq_imp, t, np.zeros([k, 6]))
 
         msg = "位置已读取！"
+        self.read_pos_flag = True
         self.textEdit.setText(msg)
 
     #开始存储取数据
@@ -1883,8 +2917,8 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
 
     def run_topic(self):
         # 读取时间
-        self.T = self.lineEdit_T.text()
-        self.t = self.lineEdit_t.text()
+        self.T = float(self.lineEdit_T.text())
+        self.t = float(self.lineEdit_t.text())
 
         msg_time = "获取时间：\n" + "周期T：" + str(self.T) + \
                    "\n规划时长：" + str(self.t) + "\n"
@@ -1896,7 +2930,7 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
         # 运行话题
         rospy.init_node('upper_controller_node')
         rospy.Subscriber(self.sub_pos_path, JointState, self.joint_callback)
-        rospy.Subscriber(self.sub_force_path, JointState, self.force_callback)
+        rospy.Subscriber(self.sub_force_path, WrenchStamped, self.force_callback)
         self.pub = rospy.Publisher(self.pub_path, Float64MultiArray, queue_size=100)
 
         # 运行线程1,收话题线程
@@ -1959,14 +2993,17 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
         # 运行标签启动
         self.run_flag = True
 
+        #提示标语
+        msg = "开始下发命令！\n"
+        self.textEdit.setText(msg)
         # 创建阻抗自适应阻抗实例
-        imp_arm1 = imp.IMPController_iter()
+        imp_arm1 = imp.CIMPController_diff()
 
         #获取阻抗参数
         self.M = np.array([0.0, 0.0, 1.0, 0.0, 0.0, 0.0])
-        self.B = np.array([0.0, 0.0, 100.0, 0.0, 0.0, 0.0])
-        self.K = np.array([0.0, 0.0, 1000.0, 0.0, 0.0, 0.0])
-        self.I = np.array([0.0, 0.0, 2.0, 0.0, 0.0, 0.0])
+        self.B = np.array([0.0, 0.0, 500.0, 0.0, 0.0, 0.0])
+        self.K = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+        self.I = np.array([0.0, 0.0, 0, 0.0, 0.0, 0.0])
 
         # 输入参数
         [DH0, q_max, q_min] = gf.get_robot_parameter(False)
@@ -1976,30 +3013,39 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
         imp_arm1.get_imp_parameter(self.M, self.B, self.K, self.I)
 
         # 设置ProgressBar,用Qtimer开线程处理（线程3）
-        self.step_p = 0
-        self.timer_p = QTimer()
-        self.timer_p.timeout.connect(self.probar_show)
-        self.timer_p.start(100)
+        # self.step_p = 0
+        # self.timer_p = QTimer()
+        # self.timer_p.timeout.connect(self.probar_show)
+        # self.timer_p.start(100)
 
         # 设置绘图,用Qtimer开线程处理（线程4）
-        self.timer_plot = QTimer()
-        self.timer_plot.timeout.connect(self.realtime_plot)
-        self.timer_plot.start(1000)
+        # self.timer_plot = QTimer()
+        # self.timer_plot.timeout.connect(self.realtime_plot)
+        # self.timer_plot.start(1000)
 
         # 发送关节角度
         rate = rospy.Rate(100)
-        kk1 = len(self.command_qq_init)
-        kk2 = len(self.command_qq_imp)
-        kk3 = len(self.command_qq_home)
+        kk1 = 0
         k1 = 0
-        k2 = 0
+        kk2 = 0
+        k2 =0
+        kk3 = 0
         k3 = 0
+        if(self.init_flag):
+            kk1 = len(self.command_qq_init)
+            k1 = 0
+        if(self.imp_flag):
+            kk2 = len(self.command_qq_imp)
+            k2 = 0
+        if(self.home_flag):
+            kk3 = len(self.command_qq_home)
+            k3 = 0
 
         while not rospy.is_shutdown():
             # 检测是否启动急停
             if (not self.run_flag):
-                self.timer_plot.stop()
-                self.timer_p.stop()
+                # self.timer_plot.stop()
+                # self.timer_p.stop()
                 break
 
             if(self.init_flag):
@@ -2016,16 +3062,19 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
 
             if(self.imp_flag):
                 qq = np.zeros(7)
+                fd = np.zeros(6)
                 if (k2 < kk2):
                     qq = self.command_qq_imp[k2, 0:self.n]
+                    fd = self.command_force[k2, :]
                 else:
                     qq = self.command_qq_imp[-1, 0:self.n]
+                fd = self.command_force[-1, :]
                 # 读取期望位姿和关节角
                 imp_arm1.get_expect_joint(qq)
-                imp_arm1.get_current_joint(self.qq_state)
+                imp_arm1.get_current_joint(np.array(self.state_qq_list[-1]))
                 # 读取当前关节角和力
-                imp_arm1.get_expect_force(self.f_d)
-                imp_arm1.get_current_force(self.f_state)
+                imp_arm1.get_expect_force(fd)
+                imp_arm1.get_current_force(np.array(self.state_f_list[-1]))
                 # 计算修正关节角
                 qr = imp_arm1.compute_imp_joint()
                 # 发送数据
@@ -2034,16 +3083,16 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
                 self.pub.publish(command_data)
 
                 if (k2==0):
-                    msg = "运动到初始位置已经开始！"
+                    msg = "阻抗控制已经开始！"
                     self.textEdit.setText(msg)
                 k2 = k2 + 1
 
             if (self.home_flag):
                 command_data = Float64MultiArray()
                 if (k3 < kk3):
-                    command_data.data = self.command_qq_init[k3, 0:self.n]
+                    command_data.data = self.command_qq_home[k3, 0:self.n]
                 else:
-                    command_data.data = self.command_qq_init[-1, 0:self.n]
+                    command_data.data = self.command_qq_home[-1, 0:self.n]
                 self.pub.publish(command_data)
                 if (k3 == 0):
                     msg = "返回到家点已经开始！"

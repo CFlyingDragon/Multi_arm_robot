@@ -25,6 +25,9 @@ qq_max = rp.q_max_armc
 #初始位置
 qq_init = np.array([0, 30, 0, 90, 0, 60, 0])*pi/180.0
 
+#期望力
+f = np.array([0.0, 0.0, -20.0, 0.0, 0.0, 0.0])
+
 #正运动学求取末端位置
 X_init = kin.fkine_euler(DH_0, qq_init)
 print X_init
@@ -36,8 +39,10 @@ X_end = X_init + np.array([0.15, 0, 0, 0, 0, 0])
 num = 1000
 t = np.linspace(0, 1, num)
 XX = np.zeros([num, 6])
+F = np.zeros([num, 6])
 for i in range(num):
-    XX[i, :] = X_init + (X_end - X_init)*np.sin(pi/2*t[i])
+    XX[i, :] = X_init + (X_end - X_init)*np.sin(pi*t[i])
+    F[i, :] = f*np.sin(pi*t[i])
 
 #笛卡尔单变量随时间绘图
 for i in range(6):
@@ -74,9 +79,14 @@ for i in range(7):
     MyPlot.plot2d(t, qq[:, i], i_string)
 
 #写入文件
-file_name2 = "data/joint_position.txt"
+file_name2 = "data/impedance/joint_position.txt"
 path = os.path.join(parent_path, file_name2)
 FileOpen.write(qq, path)
+
+#写入文件
+file_name3 = "data/impedance/wish_force.txt"
+path = os.path.join(parent_path, file_name3)
+FileOpen.write(F, path)
 
 
 

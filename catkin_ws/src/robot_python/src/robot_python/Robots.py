@@ -5,7 +5,10 @@
 #版权：哈尔滨工业大学
 #日期：初稿：2020.4.16
 import numpy as np
+import  numpy.linalg as nla
 import BaseFunction as bf
+import Kinematics as kin
+import RobotParameter as rp
 
 #=================求取基座标系与世界坐标系之间的齐次变换矩阵=================#
 #单臂
@@ -96,3 +99,323 @@ def tool_to_base(X,C,Xw):
         Te = np.dot(np.inv(Tw_b[i,:,:]),Tw_t[i,:,:])
         Xe[i,:] = bf.T_to_Xzyx(Te)
     return Xe
+
+#===============两个UR机械臂搬运物体类===================#
+class RobotsMoveObject(object):
+    def __init__(self):
+        pass
+    def get_robot1_paramter(self, DH_0, qq_min, qq_max):
+        self.DH_0_1 = DH_0
+        self.qq_min1 = qq_min
+        self.qq_max1 = qq_max
+        self.n1 = len(qq_min)
+        self.kin1 = kin.GeneralKinematic(self.DH_0_1)
+
+    def get_robot2_paramter(self, DH_0, qq_min, qq_max):
+        self.DH_0_2 = DH_0
+        self.qq_min2 = qq_min
+        self.qq_max2 = qq_max
+        self.n2 = len(qq_min)
+        self.kin2 = kin.GeneralKinematic(self.DH_0_2)
+
+    #机器人基座相对世界坐标系
+    def get_robots_base_to_world(self, Tw_b1, Tw_b2):
+        self.Tw_b1 = Tw_b1
+        self.Tw_b2 = Tw_b2
+
+    def get_robots_base_to_world_zyx(self, Xw_b1, Xw_b2):
+        self.Tw_b1 = np.eye(4)
+        self.Tw_b2 = np.eye(4)
+
+        #转换为齐次矩阵
+        self.Tw_b1[0:3, 3] = Xw_b1[0:3]
+        self.Tw_b1[0:3, 0:3] = bf.euler_zyx2rot(Xw_b1[3:6])
+        print "Tw_b1:\n", np.around(self.Tw_b1,2)
+        self.Tw_b2[0:3, 3] = Xw_b2[0:3]
+        self.Tw_b2[0:3, 0:3] = bf.euler_zyx2rot(Xw_b2[3:6])
+
+    #工具坐标相对物体坐标
+    def get_robots_tool_to_object(self, To_t1, To_t2):
+        self.To_t1 = To_t1
+        self.To_t2 = To_t2
+
+    def get_robots_tool_to_object_zyx(self,Xo_t1, Xo_t2):
+        self.To_t1 =np.eye(4)
+        self.To_t2 = np.eye(4)
+
+        # 转换为齐次矩阵
+        self.To_t1[0:3, 3] = Xo_t1[0:3]
+        self.To_t1[0:3, 0:3] = bf.euler_zyx2rot(Xo_t1[3:6])
+        self.To_t2[0:3, 3] = Xo_t2[0:3]
+        self.To_t2[0:3, 0:3] = bf.euler_zyx2rot(Xo_t2[3:6])
+
+    # 物体在世界坐标系中的位姿
+    def get_object_plan_list(self, To_array):
+        '''
+        :param Tb_array: [num,4,4]数组
+        :return:
+        '''
+        #获取规划点个数
+        self.num = len(To_array)
+
+        self.To_array = To_array
+
+    def get_object_plan_list_zyx(self, Xo_array):
+        '''
+        :param Xb_array: [num,6]数组
+        :return:
+        '''
+        #获取规划点个数
+        self.num = len(Xo_array)
+
+        #转换为齐次矩阵
+        self.To_array = np.zeros([self.num, 4, 4])
+        for i in range(self.num):
+            self.To_array[i, 0:3, 0:3] = bf.euler_zyx2rot(Xo_array[i, 3:6])
+            self.To_array[i, 0:3, 3] = Xo_array[i, 0:3]
+            self.To_array[i, 3, 3] = 1.0
+
+    #获得准备段大小
+    def get_ready_distance(self, l, ready_num):
+        self.l = l
+        self.r_num = ready_num
+
+    def tool_to_robots_base(self):
+        # #---创建准备段----#
+        self.r_Tb_t1 = np.zeros([self.r_num, 4, 4])
+        self.r_Tb_t2 = np.zeros([self.r_num, 4, 4])
+
+        #移动工具坐标系
+        t = np.linspace(0, 1, self.r_num)
+        l_array = self.l*np.cos(np.pi/2*t)
+
+        for i in range(self.r_num):
+            r_To_t1  = np.copy(self.To_t1)
+            r_To_t1[0, 3] = self.To_t1[0, 3] - l_array[i]
+
+            r_To_t2 = np.copy(self.To_t2)
+            r_To_t2[0, 3] = self.To_t2[0, 3] + l_array[i]
+
+            # 坐标变换求取工具坐标系在基座下的表示
+            self.r_Tb_t1[i, :, :] = np.dot(np.dot(nla.inv(self.Tw_b1),
+                                                self.To_array[0, :, :]),
+                                           r_To_t1)
+            self.r_Tb_t2[i, :, :] = np.dot(np.dot(nla.inv(self.Tw_b2),
+                                                self.To_array[0, :, :]),
+                                           r_To_t2)
+
+        #----抱物移动端-----#
+        #创建规划变量
+        self.Tb_t1 = np.zeros([self.num, 4, 4])
+        self.Tb_t2 = np.zeros([self.num, 4, 4])
+
+        #坐标变换求取工具坐标系在基座下的表示
+        for i in range(self.num):
+            self.Tb_t1[i, :, :] = np.dot(np.dot(nla.inv(self.Tw_b1),
+                                                self.To_array[i, :, :]),
+                                         self.To_t1)
+            self.Tb_t2[i, :, :] = np.dot(np.dot(nla.inv(self.Tw_b2),
+                                                self.To_array[i, :, :]),
+                                         self.To_t2)
+
+    def put_tool_robots_bass(self, Xw_o):
+        #转换为齐次矩阵
+        Tw_o = np.eye(4)
+        Tw_o[0:3, 0:3] = bf.euler_zyx2rot(Xw_o[3:6])
+        Tw_o[0:3, 3] = Xw_o[0:3]
+
+        #求取基座系下工具位置
+        Tb_t1 = np.dot(np.dot(nla.inv(self.Tw_b1), Tw_o), self.To_t1)
+        Tb_t2 = np.dot(np.dot(nla.inv(self.Tw_b2), Tw_o), self.To_t2)
+        return [Tb_t1, Tb_t2]
+
+    def put_robots_joint_position(self, q1_guess, q2_guess):
+        #求取工具坐标基座标系的表示
+        self.tool_to_robots_base()
+
+        #建立关节角变量
+        num = self.num +self.r_num
+
+        qq1 = np.zeros([num, self.n1])
+        qq2 = np.zeros([num, self.n2])
+        qq1_guess = np.copy(q1_guess)
+        qq2_guess = np.copy(q2_guess)
+
+        Tb_t1 = np.zeros([num, 4, 4])
+        Tb_t2 = np.zeros([num, 4, 4])
+
+        Tb_t1[0:self.r_num] = np.copy(self.r_Tb_t1)
+        Tb_t1[self.r_num:] = np.copy(self.Tb_t1)
+
+        Tb_t2[0:self.r_num] = np.copy(self.r_Tb_t2)
+        Tb_t2[self.r_num:] = np.copy(self.Tb_t2)
+
+
+        #求取逆运动学
+        for i in range(num):
+            qq1[i, :] = self.kin1.ur_ikine(Tb_t1[i, :, :], qq1_guess)
+            qq2[i, :] = self.kin2.ur_ikine(Tb_t2[i, :, :], qq2_guess)
+            qq1_guess = qq1[i, :]
+            qq2_guess = qq2[i, :]
+
+        return [qq1, qq2]
+
+    def put_robots_tool_position(self):
+        return [self.Tb_t1, self.Tb_t2]
+
+    def put_robots_tool_position_zyx(self):
+        Xb_t1 = np.zeros(self.num, 6)
+        Xb_t2 = np.zeros(self.num, 6)
+
+        for i in range(self.num):
+            Xb_t1[i, 0:3] = self.Tb_t1[i, 0:3, 3]
+            Xb_t1[i, 3:6] = bf.rot2euler_zyx(self.Tb_t1[i, 0:3, 0:3])
+
+            Xb_t2[i, 0:3] = self.Tb_t2[i, 0:3, 3]
+            Xb_t2[i, 3:6] = bf.rot2euler_zyx(self.Tb_t2[i, 0:3, 0:3])
+
+        return [Xb_t1, Xb_t2]
+
+#===============机械臂运动到给定的世界坐标点=================#
+class robot_move_to_world_pos(object):
+    def __init__(self):
+        pass
+    def get_robot_paramter(self, DH_0, qq_min, qq_max):
+        self.DH_0_1 = DH_0
+        self.qq_min1 = qq_min
+        self.qq_max1 = qq_max
+        self.n1 = len(qq_min)
+        self.kin1 = kin.GeneralKinematic(self.DH_0_1)
+
+    def get_robots_base_to_world(self, Tw_b1):
+        self.Tw_b1 = Tw_b1
+
+    def get_robots_base_to_world_zyx(self, Xw_b1):
+        self.Tw_b1 = np.eye(4)
+
+        #转换为齐次矩阵
+        self.Tw_b1[0:3, 3] = Xw_b1[0:3]
+        self.Tw_b1[0:3, 0:3] = bf.euler_zyx2rot(Xw_b1[3:6])
+
+    def put_robot1_joint_position(self, Te, qq_guess):
+        #求取工具坐标基座标系的表示
+        Tb_t1 = np.dot(nla.inv(self.Tw_b1), Te)
+
+        #求取关节角变量
+        qq = self.kin1.ur_ikine(Tb_t1, qq_guess)
+        return qq
+
+    def put_robot1_joint_position_zyx(self, Xe, qq_guess):
+        #转换为齐次坐标
+        Te = np.eye(4)
+        Te[0:3, 3] = Xe[0:3]
+        Te[0:3, 0:3] = bf.euler_zyx2rot(Xe[3:6])
+
+        #求取工具坐标基座标系的表示
+        Tb_t1 = np.dot(nla.inv(self.Tw_b1), Te)
+
+        #求取关节角变量
+        qq = self.kin1.ur_ikine(Tb_t1, qq_guess)
+        return qq
+
+#===============机械臂基座与世界坐标系关系=================#
+class RobotBaseAndWorld(object):
+    Tw_b = np.eye(4)
+    def __init__(self):
+        pass
+    def get_robot_paramter(self, DH_0, qq_min, qq_max):
+        self.DH_0_1 = DH_0
+        self.qq_min1 = qq_min
+        self.qq_max1 = qq_max
+        self.n1 = len(qq_min)
+        self.kin1 = kin.GeneralKinematic(self.DH_0_1)
+
+    def get_robots_base_to_world(self, Tw_b):
+        self.Tw_b = Tw_b
+
+    def get_robots_base_to_world_zyx(self, Xw_b):
+        self.Tw_b = np.eye(4)
+
+        #转换为齐次矩阵
+        self.Tw_b[0:3, 3] = Xw_b[0:3]
+        self.Tw_b[0:3, 0:3] = bf.euler_zyx2rot(Xw_b[3:6])
+
+    def put_world_to_base(self):
+        self.Tb_w = nla.inv(self.Tw_b)
+        return self.Tb_w
+
+    def put_robot_joint_position(self, Te, qq_guess):
+        #求取工具坐标基座标系的表示
+        Tb_t = np.dot(nla.inv(self.Tw_b), Te)
+
+        #求取关节角变量
+        qq = self.kin1.ur_ikine(Tb_t, qq_guess)
+        return qq
+
+    def put_robot_joint_position_zyx(self, Xe, qq_guess):
+        #转换为齐次坐标
+        Te = np.eye(4)
+        Te[0:3, 3] = Xe[0:3]
+        Te[0:3, 0:3] = bf.euler_zyx2rot(Xe[3:6])
+
+        #求取工具坐标基座标系的表示
+        Tb_t = np.dot(nla.inv(self.Tw_b), Te)
+
+        #求取关节角变量
+        qq = self.kin1.ur_ikine(Tb_t, qq_guess)
+        return qq
+
+    def put_world_tool(self, qr):
+        Tb = self.kin1.fkine(qr)
+        Tw = np.dot(self.Tw_b, Tb)
+
+        return Tw
+
+    def put_world_tool_zyx(self, qr):
+        X = np.zeros(6)
+        Tb = self.kin1.fkine(qr)
+        Tw = np.dot(self.Tw_b, Tb)
+        X[0:3] = Tw[0:3, 3]
+        X[3:6] = bf.rot2euler_zyx(Tw[0:3, 0:3])
+        return X
+
+def main():
+    robot1 = RobotBaseAndWorld()
+    robot1.get_robot_paramter(rp.DH0_ur5, rp.q_min_ur5, rp.q_max_ur5)
+    print "robot1_base", rp.robot1_base
+    robot1.get_robots_base_to_world_zyx(rp.robot1_base)
+    Tb_w = robot1.put_world_to_base()
+    print "Tw_b:\n", np.around(robot1.Tw_b, 3)
+    print "Tb_w:\n", np.around(Tb_w, 2)
+
+    #世界坐标系求取正运动学
+    qr = np.array([-0.25474670405006294,
+                   1.7814917512128845,
+                   1.3141265946762213,
+                   0.045974307700687334,
+                   1.8255430308449596,
+                   -0.0007963267948967179])
+
+    #qr = np.array([-90, -120, -120, 60, 90, 0])*np.pi/180.0
+    print "qr:", np.around(qr*180.0/np.pi, 1)
+    #qr = np.zeros(6)
+    Te = robot1.put_world_tool(qr)
+    print "Te:\n", np.around(Te, 2)
+
+    Xe = robot1.put_world_tool_zyx(qr)
+    print "Xe:\n", np.around(Xe, 2)
+
+    #求取正运动学
+    qq = robot1.put_robot_joint_position_zyx(Xe, qr)
+    print "qq:", np.around(qq*180/np.pi)
+
+    #工具坐标系相对于物体坐标系
+    Ro_t1= np.array([[0, 0, 1], [0, -1, 0], [1, 0, 0.0]])
+    Ro_t2 = np.array([[0, 0, -1], [-1, 0, 0], [0, 1, 0.0]])
+    phi_1 = bf.rot2euler_zyx(Ro_t1)
+    phi_2 = bf.rot2euler_zyx(Ro_t2)
+    print "phi_1:", phi_1
+    print "phi_2:", phi_2
+
+if __name__ == '__main__':
+    main()

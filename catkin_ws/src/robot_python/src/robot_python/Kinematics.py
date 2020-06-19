@@ -15,6 +15,8 @@ from RobotParameter import q_limit_armc
 from RobotParameter import DH0_armc
 import RobotParameter as rp
 
+#UR5机械臂
+
 #=================相邻关节齐次变换矩阵=================#
 def  trans(theta,alpha,a,d):
 	'''
@@ -1058,7 +1060,6 @@ def arm_angle_ikine_limit(Te, qk, DH_0, qq_min, qq_max):
 
 	return [q, succeed_label]
 
-
 #=================UR构型解析解，DH坐标系需要满足要求=================#
 #建立解ms+nc=d的求解函数
 def mnsd(m,n,d):
@@ -1079,30 +1080,38 @@ def mnsd(m,n,d):
 	return [qq1,qq2]
 
 #求解T1_inv*Te*T6_inv
-def ttt(qq1,qq6,d1,d6,Te):
+def ttt(qq1,qq5,qq6,d1,d5,d6,Te):
 	'''
 	:param qq1:
-	:param d1:
+	:param qq5:
 	:param qq6:
+	:param d1:
+	:param d5:
 	:param d6:
 	:param Te:
 	:return:
 	'''
 	#求解T0_1的逆
 	T0_1_inv = np.array([[np.cos(qq1), np.sin(qq1), 0, 0],
-						 [  		0, 			 0, -1, d1],
-						 [-np.sin(qq1), np.cos(qq1 ),  0, 0],
+						 [  		0, 			 0, 1, -d1],
+						 [np.sin(qq1), -np.cos(qq1 ),  0, 0],
 						 [			0 , 			 0,  0, 1]])
 
 	T5_6_inv = np.array([[np.cos(qq6), np.sin(qq6), 0, 0],
 						 [-np.sin(qq6), np.cos(qq6), 0, 0],
 						 [			  0,  		   0, 1, -d6],
 						 [				0, 			 0, 0, 1]])
-	A = np.dot(np.dot(T0_1_inv,Te),T5_6_inv)
+
+	T4_5_inv = np.array([[np.cos(qq5), np.sin(qq5),  0, 0],
+						 [			0, 			0,  -1, d5],
+						 [-np.sin(qq5), np.cos(qq5), 0, 0],
+						 [			0, 			 0,  0, 1]])
+
+	A = np.dot(np.dot(np.dot(T0_1_inv,Te),T5_6_inv),T4_5_inv)
 	return A
 
 #求解关节角234
-def theta234(A,a2,a3,d5):
+def theta234(A,a2,a3):
 	'''
 	:param A:
 	:param a2:
@@ -1110,35 +1119,56 @@ def theta234(A,a2,a3,d5):
 	:param d5:
 	:return:
 	'''
-	#中间参数
-	m = A[0, 3] - A[0, 1] * d5
-	n = A[1, 3] - A[1, 1] * d5
-	h = (np.power(m, 2) + np.power(n, 2) + np.power(a2, 2) - np.power(a3, 2)) / (2 * a2)
-	[qq2_1, qq2_2] = mnsd(n, m, h)
-	qq3_1 = np.arctan2(n - a2 * np.sin(qq2_1), m - a2 * np.cos(qq2_1)) - qq2_1
-	qq3_2 = np.arctan2(n - a2 * np.sin(qq2_2), m - a2 * np.cos(qq2_2)) - qq2_2
-	qq4_1 = np.arctan2(-A[0, 1], A[1, 1]) - qq2_1 - qq3_1
-	qq4_2 = np.arctan2(-A[0, 1], A[1, 1]) - qq2_2 - qq3_2
-	return [[qq2_1,qq3_1,qq4_1],[qq2_2,qq3_2,qq4_2]]
+	#求关节角3
+	h = (np.power(A[0,3], 2) + np.power(A[1,3], 2) - np.power(a2, 2) - np.power(a3, 2)) / (2 * a2*a3)
+
+	qq3_1 = math.acos(h)
+	qq3_2 = math.acos(h)
+
+	#求关节角2
+	s2_1 = ((a3 * math.cos(qq3_1) + a2) * A[1, 3] - a3 * math.sin(qq3_1) * A[0, 3]) / \
+		   (a2 ** 2 + a3 ** 2 + 2 * a2 * a3 * math.cos(qq3_1))
+	c2_1 = (A[0, 3] + a3 * math.sin(qq3_1) * s2_1) / (a3 * math.cos(qq3_1) + a2)
+
+	s2_2 = ((a3 * math.cos(qq3_1) + a2) * A[1, 3] - a3 * math.sin(qq3_1) * A[0, 3]) / \
+		   (a2 ** 2 + a3 ** 2 + 2 * a2 * a3 * math.cos(qq3_1))
+	c2_2 = (A[0, 3] + a3 * math.sin(qq3_1) * s2_2) / (a3 * math.cos(qq3_1) + a2)
+
+	qq2_1 = math.atan2(s2_1, c2_1)
+	qq2_2= math.atan2(s2_2, c2_2)
+
+	#关节角4
+	qq_234 = math.atan2(A[1, 0], A[0, 0])
+	qq4_1 = qq_234 - qq2_1 - qq3_1
+	qq4_2 = qq_234 - qq2_2 - qq3_2
+	return [[qq2_1, qq3_1, qq4_1], [qq2_2, qq3_2, qq4_2]]
 
 #采用看解析发求逆
-def ur_ikine(DH,Te):
+def ur_ikine(DH_0,Te):
 	'''
 	:param DH: 按theta\alpha\a\d排列
 	:param Te: n,o,a,p排列
 	:return:
 	'''
+	#获取DH参数
+	d1 = DH_0[0, 3]
+	a2 = DH_0[1, 2]
+	a3 = DH_0[2, 2]
+	d4 = DH_0[3, 3]
+	d5 = DH_0[4, 3]
+	d6 = DH_0[5, 3]
+
 	#******************求解关节1******************#
 	#中间参数
-	m1 = DH[5,3]*Te[0,2]-Te[0,3]
-	n1 = Te[1,3] - DH[5,3]*Te[1,2]
+	m1 = Te[0,3] - d6*Te[0,2]
+	n1 = d6*Te[1,2] - Te[1,3]
 	#求取关节角,第二个数值代表关节角1对应两组解的编号
-	[qq1_1,qq1_2] = mnsd(m1, n1, DH[3,3])
+	[qq1_1,qq1_2] = mnsd(m1, n1, d4)
 
 	# ******************求解关节5******************#
 	# 中间参数
-	m5_1 = -np.sin(qq1_1) * Te[0, 2] + np.cos(qq1_1) * Te[1, 2]
-	m5_2 = -np.sin(qq1_2) * Te[0, 2] + np.cos(qq1_2) * Te[1, 2]
+	m5_1 = np.sin(qq1_1) * Te[0, 2] - np.cos(qq1_1) * Te[1, 2]
+	m5_2 = np.sin(qq1_2) * Te[0, 2] - np.cos(qq1_2) * Te[1, 2]
 	#求取关节角,第三个数值代表关节角5对应两组解的编号
 	qq5_1_1 = np.arctan2(np.sqrt(1 - m5_1 ** 2), m5_1)
 	qq5_1_2 = np.arctan2(-np.sqrt(1 - m5_1 ** 2), m5_1)
@@ -1158,15 +1188,15 @@ def ur_ikine(DH,Te):
 	qq6_2_2 = np.arctan2(np.sin(qq5_2_2), 0) - np.arctan2(n6_2, m6_2)
 	# ******************求解关节2,3,4******************#
 	# 中间参数
-	A_1_1 = ttt(qq1_1, qq6_1_1, DH[0, 3], DH[5, 3], Te)
-	A_1_2 = ttt(qq1_1, qq6_1_2, DH[0, 3], DH[5, 3], Te)
-	A_2_1 = ttt(qq1_2, qq6_2_1, DH[0, 3], DH[5, 3], Te)
-	A_2_2 = ttt(qq1_2, qq6_2_2, DH[0, 3], DH[5, 3], Te)
+	A_1_1 = ttt(qq1_1,qq5_1_1, qq6_1_1, d1, d5, d6, Te)
+	A_1_2 = ttt(qq1_1,qq5_1_2, qq6_1_2, d1, d5, d6, Te)
+	A_2_1 = ttt(qq1_2,qq5_2_1, qq6_2_1, d1, d5, d6, Te)
+	A_2_2 = ttt(qq1_2,qq5_2_2, qq6_2_2, d1, d5, d6, Te)
 	# 求取关节角,第四个数值代表关节角2对应两组解的编号
-	[qq234_1_1_1, qq234_1_1_2] = theta234(A_1_1, DH[1, 2], DH[2, 2], DH[4, 3])
-	[qq234_1_2_1, qq234_1_2_2] = theta234(A_1_2, DH[1, 2], DH[2, 2], DH[4, 3])
-	[qq234_2_1_1, qq234_2_1_2] = theta234(A_2_1, DH[1, 2], DH[2, 2], DH[4, 3])
-	[qq234_2_2_1, qq234_2_2_2] = theta234(A_2_2, DH[1, 2], DH[2, 2], DH[4, 3])
+	[qq234_1_1_1, qq234_1_1_2] = theta234(A_1_1, a2, a3)
+	[qq234_1_2_1, qq234_1_2_2] = theta234(A_1_2, a2, a3)
+	[qq234_2_1_1, qq234_2_1_2] = theta234(A_2_1, a2, a3)
+	[qq234_2_2_1, qq234_2_2_2] = theta234(A_2_2, a2, a3)
 
 	# ******************组建8组解******************#
 	qq = np.array([[qq1_1, qq234_1_1_1[0], qq234_1_1_1[1], qq234_1_1_1[2], qq5_1_1, qq6_1_1],
@@ -1177,14 +1207,18 @@ def ur_ikine(DH,Te):
 				   [qq1_2, qq234_2_1_2[0], qq234_2_1_2[1], qq234_2_1_2[2], qq5_2_1, qq6_2_1],
 				   [qq1_2, qq234_2_2_1[0], qq234_2_2_1[1], qq234_2_2_1[2], qq5_2_2, qq6_2_2],
 				   [qq1_2, qq234_2_2_2[0], qq234_2_2_2[1], qq234_2_2_2[2], qq5_2_2, qq6_2_2]])
+
+	#print "qq:\n",np.around(qq*180/pi)
 	#将求解范围转换到[-pi,pi]
 	Q = np.zeros([8,6])
 	for i in range(8):
+		qq[i, :] = qq[i,:] - DH_0[:, 0]
 		Q[i,:] = bf.qq_choose(qq[i,:])
+	#print "Q:\n", np.around(Q * 180 / pi)
 	return Q
 
 #求解唯一解的ur解析解,时间为0.5ms
-def ur_ikine_choice(DH,Te,qq_k):
+def ur_ikine_choice(DH_0,Te,qq_k):
 	'''
 	:param DH: DH参数
 	:param Te: 末端齐次位姿
@@ -1192,7 +1226,7 @@ def ur_ikine_choice(DH,Te,qq_k):
 	:return:
 	'''
 	#求取8组解
-	Q = ur_ikine(DH, Te)
+	Q = ur_ikine(DH_0, Te)
 	#调用选择函数求取最佳关节角
 	qq = bf.qq_eight_choice(Q, qq_k)
 	return qq
@@ -1392,6 +1426,7 @@ class GeneralKinematic(object):
 		q = self.qq_choose(q_tmp)
 		return q
 
-
-
-
+	#求取UR逆解,输出相对角度
+	def ur_ikine(self,Te, qq_k):
+		qr = ur_ikine_choice(self.DH_0, Te, qq_k)
+		return qr

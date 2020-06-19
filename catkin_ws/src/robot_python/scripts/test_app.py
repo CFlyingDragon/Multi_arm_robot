@@ -632,38 +632,25 @@ def jaco_test():
 def ur_ikine_test():
 	##初始位置
 	DH_0 = rp.DH0_ur5
-	theta0 = DH_0[:,0]
-	alpha = DH_0[:,1]
-	a = DH_0[:,2]
-	d = DH_0[:,3]
 	qr = np.array([100, 50, 40, 80, 100, 30]) * (pi / 180)
-	qq_k = np.array([99, 52, 43, 81, 100, 31]) * (pi / 180)
+	qq_k = np.array([100, 50, 40, 80, 100, 30]) * (pi / 180)
 	n = 6
 
 	#正运动学求取末端位姿
+	kin1 = kin.GeneralKinematic(DH_0)
 	tt1 = time.clock()
-	Te = kin.fkine(theta0 + qr, alpha, a, d)
+	Te = kin1.fkine(qr)
 	tt2 = time.clock()
 
 	#采用解析解求8组逆解
-	Q = kin.ur_ikine(DH_0,Te)
+	qr = kin1.ur_ikine(Te,qq_k)
 	tt3 = time.clock()
-	print np.around(Q*180/pi, decimals=6)
+	print np.around(qr*180/pi, decimals=6)
 	print "正解所需时间：", tt2 - tt1
 	print "逆解所需时间：", tt3 - tt2
 
-	# 正运动学求解解
-	for i in range(8):
-		qq = Q[i,:]
-		T0_e = kin.fkine(theta0 + qq, alpha, a, d)
-		print "第",i,"组误差：",np.around(T0_e - Te,7)
-
-	#求取唯一解
-	tt4 = time.clock()
-	qq = kin.ur_ikine_choice(DH_0,Te,qq_k)
-	tt5 = time.clock()
-	print np.around(qq* 180 / pi, decimals=6)
-	print "求唯一解所选要时间：", tt5 - tt4
+	T0_e = kin1.fkine(qr)
+	print "第","组误差：",np.around(T0_e - Te,7)
 
 # =================高增益观测器测试==================#
 def high_gain_observer_test():
@@ -770,7 +757,7 @@ def main():
 	#circle_plan_demo()
 	
 	##臂型角参数化求逆模块测试
-	analysis_ikine_test()
+	#analysis_ikine_test()
 	
 	##零空间运动规划测试
 	#null_space_plan_test()
@@ -794,7 +781,7 @@ def main():
 	#joint_plan_test()
 
 	##ur解析解测试
-	#ur_ikine_test()
+	ur_ikine_test()
 
 	##雅克比测试
 	#jaco_test()

@@ -284,7 +284,7 @@ class Ui_ImpForm2(object):
         self.label_18.setText(_translate("ImpForm2", "读取数据和话题地址"))
         self.label_30.setText(_translate("ImpForm2", "Pub_qq:"))
         self.label_19.setText(_translate("ImpForm2", "Sub_qq:"))
-        self.lineEdit_data_qq.setText(_translate("ImpForm2", "/home/d/catkin_ws/src/robot_python/data/impedance/joint_postion.txt"))
+        self.lineEdit_data_qq.setText(_translate("ImpForm2", "/home/d/catkin_ws/src/robot_python/data/impedance/joint_position.txt"))
         self.label_31.setText(_translate("ImpForm2", "data_qq:"))
         self.label_32.setText(_translate("ImpForm2", "data_F:"))
         self.lineEdit_data_f.setText(_translate("ImpForm2", "/home/d/catkin_ws/src/robot_python/data/impedance/wish_force.txt"))
