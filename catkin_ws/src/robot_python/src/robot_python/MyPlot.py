@@ -10,6 +10,31 @@ from mpl_toolkits.mplot3d import Axes3D
 from pylab import * 
 from matplotlib.ticker import MultipleLocator, FormatStrFormatter  
 
+#二维绘图,时间相同的多维变量
+def plot2_nd(t,X,title='myplot',xlab='IVariable',ylab='DVariable'):
+	'''
+	:param t: 时间
+	:param X: Rm*n维变量
+	:param title:
+	:param xlab:
+	:param ylab:
+	:return:
+	'''
+	#获取维数
+	n = len(X[0, :])
+
+	#绘图
+	plt.figure()
+
+	for i in range(n):
+		string = "X" + str(i + 1)
+		plt.plot(t, X[:, i],label=string)
+	plt.title(title)
+	plt.xlabel(xlab)
+	plt.ylabel(ylab)
+	plt.legend()
+	plt.show()
+
 #二维绘图，输入参数x,y,title,xlable,ylable
 def plot2r(x1,x2,title='myplot',xlab='IVariable',ylab='DVariable'):
 	'''

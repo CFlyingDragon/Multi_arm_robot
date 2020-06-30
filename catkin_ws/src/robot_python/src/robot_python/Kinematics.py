@@ -1123,7 +1123,7 @@ def theta234(A,a2,a3):
 	h = (np.power(A[0,3], 2) + np.power(A[1,3], 2) - np.power(a2, 2) - np.power(a3, 2)) / (2 * a2*a3)
 
 	qq3_1 = math.acos(h)
-	qq3_2 = math.acos(h)
+	qq3_2 = -math.acos(h)
 
 	#求关节角2
 	s2_1 = ((a3 * math.cos(qq3_1) + a2) * A[1, 3] - a3 * math.sin(qq3_1) * A[0, 3]) / \
@@ -1277,14 +1277,14 @@ class GeneralKinematic(object):
 			output:欧拉角[alpha,beta,gamma]
 		'''
 		euler_zyx = np.zeros(3)
-		if ((np.abs(Re[2, 1]) < pow(10, -12)) and (np.abs(Re[2, 2]) < pow(10, -12))):
+		if (abs(abs(Re[2, 0]) - 1) < math.pow(10, -6)):
 			if (Re[2, 0] < 0):
 				beta = pi / 2
-				alpha = math.atan2(-Re[1, 2], Re[1, 1])
+				alpha = np.arctan2(-Re[1, 2], Re[1, 1])
 				gamma = 0
 			else:
 				beta = -pi / 2
-				alpha = -math.atan2(-Re[1, 2], Re[1, 1])
+				alpha = -np.arctan2(-Re[1, 2], Re[1, 1])
 				gamma = 0
 		else:
 			p_beta = math.asin(-Re[2, 0])

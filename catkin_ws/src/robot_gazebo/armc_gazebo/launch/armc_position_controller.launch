@@ -3,8 +3,12 @@
 	<rosparam file="$(find armc_gazebo)/config/controller.yaml" command="load"/>
  
   <!--加载位置控制器-->
-  <node name="armt_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+  <node name="armc_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
     output="screen" ns="/armc" args="joint_positions_controller" />
+
+  <!--加载位置控制器-->
+  <!--<node name="finger_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/armc" args="finger_controller" />-->
 
   <!--加载关节状态控制器-->
   <node name="joint_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"

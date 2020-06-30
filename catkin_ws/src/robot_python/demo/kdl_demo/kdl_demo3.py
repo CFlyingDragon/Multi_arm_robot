@@ -9,12 +9,15 @@ import PyKDL as kdl
 #   轴是在当前关节的坐标系中绕轴V旋转，默认设置为kdl.Joint.RotZ
 #   f_tip，末端在当前坐标系中的姿态
 
+#建立关节
 jnts = []
-frms = []
-
 for i in range(6):
     jnts.append(kdl.Joint(kdl.Joint.RotZ))
 
+print "jnts:\n", jnts
+
+#建立坐标系系列
+frms = []
 # 注意，这个框架是f_tip，末端
 frm1 = kdl.Frame(kdl.Rotation.RotX(-np.pi / 2), kdl.Vector(0, 0, 239.5))
 frm2 = kdl.Frame(kdl.Rotation.RotX(0), kdl.Vector(250, 0, 0))
@@ -30,8 +33,10 @@ frms.append(frm4)
 frms.append(frm5)
 frms.append(frm6)
 
+print "frames:\n", frms
 rbt = kdl.Chain()  # 建立机器人对象
 
+#建立连杆
 link = []
 for i in range(6):
     link.append(kdl.Segment(jnts[i], frms[i]))
@@ -50,6 +55,6 @@ q[5] = 0
 
 fk.JntToCart(q, p)
 
-print(p)
+print "p:\n", p
 
 ##建立正运动学

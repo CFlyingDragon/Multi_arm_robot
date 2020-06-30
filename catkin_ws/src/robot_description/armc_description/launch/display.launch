@@ -6,7 +6,7 @@
     default="True" />
   <param
     name="robot_description"
-    textfile="$(find armc_description)/robot/unknown_surface.urdf" />
+    textfile="$(find armc_description)/robot_finger/armc.xacro" />
   <param
     name="use_gui"
     value="$(arg gui)" />

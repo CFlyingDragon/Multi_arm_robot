@@ -500,7 +500,7 @@
   </link>
   <joint
     name="sensor_joint"
-    type="revolute">
+    type="fixed">
     <origin
       xyz="0 0 0.192"
       rpy="0 0 0.12101" />

@@ -72,7 +72,7 @@ def rot2euler_zyx(Re):
 		output:欧拉角[alpha,beta,gamma]
 	'''
 	euler_zyx = np.zeros(3)
-	if((np.abs(Re[2,1]) < pow(10,-12)) and(np.abs(Re[2,2]) < pow(10,-12))):
+	if(abs(abs(Re[2, 0]) - 1) < math.pow(10, -6)):
 		if(Re[2,0] < 0):
 			beta = pi/2
 			alpha = np.arctan2(-Re[1,2],Re[1,1])

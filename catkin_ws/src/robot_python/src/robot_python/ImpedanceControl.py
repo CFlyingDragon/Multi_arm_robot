@@ -11,9 +11,12 @@ import numpy.linalg as nla
 import sys
 import time
 
+import matplotlib.pyplot as plt
+
 #自定义文件
 import BaseFunction as bf
 import Kinematics as kin
+import RobotParameter as rp
 
 #================创建一个适用于积分自适应的类=================#
 #基于迭代求解自适应导纳方程
@@ -28,8 +31,8 @@ class IIMPController_iter(object):
     #构造函数
     def __init__(self):
         # 位置、力误差
-        self.Ex = np.zeros(6)
-        self.Ef = np.zeros(6)
+        self.Ex = np.zeros(6)   #Ex=Xr - Xd=>Xr = Xd + Ex
+        self.Ef = np.zeros(6)   #Ef=Fs - Fd
         self.Ex_d = np.zeros(6)
         self.Ef_i = np.zeros(6)
         # 周期
@@ -50,10 +53,6 @@ class IIMPController_iter(object):
     def get_robot_parameter(self, DH_0, q_max, q_min,):
         #DH参数
         self.DH0 = np.copy(DH_0)
-        self.theta0 = np.copy(DH_0[:, 0])
-        self.alpha = np.copy(DH_0[:, 1])
-        self.a = np.copy(DH_0[:, 2])
-        self.d = np.copy(DH_0[:, 3])
         #关节极限
         self.qq_max = np.copy(q_max)
         self.qq_min = np.copy(q_min)
@@ -81,12 +80,12 @@ class IIMPController_iter(object):
         self.xx_d = np.copy(Xd)
 
     def get_expect_force(self, Fd):
-        self.ff_d = np.copy(Fd)
+        self.ff_d =self.force_end_to_base(Fd)
 
     def force_end_to_base(self, F):
         base_F = np.zeros(6)
 
-        Te = kin.fkine(self.theta0 + self.qq_state, self.alpha, self.a, self.d)
+        Te = self.kin.fkine(self.qq_state)
         Re = Te[0:3, 0:3]
         base_F[0:3] = np.dot(Re, F[0:3])
         base_F[3:6] = np.dot(Re, F[3:6])
@@ -98,12 +97,12 @@ class IIMPController_iter(object):
 
         # 计算当前加速度
         ex_dd = (ef + ki * efk_i - b * ex_d - k * ex) / m
-        print "ex_dd:", ex_dd
+        #print "ex_dd:", ex_dd
 
         # 求当前时刻速度
         exk_d = ex_d + ex_dd * T
-        print "exk_d:", exk_d
-        exk = ex + exk_d * T #+ ex_dd * (T ** 2) / 2
+        #print "exk_d:", exk_d
+        exk = ex + exk_d * T
 
         # print "积分项：",efk_i
         return [exk, exk_d, efk_i]
@@ -119,18 +118,19 @@ class IIMPController_iter(object):
 
         #计算参考位置
         print "误差修正项：", np.round(self.Ex, 3)
-        beta = 0.1
-        Xr = np.copy(self.xx_d - beta*self.Ex)
+        beta = 1
+        Xr = np.copy(self.xx_d + beta*self.Ex)
         Tr = np.eye(4)
         Rr = bf.euler_zyx2rot(Xr[3:6])
         Tr[0:3, 0:3] = Rr
         Tr[0:3, 3] = Xr[0:3]
 
-        qr = kin.iterate_ikine(self.DH0, self.qq_state, Tr, efs=pow(10, -12), i_max=1000)
+        #[qr, succeed_label] = kin.arm_angle_ikine_limit(Tr, self.qq_state, self.DH0, self.qq_min, self.qq_max)
+        qr = self.kin.iterate_ikine(self.qq_state, Tr)
 
         return qr
 
-#基于差分方程求解自适应导纳方程
+#基于差分方程求解自适应导纳方程:还未调试成功
 class IIMPController_diff(object):
     #**定义属性**#
     #阻抗参数
@@ -178,11 +178,6 @@ class IIMPController_diff(object):
 
     def get_current_joint(self, qq):
         self.qq_state = np.copy(qq)
-        self.xx_state = self.kin.fkine_euler(self.qq_state)
-
-        #更新位置误差
-        #self.Ex = self.xx_state - self.xx_d
-
 
     def get_current_force(self, F_t):
         self.base_f = self.force_end_to_base(F_t)
@@ -660,3 +655,111 @@ class CIMPController_iter(object):
         #print "qr:", qr
 
         return qr
+
+def main():
+    #创建阻抗
+    imp = IIMPController_iter()
+    #输入阻抗参数
+    T = 0.01
+    imp.get_period(T)
+
+    M = np.zeros(6)
+    M[2] = 1.0
+    B = np.zeros(6)
+    B[2] = 100
+    K = np.zeros(6)
+    K[2] = 0
+    I = np.zeros(6)
+    I[2] = 2
+    imp.get_imp_parameter(M, B, K, I)
+
+    #输入DH参数
+    imp.get_robot_parameter(rp.DHfa_armc, rp.q_max_armc, rp.q_min_armc)
+
+    #建立期望轨迹
+    num = 500
+    ld = 0.15
+    Xd = np.array([0.40, 0, 0, 0, np.pi, 0])
+    t = np.linspace(0, 1, num)
+    Xd_array = np.zeros([num, 6])
+    for i in range(num):
+        Xd_array[i, :] = Xd
+        Xd_array[i, 0] = Xd[0] + ld*np.sin(np.pi*t[i])
+
+    #建立实际环境
+    le = 0.015
+    Xe = np.copy(Xd)
+    t = np.linspace(0, 1, num)
+    Xe_array = np.zeros([num, 6])
+    for i in range(num):
+        Xe_array[i, :] = Xe
+        Xe_array[i, 0] = Xe[0] + ld * np.sin(np.pi * t[i])
+        Xe_array[i, 2] = Xe[2] + le * np.sin(4*np.pi * t[i])
+
+    #建立期望力
+    lf = 0.0
+    Fd = np.array([0, 0, -10, 0, 0.0, 0])
+    t = np.linspace(0, 1, num)
+    Fd_array = np.zeros([num, 6])
+    for i in range(num):
+        Fd_array[i, :] = Fd
+        Fd_array[i, 2] = Fd[2] + lf * np.sin(2*np.pi * t[i])
+
+    #环境刚度参数
+    ke = 10000.0
+
+    #建立运动学
+    kin1 = kin.GeneralKinematic(rp.DHfa_armc)
+
+    #获取初始状态
+    #初始位置
+    q_guess = np.array([0.0, 30, 0, 90, 0, 60, 0])
+    Te = np.eye(4)
+    Te[0:3, 0:3] = bf.euler_zyx2rot(Xd_array[0, 3:6])
+    Te[0:3, 3] = Xd_array[0, 0:3]
+    qq_state = kin1.iterate_ikine(q_guess, Te)
+
+    print "qq_state:", np.around(qq_state, 3)
+    #初始力
+    Fs = np.zeros(6)
+
+    Fs_array = np.zeros([num, 6])
+
+    #阻抗运行段
+    for i in range(num):
+        # 读取期望位姿和关节角
+        imp.get_expect_pos(Xd_array[i, :])
+        imp.get_current_joint(qq_state)
+        # 读取当前关节角和力
+        imp.get_expect_force(Fd_array[i, :])
+        imp.get_current_force(Fs)
+        # 计算修正关节角
+        qr = imp.compute_imp_joint()
+
+        #建设机器人底层能跟踪
+        qq_state = np.copy(qr)
+        Xs = kin1.fkine_euler(qq_state)
+
+        print "Xs_z:", Xs[2]
+
+        #反馈力
+        if (Xe_array[i, 2] >  Xs[2] ):
+            Fs = -ke*(Xe_array[i, :] - Xs)
+        else:
+            Fs = np.zeros(6)
+        print "Fs_z:", Fs[2]
+        Fs_array[i, :] = np.copy(Fs)
+
+    #绘制力跟踪图
+    plt.figure()
+    plt.plot(t, Fd_array[:, 2] - Fs_array[:, 2], label='Fz', color='b')
+    #plt.plot(x2, label='genetic', color='r')
+    plt.title("Fz_error:m = 1, b = 100, k = 0, ki = 40, ke = 10000, Fd = -10")
+    plt.xlabel("t/s")
+    plt.ylabel("F/N")
+    plt.legend()
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()
