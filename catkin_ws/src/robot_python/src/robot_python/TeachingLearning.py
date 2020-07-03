@@ -3,7 +3,7 @@
 #本文档用于写示教函数，后期可能会加入一定的学习
 #程序员：陈永厅
 #版权：哈尔滨工业大学(深圳)
-#日期：初稿：2019.5.13
+#日期：初稿：2020.5.13
 
 import os
 import numpy as np
@@ -16,6 +16,7 @@ import FileOpen
 import MachineLearning as ml
 import RobotParameter as rp
 import MyPlot
+import DataProcessing as dp
 
 #========================示教学习中使用的基本函数=======================#
 #高斯径向基函数
@@ -251,18 +252,25 @@ class TeachingLearn(object):
             X[i, :] = kin.fkine_euler(self.DH_0, self.qq_array[i, :])
         #求取末端位置的,前向差分获取速度和加速度
         X_xva = np.zeros([self.num, self.m, 3])
-        for i in range(self.num):
-            X_xva[i, :, 0] = X[i, :]
-            if (i==0):
-                X_xva[i, :, 1] = 0
-                X_xva[i, :, 2] = 0
-            else:
-                X_xva[i, :, 1] = (X_xva[i, :, 0] - X_xva[i-1, :, 0])/self.T
-                X_xva[i, :, 2] = (X_xva[i, :, 1] - X_xva[i-1, :, 1])/self.T
 
-        MyPlot.plot2_nd(self.tt, X_xva[:, :, 0], title="X_xva")
-        MyPlot.plot2_nd(self.tt, X_xva[:, :, 1], title="X_xva")
-        MyPlot.plot2_nd(self.tt, X_xva[:, :, 2], title="X_xva")
+        X_xva[:, :, 0] = X
+
+        #建立高增益观测器
+        observer = dp.HighGainObserver()
+        for i in range(self.m):
+            observer.get_original_data(X[:, i], self.T)
+            X_xva[:, i, 1] = observer.put_observer_data()
+            observer.get_original_data(X_xva[:, i, 1], self.T)
+            X_xva[:, i, 2] = observer.put_observer_data()
+
+        # for i in range(self.num):
+        #     X_xva[i, :, 0] = X[i, :]
+        #     if (i==0):
+        #         X_xva[i, :, 1] = 0
+        #         X_xva[i, :, 2] = 0
+        #     else:
+        #         X_xva[i, :, 1] = (X_xva[i, :, 0] - X_xva[i-1, :, 0])/self.T
+        #         X_xva[i, :, 2] = (X_xva[i, :, 1] - X_xva[i-1, :, 1])/self.T
 
         self.X_xva = X_xva
 
@@ -617,7 +625,7 @@ def rbf_test():
     # 读取数据
     qq_file_name = "teaching_data.txt"
     qq_path = os.path.join(file_path, qq_file_name)
-    qq_demo = FileOpen.read(qq_path)[:1500, :]
+    qq_demo = FileOpen.read(qq_path)
     print "shape:", qq_demo.shape
     # 创建运动学
     DH_0 = np.copy(rp.DHfa_armc)
@@ -696,7 +704,7 @@ def rbf_test():
     print "X0:", X0
     print "X_goal:", X_goal
     xx0 = X0 + np.array([0.0, 0, -0.0, 0, 0, 0])  # 轨迹起点
-    gg = X_goal + np.array([0.00, 0.00, -0.00, 0, 0, 0])  # 规划目标点
+    gg = X_goal + np.array([0.01, 0.00, -0.1, 0, 0, 0])  # 规划目标点
     teach_repro1.reproduction(xx0, gg, tt, T)
     X_data = teach_repro1.get_plan_tcp()
 

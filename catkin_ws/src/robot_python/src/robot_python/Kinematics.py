@@ -1130,9 +1130,9 @@ def theta234(A,a2,a3):
 		   (a2 ** 2 + a3 ** 2 + 2 * a2 * a3 * math.cos(qq3_1))
 	c2_1 = (A[0, 3] + a3 * math.sin(qq3_1) * s2_1) / (a3 * math.cos(qq3_1) + a2)
 
-	s2_2 = ((a3 * math.cos(qq3_1) + a2) * A[1, 3] - a3 * math.sin(qq3_1) * A[0, 3]) / \
-		   (a2 ** 2 + a3 ** 2 + 2 * a2 * a3 * math.cos(qq3_1))
-	c2_2 = (A[0, 3] + a3 * math.sin(qq3_1) * s2_2) / (a3 * math.cos(qq3_1) + a2)
+	s2_2 = ((a3 * math.cos(qq3_2) + a2) * A[1, 3] - a3 * math.sin(qq3_2) * A[0, 3]) / \
+		   (a2 ** 2 + a3 ** 2 + 2 * a2 * a3 * math.cos(qq3_2))
+	c2_2 = (A[0, 3] + a3 * math.sin(qq3_2) * s2_2) / (a3 * math.cos(qq3_2) + a2)
 
 	qq2_1 = math.atan2(s2_1, c2_1)
 	qq2_2= math.atan2(s2_2, c2_2)
@@ -1430,3 +1430,28 @@ class GeneralKinematic(object):
 	def ur_ikine(self,Te, qq_k):
 		qr = ur_ikine_choice(self.DH_0, Te, qq_k)
 		return qr
+
+def ur_ikine_test():
+	DH_0 = rp.DH0_ur5
+	#正运动学
+	qq = np.array([1,
+				   1,
+				   1,
+				   1,
+				   1,
+				   1])
+	print "qq:", np.around(qq*180/np.pi, 2)
+	Te = fkine(DH_0[:, 0] + qq, DH_0[:, 1], DH_0[:, 2], DH_0[:, 3])
+	print "Te:\n", np.around(Te, 2)
+	Q = ur_ikine(DH_0, Te)
+	print "Q:\n", np.around(Q*180/np.pi, 4)
+	for i in range(8):
+		Te_i = fkine(DH_0[:, 0] + Q[i,:], DH_0[:, 1], DH_0[:, 2], DH_0[:, 3])
+		print "Te_",str(i+1),":\n", np.around(Te_i, 2)
+		print "Te_", str(i+1), "_error:\n", np.around(Te_i - Te, 2)
+
+def main():
+	ur_ikine_test()
+
+if __name__=="__main__":
+	main()

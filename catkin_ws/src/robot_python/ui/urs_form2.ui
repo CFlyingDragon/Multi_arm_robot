@@ -376,7 +376,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>/home/d/catkin_ws/src/robot_python/data/robots/robot2_position.txt</string>
+          <string>/home/d/catkin_ws/src/robot_python/data/robots/robot2_move_position.txt</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="lineEdit_data_1">
@@ -389,7 +389,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>/home/d/catkin_ws/src/robot_python/data/robots/robot1_position.txt</string>
+          <string>/home/d/catkin_ws/src/robot_python/data/robots/robot1_move_position.txt</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_17">

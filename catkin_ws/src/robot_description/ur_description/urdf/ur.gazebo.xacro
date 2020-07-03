@@ -20,7 +20,7 @@
       <material>Gazebo/Red</material>
       <mu1 value="1.0"/>
       <mu2 value="1.0"/>
-      <kp value="10000" />
+      <kp value="100000" />
       <kd value="1.0" />
       <fdir1 value="1 0 0"/>
       <gravity value="true"/>
