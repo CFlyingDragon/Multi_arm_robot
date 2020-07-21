@@ -34,6 +34,7 @@
     <SUITE FILE_PATH="coverage/catkin_ws$tf_conversions_demo.coverage" NAME="tf_conversions_demo Coverage Results" MODIFIED="1576420260309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$listener.coverage" NAME="listener Coverage Results" MODIFIED="1588757254141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$send_cmd_gaebo_node.coverage" NAME="send_cmd_gaebo_node Coverage Results" MODIFIED="1587003543317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
+    <SUITE FILE_PATH="coverage/catkin_ws$str.coverage" NAME="str Coverage Results" MODIFIED="1594797841461" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/test" />
     <SUITE FILE_PATH="coverage/catkin_ws$teaching_learn.coverage" NAME="teaching_learn Coverage Results" MODIFIED="1590059456589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/scripts" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo20.coverage" NAME="pyqt_demo20 Coverage Results" MODIFIED="1587441292407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$gui_main__2_.coverage" NAME="gui_main (2) Coverage Results" MODIFIED="1587980063914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
@@ -42,7 +43,7 @@
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo16.coverage" NAME="pyqt_demo16 Coverage Results" MODIFIED="1587438849702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$test.coverage" NAME="test Coverage Results" MODIFIED="1577110482286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/scripts" />
     <SUITE FILE_PATH="coverage/catkin_ws$gui_main__1_.coverage" NAME="gui_main (1) Coverage Results" MODIFIED="1589504762548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
-    <SUITE FILE_PATH="coverage/catkin_ws$TeachingLearning.coverage" NAME="TeachingLearning Coverage Results" MODIFIED="1593484159942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
+    <SUITE FILE_PATH="coverage/catkin_ws$TeachingLearning.coverage" NAME="TeachingLearning Coverage Results" MODIFIED="1594343043573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
     <SUITE FILE_PATH="coverage/catkin_ws$kdl_kinematics.coverage" NAME="kdl_kinematics Coverage Results" MODIFIED="1592811078768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$split.coverage" NAME="split Coverage Results" MODIFIED="1591261901261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$numpy_learn.coverage" NAME="numpy_learn Coverage Results" MODIFIED="1589977187750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo" />
@@ -68,15 +69,15 @@
     <SUITE FILE_PATH="coverage/catkin_ws$qq_to_qv.coverage" NAME="qq_to_qv Coverage Results" MODIFIED="1593481582875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/test" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo11.coverage" NAME="pyqt_demo11 Coverage Results" MODIFIED="1587383862538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$armc_circular_plan.coverage" NAME="armc_circular_plan Coverage Results" MODIFIED="1570090111208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/kinematics/script" />
-    <SUITE FILE_PATH="coverage/catkin_ws$Robots.coverage" NAME="Robots Coverage Results" MODIFIED="1593742144887" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
+    <SUITE FILE_PATH="coverage/catkin_ws$Robots.coverage" NAME="Robots Coverage Results" MODIFIED="1594695966613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
     <SUITE FILE_PATH="coverage/catkin_ws$imp_controler_node.coverage" NAME="imp_controler_node Coverage Results" MODIFIED="1575287884846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
-    <SUITE FILE_PATH="coverage/catkin_ws$robots_plan.coverage" NAME="robots_plan Coverage Results" MODIFIED="1593760715584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
+    <SUITE FILE_PATH="coverage/catkin_ws$robots_plan.coverage" NAME="robots_plan Coverage Results" MODIFIED="1594695988757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo.coverage" NAME="pyqt_demo Coverage Results" MODIFIED="1587344819558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$kdl_demo3.coverage" NAME="kdl_demo3 Coverage Results" MODIFIED="1592813159907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo9.coverage" NAME="pyqt_demo9 Coverage Results" MODIFIED="1587371380655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$send_cmd_node.coverage" NAME="send_cmd_node Coverage Results" MODIFIED="1591701239661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
     <SUITE FILE_PATH="coverage/catkin_ws$send_single_cmd_gaebo_node.coverage" NAME="send_single_cmd_gaebo_node Coverage Results" MODIFIED="1576208778917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
-    <SUITE FILE_PATH="coverage/catkin_ws$gui_main.coverage" NAME="gui_main Coverage Results" MODIFIED="1593760777080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
+    <SUITE FILE_PATH="coverage/catkin_ws$gui_main.coverage" NAME="gui_main Coverage Results" MODIFIED="1595297895951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
     <SUITE FILE_PATH="coverage/catkin_ws$moveit_cartesion_demo.coverage" NAME="moveit_cartesion_demo Coverage Results" MODIFIED="1570604335715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/kinematics/moveit_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$run_controller.coverage" NAME="run_controller Coverage Results" MODIFIED="1575095725003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_driver/impedance_controler/scripts" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo15.coverage" NAME="pyqt_demo15 Coverage Results" MODIFIED="1587437191698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
@@ -123,158 +124,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="Robots.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/Robots.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="103" column="31" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="31" />
-              <folding>
-                <element signature="e#314#522#0" expanded="false" />
-                <element signature="e#554#841#0" expanded="false" />
-                <element signature="e#926#1122#0" expanded="false" />
-                <element signature="e#1204#1690#0" expanded="false" />
-                <element signature="e#1773#2161#0" expanded="false" />
-                <element signature="e#2248#7791#0" expanded="false" />
-                <element signature="e#2346#2508#0" expanded="false" />
-                <element signature="e#2575#2737#0" expanded="false" />
-                <element signature="e#3302#3347#0" expanded="false" />
-                <element signature="e#3415#3686#0" expanded="false" />
-                <element signature="e#3761#3914#0" expanded="false" />
-                <element signature="e#3974#4373#0" expanded="false" />
-                <element signature="e#4438#4479#0" expanded="false" />
-                <element signature="e#6056#6366#0" expanded="false" />
-                <element signature="e#7330#7361#0" expanded="false" />
-                <element signature="e#7415#7789#0" expanded="false" />
-                <element signature="e#8695#8961#0" expanded="false" />
-                <element signature="e#9048#10765#0" expanded="false" />
-                <element signature="e#9166#9328#0" expanded="false" />
-                <element signature="e#9638#9693#0" expanded="false" />
-                <element signature="e#9757#9901#0" expanded="false" />
-                <element signature="e#9969#10232#0" expanded="false" />
-                <element signature="e#10587#10763#0" expanded="false" />
-                <element signature="e#10860#19507#0" expanded="false" />
-                <element signature="e#10958#11120#0" expanded="false" />
-                <element signature="e#11187#11349#0" expanded="false" />
-                <element signature="e#11416#11578#0" expanded="false" />
-                <element signature="e#11667#11739#0" expanded="false" />
-                <element signature="e#11814#12218#0" expanded="false" />
-                <element signature="e#12300#12345#0" expanded="false" />
-                <element signature="e#12414#12685#0" expanded="false" />
-                <element signature="e#12749#12825#0" expanded="false" />
-                <element signature="e#13266#13421#0" expanded="false" />
-                <element signature="e#13481#13886#0" expanded="false" />
-                <element signature="e#16267#16577#0" expanded="false" />
-                <element signature="e#18094#18742#0" expanded="false" />
-                <element signature="e#18797#19507#0" expanded="false" />
-                <element signature="e#19525#20544#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Kinematics.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/Kinematics.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="1135" column="0" selection-start-line="1135" selection-start-column="0" selection-end-line="1135" selection-end-column="0" />
-              <folding>
-                <element signature="e#20592#24153#0" expanded="false" />
-                <element signature="e#24225#24613#0" expanded="false" />
-                <element signature="e#24702#25074#0" expanded="false" />
-                <element signature="e#25167#25515#0" expanded="false" />
-                <element signature="e#25572#26243#0" expanded="false" />
-                <element signature="e#27213#29994#0" expanded="false" />
-                <element signature="e#30054#30223#0" expanded="false" />
-                <element signature="e#30315#35423#0" expanded="false" />
-                <element signature="e#33829#35320#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="robots_plan.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/robots_plan.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1331">
-              <caret line="147" column="11" selection-start-line="147" selection-start-column="11" selection-end-line="147" selection-end-column="11" />
-              <folding>
-                <element signature="e#330#470#0" expanded="false" />
-                <element signature="e#556#2473#0" expanded="false" />
-                <element signature="e#2502#2964#0" expanded="false" />
-                <element signature="e#6325#6428#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gui_main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gui_main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-578">
-              <caret line="4768" column="58" selection-start-line="4768" selection-start-column="58" selection-end-line="4768" selection-end-column="58" />
+            <state relative-caret-position="2192">
+              <caret line="4353" column="45" selection-start-line="4353" selection-start-column="45" selection-end-line="4353" selection-end-column="45" />
               <folding>
-                <element signature="e#1253#15599#0" expanded="false" />
-                <element signature="e#6951#7263#0" expanded="false" />
-                <element signature="e#7369#8439#0" expanded="false" />
-                <element signature="e#8509#9442#0" expanded="false" />
-                <element signature="e#9495#10174#0" expanded="false" />
-                <element signature="e#15772#34007#0" expanded="false" />
-                <element signature="e#34410#35344#0" expanded="false" />
-                <element signature="e#35376#36458#0" expanded="false" />
-                <element signature="e#36572#37643#0" expanded="false" />
-                <element signature="e#37707#38154#0" expanded="false" />
-                <element signature="e#38217#38624#0" expanded="false" />
-                <element signature="e#38680#39175#0" expanded="false" />
-                <element signature="e#41093#41240#0" expanded="false" />
-                <element signature="e#43092#43907#0" expanded="false" />
-                <element signature="e#43969#44405#0" expanded="false" />
-                <element signature="e#44451#44742#0" expanded="false" />
-                <element signature="e#44804#45134#0" expanded="false" />
-                <element signature="e#45180#45510#0" expanded="false" />
-                <element signature="e#45561#45573#0" expanded="false" />
-                <element signature="e#45610#45749#0" expanded="false" />
-                <element signature="e#45839#46377#0" expanded="false" />
-                <element signature="e#46412#47410#0" expanded="false" />
-                <element signature="e#47450#50862#0" expanded="false" />
-                <element signature="e#51113#70327#0" expanded="false" />
-                <element signature="e#70424#84493#0" expanded="false" />
-                <element signature="e#84584#98497#0" expanded="false" />
-                <element signature="e#98588#113151#0" expanded="false" />
-                <element signature="e#100689#101785#0" expanded="false" />
-                <element signature="e#113245#126143#0" expanded="false" />
-                <element signature="e#126240#138868#0" expanded="false" />
-                <element signature="e#138964#148485#0" expanded="false" />
-                <element signature="e#148581#159390#0" expanded="false" />
-                <element signature="e#159485#170792#0" expanded="false" />
-                <element signature="e#171291#172513#0" expanded="false" />
-                <element signature="e#173854#174492#0" expanded="false" />
-                <element signature="e#174556#175003#0" expanded="false" />
-                <element signature="e#175066#175473#0" expanded="false" />
-                <element signature="e#175529#176223#0" expanded="false" />
-                <element signature="e#176256#179286#0" expanded="false" />
-                <element signature="e#176469#179201#0" expanded="false" />
-                <element signature="e#177418#178239#0" expanded="false" />
-                <element signature="e#178309#179128#0" expanded="false" />
-                <element signature="e#179319#179466#0" expanded="false" />
-                <element signature="e#179499#182011#0" expanded="false" />
-                <element signature="e#179798#180473#0" expanded="false" />
-                <element signature="e#180535#181210#0" expanded="false" />
-                <element signature="e#181272#181947#0" expanded="false" />
-                <element signature="e#182055#182754#0" expanded="false" />
-                <element signature="e#182800#183987#0" expanded="false" />
-                <element signature="e#184043#184479#0" expanded="false" />
-                <element signature="e#184525#184816#0" expanded="false" />
-                <element signature="e#184862#185153#0" expanded="false" />
-                <element signature="e#185215#185545#0" expanded="false" />
-                <element signature="e#185591#185921#0" expanded="false" />
-                <element signature="e#185967#186297#0" expanded="false" />
-                <element signature="e#186348#186360#0" expanded="false" />
-                <element signature="e#186397#186536#0" expanded="false" />
-                <element signature="e#186626#187335#0" expanded="false" />
-                <element signature="e#187370#188619#0" expanded="false" />
-                <element signature="e#188659#193008#0" expanded="false" />
-                <element signature="e#193982#194078#0" expanded="false" />
+                <element signature="e#102#112#0" expanded="true" />
+                <element signature="e#1205#14987#0" expanded="false" />
+                <element signature="e#15160#33395#0" expanded="false" />
+                <element signature="e#33488#49196#0" expanded="false" />
+                <element signature="e#49289#68505#0" expanded="false" />
+                <element signature="e#68602#82671#0" expanded="false" />
+                <element signature="e#82762#96675#0" expanded="false" />
+                <element signature="e#96766#111329#0" expanded="false" />
+                <element signature="e#111423#124321#0" expanded="false" />
+                <element signature="e#124418#137046#0" expanded="false" />
+                <element signature="e#137142#146663#0" expanded="false" />
+                <element signature="e#146759#157568#0" expanded="false" />
+                <element signature="e#157663#168968#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urs_hand_form1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/robot_python/gui/urs_hand_form1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -291,10 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/robot_python/scripts/communication.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/nodes/sub_write_joint_states.py" />
-        <option value="$PROJECT_DIR$/devel/lib/python2.7/dist-packages/robot_python/__init__.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/scripts/plot_test.py" />
         <option value="$PROJECT_DIR$/src/robot_python/nodes/joint_plot.py" />
         <option value="$PROJECT_DIR$/src/robot_python/scripts/joint_plot.py" />
         <option value="$PROJECT_DIR$/src/robot_python/scripts/sub_write_joint_states.py" />
@@ -326,7 +201,6 @@
         <option value="$PROJECT_DIR$/src/robot_python/demo/my_os.py" />
         <option value="$PROJECT_DIR$/src/robot_python/demo/kdl_demo/kdl_demo3.py" />
         <option value="$PROJECT_DIR$/src/robot_python/demo/kdl_demo/kdl_demo1.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/MyPlot.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/FileOpen.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/BaseFunction.py" />
         <option value="$PROJECT_DIR$/src/robot_python/demo/kdl_demo/kdlu_demo1.py" />
@@ -335,13 +209,18 @@
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py" />
         <option value="$PROJECT_DIR$/src/robot_python/test/qq_to_qv.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/DataProcessing.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/TeachingLearning.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py" />
         <option value="$PROJECT_DIR$/src/robot_python/test/my_test.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/Kinematics.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/Robots.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/gui/gui_main.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/robots_plan.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/MyPlot.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/TeachingLearning.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/test/str.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/test/huawei/huawei1.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/test/huawei/huawei2.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/test/huawei/huawei3.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/gui/gui_main.py" />
       </list>
     </option>
   </component>
@@ -398,7 +277,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -467,13 +345,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
+              <option name="myItemId" value="ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -483,6 +362,10 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/robot_python/nodes" />
+      <recent name="$PROJECT_DIR$/src/robot_gui/robot_gui" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/robot_python/gui" />
       <recent name="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
@@ -490,12 +373,8 @@
       <recent name="$PROJECT_DIR$/src/robot_python/ui" />
       <recent name="$PROJECT_DIR$/src/robot_python/scripts" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/robot_python/nodes" />
-      <recent name="$PROJECT_DIR$/src/robot_gui/robot_gui" />
-    </key>
   </component>
-  <component name="RunManager" selected="Python.robots_plan">
+  <component name="RunManager" selected="Python.gui_main">
     <configuration default="false" name="gui_main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -532,6 +411,42 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
+    <configuration default="false" name="str" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_python/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catkin_ws" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_python/test/str.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TeachingLearning" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_python/src/robot_python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catkin_ws" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_python/src/robot_python/TeachingLearning.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
     <configuration default="false" name="Robots" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -546,42 +461,6 @@
       <module name="catkin_ws" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_python/src/robot_python/Robots.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="my_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_python/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="catkin_ws" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_python/test/my_test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Kinematics" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_python/src/robot_python" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="catkin_ws" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_python/src/robot_python/Kinematics.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -797,17 +676,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.gui_main" />
       <item index="1" class="java.lang.String" itemvalue="Python.robots_plan" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Robots" />
-      <item index="3" class="java.lang.String" itemvalue="Python.my_test" />
-      <item index="4" class="java.lang.String" itemvalue="Python.Kinematics" />
+      <item index="2" class="java.lang.String" itemvalue="Python.str" />
+      <item index="3" class="java.lang.String" itemvalue="Python.TeachingLearning" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Robots" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.gui_main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.robots_plan" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Kinematics" />
+        <item index="1" class="java.lang.String" itemvalue="Python.str" />
+        <item index="2" class="java.lang.String" itemvalue="Python.robots_plan" />
         <item index="3" class="java.lang.String" itemvalue="Python.Robots" />
-        <item index="4" class="java.lang.String" itemvalue="Python.my_test" />
+        <item index="4" class="java.lang.String" itemvalue="Python.TeachingLearning" />
       </list>
     </recent_temporary>
   </component>
@@ -838,9 +717,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="30" width="1839" height="1050" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21481062" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23063877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32297447" sideWeight="0.5105054" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -893,53 +772,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="29" />
+      <option name="time" value="30" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/robot_python/scripts/test_app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1635">
-          <caret line="738" column="0" selection-start-line="687" selection-start-column="4" selection-end-line="738" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/demo/kdl_demo/kdl_kinematics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/teaching_form1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="252" column="60" selection-start-line="252" selection-start-column="60" selection-end-line="252" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/demo/msg_s.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2016.2/system/python_stubs/-1247972723/PyKDL/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="142" column="0" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/tf_conversions/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-363">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm2016.2/system/python_stubs/-1247972723/PyKDL/Rotation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
@@ -1059,13 +896,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/MyPlot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/demo/kdl_demo/kdl_parser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1164,13 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/TeachingLearning.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2025">
-          <caret line="627" column="36" selection-start-line="627" selection-start-column="36" selection-end-line="627" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/DataProcessing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2916">
@@ -1204,15 +1027,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5832">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2079">
-          <caret line="78" column="38" selection-start-line="78" selection-start-column="38" selection-end-line="78" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1234,146 +1048,120 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="644">
           <caret line="1135" column="0" selection-start-line="1135" selection-start-column="0" selection-end-line="1135" selection-end-column="0" />
-          <folding>
-            <element signature="e#20592#24153#0" expanded="false" />
-            <element signature="e#24225#24613#0" expanded="false" />
-            <element signature="e#24702#25074#0" expanded="false" />
-            <element signature="e#25167#25515#0" expanded="false" />
-            <element signature="e#25572#26243#0" expanded="false" />
-            <element signature="e#27213#29994#0" expanded="false" />
-            <element signature="e#30054#30223#0" expanded="false" />
-            <element signature="e#30315#35423#0" expanded="false" />
-            <element signature="e#33829#35320#0" expanded="false" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="74" column="50" selection-start-line="74" selection-start-column="50" selection-end-line="74" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/plot_main_windon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/Robots.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
+        <state relative-caret-position="250">
           <caret line="103" column="31" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/MyPlot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/TeachingLearning.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="723" column="48" selection-start-line="723" selection-start-column="48" selection-end-line="723" selection-end-column="48" />
           <folding>
-            <element signature="e#314#522#0" expanded="false" />
-            <element signature="e#554#841#0" expanded="false" />
-            <element signature="e#926#1122#0" expanded="false" />
-            <element signature="e#1204#1690#0" expanded="false" />
-            <element signature="e#1773#2161#0" expanded="false" />
-            <element signature="e#2248#7791#0" expanded="false" />
-            <element signature="e#2346#2508#0" expanded="false" />
-            <element signature="e#2575#2737#0" expanded="false" />
-            <element signature="e#3302#3347#0" expanded="false" />
-            <element signature="e#3415#3686#0" expanded="false" />
-            <element signature="e#3761#3914#0" expanded="false" />
-            <element signature="e#3974#4373#0" expanded="false" />
-            <element signature="e#4438#4479#0" expanded="false" />
-            <element signature="e#6056#6366#0" expanded="false" />
-            <element signature="e#7330#7361#0" expanded="false" />
-            <element signature="e#7415#7789#0" expanded="false" />
-            <element signature="e#8695#8961#0" expanded="false" />
-            <element signature="e#9048#10765#0" expanded="false" />
-            <element signature="e#9166#9328#0" expanded="false" />
-            <element signature="e#9638#9693#0" expanded="false" />
-            <element signature="e#9757#9901#0" expanded="false" />
-            <element signature="e#9969#10232#0" expanded="false" />
-            <element signature="e#10587#10763#0" expanded="false" />
-            <element signature="e#10860#19507#0" expanded="false" />
-            <element signature="e#10958#11120#0" expanded="false" />
-            <element signature="e#11187#11349#0" expanded="false" />
-            <element signature="e#11416#11578#0" expanded="false" />
-            <element signature="e#11667#11739#0" expanded="false" />
-            <element signature="e#11814#12218#0" expanded="false" />
-            <element signature="e#12300#12345#0" expanded="false" />
-            <element signature="e#12414#12685#0" expanded="false" />
-            <element signature="e#12749#12825#0" expanded="false" />
-            <element signature="e#13266#13421#0" expanded="false" />
-            <element signature="e#13481#13886#0" expanded="false" />
-            <element signature="e#16267#16577#0" expanded="false" />
-            <element signature="e#18094#18742#0" expanded="false" />
-            <element signature="e#18797#19507#0" expanded="false" />
-            <element signature="e#19525#20544#0" expanded="false" />
+            <element signature="e#19765#22172#0" expanded="false" />
+            <element signature="e#22206#24615#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main.py">
+    <entry file="file://$PROJECT_DIR$/src/robot_python/test/str.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-578">
-          <caret line="4768" column="58" selection-start-line="4768" selection-start-column="58" selection-end-line="4768" selection-end-column="58" />
-          <folding>
-            <element signature="e#1253#15599#0" expanded="false" />
-            <element signature="e#6951#7263#0" expanded="false" />
-            <element signature="e#7369#8439#0" expanded="false" />
-            <element signature="e#8509#9442#0" expanded="false" />
-            <element signature="e#9495#10174#0" expanded="false" />
-            <element signature="e#15772#34007#0" expanded="false" />
-            <element signature="e#34410#35344#0" expanded="false" />
-            <element signature="e#35376#36458#0" expanded="false" />
-            <element signature="e#36572#37643#0" expanded="false" />
-            <element signature="e#37707#38154#0" expanded="false" />
-            <element signature="e#38217#38624#0" expanded="false" />
-            <element signature="e#38680#39175#0" expanded="false" />
-            <element signature="e#41093#41240#0" expanded="false" />
-            <element signature="e#43092#43907#0" expanded="false" />
-            <element signature="e#43969#44405#0" expanded="false" />
-            <element signature="e#44451#44742#0" expanded="false" />
-            <element signature="e#44804#45134#0" expanded="false" />
-            <element signature="e#45180#45510#0" expanded="false" />
-            <element signature="e#45561#45573#0" expanded="false" />
-            <element signature="e#45610#45749#0" expanded="false" />
-            <element signature="e#45839#46377#0" expanded="false" />
-            <element signature="e#46412#47410#0" expanded="false" />
-            <element signature="e#47450#50862#0" expanded="false" />
-            <element signature="e#51113#70327#0" expanded="false" />
-            <element signature="e#70424#84493#0" expanded="false" />
-            <element signature="e#84584#98497#0" expanded="false" />
-            <element signature="e#98588#113151#0" expanded="false" />
-            <element signature="e#100689#101785#0" expanded="false" />
-            <element signature="e#113245#126143#0" expanded="false" />
-            <element signature="e#126240#138868#0" expanded="false" />
-            <element signature="e#138964#148485#0" expanded="false" />
-            <element signature="e#148581#159390#0" expanded="false" />
-            <element signature="e#159485#170792#0" expanded="false" />
-            <element signature="e#171291#172513#0" expanded="false" />
-            <element signature="e#173854#174492#0" expanded="false" />
-            <element signature="e#174556#175003#0" expanded="false" />
-            <element signature="e#175066#175473#0" expanded="false" />
-            <element signature="e#175529#176223#0" expanded="false" />
-            <element signature="e#176256#179286#0" expanded="false" />
-            <element signature="e#176469#179201#0" expanded="false" />
-            <element signature="e#177418#178239#0" expanded="false" />
-            <element signature="e#178309#179128#0" expanded="false" />
-            <element signature="e#179319#179466#0" expanded="false" />
-            <element signature="e#179499#182011#0" expanded="false" />
-            <element signature="e#179798#180473#0" expanded="false" />
-            <element signature="e#180535#181210#0" expanded="false" />
-            <element signature="e#181272#181947#0" expanded="false" />
-            <element signature="e#182055#182754#0" expanded="false" />
-            <element signature="e#182800#183987#0" expanded="false" />
-            <element signature="e#184043#184479#0" expanded="false" />
-            <element signature="e#184525#184816#0" expanded="false" />
-            <element signature="e#184862#185153#0" expanded="false" />
-            <element signature="e#185215#185545#0" expanded="false" />
-            <element signature="e#185591#185921#0" expanded="false" />
-            <element signature="e#185967#186297#0" expanded="false" />
-            <element signature="e#186348#186360#0" expanded="false" />
-            <element signature="e#186397#186536#0" expanded="false" />
-            <element signature="e#186626#187335#0" expanded="false" />
-            <element signature="e#187370#188619#0" expanded="false" />
-            <element signature="e#188659#193008#0" expanded="false" />
-            <element signature="e#193982#194078#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="351">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/robots_plan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1331">
-          <caret line="147" column="11" selection-start-line="147" selection-start-column="11" selection-end-line="147" selection-end-column="11" />
+        <state relative-caret-position="27">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="20" />
           <folding>
             <element signature="e#330#470#0" expanded="false" />
-            <element signature="e#556#2473#0" expanded="false" />
-            <element signature="e#2502#2964#0" expanded="false" />
-            <element signature="e#6325#6428#0" expanded="false" />
+            <element signature="e#2512#2974#0" expanded="false" />
+            <element signature="e#3059#6317#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/test/huawei/huawei3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/test/huawei/huawei2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/test/huawei/huawei1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="20" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/urs_hand_form1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2192">
+          <caret line="4353" column="45" selection-start-line="4353" selection-start-column="45" selection-end-line="4353" selection-end-column="45" />
+          <folding>
+            <element signature="e#102#112#0" expanded="true" />
+            <element signature="e#1205#14987#0" expanded="false" />
+            <element signature="e#15160#33395#0" expanded="false" />
+            <element signature="e#33488#49196#0" expanded="false" />
+            <element signature="e#49289#68505#0" expanded="false" />
+            <element signature="e#68602#82671#0" expanded="false" />
+            <element signature="e#82762#96675#0" expanded="false" />
+            <element signature="e#96766#111329#0" expanded="false" />
+            <element signature="e#111423#124321#0" expanded="false" />
+            <element signature="e#124418#137046#0" expanded="false" />
+            <element signature="e#137142#146663#0" expanded="false" />
+            <element signature="e#146759#157568#0" expanded="false" />
+            <element signature="e#157663#168968#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -625,7 +625,16 @@ def rbf_test():
     # 读取数据
     qq_file_name = "teaching_data.txt"
     qq_path = os.path.join(file_path, qq_file_name)
-    qq_demo = FileOpen.read(qq_path)
+    qq_demo = FileOpen.read(qq_path)[0:2000, :]
+
+    #绘制原始数据图
+    # 时间系列
+    T = 0.01
+    num = len(qq_demo)
+    tt = np.linspace(0, T * (num - 1), num)
+    # 绘制数据图
+    MyPlot.plot2_nd(tt, qq_demo, title="qq_demo", lable="qq")
+
     print "shape:", qq_demo.shape
     # 创建运动学
     DH_0 = np.copy(rp.DHfa_armc)
@@ -635,12 +644,7 @@ def rbf_test():
     X0 = kin1.fkine_euler(qq_demo[0, :])
     # 获取目标点
     X_goal = kin1.fkine_euler(qq_demo[-1, :])
-    # 时间系列
-    T = 0.01
-    num = len(qq_demo)
-    tt = np.linspace(0, T * (num - 1), num)
-    # 绘制数据图
-    MyPlot.plot2_nd(tt, qq_demo, title="qq_demo")
+
 
     # 求取正运动学
     X_demo = np.zeros([num, 6])
@@ -649,6 +653,12 @@ def rbf_test():
 
     # 绘制数据图
     MyPlot.plot2_nd(tt, X_demo, title="X_demo")
+
+    for i in range(num):
+        for j in range(6):
+            X_demo[i, j] = X_demo[i, j]  +  0.01 * (np.random.random() - 0.5)
+            # 绘制数据图
+    MyPlot.plot2_nd(tt, X_demo, title="X_rdemo", lable="Xr")
 
     # *****学习阶段******#
     dmps_file_name = "dmps_parameter.txt"
@@ -676,16 +686,16 @@ def rbf_test():
 
     #绘制拟合图
     X_xva = teach_learn1.X_xva
-    MyPlot.plot2_nd(tt, X_xva[:, :, 0], title="X")
-    MyPlot.plot2_nd(tt, X_xva[:, :, 1], title="V")
-    MyPlot.plot2_nd(tt, X_xva[:, :, 2], title="A")
+    MyPlot.plot2_nd(tt, X_xva[:, :, 0], title="Xx", lable="Xx")
+    MyPlot.plot2_nd(tt, X_xva[:, :, 1], title="Xv", lable="Xv")
+    MyPlot.plot2_nd(tt, X_xva[:, :, 2], title="Xa", lable="Xa")
 
     # 将权重写入文件
     teach_learn1.write_data()
 
     # 获取强迫项
     f_demo = teach_learn1.f_demo
-    MyPlot.plot2_nd(tt, f_demo, title="f_demo")
+    MyPlot.plot2_nd(tt, f_demo, title="f_demo", lable= "fd")
 
     # *****示教再现阶段******#
     # 穿件示教再现器
@@ -711,7 +721,7 @@ def rbf_test():
     # 获取强迫项
     f = teach_repro1.f
     # 绘制力跟踪图
-    MyPlot.plot2_nd(tt, f, title="f")
+    MyPlot.plot2_nd(tt, f, title="f", lable="f")
 
     MyPlot.plot2_nd(tt, X_data, title="X_data")
 

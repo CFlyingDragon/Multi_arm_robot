@@ -33,8 +33,8 @@ def ur5s_move_object_plan():
     #建立多臂规划类
     robots1 = Robots.RobotsMoveObject()
     #获取DH参数
-    robots1.get_robot1_paramter(rp.DH0_ur5, rp.q_min_ur5, rp.q_max_ur5)
-    robots1.get_robot2_paramter(rp.DH0_ur5, rp.q_min_ur5, rp.q_max_ur5)
+    robots1.get_robot1_paramter(rp.DH0_hand_ur5, rp.q_min_ur5, rp.q_max_ur5)
+    robots1.get_robot2_paramter(rp.DH0_hand_ur5, rp.q_min_ur5, rp.q_max_ur5)
     #获取基座到世界坐标系参数
     robots1.get_robots_base_to_world(rp.robot1_base_T, rp.robot2_base_T)
 
@@ -75,12 +75,12 @@ def ur5s_move_object_plan():
     # 写入文件
     parent_path = os.path.join(os.getcwd(), '../..')
     parent_path = os.path.abspath(parent_path)
-    file_name1 = "data/robots/robot1_move_position1.txt"
+    file_name1 = "data/robots/robot1_move_position2.txt"
     path1 = os.path.join(parent_path, file_name1)
     FileOpen.write(qq1, path1)
 
     # 写入文件
-    file_name2 = "data/robots/robot2_move_position1.txt"
+    file_name2 = "data/robots/robot2_move_position2.txt"
     path2 = os.path.join(parent_path, file_name2)
     FileOpen.write(qq2, path2)
 
@@ -212,10 +212,10 @@ def robots_polish_object_plan():
 
 def main():
     # 求取规划轨迹
-    robots_polish_object_plan()
+    #robots_polish_object_plan()
 
     #搬运物体规划
-    #ur5s_move_object_plan()
+    ur5s_move_object_plan()
 
     print "finish!"
 

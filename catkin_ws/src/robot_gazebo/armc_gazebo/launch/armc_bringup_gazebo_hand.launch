@@ -1,0 +1,12 @@
+<launch>
+
+  <!-- load urdf to Gazebo  -->
+  <include file="$(find armc_gazebo)/launch/robots_world.launch" /> 
+ 
+  <!-- load urdf to Gazebo  -->
+  <include file="$(find armc_gazebo)/launch/armc_hand.launch" />   
+ 
+  <!-- ros_control position and state -->
+  <include file="$(find armc_gazebo)/launch/armc_hand_position_controller.launch" />     
+ 
+</launch>

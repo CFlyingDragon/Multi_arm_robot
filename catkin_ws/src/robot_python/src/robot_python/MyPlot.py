@@ -11,7 +11,7 @@ from pylab import *
 from matplotlib.ticker import MultipleLocator, FormatStrFormatter  
 
 #二维绘图,时间相同的多维变量
-def plot2_nd(t,X,title='myplot',xlab='IVariable',ylab='DVariable'):
+def plot2_nd(t,X,title='myplot',xlab='IVariable',ylab='DVariable',lable = "X"):
 	'''
 	:param t: 时间
 	:param X: Rm*n维变量
@@ -27,7 +27,7 @@ def plot2_nd(t,X,title='myplot',xlab='IVariable',ylab='DVariable'):
 	plt.figure()
 
 	for i in range(n):
-		string = "X" + str(i + 1)
+		string = lable + str(i + 1)
 		plt.plot(t, X[:, i],label=string)
 	plt.title(title)
 	plt.xlabel(xlab)

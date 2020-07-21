@@ -4,25 +4,20 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="finger">
-  <link name="world"/>
-  <joint name="fixed" type="fixed">
-    <parent link="world"/>
-    <child link="base_link"/>
-  </joint>
   <link
     name="base_link">
     <inertial>
       <origin
-        xyz="0.0014547 -4.3368E-18 0.030405"
+        xyz="0.0014547 -2.6021E-18 0.030405"
         rpy="0 0 0" />
       <mass
         value="0.21168" />
       <inertia
         ixx="0.00023035"
-        ixy="-3.7311E-21"
+        ixy="-2.7465E-21"
         ixz="-3.4957E-05"
         iyy="0.00033399"
-        iyz="-1.4134E-20"
+        iyz="-1.2385E-20"
         izz="0.00025833" />
     </inertial>
     <visual>
@@ -50,19 +45,19 @@
     </collision>
   </link>
   <link
-    name="finger_Link2">
+    name="finger_Link">
     <inertial>
       <origin
-        xyz="-0.01025 6.9389E-18 0.064"
+        xyz="-0.0045141 1.1276E-17 0.024"
         rpy="0 0 0" />
       <mass
         value="0.06" />
       <inertia
         ixx="4.604E-05"
-        ixy="-1.175E-21"
+        ixy="-1.1647E-21"
         ixz="-8.085E-06"
         iyy="4.6086E-05"
-        iyz="-4.3195E-21"
+        iyz="-4.3089E-21"
         izz="9.0463E-06" />
     </inertial>
     <visual>
@@ -71,7 +66,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://finger/meshes/finger_Link2.STL" />
+          filename="package://finger/meshes/finger_Link.STL" />
       </geometry>
       <material
         name="">
@@ -85,26 +80,26 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://finger/meshes/finger_Link2.STL" />
+          filename="package://finger/meshes/finger_Link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="finger_joint"
+    name="hand_joint"
     type="prismatic">
     <origin
-      xyz="0 0 0"
+      xyz="-0.0057359 0 0.04"
       rpy="0 0 0" />
     <parent
       link="base_link" />
     <child
-      link="finger_Link2" />
+      link="finger_Link" />
     <axis
       xyz="-1 0 0" />
     <limit
-      lower="-1"
-      upper="1"
-      effort="5"
-      velocity="9" />
+      lower="0"
+      upper="0.05"
+      effort="100"
+      velocity="100" />
   </joint>
 </robot>
