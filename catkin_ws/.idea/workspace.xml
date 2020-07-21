@@ -77,7 +77,7 @@
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo9.coverage" NAME="pyqt_demo9 Coverage Results" MODIFIED="1587371380655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$send_cmd_node.coverage" NAME="send_cmd_node Coverage Results" MODIFIED="1591701239661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
     <SUITE FILE_PATH="coverage/catkin_ws$send_single_cmd_gaebo_node.coverage" NAME="send_single_cmd_gaebo_node Coverage Results" MODIFIED="1576208778917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
-    <SUITE FILE_PATH="coverage/catkin_ws$gui_main.coverage" NAME="gui_main Coverage Results" MODIFIED="1595297895951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
+    <SUITE FILE_PATH="coverage/catkin_ws$gui_main.coverage" NAME="gui_main Coverage Results" MODIFIED="1595314216750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
     <SUITE FILE_PATH="coverage/catkin_ws$moveit_cartesion_demo.coverage" NAME="moveit_cartesion_demo Coverage Results" MODIFIED="1570604335715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/kinematics/moveit_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$run_controller.coverage" NAME="run_controller Coverage Results" MODIFIED="1575095725003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_driver/impedance_controler/scripts" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo15.coverage" NAME="pyqt_demo15 Coverage Results" MODIFIED="1587437191698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
@@ -127,22 +127,65 @@
       <file leaf-file-name="gui_main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2192">
-              <caret line="4353" column="45" selection-start-line="4353" selection-start-column="45" selection-end-line="4353" selection-end-column="45" />
+            <state relative-caret-position="410">
+              <caret line="5908" column="25" selection-start-line="5908" selection-start-column="25" selection-end-line="5908" selection-end-column="25" />
               <folding>
                 <element signature="e#102#112#0" expanded="true" />
-                <element signature="e#1205#14987#0" expanded="false" />
-                <element signature="e#15160#33395#0" expanded="false" />
-                <element signature="e#33488#49196#0" expanded="false" />
-                <element signature="e#49289#68505#0" expanded="false" />
-                <element signature="e#68602#82671#0" expanded="false" />
-                <element signature="e#82762#96675#0" expanded="false" />
-                <element signature="e#96766#111329#0" expanded="false" />
-                <element signature="e#111423#124321#0" expanded="false" />
-                <element signature="e#124418#137046#0" expanded="false" />
-                <element signature="e#137142#146663#0" expanded="false" />
-                <element signature="e#146759#157568#0" expanded="false" />
-                <element signature="e#157663#168968#0" expanded="false" />
+                <element signature="e#1944#7333#0" expanded="false" />
+                <element signature="e#7383#7695#0" expanded="false" />
+                <element signature="e#7801#8871#0" expanded="false" />
+                <element signature="e#8941#9874#0" expanded="false" />
+                <element signature="e#9927#10606#0" expanded="false" />
+                <element signature="e#10646#11009#0" expanded="false" />
+                <element signature="e#11070#11378#0" expanded="false" />
+                <element signature="e#11439#11767#0" expanded="false" />
+                <element signature="e#12093#12278#0" expanded="false" />
+                <element signature="e#12313#12807#0" expanded="false" />
+                <element signature="e#12847#14648#0" expanded="false" />
+                <element signature="e#14726#14807#0" expanded="false" />
+                <element signature="e#14842#14926#0" expanded="false" />
+                <element signature="e#14960#15037#0" expanded="false" />
+                <element signature="e#15071#15148#0" expanded="false" />
+                <element signature="e#15182#15262#0" expanded="false" />
+                <element signature="e#15297#15369#0" expanded="false" />
+                <element signature="e#15405#15479#0" expanded="false" />
+                <element signature="e#15513#15582#0" expanded="false" />
+                <element signature="e#15616#15685#0" expanded="false" />
+                <element signature="e#15719#15788#0" expanded="false" />
+                <element signature="e#15824#15899#0" expanded="false" />
+                <element signature="e#15939#16029#0" expanded="false" />
+                <element signature="e#16314#34549#0" expanded="false" />
+                <element signature="e#34653#51562#0" expanded="false" />
+                <element signature="e#51655#70869#0" expanded="false" />
+                <element signature="e#70966#85035#0" expanded="false" />
+                <element signature="e#85126#99039#0" expanded="false" />
+                <element signature="e#99130#113693#0" expanded="false" />
+                <element signature="e#113787#126685#0" expanded="false" />
+                <element signature="e#126782#139410#0" expanded="false" />
+                <element signature="e#139506#149027#0" expanded="false" />
+                <element signature="e#149123#159932#0" expanded="false" />
+                <element signature="e#194600#213505#0" expanded="false" />
+                <element signature="e#194983#196072#0" expanded="false" />
+                <element signature="e#197483#198554#0" expanded="false" />
+                <element signature="e#198618#199065#0" expanded="false" />
+                <element signature="e#199128#199535#0" expanded="false" />
+                <element signature="e#199591#200086#0" expanded="false" />
+                <element signature="e#200119#201971#0" expanded="false" />
+                <element signature="e#202004#202151#0" expanded="false" />
+                <element signature="e#202184#203959#0" expanded="false" />
+                <element signature="e#204003#204818#0" expanded="false" />
+                <element signature="e#204880#205474#0" expanded="false" />
+                <element signature="e#205520#205991#0" expanded="false" />
+                <element signature="e#206053#206383#0" expanded="false" />
+                <element signature="e#206429#206759#0" expanded="false" />
+                <element signature="e#206810#206822#0" expanded="false" />
+                <element signature="e#206859#206998#0" expanded="false" />
+                <element signature="e#207028#207049#0" expanded="false" />
+                <element signature="e#207088#207626#0" expanded="false" />
+                <marker date="1595314431402" expanded="false" signature="160022:171332" ph="..." />
+                <marker date="1595314431402" expanded="false" signature="171436:194491" ph="..." />
+                <marker date="1595314431402" expanded="false" signature="196095:197369" ph="..." />
+                <marker date="1595314431402" expanded="false" signature="207652:208605" ph="..." />
               </folding>
             </state>
           </provider>
@@ -151,8 +194,8 @@
       <file leaf-file-name="urs_hand_form1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robot_python/gui/urs_hand_form1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="270">
+              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -346,6 +389,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robot_python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -717,9 +782,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="30" width="1839" height="1050" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23063877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23063877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32297447" sideWeight="0.5105054" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1138,30 +1203,73 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/gui/urs_hand_form1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="270">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2192">
-          <caret line="4353" column="45" selection-start-line="4353" selection-start-column="45" selection-end-line="4353" selection-end-column="45" />
+        <state relative-caret-position="410">
+          <caret line="5908" column="25" selection-start-line="5908" selection-start-column="25" selection-end-line="5908" selection-end-column="25" />
           <folding>
             <element signature="e#102#112#0" expanded="true" />
-            <element signature="e#1205#14987#0" expanded="false" />
-            <element signature="e#15160#33395#0" expanded="false" />
-            <element signature="e#33488#49196#0" expanded="false" />
-            <element signature="e#49289#68505#0" expanded="false" />
-            <element signature="e#68602#82671#0" expanded="false" />
-            <element signature="e#82762#96675#0" expanded="false" />
-            <element signature="e#96766#111329#0" expanded="false" />
-            <element signature="e#111423#124321#0" expanded="false" />
-            <element signature="e#124418#137046#0" expanded="false" />
-            <element signature="e#137142#146663#0" expanded="false" />
-            <element signature="e#146759#157568#0" expanded="false" />
-            <element signature="e#157663#168968#0" expanded="false" />
+            <element signature="e#1944#7333#0" expanded="false" />
+            <element signature="e#7383#7695#0" expanded="false" />
+            <element signature="e#7801#8871#0" expanded="false" />
+            <element signature="e#8941#9874#0" expanded="false" />
+            <element signature="e#9927#10606#0" expanded="false" />
+            <element signature="e#10646#11009#0" expanded="false" />
+            <element signature="e#11070#11378#0" expanded="false" />
+            <element signature="e#11439#11767#0" expanded="false" />
+            <element signature="e#12093#12278#0" expanded="false" />
+            <element signature="e#12313#12807#0" expanded="false" />
+            <element signature="e#12847#14648#0" expanded="false" />
+            <element signature="e#14726#14807#0" expanded="false" />
+            <element signature="e#14842#14926#0" expanded="false" />
+            <element signature="e#14960#15037#0" expanded="false" />
+            <element signature="e#15071#15148#0" expanded="false" />
+            <element signature="e#15182#15262#0" expanded="false" />
+            <element signature="e#15297#15369#0" expanded="false" />
+            <element signature="e#15405#15479#0" expanded="false" />
+            <element signature="e#15513#15582#0" expanded="false" />
+            <element signature="e#15616#15685#0" expanded="false" />
+            <element signature="e#15719#15788#0" expanded="false" />
+            <element signature="e#15824#15899#0" expanded="false" />
+            <element signature="e#15939#16029#0" expanded="false" />
+            <element signature="e#16314#34549#0" expanded="false" />
+            <element signature="e#34653#51562#0" expanded="false" />
+            <element signature="e#51655#70869#0" expanded="false" />
+            <element signature="e#70966#85035#0" expanded="false" />
+            <element signature="e#85126#99039#0" expanded="false" />
+            <element signature="e#99130#113693#0" expanded="false" />
+            <element signature="e#113787#126685#0" expanded="false" />
+            <element signature="e#126782#139410#0" expanded="false" />
+            <element signature="e#139506#149027#0" expanded="false" />
+            <element signature="e#149123#159932#0" expanded="false" />
+            <element signature="e#194600#213505#0" expanded="false" />
+            <element signature="e#194983#196072#0" expanded="false" />
+            <element signature="e#197483#198554#0" expanded="false" />
+            <element signature="e#198618#199065#0" expanded="false" />
+            <element signature="e#199128#199535#0" expanded="false" />
+            <element signature="e#199591#200086#0" expanded="false" />
+            <element signature="e#200119#201971#0" expanded="false" />
+            <element signature="e#202004#202151#0" expanded="false" />
+            <element signature="e#202184#203959#0" expanded="false" />
+            <element signature="e#204003#204818#0" expanded="false" />
+            <element signature="e#204880#205474#0" expanded="false" />
+            <element signature="e#205520#205991#0" expanded="false" />
+            <element signature="e#206053#206383#0" expanded="false" />
+            <element signature="e#206429#206759#0" expanded="false" />
+            <element signature="e#206810#206822#0" expanded="false" />
+            <element signature="e#206859#206998#0" expanded="false" />
+            <element signature="e#207028#207049#0" expanded="false" />
+            <element signature="e#207088#207626#0" expanded="false" />
+            <marker date="1595314431402" expanded="false" signature="160022:171332" ph="..." />
+            <marker date="1595314431402" expanded="false" signature="171436:194491" ph="..." />
+            <marker date="1595314431402" expanded="false" signature="196095:197369" ph="..." />
+            <marker date="1595314431402" expanded="false" signature="207652:208605" ph="..." />
           </folding>
         </state>
       </provider>
