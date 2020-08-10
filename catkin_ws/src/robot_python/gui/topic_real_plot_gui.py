@@ -3,7 +3,7 @@
 #本文档用于实时显示和存储参数
 #程序员：陈永厅
 #版权：哈尔滨工业大学(深圳)
-#日期：初稿：2020年6月13号
+#日期：2020年6月13号
 #系统函数
 import sys
 import numpy as np
@@ -37,8 +37,9 @@ from robot_python import FileOpen as fo
 #**********************************主窗口***************************************#
 class PlotWindow(QMainWindow, Ui_PlotMainWindow):
     #建立全局变量
-    state_qq_list = list(np.zeros([1000,7]))
-    state_f_list = list(np.zeros([1000,6]))
+    state_qq_list = list(np.zeros([1000, 7]))
+    state_qv_list = list(np.zeros([1000, 7]))
+    state_f_list = list(np.zeros([1000, 6]))
     state_t_list = list(np.zeros(1000))
     state_t = 0
 
@@ -69,7 +70,7 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
         self.storage_flag = False
 
         self.sub_force_path = "/ft_sensor_topic"
-        self.sub_pos_path = "/armc/joint_states"
+        self.sub_pos_path = "/joint_states"
         self.n = 7  # 机械臂关节数
 
         self.setupUi(self)
@@ -160,8 +161,19 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
         self.p1.plot(t, qq[:, 5], pen='y', name='qq6', clear=False)
         self.p1.plot(t, qq[:, 6], pen='w', name='qq7', clear=False)
 
+    # 绘画所有关节曲线
+    def plot_vel_all(self, t, qv):
+        # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
+        self.p1.plot(t, qv[:, 0], pen='b', name='qv1', clear=True)
+        self.p1.plot(t, qv[:, 1], pen='g', name='qv2', clear=False)
+        self.p1.plot(t, qv[:, 2], pen='r', name='qv3', clear=False)
+        self.p1.plot(t, qv[:, 3], pen='c', name='qv4', clear=False)
+        self.p1.plot(t, qv[:, 4], pen='m', name='qv5', clear=False)
+        self.p1.plot(t, qv[:, 5], pen='y', name='qv6', clear=False)
+        self.p1.plot(t, qv[:, 6], pen='w', name='qv7', clear=False)
+
     # 绘画所有力曲线
-    def plot_force_all(self,t, f):
+    def plot_force_all(self, t, f):
         # 绘制六维力图
         self.p2.plot(t, f[:, 0], pen='b', name='F1', clear=True)
         self.p2.plot(t, f[:, 1], pen='g', name='F2', clear=False)
@@ -174,6 +186,11 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
     def plot_joint(self, t, qq, name):
         # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
         self.p1.plot(t, qq, pen='b', name=name, clear=True)
+
+    # 绘画单个关节曲线
+    def plot_vel(self, t, qv, name):
+        # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
+        self.p1.plot(t, qv, pen='b', name=name, clear=True)
 
     # 绘画单个力曲线
     def plot_force(self, t, f, name):
@@ -233,8 +250,10 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
     ##关节角订阅回调函数
     def joint_callback(self, msg):
         qq = np.zeros(self.n)
+        qv = np.zeros(self.n)
         for i in range(self.n):
             qq[i] = msg.position[i]
+            qv[i] = 0
 
         # 存储数据
         if (self.storage_flag):
@@ -243,10 +262,12 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
         # 绘图数据
         self.state_t = self.state_t + self.T
         self.state_qq_list.append(qq)
+        self.state_qv_list.append(qv)
         self.state_t_list.append(self.state_t)
         # 仅记录1000个数据点
         del self.state_t_list[0]
         del self.state_qq_list[0]
+        del self.state_qv_list[0]
 
     ##关节角订阅回调函数
     def force_callback(self, msg):
@@ -276,7 +297,8 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
     def realtime_plot(self):
         # 将列表转换为数组
         plot_t = np.array(self.state_t_list)
-        plot_qq = np.array(self.state_qq_list)
+        plot_qq = np.array(self.state_qv_list)
+        plot_qv = np.array(self.state_qv_list)
         plot_f = np.array(self.state_f_list)
 
         # 绘制关节图
@@ -287,7 +309,7 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
             name = "q2"
             self.plot_joint(plot_t, plot_qq[:, 1], name)
         elif (self.q3_flag):
-            name = "q2"
+            name = "q3"
             self.plot_joint(plot_t, plot_qq[:, 2], name)
         elif (self.q4_flag):
             name = "q4"
@@ -327,6 +349,9 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
             self.plot_force_all(plot_t, plot_f)
 
     def run_topic(self):
+        # 读取话题
+        self.sub_force_path = str(self.lineEdit_sub_f.text())
+        self.sub_pos_path = str(self.lineEdit_sub_qq.text())
         # 运行话题
         rospy.init_node('real_plot_node')
         rospy.Subscriber(self.sub_pos_path, JointState, self.joint_callback)

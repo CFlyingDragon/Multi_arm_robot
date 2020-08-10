@@ -264,17 +264,25 @@ def line_plan(qr_init,Xb,Xe,T,t,flag):
     return [X0_e,qq]
 
 #===============================自适应阻抗控制================================#
-def get_robot_parameter(flag):
-    # 默认参数armc
-    DH0 = rp.DHfa_armc
-    qq_max = rp.q_max_armc
-    qq_min = rp.q_min_armc
-    # 勾选时，ur5
-    if flag:
+def get_robot_parameter(flag_str):
+    # 机械臂是armc
+    if(flag_str=='armc'):
+        DH0 = rp.DHfa_armc
+        qq_max = rp.q_max_armc
+        qq_min = rp.q_min_armc
+    #机械臂是UR5
+    elif(flag_str=='ur5'):
         DH0 = rp.DH0_ur5
         qq_max = rp.q_max_ur5
         qq_min = rp.q_min_ur5
-    return [DH0,qq_max,qq_min]
+    elif(flag_str=='armt'):
+        DH0 = rp.DHf_armt
+        qq_max = rp.q_max_armc
+        qq_min = rp.q_min_armc
+    else:
+        print '输入参数错误'
+        return -1
+    return [DH0, qq_max,   qq_min]
 
 #============================关节角数据采集处理==============================#
 #解决仿真中采集个关节角间接性出现零的问题

@@ -437,6 +437,24 @@ clean: c_lightlobot/c_lightcobot/CMakeFiles/_catkin_empty_exported_target.dir/cl
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory robot_description/finger
+
+# Convenience name for "all" pass in the directory.
+robot_description/finger/all:
+
+.PHONY : robot_description/finger/all
+
+# Convenience name for "clean" pass in the directory.
+robot_description/finger/clean:
+
+.PHONY : robot_description/finger/clean
+
+# Convenience name for "preinstall" pass in the directory.
+robot_description/finger/preinstall:
+
+.PHONY : robot_description/finger/preinstall
+
+#=============================================================================
 # Directory level rules for directory robot_dependent/hrl-kdl/hrl_kdl
 
 # Convenience name for "all" pass in the directory.
@@ -9090,6 +9108,24 @@ robot_description/armt_description\ /CMakeFiles/armt_description_xacro_generated
 clean: robot_description/armt_description\ /CMakeFiles/armt_description_xacro_generated_to_devel_space_.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory robot_description/unknown_surface
+
+# Convenience name for "all" pass in the directory.
+robot_description/unknown_surface/all:
+
+.PHONY : robot_description/unknown_surface/all
+
+# Convenience name for "clean" pass in the directory.
+robot_description/unknown_surface/clean:
+
+.PHONY : robot_description/unknown_surface/clean
+
+# Convenience name for "preinstall" pass in the directory.
+robot_description/unknown_surface/preinstall:
+
+.PHONY : robot_description/unknown_surface/preinstall
 
 #=============================================================================
 # Special targets to cleanup operation of make.

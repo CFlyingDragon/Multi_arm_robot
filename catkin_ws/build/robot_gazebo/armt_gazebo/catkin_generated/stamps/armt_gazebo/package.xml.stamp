@@ -2,7 +2,7 @@
 <package>
   <name>armt_gazebo</name>
   <version>0.0.0</version>
-  <description>The armt_gazebo package</description>
+  <description>The armc_gazebo package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->

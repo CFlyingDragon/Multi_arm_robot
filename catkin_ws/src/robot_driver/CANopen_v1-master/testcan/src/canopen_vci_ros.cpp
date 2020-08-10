@@ -1,4 +1,9 @@
-﻿#include <stdio.h>
+﻿/*canopen_vci_ros.cpp
+ *用于解析CanOpen相关信息，转发为ros话题供上位机使用
+ *
+ *
+ * */
+#include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -22,31 +27,7 @@ int CANopenVCIROS::motor_init_pos[28];
 int flagrecord[28];
 bool enable_leg,enable_arm,enable_wheel,enable_AP_feedback,enable_RP_feedback,enable_I_feedback,enable_V_feedback,enable_wheelspeed_feedback,single_motor_test,enable_arm_absolute_encoder_feedback;
 VCI_CAN_OBJ psend[51];
-// VCI_CAN_OBJ *psend = send;
-// VCI_CAN_OBJ send[48];
-// char ip_pos[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
-// class CANopenVCIROS
-// {
-// public:
-//     CANopenVCIROS();
-//     virtual ~CANopenVCIROS();
-//     ros::Publisher canrecieve_pub;
-//     int send(int id, int CANx, int type, const char *pdata);
-//     int PDO_init(int dev_id);
-//     static testcan::Frame can_receive;
-//     static void *receive_func(void* param); 
-//     static void cansendCallback(const testcan::Frame::ConstPtr& canmsg);
-//     template <typename sdo>
-//         char* SDODataPack(sdo data, unsigned short index, char subindex,char (&sdoptr)[8]);
-    
-// private:
-//     VCI_BOARD_INFO pInfo;//用来获取设备信息
-//     ros::NodeHandle nh_;
-//     // ros::Publisher canrecieve_pub;
-//     ros::Subscriber cansend_sub;
-//     /* data */
-// };
 CANopenVCIROS::CANopenVCIROS(){
     
         printf(">>this is hello !\r\n %d",init_structure_motor_pos[17]);
@@ -62,6 +43,7 @@ CANopenVCIROS::~CANopenVCIROS(){
         VCI_CloseDevice(VCI_USBCAN2,0);//关闭设备。
 };
 
+//初始化CanOpen相关函数
 void CANopenVCIROS::CanDevInit(){
     // printf(">>this is hello !\r\n");//指示程序已运行
         if(VCI_OpenDevice(VCI_USBCAN2,0,0)==1)//打开设备
@@ -172,6 +154,7 @@ void CANopenVCIROS::CanDevInit(){
         }
 }
 
+//ros节点相关函数
 void CANopenVCIROS::rosnode(){
 
     ros::NodeHandle nh_("canopenexample");
@@ -195,6 +178,7 @@ void CANopenVCIROS::rosnode(){
     std::cout<<"getparam "<<test_motor_id<<std::endl;
 };
 
+//通过SDO配置PDO通讯相关参数
 int CANopenVCIROS::PDO_init(int dev_id){
     /*char IP_Mode_init[51][8] = {{0x40, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00},
                                 {0x40, 0x18, 0x10, 0x01, 0x00, 0x00, 0x00, 0x00},
@@ -375,6 +359,7 @@ int CANopenVCIROS::PDO_init(int dev_id){
     send(dev_id,CAN1,RPDO2,TPDO_enable[4],3);
 }
 
+//接收ros话题命名，转化为CanOpen协议消息下发
 void CANopenVCIROS::cansendCallback(const testcan::Frame::ConstPtr& canmsg){
     VCI_CAN_OBJ send[1];
 	send[0].ID = canmsg->id;
@@ -409,11 +394,13 @@ void CANopenVCIROS::cansendCallback(const testcan::Frame::ConstPtr& canmsg){
 		}
 }
 
+//创建一个接收线程,用于接收can信息
 int CANopenVCIROS::startRecieveCanThread()
 {
     canRecieveThread_ = boost::thread(boost::bind(&CANopenVCIROS::canRecieveThread, this));
 }
 
+//循环接受机械臂返回的通讯，转发为ros消息，自定义数据结构
 void CANopenVCIROS::canRecieveThread()
 {
     int reclen=0;
@@ -438,6 +425,7 @@ void CANopenVCIROS::canRecieveThread()
 				if(rec[j].RemoteFlag==1) printf(" Remote ");//帧类型：远程帧
 				printf("DLC:0x%02X",rec[j].DataLen);//帧长度
 				printf(" data:0x");	//数据*/
+                //转发数据，将接收到的消息存到类的私有变量
                 _can_receive.id = rec[j].ID;
                 _can_receive.dlc = rec[j].DataLen;
 				for(i = 0; i < rec[j].DataLen; i++)
@@ -445,7 +433,7 @@ void CANopenVCIROS::canRecieveThread()
 					// printf(" %02X", rec[j].Data[i]);
                     _can_receive.data[i] = rec[j].Data[i];
 				}
-                canrecieve_pub.publish(_can_receive);
+                canrecieve_pub.publish(_can_receive); //转发为上位机需要的数据类型
                 if (_can_receive.data[1]==0xA0){
                     GetInitPos(_can_receive);
                 }
@@ -565,28 +553,30 @@ void *CANopenVCIROS::receive_func(void* param)  //接收线程。
 	pthread_exit(0);
 }
 
+//获得初始位置，机械臂启动时刻的位置，返回的是编码器的位
 void CANopenVCIROS::GetInitPos(testcan::Frame can_receive){
     int dev_id = can_receive.id - ReadSDO;
     if ((can_receive.id > ReadSDO)&&(flagrecord[dev_id] == 0)){
-        unsigned char data[8];
+        unsigned char data[8];                  //8个字节
         for(int i = 0; i < 8; i++)
         {
             data[i] = can_receive.data[i];
         } 
-        int init_pos = (data[7]<<24)|(data[6]<<16)|(data[5]<<8)|data[4]; 
-        motor_init_pos[dev_id] = init_pos; 
-        printf("INIT pos of motor %d is %d\n",dev_id,init_pos);
+        int init_pos = (data[7]<<24)|(data[6]<<16)|(data[5]<<8)|data[4]; //四个字节的数据
+        motor_init_pos[dev_id] = init_pos;                               //获取电机初始时刻位置
+        printf("INIT pos of motor %d is %d\n",dev_id,init_pos);          //打印电机初始位置
         flagrecord[dev_id] = 1;
     }
     // printf("encoder %f",two_encoderatio_s);
 }
 
+//定义类模板
 template <typename sdo>
 char* CANopenVCIROS::SDODataPack(sdo data, unsigned short index, char subindex,char (&sdoptr)[8]){
     SDOData sdodata;
     char sdoarray[8];
     int i;
-    size_t len = sizeof(data);
+    size_t len = sizeof(data);           //sdo的字节数
     sdodata.cmd = 0x23 + 4 * len - 4;
     sdodata.index = index;
     sdodata.subindex = subindex;
@@ -633,6 +623,7 @@ char* CANopenVCIROS::SDODataPack(sdo data, unsigned short index, char subindex,c
 
 }
 
+//发送数据帧
 int CANopenVCIROS::send(int id, int CANx, int type, const char *pdata, unsigned int frame_num){
     //需要发送的帧，结构体设置
     SDOData sdodata;
@@ -680,27 +671,10 @@ int CANopenVCIROS::send(int id, int CANx, int type, const char *pdata, unsigned 
 			psend[0].ID+=1;
 		}
     }
-
-		// if(VCI_Transmit(VCI_USBCAN2, 0, 1, send, 1) == 1)
-		// {
-		// 	printf("Index:%04d  ",count);count++;
-		// 	printf("CAN2 TX ID:0x%08X", send[0].ID);
-		// 	if(send[0].ExternFlag==0) printf(" Standard ");
-		// 	if(send[0].ExternFlag==1) printf(" Extend   ");
-		// 	if(send[0].RemoteFlag==0) printf(" Data   ");
-		// 	if(send[0].RemoteFlag==1) printf(" Remote ");
-		// 	printf("DLC:0x%02X",send[0].DataLen);
-		// 	printf(" data:0x");			
-		// 	for(i = 0; i < send[0].DataLen; i++)
-		// 	{
-		// 		printf(" %02X", send[0].Data[i]);
-		// 	}
-		// 	printf("\n");
-		// 	send[0].ID+=1;
-		// }    
 }
 
 // char ip_pos[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+//接收上位及指令并转发
 void CANopenVCIROS::PosCmdCallback(const testcan::IpPos::ConstPtr &cmd){
     if(single_motor_test)
     {
@@ -752,14 +726,14 @@ void CANopenVCIROS::PosCmdCallback(const testcan::IpPos::ConstPtr &cmd){
     }
     int data1 = int(data);
     // data = data - (int)((motor_init_pos[dev_id] -init_structure_motor_pos[dev_id-1]) *two_encoderatio_s);
-    printf("init_structure_motor_pos of %d is %d",dev_id,init_structure_motor_pos[dev_id-1]);
+    //printf("init_structure_motor_pos of %d is %d",dev_id,init_structure_motor_pos[dev_id-1]);
     printf("send pos is %d",data1);
     ip_pos[0] = (data1<<24)>>24;
     ip_pos[1] = (data1<<16)>>24;
     ip_pos[2] = (data1<<8)>>24;
     ip_pos[3] = data1>>24;
     
-    send(dev_id,CAN1,RPDO3,ip_pos,1);
+    send(dev_id,CAN1,RPDO3,ip_pos,1);  //调用send发下关节指令
     if(single_motor_test)
     {
         double end = ros::Time::now().toNSec();
@@ -793,6 +767,8 @@ void CANopenVCIROS::veltowheelCallback(const geometry_msgs::Twist &vel){
         printf("velocity cmd is Vx = %f\t Vy = %f\t W = %f\t", Vx,Vy,Vz);
         printf("wheel velocity cmd is A = %d\t B = %d\t C = %d\t D = %d\t", Target_A, Target_B, Target_C, Target_D);
 }
+
+//整数型转化为字符型
 void CANopenVCIROS::int2char(int dat,char a[])
 {
 	unsigned int data;
@@ -907,141 +883,7 @@ if(enable_leg){
     CANopenVCIROS1.send(13,CAN1,WriteSDO,sdoAP,1);
 }
 
-    // CANopenVCIROS1.SDODataPack(0, AP, 0x00,sdo1);
-
-    // CANopenVCIROS1.send(6,CAN1,WriteSDO,sdoAP);
-            // char test_sdo_pp[8][8] = {{0x2F, 0x60, 0x60, 0x00, 0x03, 0x00, 0x00, 0x00},
-            //                             //{0x23, 0x7A, 0x60, 0x00, 0x00, 0x20, 0x26, 0x00},
-            //                             {0x23, 0x94, 0x60, 0x01, 0x00, 0x3D, 0x00, 0x00},
-            //                             {0x23, 0x94, 0x60, 0x02, 0x3C, 0x00, 0x00, 0x00},
-            //                             {0x23, 0xFF, 0x60, 0x00, 0x10, 0x00, 0x00, 0x00},
-            //                             {0x23, 0x83, 0x60, 0x00, 0x10, 0x27, 0x00, 0x00},
-            //                             {0x23, 0x84, 0x60, 0x00, 0x10, 0x27, 0x00, 0x00},
-            //                             {0x23, 0x81, 0x60, 0x00, 0x10, 0x27, 0x00, 0x00},
-            //                             {0x2B, 0x40, 0x60, 0x00, 0x1F, 0x00, 0x00, 0x00}};
-            // for (int j = 0;j < 8;j++){
-            //     CANopenVCIROS1.send(3,CAN1,WriteSDO,test_sdo_pp[j],8);
-            //     // usleep(100000);
-            // }
-
-    /* char a[8]={1,2,3,4,5,6,7,8};
-            int vel = 1000;
-            char sdo1[8]={0};
-            
-            // char * sdo1 = CANopenVCIROS1.SDODataPack(1000, TV_V, 0x00);
-            // sdo2 = &sdo1;
-            CANopenVCIROS1.SDODataPack(1000, TV_V, 0x00,sdo1);
-            int sdo_num = 48;
-            int dev_id = 7;
-            char IP_Mode_init[48][8] = {{0x40, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00},
-                                        {0x40, 0x18, 0x10, 0x01, 0x00, 0x00, 0x00, 0x00},
-                                        {0x2B, 0x0C, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00},
-                                        {0x2F, 0x0D, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00},
-                                        {0x23, 0x14, 0x10, 0x00, 0x86, 0x00, 0x00, 0x80},
-                                        {0x23, 0x14, 0x10, 0x00, 0x86, 0x00, 0x00, 0x00},
-                                        {0x23, 0x16, 0x10, 0x01, 0x00, 0x00, 0x00, 0x00},
-                                        {0x2B, 0x17, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00},
-                                        {0x23, 0x00, 0x14, 0x01, dev_id, 0x02, 0x00, 0x80},
-                                        {0x2F, 0x00, 0x14, 0x02, 0xFF, 0x00, 0x00, 0x00},
-                                        {0x2F, 0x00, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00},
-                                        {0x23, 0x00, 0x16, 0x01, 0x08, 0x00, 0x60, 0x60},
-                                        {0x2F, 0x00, 0x16, 0x00, 0x01, 0x00, 0x00, 0x00},
-                                        {0x23, 0x00, 0x14, 0x01, dev_id, 0x02, 0x00, 0x00},
-                                        {0x23, 0x01, 0x14, 0x01, dev_id, 0x03, 0x00, 0x80},
-                                        {0x2F, 0x01, 0x14, 0x02, 0xFF, 0x00, 0x00, 0x00},
-                                        {0x2F, 0x01, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00},
-                                        {0x23, 0x01, 0x16, 0x01, 0x10, 0x00, 0x40, 0x60},
-                                        {0x23, 0x01, 0x16, 0x02, 0x20, 0x00, 0x7A, 0x60},
-                                        {0x2F, 0x01, 0x16, 0x00, 0x02, 0x00, 0x00, 0x00},
-                                        {0x23, 0x01, 0x14, 0x01, dev_id, 0x03, 0x00, 0x00},
-                                        {0x23, 0x02, 0x14, 0x01, dev_id, 0x04, 0x00, 0x80},
-                                        {0x2F, 0x02, 0x14, 0x02, 0xFF, 0x00, 0x00, 0x00},
-                                        {0x2F, 0x02, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00},
-                                        {0x23, 0x02, 0x16, 0x01, 0x10, 0x01, 0xC1, 0x60},
-                                        {0x23, 0x02, 0x16, 0x02, 0x10, 0x02, 0xC1, 0x60},
-                                        {0x2F, 0x02, 0x16, 0x00, 0x02, 0x00, 0x00, 0x00},
-                                        {0x23, 0x02, 0x14, 0x01, dev_id, 0x04, 0x00, 0x00},
-                                        {0x23, 0x03, 0x14, 0x01, dev_id, 0x05, 0x00, 0x80},
-                                        {0x23, 0x00, 0x18, 0x01, 0x80+dev_id, 0x01, 0x00, 0x80},
-                                        {0x2F, 0x00, 0x18, 0x02, 0xFF, 0x00, 0x00, 0x00},
-                                        {0x2B, 0x00, 0x18, 0x03, 0x00, 0x00, 0x00, 0x00},
-                                        {0x2B, 0x00, 0x18, 0x05, 0x00, 0x00, 0x00, 0x00},
-                                        {0x2F, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0x00},
-                                        {0x23, 0x00, 0x1A, 0x01, 0x10, 0x00, 0x41, 0x60},
-                                        {0x2F, 0x00, 0x1A, 0x00, 0x01, 0x00, 0x00, 0x00},
-                                        {0x23, 0x00, 0x18, 0x01, 0x80+dev_id, 0x01, 0x00, 0x00},
-                                        {0x23, 0x01, 0x18, 0x01, 0x80+dev_id, 0x02, 0x00, 0x80},
-                                        {0x2F, 0x01, 0x18, 0x02, 0xFF, 0x00, 0x00, 0x00},
-                                        {0x2B, 0x01, 0x18, 0x03, 0x00, 0x00, 0x00, 0x00},
-                                        {0x2B, 0x01, 0x18, 0x05, 0x00, 0x00, 0x00, 0x00},
-                                        {0x2F, 0x01, 0x1A, 0x00, 0x00, 0x00, 0x00, 0x00},
-                                        {0x23, 0x01, 0x1A, 0x01, 0x20, 0x00, 0x6C, 0x60},
-                                        {0x23, 0x01, 0x1A, 0x02, 0x20, 0x00, 0x64, 0x60},
-                                        {0x2F, 0x01, 0x1A, 0x00, 0x02, 0x00, 0x00, 0x00},
-                                        {0x23, 0x01, 0x18, 0x01, 0x80+dev_id, 0x02, 0x00, 0x00},
-                                        {0x23, 0x02, 0x18, 0x01, 0x80+dev_id, 0x03, 0x00, 0x80},
-                                        {0x23, 0x03, 0x18, 0x01, 0x80+dev_id, 0x04, 0x00, 0x80}};
-
-            char test_sdo_pp[6][8] = {{0x2F, 0x60, 0x60, 0x00, 0x01, 0x00, 0x00, 0x00},
-                                        {0x23, 0x7A, 0x60, 0x00, 0x00, 0x20, 0x26, 0x00},
-                                        {0x23, 0x83, 0x60, 0x00, 0x10, 0x27, 0x00, 0x00},
-                                        {0x23, 0x84, 0x60, 0x00, 0x10, 0x27, 0x00, 0x00},
-                                        {0x23, 0x81, 0x60, 0x00, 0x10, 0x27, 0x00, 0x00},
-                                        {0x2B, 0x40, 0x60, 0x00, 0x1F, 0x00, 0x00, 0x00}};
-            // for (int j = 0;j < 6;j++){
-            //     CANopenVCIROS1.send(25,CAN1,WriteSDO,test_sdo_pp[j]);
-            //     usleep(100000);
-            // }
-        //     CANopenVCIROS1.send(0,CAN1,0x000,IP_Mode_init[0]);
-        //     usleep(10000);
-        //     CANopenVCIROS1.send(0,CAN1,0x000,IP_Mode_init[1]);
-        //     usleep(10000);
-        //     CANopenVCIROS1.send(0,CAN1,0x000,IP_Mode_init[2]);
-        //     usleep(10000);
-        CANopenVCIROS1.PDO_init(0x07);
-            // for (int i = 0;i < sdo_num;i++){
-            //     CANopenVCIROS1.send(dev_id,CAN1,WriteSDO,IP_Mode_init[i]);
-            //     usleep(10000);false
-            //     // printf("OK once\n");
-            // }
-            usleep(100000);
-
-        //     // CANopenVCIROS1.send(0,CAN1,WriteSDO,sdo1);
-        //     usleep(1000000);
-        // char modeop[8] = {0x07,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-        // char ask[8] = {0x40,0x7A,0x60,0x00,0x00,0x00,0x00,0x00};
-        // char TPDO_enable[5][8] = {{0x06,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
-        //                     {0x07,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
-        //                     {0x0F,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
-        //                     {0x1F,0x00,0xFF,0xFF,0xFF,0xFF,0x00,0x00},
-        //                     {0x1F,0x00,0x00,0x00,0xF9,0x15,0x00,0x00}};
-            char ip_dis[2][8] = {{0x00,0xF9,0x15,0x00,0x00,0x00,0x00,0x00},
-                                {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}};
-            // char start[8] = {0x01,dev_id,0x00,0x00,0x00,0x00,0x00,0x00};
-            //     CANopenVCIROS1.send(dev_id,CAN1,WriteSDO,ask);
-            //     usleep(10000);    
-            //     CANopenVCIROS1.send(0,CAN1,0x000,start);
-            //     usleep(10000);
-            //     CANopenVCIROS1.send(dev_id,CAN1,RPDO1,modeop);
-            //     usleep(10000);
-            //     CANopenVCIROS1.send(dev_id,CAN1,RPDO2,TPDO_enable[4]);
-            //     // for (int j = 0;j < 4;j++){
-            //     //     CANopenVCIROS1.send(dev_id,CAN1,RPDO2,TPDO_enable[j]);
-            //     //     usleep(100000);
-            //     // }
-            CANopenVCIROS1.send(dev_id,CAN1,RPDO3,ip_dis[0]);
-            // usleep(1000000);
-            // CANopenVCIROS1.send(dev_id,CAN1,RPDO3,ip_dis[1]);
-            // usleep(10000);    
-            //CANopenVCIROS1.send(dev_id,CAN1,WriteSDO,ask);*/
-
-    
-    
     ros::Rate loop_rate(100);
-        // CANopenVCIROS1.send(0x11,CAN2,DIS,DisEnable11,1);
-        // CANopenVCIROS1.send(0x22,CAN2,DIS,DisEnable22,1);
-        // CANopenVCIROS1.send(0x33,CAN2,DIS,DisEnable33,1);
-        // CANopenVCIROS1.send(0x44,CAN2,DIS,DisEnable44,1);
         if(enable_wheel){
                 CANopenVCIROS1.send(0x11,CAN2,ENA,Enable11,1);
                 CANopenVCIROS1.send(0x22,CAN2,ENA,Enable22,1);

@@ -6,6 +6,7 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs(gtest)
 subdirs(c_lightlobot/c_lightcobot)
+subdirs(robot_description/finger)
 subdirs(robot_dependent/hrl-kdl/hrl_kdl)
 subdirs(robot_description/robot_description)
 subdirs(robot_driver/robot_drive)
@@ -49,3 +50,4 @@ subdirs(robot_moveit/armc_moveit)
 subdirs(c_lightlobot/armc_moveit_config)
 subdirs(robot_moveit/armc_moveit_config1)
 subdirs(robot_description/armt_description )
+subdirs(robot_description/unknown_surface)

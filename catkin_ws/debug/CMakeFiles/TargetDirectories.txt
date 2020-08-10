@@ -36,6 +36,13 @@
 /home/d/catkin_ws/debug/c_lightlobot/c_lightcobot/CMakeFiles/install/local.dir
 /home/d/catkin_ws/debug/c_lightlobot/c_lightcobot/CMakeFiles/edit_cache.dir
 /home/d/catkin_ws/debug/c_lightlobot/c_lightcobot/CMakeFiles/test.dir
+/home/d/catkin_ws/debug/robot_description/finger/CMakeFiles/install.dir
+/home/d/catkin_ws/debug/robot_description/finger/CMakeFiles/list_install_components.dir
+/home/d/catkin_ws/debug/robot_description/finger/CMakeFiles/rebuild_cache.dir
+/home/d/catkin_ws/debug/robot_description/finger/CMakeFiles/install/local.dir
+/home/d/catkin_ws/debug/robot_description/finger/CMakeFiles/install/strip.dir
+/home/d/catkin_ws/debug/robot_description/finger/CMakeFiles/edit_cache.dir
+/home/d/catkin_ws/debug/robot_description/finger/CMakeFiles/test.dir
 /home/d/catkin_ws/debug/robot_dependent/hrl-kdl/hrl_kdl/CMakeFiles/install.dir
 /home/d/catkin_ws/debug/robot_dependent/hrl-kdl/hrl_kdl/CMakeFiles/list_install_components.dir
 /home/d/catkin_ws/debug/robot_dependent/hrl-kdl/hrl_kdl/CMakeFiles/rebuild_cache.dir
@@ -553,3 +560,10 @@
 /home/d/catkin_ws/debug/robot_description/armt_description /CMakeFiles/install/local.dir
 /home/d/catkin_ws/debug/robot_description/armt_description /CMakeFiles/edit_cache.dir
 /home/d/catkin_ws/debug/robot_description/armt_description /CMakeFiles/test.dir
+/home/d/catkin_ws/debug/robot_description/unknown_surface/CMakeFiles/install.dir
+/home/d/catkin_ws/debug/robot_description/unknown_surface/CMakeFiles/list_install_components.dir
+/home/d/catkin_ws/debug/robot_description/unknown_surface/CMakeFiles/rebuild_cache.dir
+/home/d/catkin_ws/debug/robot_description/unknown_surface/CMakeFiles/install/local.dir
+/home/d/catkin_ws/debug/robot_description/unknown_surface/CMakeFiles/install/strip.dir
+/home/d/catkin_ws/debug/robot_description/unknown_surface/CMakeFiles/edit_cache.dir
+/home/d/catkin_ws/debug/robot_description/unknown_surface/CMakeFiles/test.dir

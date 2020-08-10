@@ -1,6 +1,5 @@
-// Integration2SY.cpp: 定义控制台应用程序的入口点。
+﻿// Integration2SY.cpp: 定义控制台应用程序的入口点。
 //
-
 
 /*
 * File:Integration1.c

@@ -1,4 +1,5 @@
-﻿#include "ros/ros.h"
+﻿/*arm-example.cpp 读取文件下发关节角度，话题ip_pos*/
+#include "ros/ros.h"
 #include "testcan/IpPos.h"
 #include "iostream"
 #include "fstream"

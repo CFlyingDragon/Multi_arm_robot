@@ -86,6 +86,71 @@ def ur5s_move_object_plan():
 
     return [qq1, qq2]
 
+#=================两个UR5机械臂搬运木箱规划:加入手抓=================#
+def ur5s_move_object_plan_hand():
+    Xb = rp.board_X
+    Xe = Xb + np.array([0.0, 0.35, 0.250, 0, 0, 0])
+    T = 0.01
+    t = 30
+    #建立多臂规划类
+    robots1 = Robots.RobotsHandMoveObject()
+    #获取DH参数
+    robots1.get_robot1_paramter(rp.DH0_ur5, rp.q_min_ur5, rp.q_max_ur5)
+    robots1.get_robot2_paramter(rp.DH0_ur5, rp.q_min_ur5, rp.q_max_ur5)
+    #获取基座到世界坐标系参数
+    robots1.get_robots_base_to_world(rp.robot1_base_T, rp.robot2_base_T)
+
+    #加入手抓
+    robots1.get_grasp_end(rp.T_grasp)
+
+    #获取抓取点相对于工件坐标系
+    T_o_t1 = np.eye(4)
+    T_o_t2 = np.eye(4)
+    T_o_t1[0:3, 0:3] = np.array([[0, 0, 1],
+                                 [-1, 0, 0],
+                                 [0, -1, 0.0]])
+    T_o_t1[0:3, 3] = np.array([-0.1, 0.0, 0.044])
+    T_o_t2[0:3, 0:3] = np.array([[0, 0, -1],
+                                 [1, 0, 0],
+                                 [0, -1, 0.0]])
+    T_o_t2[0:3, 3] = np.array([0.1, 0.0, 0.044])
+    robots1.get_robots_tool_to_object(T_o_t1, T_o_t2)
+
+    #输入准备长度
+    l = 0.10
+    ready_num = 400
+    robots1.get_ready_distance(l, ready_num)
+
+
+    #输入工件规划点
+    Xe_list = workpiece_moving_track_line(Xb, Xe, T, t)
+    robots1.get_object_plan_list_zyx(Xe_list)
+
+    #获取关节角
+    qq1_guess = np.array([-90, -120, -120, 60, 90, 0])*np.pi / 180.0
+    qq2_guess = np.array([-90, -60, 120, 120, -90, 0]) * np.pi / 180.0
+    [qq1, qq2] = robots1.put_robots_joint_position(qq1_guess, qq2_guess)
+
+    # 绘制关节角
+    num12 = len(qq1)
+    t12 = np.linspace(0, T * (num12 - 1), num12)
+    MyPlot.plot2_nd(t12, qq1, title="qq1")
+    MyPlot.plot2_nd(t12, qq2, title="qq2")
+
+    # 写入文件
+    parent_path = os.path.join(os.getcwd(), '../..')
+    parent_path = os.path.abspath(parent_path)
+    file_name1 = "data/robots/robot1_hand_move_position.txt"
+    path1 = os.path.join(parent_path, file_name1)
+    FileOpen.write(qq1, path1)
+
+    # 写入文件
+    file_name2 = "data/robots/robot2_hand_move_position.txt"
+    path2 = os.path.join(parent_path, file_name2)
+    FileOpen.write(qq2, path2)
+
+    return [qq1, qq2]
+
 def go_to_world_pos():
     Xb = rp.Wooden_X
     phi =np.array([[0, 0, 1], [0, -1, 0], [1, 0, 0.0]])
@@ -215,7 +280,10 @@ def main():
     #robots_polish_object_plan()
 
     #搬运物体规划
-    ur5s_move_object_plan()
+    #ur5s_move_object_plan()
+
+    # 搬运物体规划:加入手抓
+    ur5s_move_object_plan_hand()
 
     print "finish!"
 

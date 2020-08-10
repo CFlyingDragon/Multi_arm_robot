@@ -659,10 +659,16 @@ armc_description_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/robot_description/armc_
 armc_effort_position_controller_LIB_DEPENDS:STATIC=
 
 //Value Computed by CMake
-armc_gazebo_BINARY_DIR:STATIC=/home/d/catkin_ws/build/c_lightlobot/armc_gazebo
+armc_gazebo1_BINARY_DIR:STATIC=/home/d/catkin_ws/build/c_lightlobot/armc_gazebo1
 
 //Value Computed by CMake
-armc_gazebo_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/c_lightlobot/armc_gazebo
+armc_gazebo1_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/c_lightlobot/armc_gazebo1
+
+//Value Computed by CMake
+armc_gazebo_BINARY_DIR:STATIC=/home/d/catkin_ws/build/robot_gazebo/armc_gazebo
+
+//Value Computed by CMake
+armc_gazebo_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/robot_gazebo/armc_gazebo
 
 //Value Computed by CMake
 armc_gazebo_config_BINARY_DIR:STATIC=/home/d/catkin_ws/build/robot_gazebo/armc_gazebo_config
@@ -780,6 +786,12 @@ eigen_conversions_DIR:PATH=/opt/ros/kinetic/share/eigen_conversions/cmake
 
 //The directory containing a CMake configuration file for eigen_stl_containers.
 eigen_stl_containers_DIR:PATH=/opt/ros/kinetic/share/eigen_stl_containers/cmake
+
+//Value Computed by CMake
+finger_BINARY_DIR:STATIC=/home/d/catkin_ws/build/robot_description/finger
+
+//Value Computed by CMake
+finger_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/robot_description/finger
 
 //Value Computed by CMake
 force_sensor_BINARY_DIR:STATIC=/home/d/catkin_ws/build/robot_sensor/force_sensor
@@ -1386,6 +1398,12 @@ universal_robots_BINARY_DIR:STATIC=/home/d/catkin_ws/build/universal_robot/unive
 universal_robots_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/universal_robot/universal_robots
 
 //Value Computed by CMake
+unknown_surface_BINARY_DIR:STATIC=/home/d/catkin_ws/build/robot_description/unknown_surface
+
+//Value Computed by CMake
+unknown_surface_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/robot_description/unknown_surface
+
+//Value Computed by CMake
 ur10_e_moveit_config_BINARY_DIR:STATIC=/home/d/catkin_ws/build/universal_robot/ur10_e_moveit_config
 
 //Value Computed by CMake
@@ -1659,7 +1677,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=47
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=49
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

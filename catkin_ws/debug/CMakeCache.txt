@@ -115,7 +115,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 CMAKE_BUILD_TYPE:STRING=Debug
 
 //The CodeBlocks executable
-CMAKE_CODEBLOCKS_EXECUTABLE:FILEPATH=CMAKE_CODEBLOCKS_EXECUTABLE-NOTFOUND
+CMAKE_CODEBLOCKS_EXECUTABLE:FILEPATH=/usr/bin/codeblocks
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -814,6 +814,12 @@ example_action_server_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/learn_demo/examp
 example_action_server_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/learn_demo/example_action_server
 
 //Value Computed by CMake
+finger_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/robot_description/finger
+
+//Value Computed by CMake
+finger_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/robot_description/finger
+
+//Value Computed by CMake
 force_sensor_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/robot_sensor/force_sensor
 
 //Value Computed by CMake
@@ -1415,6 +1421,12 @@ universal_robots_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/universal_robot/unive
 universal_robots_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/universal_robot/universal_robots
 
 //Value Computed by CMake
+unknown_surface_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/robot_description/unknown_surface
+
+//Value Computed by CMake
+unknown_surface_SOURCE_DIR:STATIC=/home/d/catkin_ws/src/robot_description/unknown_surface
+
+//Value Computed by CMake
 ur10_e_moveit_config_BINARY_DIR:STATIC=/home/d/catkin_ws/debug/universal_robot/ur10_e_moveit_config
 
 //Value Computed by CMake
@@ -1688,7 +1700,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=47
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=49
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

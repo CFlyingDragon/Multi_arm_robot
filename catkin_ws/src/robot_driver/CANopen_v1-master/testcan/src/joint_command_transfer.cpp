@@ -1,4 +1,8 @@
-﻿#include "ros/ros.h"
+﻿/*joint_command_transfer.cpp
+ *上位级与下位机转接接口
+ *
+ * */
+#include "ros/ros.h"
 #include "testcan/IpPos.h"
 #include "iostream"
 #include "fstream"
@@ -21,7 +25,7 @@ public:
     void fCallback2(const std_msgs::Float64MultiArray::ConstPtr& jointCommandMsg);
 private:
     int count_reset = 0;
-    int resetFlag = 0;
+    int resetFlag = 1;
     int count_receive = 0;
     double jointPosition[7];
     double jointPositionInEncoder[7];
@@ -59,8 +63,8 @@ void JointCommand::registerPubSub(){
     pos_pub = nh.advertise<testcan::IpPos>("/canopenexample/ip_pos",8);
 
     //订阅上位及关节命令
-    resetCommandSub = nh.subscribe("/reset_flag",2,&JointCommand::fCallback1, this);
-    jointCommandSub = nh.subscribe("/joint_command",40,&JointCommand::fCallback2, this);    
+    //resetCommandSub = nh.subscribe("/reset_flag",2,&JointCommand::fCallback1, this);
+    jointCommandSub = nh.subscribe("/armt/joint_command",40,&JointCommand::fCallback2, this);
 }
 
 void JointCommand::fCallback1(const std_msgs::Bool::ConstPtr& resetCommandMsg){
@@ -76,7 +80,7 @@ void JointCommand::fCallback1(const std_msgs::Bool::ConstPtr& resetCommandMsg){
 
 //接收上位机Float64数组
 void JointCommand::fCallback2(const std_msgs::Float64MultiArray::ConstPtr& jointCommandMsg){
-    count_receive++;                                                                       //接受计数加1
+    //count_receive++;                                                                       //接受计数加1
     for(int i=0;i<7;i++)
     {
         jointPositionInEncoder[i] = degreetoradius * jointCommandMsg->data[i];             //弧度单位转为角度单位
@@ -96,7 +100,7 @@ void JointCommand::fCallback2(const std_msgs::Float64MultiArray::ConstPtr& joint
             ip_pos.id = i+1;
             ip_pos.pos = jointPositionInEncoder[i];
             pos_pub.publish(ip_pos);
-            ROS_INFO("send motor %d  a angle of %f",i+1,jointPositionInEncoder[i]);
+            //ROS_INFO("send motor %d  a angle of %f",i+1,jointPositionInEncoder[i]);
         }
     }
 }

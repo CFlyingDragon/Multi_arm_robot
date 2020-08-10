@@ -2,7 +2,7 @@
 <launch>
 
 
-  <param name="robot_description" command="$(find xacro)/xacro '$(find armc_description)/robots/armc.urdf.xacro'
+  <param name="robot_description" command="$(find xacro)/xacro '$(find armc_description)/curdf/armc.urdf.xacro'
   --inorder"/>
   
 <rosparam command="load" file="$(find ros_ethercat_driver)/config/control.yaml" />
@@ -33,6 +33,7 @@
 <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
   <param name="publish_frequency" type="double" value="100.0" />
   <param name="ignore_timestamp" type="bool" value="false" />
+  <remap from="/joint_states" to="/armc/joint_states" />
 </node>
 
 </launch>

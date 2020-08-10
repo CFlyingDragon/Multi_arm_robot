@@ -238,7 +238,7 @@ class Ui_UrsHandForm1(object):
         self.radioButton_robot1.setText(_translate("UrsHandForm1", "robot1"))
         self.radioButton_robot2.setText(_translate("UrsHandForm1", "robot2"))
         self.radioButton_all.setText(_translate("UrsHandForm1", "all"))
-        self.lineEdit_F.setText(_translate("UrsHandForm1", "50"))
+        self.lineEdit_F.setText(_translate("UrsHandForm1", "13"))
         self.label_12.setText(_translate("UrsHandForm1", "F："))
         self.label_13.setText(_translate("UrsHandForm1", "手抓控制栏"))
         self.button_hand_on.setText(_translate("UrsHandForm1", "夹紧"))

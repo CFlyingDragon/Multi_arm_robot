@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: finger
+Description: Description of finger
+Version: 1.2.5
+Cflags: 
+Libs: -L/usr/local/lib 
+Requires: 

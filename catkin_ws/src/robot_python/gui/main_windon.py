@@ -259,6 +259,6 @@ class Ui_MainWindow(object):
         self.button_begin.setText(_translate("MainWindow", "开始"))
         self.button_stop.setText(_translate("MainWindow", "停止"))
         self.checkBox_UR5.setText(_translate("MainWindow", "UR5勾   armc默认"))
-        self.checkBox_gazebo.setText(_translate("MainWindow", "仿真勾   实物默认"))
+        self.checkBox_gazebo.setText(_translate("MainWindow", "实物勾   仿真默认"))
         self.button_plan.setText(_translate("MainWindow", "规划"))
 

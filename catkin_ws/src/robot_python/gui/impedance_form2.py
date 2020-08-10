@@ -309,7 +309,7 @@ class Ui_ImpForm2(object):
         self.button_read_2.setText(_translate("ImpForm2", "读变力"))
         self.button_begin.setText(_translate("ImpForm2", "开始"))
         self.button_stop.setText(_translate("ImpForm2", "停止"))
-        self.checkBox_UR5.setText(_translate("ImpForm2", "UR5勾   armc默认"))
-        self.checkBox_gazebo.setText(_translate("ImpForm2", "仿真勾   实物默认"))
+        self.checkBox_UR5.setText(_translate("ImpForm2", "armt勾   armc默认"))
+        self.checkBox_gazebo.setText(_translate("ImpForm2", "实物勾   仿真默认"))
         self.button_read_pos.setText(_translate("ImpForm2", "读取规划关节角"))
 

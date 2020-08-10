@@ -241,7 +241,7 @@ class Ui_PlotMainWindow(object):
         self.lineEdit_sub_f.setText(_translate("PlotMainWindow", "/ft_sensor_topic"))
         self.label_12.setText(_translate("PlotMainWindow", "Sub_F:"))
         self.label_13.setText(_translate("PlotMainWindow", "Sub_qq:"))
-        self.lineEdit_sub_qq.setText(_translate("PlotMainWindow", "/armc/joint_states"))
+        self.lineEdit_sub_qq.setText(_translate("PlotMainWindow", "/joint_states"))
         self.radioButton_f1.setText(_translate("PlotMainWindow", "Fx"))
         self.radioButton_f2.setText(_translate("PlotMainWindow", "Fy"))
         self.label_14.setText(_translate("PlotMainWindow", "选择绘制力："))

@@ -546,3 +546,71 @@ def multipoint_plan_position_w(qr_init, X0_e, T, DH_0,q_max,q_min,kk=10):
 		[qq[:, i], qv[:, i], qa[:, i]] = bf.spline1(tt_seq, q[:, i], interval, 0, 0)
 
 	return [qq, qv, qa]
+
+#================新版规划算法,采用类封装算法,实现统一接口==============#
+#直线规划算法
+class LinePlan(object):
+	# 构造函数
+	def __init__(self):
+		# 周期
+		self.T = 0.01
+		self.t = 30
+		self.pos_flag = False
+
+	def get_period(self, T):
+		self.T = np.copy(T)
+
+	def get_plan_time(self, t):
+		self.t = t
+
+	def get_robot_parameter(self, DH_0, q_max, q_min):
+		# DH参数
+		self.DH0 = np.copy(DH_0)
+		# 关节极限
+		self.qq_max = np.copy(q_max)
+		self.qq_min = np.copy(q_min)
+		# 求取关节个数
+		self.n = len(self.qq_max)
+
+		# 创建运动学类
+		self.kin = kin.GeneralKinematic(DH_0)
+
+	def get_begin_end_point(self, X1, X2):
+		self.X1 = np.copy(X1)
+		self.X2 = np.copy(X2)
+
+	def get_init_guess_joint(self, qq_guess):
+		self.qq_guess = np.copy(qq_guess)
+
+	def get_pos(self, R):
+		self.R = np.copy(R)
+		self.pos_flag = True
+
+	def lineEnd_plan(self):
+		#计算规划点数
+		self.nodeNum = int(self.t/self.T + 1)
+
+		#计算末端位姿点
+		self.X0_e = np.zeros([self.nodeNum, 6])
+		for i in range(self.nodeNum):
+			self.X0_e[i,:] = self.X1 + (self.X2 - self.X1) * \
+				np.sin((pi) * (i / (1.0 * (self.nodeNum - 1))))
+
+	def out_joint(self):
+		#末端规划
+		self.lineEnd_plan()
+		#解关节角
+		qq = np.zeros([self.nodeNum, self.n])
+		#获取迭代解初始点
+		qq_guess = self.qq_guess
+		#转换为齐次矩阵
+		Tr = np.eye(4)
+		for i in range(self.nodeNum):
+			Tr[0:3, 3] = self.X0_e[i, 0:3]
+			if(self.pos_flag):
+				Tr[0:3, 0:3] = self.R
+			else:
+				Tr[0:3, 0:3] = bf.euler_zyx2rot(self.X0_e[i, 3:6])
+			qq[i, :] = self.kin.iterate_ikine(qq_guess, Tr)
+			qq_guess = qq[i, :]
+		return qq

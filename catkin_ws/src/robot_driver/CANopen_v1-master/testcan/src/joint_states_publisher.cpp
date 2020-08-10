@@ -1,4 +1,8 @@
-﻿#include "testcan/Frame.h"
+﻿/*joint_states_publisher.cpp
+ *为便于多臂控制，更改为/armt/joint_states
+ *
+ * */
+#include "testcan/Frame.h"
 #include "testcan/canopen_vci_ros.h"
 #include "ros/ros.h"
 #include "testcan/IpPos.h"
@@ -18,16 +22,17 @@ public:
     void init();
     void PosFeedCallback(const testcan::Frame::ConstPtr &can_msg);
 private:
-int init_structure_motor_pos[7] = {                                                            //电机初始化
-   27611,//38534,//61995,//37542,
-   258387,//259133,//258396
-   216098,//216283,//216265,
-   126361,//126354,//147464,//127610,
-   119294,//31699,//85491,
-   251734,//251963,//261785,//175998,
-   24472,//10170,//21034,
+int init_structure_motor_pos[7] = {
+               161767,//38534,//61995,//37542,
+               258387,//259133,//258396
+               216098,//216283,//216265,
+               126361,//126354,//147464,//127610,
+               119294,//31699,//85491,
+               251734,//251963,//261785,//175998,
+               24472,//10170,//21034,,
             };
-    int last_motor_pos, last_out_pos, motor_pos, out_pos;
+    int last_motor_pos, last_out_pos, out_pos;
+    int motor_pos = 0;
     testcan::IpPos cur_pos_msg, absolute_pos_msg, vel_msg,Ic_msg, ip_pos_msg;
     int pos_dev_id = 1;
     int cv_dev_id = 1;
@@ -65,7 +70,7 @@ void JointState::registerNodeHandle(ros::NodeHandle& _nh){                      
 }
 
 void JointState::registerPubSub(){
-    jointFeedbackPub = nh.advertise<sensor_msgs::JointState>("/joint_states",8);                          //发送关节状态
+    jointFeedbackPub = nh.advertise<sensor_msgs::JointState>("/armt/joint_states",8);                          //发送关节状态
     ip_pos_sub = nh.subscribe("/canopenexample/can_recieve",40,&JointState::PosFeedCallback,this);        //订阅来之底层的can信息
 }
 
@@ -93,8 +98,30 @@ void JointState::PosFeedCallback(const testcan::Frame::ConstPtr &can_msg){      
     }
 
     int motor_pos = (tpdo2_data[3]<<24)|(tpdo2_data[2]<<16)|(tpdo2_data[1]<<8)|tpdo2_data[0];              //共8个字节，前四个为电机位置
+
+    cout<<"关节" << pos_dev_id<< "的电机位置 motor_pos： "<< motor_pos <<endl;
+
     int absolute_pos = (tpdo2_data[7]<<24)|(tpdo2_data[6]<<16)|(tpdo2_data[5]<<8)|tpdo2_data[4];           //后四个为绝对编码器位置
-    if(!flag[pos_dev_id-1])                                                                                //是否有初始位置
+//    if(!flag[pos_dev_id-1])                                                                                //是否有初始位置
+//    {
+//        int dp = 0;
+//        int baisToZero = 262144-init_structure_motor_pos[pos_dev_id-1];                                     //相对于0位的位置
+//        cout<<"bais "<<pos_dev_id<<" is "<<baisToZero<<endl;
+//        int correctAbPos = absolute_pos +baisToZero;                                                        //加上偏置
+//        cout<<"correctAbPos "<<pos_dev_id<<" is "<<correctAbPos<<endl;
+//        if(correctAbPos > 262144)                                                                           //
+//            correctAbPos = correctAbPos - 262144;
+//        if(correctAbPos<=131072)
+//            dp = correctAbPos;
+//        if(correctAbPos>131072)                                                                             //改到正负范围
+//            dp = correctAbPos - 262144;
+//        cout<<"dp "<<pos_dev_id<<" is "<<dp<<endl;
+//        angleToZeroPosition[pos_dev_id-1] = 2*3.1415927*(dp)/262144.0;                                      //转换为相对位置角度
+//        flag[pos_dev_id-1]=1;                                                                               //标志以获得
+//        ROS_INFO("init Zero position bais of joint %d is %f",pos_dev_id,angleToZeroPosition[pos_dev_id-1]);
+//    }
+    //为解决1关节角初始值不稳定问题
+    if(!flag[pos_dev_id-1])
     {
         int dp = 0;
         int baisToZero = 262144-init_structure_motor_pos[pos_dev_id-1];                                     //相对于0位的位置
@@ -111,7 +138,7 @@ void JointState::PosFeedCallback(const testcan::Frame::ConstPtr &can_msg){      
         angleToZeroPosition[pos_dev_id-1] = 2*3.1415927*(dp)/262144.0;                                      //转换为相对位置角度
         flag[pos_dev_id-1]=1;                                                                               //标志以获得
         ROS_INFO("init Zero position bais of joint %d is %f",pos_dev_id,angleToZeroPosition[pos_dev_id-1]);
-    
+        if(abs(angleToZeroPosition[0])>10) flag[0]=0;        //新增，出现不可能的值，抛弃
     }
     switch (pos_dev_id)
         {

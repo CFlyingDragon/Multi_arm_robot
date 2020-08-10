@@ -8,6 +8,5 @@
   <node pkg="testcan" type="joint_command_transfer_node" respawn="false" name="joint_command_transfer_node" output="screen" launch-prefix="xterm -e"/>
   
   <!--启动关节状态发送窗口-->
-  <node pkg="testcan" type="joint_command_transfer_node" respawn="false" name="joint_command_transfer_node" output="screen" launch-prefix="xterm -e"/>
-   
+  <node pkg="testcan" type="arm_joint_states_publisher_node" respawn="false" name="joint_states_publisher" output="screen"/>
 </launch>

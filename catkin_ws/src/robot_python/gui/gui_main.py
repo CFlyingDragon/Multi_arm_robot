@@ -6,6 +6,7 @@
 #日期：初稿：2020.4.21
 #系统函数
 import sys
+import os
 import numpy as np
 import time
 
@@ -16,7 +17,7 @@ from PyQt5.QtCore import *
 
 #ros相关模块
 import rospy
-from std_msgs.msg import Float64MultiArray,Float64
+from std_msgs.msg import Float64MultiArray, Float64
 from sensor_msgs.msg import JointState
 from geometry_msgs.msg import WrenchStamped
 
@@ -61,7 +62,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.T = 0.01
         self.run_flag = True # 开始或停止标签
         self.arm_flag = False
-        self.gazebo_flag = False
+        self.real_flag = False
         self.sub_force_path = "/ft_sensor_topic"
         self.sub_pos_path = "/armc/joint_states"
         self.pub_path = "/armc/joint_positions_controller/command"
@@ -198,6 +199,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.button_wish_pos.clicked.connect(self.read_wish_pos)
         self.button_receive.clicked.connect(self.run_topic)
         self.button_plan.clicked.connect(self.plan)
+        self.checkBox_gazebo.stateChanged.connect(self.gazebo_or_real)
 
     #打开文件的地址和内容
     def fileOpen(self):
@@ -257,6 +259,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.p2.plot(t2, f[:, 3], pen='c', name='F4', clear=False)
         self.p2.plot(t2, f[:, 4], pen='m', name='F5', clear=False)
         self.p2.plot(t2, f[:, 5], pen='y', name='F6', clear=False)
+
+    #切换到实物
+    def gazebo_or_real(self):
+        self.real_flag = self.checkBox_gazebo.isChecked()
+        if(self.real_flag):
+            self.sub_force_path = "/ft_sensor_topic"
+            self.lineEdit_sub_f.setText(self.sub_force_path)
+            self.sub_pos_path = "/joint_states"
+            self.lineEdit_sub_qq.setText(self.sub_pos_path)
+            self.pub_path = "/all_joints_position_group_controller/command"
+            self.lineEdit_pub_qq.setText(self.pub_path)
+        else:
+            self.sub_force_path = "/ft_sensor_topic"
+            self.lineEdit_sub_f.setText(self.sub_force_path)
+            self.sub_pos_path = "/armc/joint_states"
+            self.lineEdit_sub_qq.setText(self.sub_pos_path)
+            self.pub_path = "/armc/joint_positions_controller/command"
+            self.lineEdit_pub_qq.setText(self.pub_path)
 
     #读取给定关节角度
     def read_wish_pos(self):
@@ -338,6 +358,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.plot_joint(plot_t, plot_qq, plot_t, plot_f)
 
     def run_topic(self):
+        #先读取地址
+        self.sub_force_path = str(self.lineEdit_sub_f.text())
+        self.sub_pos_path = str(self.lineEdit_sub_qq.text())
+        self.pub_path = str(self.lineEdit_pub_qq.text())
         # 运行话题
         rospy.init_node('upper_controller_node')
         rospy.Subscriber(self.sub_pos_path, JointState, self.joint_callback)
@@ -356,19 +380,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         #求取数据长度
         kk = len(self.command_qq_list)
-        #进度条显示时间间隔
-        show_time = int(kk*self.T*10)
 
-        #设置ProgressBar,用Qtimer开线程处理（线程3）
-        self.step_p = 0
-        self.timer_p = QTimer()
-        self.timer_p.timeout.connect(self.probar_show)
-        self.timer_p.start(show_time)
+        if(not self.real_flag):
+            #进度条显示时间间隔
+            show_time = int(kk*self.T*10)
 
-        #设置绘图,用Qtimer开线程处理（线程4）
-        self.timer_plot = QTimer()
-        self.timer_plot.timeout.connect(self.realtime_plot)
-        self.timer_plot.start(1000)
+            #设置ProgressBar,用Qtimer开线程处理（线程3）
+            self.step_p = 0
+            self.timer_p = QTimer()
+            self.timer_p.timeout.connect(self.probar_show)
+            self.timer_p.start(show_time)
+
+            #设置绘图,用Qtimer开线程处理（线程4）
+            self.timer_plot = QTimer()
+            self.timer_plot.timeout.connect(self.realtime_plot)
+            self.timer_plot.start(1000)
 
         #发送关节角度
         rate = rospy.Rate(100)
@@ -376,8 +402,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         while not rospy.is_shutdown():
             #检测是否启动急停
             if(not self.run_flag):
-                self.timer_p.stop()
-                self.timer_plot.stop()
+                if(not self.real_flag):
+                    self.timer_p.stop()
+                    self.timer_plot.stop()
                 break
             #发送数据
             command_data = Float64MultiArray()
@@ -386,7 +413,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             else:
                 command_data.data = self.command_qq_list[-1, 0:self.n]
             self.pub.publish(command_data)
-            if(k%10==0):
+            if(k%20==0):
                 pub_msg = "armc" + "第" + str(k) + "次" + "publisher data is: " + '\n'\
                       "q1:" + str(command_data.data[0]) + '\n' \
                         "q2:" + str(command_data.data[1]) + '\n' \
@@ -694,7 +721,7 @@ class UrsWindow1(QMainWindow, Ui_UrsForm1):
         if (self.robot1_flag or self.all_flag):
             qq_b1 = np.array(self.state_qq_list1[-2])
             #调用规划函数
-            [qq,qv,qa] = gf.q_joint_space_plan_time(qq_b1, self.qq_wish_pos[0, :])
+            [qq,qv,qa] = gf.q_joint_space_plan_time(qq_b1, self.qq_wish_pos[0, :], t=30)
             #调用绘图函数
             k =len(qq[:, 0])
             t = np.linspace(0, self.T*(k-1), k)
@@ -2022,6 +2049,7 @@ class ArmctWindow1(QMainWindow, Ui_ArmctForm1):
         self.button_plan.clicked.connect(self.plan)
         self.button_home.clicked.connect(self.home)
         self.button_init.clicked.connect(self.init)
+        self.checkBox.stateChanged.connect(self.gazebo_or_real)
 
     # ===============按钮功能模块相关函数================#
     # 采用pyqtgraph绘制曲线,添加画板
@@ -2051,7 +2079,7 @@ class ArmctWindow1(QMainWindow, Ui_ArmctForm1):
         return p1, p2
 
     # 绘画关节角和关节角速度曲线
-    def plot_joint(self, t1, qq, t2, f):
+    def plot_joint1(self, t1, qq):
         # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
         self.p1.plot(t1, qq[:, 0], pen='b', name='qq1', clear=True)
         self.p1.plot(t1, qq[:, 1], pen='g', name='qq2', clear=False)
@@ -2061,13 +2089,45 @@ class ArmctWindow1(QMainWindow, Ui_ArmctForm1):
         self.p1.plot(t1, qq[:, 5], pen='y', name='qq6', clear=False)
         self.p1.plot(t1, qq[:, 6], pen='k', name='qq7', clear=False)
 
+    def plot_joint2(self, t, qq):
+        # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
+        self.p2.plot(t, qq[:, 0], pen='b', name='qq1', clear=True)
+        self.p2.plot(t, qq[:, 1], pen='g', name='qq2', clear=False)
+        self.p2.plot(t, qq[:, 2], pen='r', name='qq3', clear=False)
+        self.p2.plot(t, qq[:, 3], pen='c', name='qq4', clear=False)
+        self.p2.plot(t, qq[:, 4], pen='m', name='qq5', clear=False)
+        self.p2.plot(t, qq[:, 5], pen='y', name='qq6', clear=False)
+        self.p2.plot(t, qq[:, 6], pen='k', name='qq7', clear=False)
+
+    def plot_force(self, t, f):
         # 绘制速度图
-        self.p2.plot(t2, f[:, 0], pen='b', name='F1', clear=True)
-        self.p2.plot(t2, f[:, 1], pen='g', name='F2', clear=False)
-        self.p2.plot(t2, f[:, 2], pen='r', name='F3', clear=False)
-        self.p2.plot(t2, f[:, 3], pen='c', name='F4', clear=False)
-        self.p2.plot(t2, f[:, 4], pen='m', name='F5', clear=False)
-        self.p2.plot(t2, f[:, 5], pen='y', name='F6', clear=False)
+        self.p2.plot(t, f[:, 0], pen='b', name='F1', clear=True)
+        self.p2.plot(t, f[:, 1], pen='g', name='F2', clear=False)
+        self.p2.plot(t, f[:, 2], pen='r', name='F3', clear=False)
+        self.p2.plot(t, f[:, 3], pen='c', name='F4', clear=False)
+        self.p2.plot(t, f[:, 4], pen='m', name='F5', clear=False)
+        self.p2.plot(t, f[:, 5], pen='y', name='F6', clear=False)
+
+    def gazebo_or_real(self):
+        self.real_flag = self.checkBox.isChecked()
+        if(self.real_flag):
+            self.sub_force1_path = "ft_sensor_topic"
+            self.sub_pos1_path = "/armt/joint_states"
+            self.pub1_path = "/armt/joint_command"
+            self.sub_force2_path = "ft_sensor_topic"
+            self.sub_pos2_path = "/joint_states"
+            self.pub2_path = "/all_joints_position_group_controller/command"
+            msg = "选择实物"
+            self.textEdit.setText(msg)
+        else:
+            self.sub_force1_path = "/robot1/ft_sensor_topic"
+            self.sub_pos1_path = "/robot1/joint_states"
+            self.pub1_path = "/robot1/armt_position_controller/command"
+            self.sub_force2_path = "/robot2/ft_sensor_topic"
+            self.sub_pos2_path = "/robot2/joint_states"
+            self.pub2_path = "/robot2/armc_position_controller/command"
+            msg = "选择仿真"
+            self.textEdit.setText(msg)
 
     # 刷新按钮
     def refresh_radioButton(self):
@@ -2077,9 +2137,6 @@ class ArmctWindow1(QMainWindow, Ui_ArmctForm1):
 
         self.robot1_2_flag = self.radioButton_robot1_2.isChecked()
         self.robot2_2_flag = self.radioButton_robot2_2.isChecked()
-
-        self.real_flag = self.radioButton_real.isChecked()
-        self.gazebo_flag = self.radioButton_gazebo.isChecked()
 
         msg = "按钮状态已刷新！\n"
         self.textEdit.setText(msg)
@@ -2148,14 +2205,14 @@ class ArmctWindow1(QMainWindow, Ui_ArmctForm1):
         msg = ""
         if (self.robot1_flag or self.all_flag):
             # 获得规划起点
-            qq_b = np.array(self.state_qq_list1[-1])
+            qq_b = np.array(self.state_qq_list2[-1])
             # 调用规划函数
             [qq, qv, qa] = gf.q_joint_space_plan_time(qq_b, self.qq_wish_pos[0, :])
             # 调用绘图函数
             k = len(qq[:, 0])
             t = np.linspace(0, self.T * (k - 1), k)
             # 绘制关节角位置速度图
-            self.plot_joint(t, qq, t, np.zeros([k, 6]))
+            self.plot_joint1(t, qq)
             # 将规划好的位置定义为全局变量
             self.command_qq_list1 = np.copy(qq)
             msg1 = "robot1已规划！\n"
@@ -2170,7 +2227,7 @@ class ArmctWindow1(QMainWindow, Ui_ArmctForm1):
             k = len(qq[:, 0])
             t = np.linspace(0, self.T * (k - 1), k)
             # 绘制关节角位置速度图
-            self.plot_joint(t, qq, t, np.zeros([k, 6]))
+            self.plot_joint2(t, qq)
             # 将规划好的位置定义为全局变量
             self.command_qq_list2 = np.copy(qq)
             msg2 = "robot2已规划！\n"
@@ -2198,7 +2255,7 @@ class ArmctWindow1(QMainWindow, Ui_ArmctForm1):
         qq = np.zeros(self.n)
         for i in range(self.n):
             qq[i] = msg.position[i]
-
+        qq[0] = 0.0
         self.state_qq_list2.append(qq)
         # 仅记录100个数据点
         del self.state_qq_list2[0]
@@ -2248,13 +2305,15 @@ class ArmctWindow1(QMainWindow, Ui_ArmctForm1):
             plot_t = np.array(self.state_t_list)
             plot_qq = np.array(self.state_qq_list1)
             plot_f = np.array(self.state_f_list1)
-            self.plot_joint(plot_t, plot_qq, plot_t, plot_f)
+            self.plot_joint1(plot_t, plot_qq)
+            self.plot_force(plot_t, plot_f)
 
         if (self.robot2_2_flag):
             plot_t = np.array(self.state_t_list)
             plot_qq = np.array(self.state_qq_list2)
             plot_f = np.array(self.state_f_list2)
-            self.plot_joint(plot_t, plot_qq, plot_t, plot_f)
+            self.plot_joint1(plot_t, plot_qq)
+            self.plot_force(plot_t, plot_f)
 
     def run_topic(self):
         # 读取时间
@@ -2293,19 +2352,21 @@ class ArmctWindow1(QMainWindow, Ui_ArmctForm1):
             kk = len(self.command_qq_list2)
         if (self.all_flag):
             kk = len(self.command_qq_list1)
-        # 进度条显示时间间隔
-        show_time = int(kk * self.T * 10)
 
-        # 设置ProgressBar,用Qtimer开线程处理（线程3）
-        self.step_p = 0
-        self.timer_p = QTimer()
-        self.timer_p.timeout.connect(self.probar_show)
-        self.timer_p.start(show_time)
+        if(not self.real_flag):
+            # 进度条显示时间间隔
+            show_time = int(kk * self.T * 10)
 
-        # 设置绘图,用Qtimer开线程处理（线程4）
-        self.timer_plot = QTimer()
-        self.timer_plot.timeout.connect(self.realtime_plot)
-        self.timer_plot.start(1000)
+            # 设置ProgressBar,用Qtimer开线程处理（线程3）
+            self.step_p = 0
+            self.timer_p = QTimer()
+            self.timer_p.timeout.connect(self.probar_show)
+            self.timer_p.start(show_time)
+
+            # 设置绘图,用Qtimer开线程处理（线程4）
+            self.timer_plot = QTimer()
+            self.timer_plot.timeout.connect(self.realtime_plot)
+            self.timer_plot.start(1000)
 
         # 发送关节角度
         rate = rospy.Rate(100)
@@ -2313,8 +2374,9 @@ class ArmctWindow1(QMainWindow, Ui_ArmctForm1):
         while not rospy.is_shutdown():
             # 检测是否启动急停
             if (not self.run_flag):
-                self.timer_p.stop()
-                self.timer_plot.stop()
+                if(not self.real_flag):
+                    self.timer_p.stop()
+                    self.timer_plot.stop()
                 break
             # 发送数据
             msg = "已发送机器人：\n"
@@ -2741,6 +2803,7 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
         self.T = 0.01
         self.run_flag = True  # 开始或停止标签
         self.real_flag = False
+        self.armt_flag = False
 
         self.init_flag = False
         self.imp_flag = False
@@ -2761,6 +2824,7 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
         # ======================菜单栏功能模块=======================#
         # 创建菜单
         menubar = self.menuBar()
+        fileMenu = menubar.addMenu('&File')
         mainMenu = menubar.addMenu('&Main')
 
         #文件菜单:返回主窗口
@@ -2769,6 +2833,21 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
         openMain.setStatusTip('Return main window')
         openMain.triggered.connect(self.gotoMain)
         mainMenu.addAction(openMain)
+
+        # -------------------文件菜单-------------------#
+        # 中打开文件操作
+        openFile = QAction(QIcon('exit.png'), 'Open', self)
+        openFile.setShortcut('Ctrl+o')
+        openFile.setStatusTip('Open new File')
+        openFile.triggered.connect(self.fileOpen)
+        fileMenu.addAction(openFile)
+
+        # 文件菜单中关闭操作
+        exitAction = QAction(QIcon('exit.png'), '&Exit', self)
+        exitAction.setShortcut('Ctrl+q')
+        exitAction.setStatusTip('Exit application')
+        exitAction.triggered.connect(qApp.quit)
+        fileMenu.addAction(exitAction)
 
         # =======================绘图相关设置=======================#
         self.p1, self.p2 = self.set_graph_ui()  # 设置绘图窗口
@@ -2780,7 +2859,8 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
         self.button_init.clicked.connect(self.go_init)
         self.button_imp.clicked.connect(self.go_imp)
         self.button_end.clicked.connect(self.go_home)
-        self.checkBox_gazebo.stateChanged.connect(self.real_arm)
+        self.checkBox_gazebo.stateChanged.connect(self.real_and_arm)
+        self.checkBox_UR5.stateChanged.connect(self.real_and_arm)
         self.button_read_pos.clicked.connect(self.read_pos)
         self.button_receive.clicked.connect(self.run_topic)
         self.button_read_1.clicked.connect(self.read_force1)
@@ -2832,8 +2912,58 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
         self.p2.plot(t2, f[:, 4], pen='m', name='F5', clear=False)
         self.p2.plot(t2, f[:, 5], pen='y', name='F6', clear=False)
 
-    def real_arm(self):
-        self.real_flag = True
+    # 打开文件的地址和内容
+    def fileOpen(self):
+        # 打开文件操作
+        path = os.path.join(os.getcwd(), '../')
+        path = os.path.abspath(path)
+        fname = QFileDialog.getOpenFileName(self, 'Open file', path)
+
+        if fname[0]:
+            f = open(fname[0], 'r')
+            self.filedir = fname[0]
+            self.lineEdit_path.setText(self.filedir)
+
+            with f:
+                data = f.read()
+                self.pubdata = data
+                self.textEdit.setText(data)
+
+    #支持armt、armc四种状态切换
+    def real_and_arm(self):
+        self.real_flag = self.checkBox_gazebo.isChecked()
+        self.armt_flag = self.checkBox_UR5.isChecked()
+        if (self.real_flag):
+            if(self.armt_flag):
+                self.sub_force_path = "/ft_sensor_topic"
+                self.lineEdit_sub_f.setText(self.sub_force_path)
+                self.sub_pos_path = "/armt/joint_states"
+                self.lineEdit_sub_qq.setText(self.sub_pos_path)
+                self.pub_path = "/armt/joint_command"
+                self.lineEdit_pub_qq.setText(self.pub_path)
+            else:
+                self.sub_force_path = "/ft_sensor_topic"
+                self.lineEdit_sub_f.setText(self.sub_force_path)
+                self.sub_pos_path = "/joint_states"
+                self.lineEdit_sub_qq.setText(self.sub_pos_path)
+                self.pub_path = "/all_joints_position_group_controller/command"
+                self.lineEdit_pub_qq.setText(self.pub_path)
+
+        else:
+            if(self.armt_flag):
+                self.sub_force_path = "/robot1/ft_sensor_topic"
+                self.lineEdit_sub_f.setText(self.sub_force_path)
+                self.sub_pos_path = "/robot1/joint_states"
+                self.lineEdit_sub_qq.setText(self.sub_pos_path)
+                self.pub_path = "/robot1/armt_position_controller/command"
+                self.lineEdit_pub_qq.setText(self.pub_path)
+            else:
+                self.sub_force_path = "/ft_sensor_topic"
+                self.lineEdit_sub_f.setText(self.sub_force_path)
+                self.sub_pos_path = "/armc/joint_states"
+                self.lineEdit_sub_qq.setText(self.sub_pos_path)
+                self.pub_path = "/armc/joint_positions_controller/command"
+                self.lineEdit_pub_qq.setText(self.pub_path)
 
     def read_force1(self):
         msg = ""
@@ -3067,7 +3197,10 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
         self.I = np.array([0.0, 0.0, 5, 0.0, 0.0, 0.0])
 
         # 输入参数
-        [DH0, q_max, q_min] = gf.get_robot_parameter(False)
+        robot = 'armc'
+        if(self.armt_flag):
+            robot = 'armt'
+        [DH0, q_max, q_min] = gf.get_robot_parameter(robot)
         imp_arm1.get_robot_parameter(DH0, q_max, q_min, )
         imp_arm1.get_period(self.T)
         # 实时调整阻抗参数
