@@ -656,6 +656,69 @@ class CIMPController_iter(object):
 
         return qr
 
+#================创建一个刚度评估项类函数=================#
+class StiffnessEvaluation(object):
+    def __init__(self):
+        self.num = 10
+
+    #**定义方法**#
+    def get_robot_parameter(self, DH_0, q_max, q_min,):
+        #DH参数
+        self.DH0 = np.copy(DH_0)
+        #关节极限
+        self.qq_max = np.copy(q_max)
+        self.qq_min = np.copy(q_min)
+        #求取关节个数
+        self.n = len(self.qq_max)
+
+        #创建运动学类
+        self.kin = kin.GeneralKinematic(DH_0)
+
+    def get_pos1_joint(self, qq):
+        #采集10个关节角求平均值
+        self.pos1_qq = np.zeros(self.n)
+        for i in range(self.n):
+            self.pos1_qq[i] = sum(qq[:, i])/self.num
+
+    def get_pos1_force(self, F_t):
+        #转换到基坐标系
+        self.pos1_f = self.force_end_to_base(F_t, self.pos1_qq)
+
+    def get_pos2_joint(self, qq):
+        # 采集10个关节角求平均值
+        self.pos2_qq = np.zeros(self.n)
+        for i in range(self.n):
+            self.pos2_qq[i] = sum(qq[:, i]) / self.num
+
+    def get_pos2_force(self, F_t):
+        # 转换到基坐标系
+        self.pos2_f = self.force_end_to_base(F_t, self.pos2_qq)
+
+    def force_end_to_base(self, F, qq):
+        base_F = np.zeros(6)
+
+        Te = self.kin.fkine(qq)
+        Re = Te[0:3, 0:3]
+        base_F[0:3] = np.dot(Re, F[0:3])
+        base_F[3:6] = np.dot(Re, F[3:6])
+        return base_F
+
+    #计算等效刚度
+    def compute_Stiffness(self):
+        #求取末端位姿
+        X1 = self.kin.fkine_euler(self.pos1_qq)
+        X2 = self.kin.fkine_euler(self.pos2_qq)
+
+        #计算偏差
+        X = X2 - X1
+        F = self.pos2_f - self.pos1_f
+        #计算等效刚度
+        K = np.zeros(6)
+        for i in range(6):
+            if(abs(X[i]) > pow(10, -6)):
+                K[i] = F[i]/X[i]
+        return K
+
 def main():
     #创建阻抗
     imp = IIMPController_iter()

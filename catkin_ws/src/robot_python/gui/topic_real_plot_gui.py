@@ -297,7 +297,7 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
     def realtime_plot(self):
         # 将列表转换为数组
         plot_t = np.array(self.state_t_list)
-        plot_qq = np.array(self.state_qv_list)
+        plot_qq = np.array(self.state_qq_list)
         plot_qv = np.array(self.state_qv_list)
         plot_f = np.array(self.state_f_list)
 

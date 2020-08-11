@@ -192,20 +192,14 @@ def q_joint_space_plan_time(qq_b, qq_e, T=0.01,t=10):
     [qq, qv, qa] = jp.pos1_to_pos2(qq_b, qq_e, T, t)
     return [qq, qv, qa]
 
-def get_begin_point(qr_init,flag):
+def get_begin_point(qr_init,robot):
     '''
     :param qr_init:
     :param flag:
     :return:
     '''
-    # 默认参数armc
-    DH0 = rp.DHfa_armc
-    qq = np.copy(qr_init)
-    # 勾选时，ur5
-    if flag == True:
-        DH0 = rp.DH0_ur5
-        qq = np.copy((qr_init[0:6]))
-    xe = kin.fkine_euler(DH0, qq)
+    [DH0, q_max, q_min] = get_robot_parameter(robot)
+    xe = kin.fkine_euler(DH0, qr_init)
     return xe
 
 #规划子界面中，用于规划给定起点和圆心的规划
