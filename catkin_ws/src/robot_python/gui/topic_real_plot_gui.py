@@ -253,7 +253,7 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
         qv = np.zeros(self.n)
         for i in range(self.n):
             qq[i] = msg.position[i]
-            qv[i] = 0
+            #qv[i] = msg.position[i]
 
         # 存储数据
         if (self.storage_flag):

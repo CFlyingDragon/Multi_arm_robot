@@ -96,7 +96,6 @@ def pub_force_node():
 
     # 发送关节角度
     rate = rospy.Rate(100)
-    k = 0
     while not rospy.is_shutdown():
         F1 = F - F_offset
         command_force = WrenchStamped()
@@ -107,7 +106,6 @@ def pub_force_node():
         command_force.wrench.torque.y = F1[4]
         command_force.wrench.torque.z = F1[5]
         pub.publish(command_force)
-        k = k + 1
         #if(k/10==0):
         print "六维力：",np.around(F1, 3)
         rate.sleep()

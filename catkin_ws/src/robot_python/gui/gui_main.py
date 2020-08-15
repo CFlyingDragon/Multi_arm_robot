@@ -2941,9 +2941,26 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
     def __init__(self, parent=None):
         super(ImpWindow1, self).__init__(parent)
         self.T = 0.01
+        self.t = 30
 
-        self.run_flag = True  # 开始或停止标签
+        self.run_flag = False  # 开始或停止标签
         self.real_flag = False
+        self.armt_flag = False
+
+        self.read_flag = False
+
+        self.init_flag = False
+        self.imp_flag = False
+        self.home_flag = False
+
+        self.pos1 = False
+        self.pos2 = False
+
+        [DH0, q_max, q_min] = gf.get_robot_parameter("armc")
+        self.DH0 = DH0
+        self.q_max = q_max
+        self.q_min = q_min
+        self.robot = "armc"
 
         self.sub_force_path = "/ft_sensor_topic"
         self.sub_pos_path = "/armc/joint_states"
@@ -2952,13 +2969,14 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
 
         self.setupUi(self)
         self.initUI()
+
     def initUI(self):
         # ======================菜单栏功能模块=======================#
         # 创建菜单
         menubar = self.menuBar()
         fileMenu = menubar.addMenu('&File')
 
-        #文件菜单:返回主窗口
+        # 文件菜单:返回主窗口
         openMain = QAction(QIcon('exit.png'), 'main window ', self)
         openMain.setShortcut('Ctrl+z')
         openMain.setStatusTip('Return main window')
@@ -2972,10 +2990,14 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         # 读取积分自适应阻抗参数MBKI
         self.button_begin.clicked.connect(self.begin_function)
         self.button_stop.clicked.connect(self.stop)
-        self.button_init.clicked.connect(self.calculation_init_point)
-        self.checkBox_real.stateChanged.connect(self.real_arm)
+        self.button_get_init.clicked.connect(self.calculation_init_point)
+        self.checkBox_real.stateChanged.connect(self.real_and_arm)
+        self.checkBox_arm.stateChanged.connect(self.real_and_arm)
         self.button_read.clicked.connect(self.read_paramter)
         self.button_receive.clicked.connect(self.run_topic)
+        self.button_init.clicked.connect(self.go_init)
+        self.button_imp.clicked.connect(self.go_imp)
+        self.button_end.clicked.connect(self.go_home)
 
     # ===============按钮功能模块相关函数================#
     # 采用pyqtgraph绘制曲线,添加画板
@@ -3023,8 +3045,51 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         self.p2.plot(t2, f[:, 4], pen='m', name='F5', clear=False)
         self.p2.plot(t2, f[:, 5], pen='y', name='F6', clear=False)
 
-    def real_arm(self):
-        self.real_flag = True
+    # 支持armt、armc四种状态切换
+    def real_and_arm(self):
+        self.real_flag = self.checkBox_real.isChecked()
+        self.armt_flag = self.checkBox_arm.isChecked()
+        if (self.real_flag):
+            if (self.armt_flag):
+                self.sub_force_path = "/armt/ft_sensor_topic"
+                self.lineEdit_sub_f.setText(self.sub_force_path)
+                self.sub_pos_path = "/armt/joint_states"
+                self.lineEdit_sub_qq.setText(self.sub_pos_path)
+                self.pub_path = "/armt/joint_command"
+                self.lineEdit_pub_qq.setText(self.pub_path)
+            else:
+                self.sub_force_path = "/armc/ft_sensor_topic"
+                self.lineEdit_sub_f.setText(self.sub_force_path)
+                self.sub_pos_path = "/armc/joint_states"
+                self.lineEdit_sub_qq.setText(self.sub_pos_path)
+                self.pub_path = "/all_joints_position_group_controller/command"
+                self.lineEdit_pub_qq.setText(self.pub_path)
+
+        else:
+            if (self.armt_flag):
+                self.sub_force_path = "/robot1/ft_sensor_topic"
+                self.lineEdit_sub_f.setText(self.sub_force_path)
+                self.sub_pos_path = "/robot1/joint_states"
+                self.lineEdit_sub_qq.setText(self.sub_pos_path)
+                self.pub_path = "/robot1/armt_position_controller/command"
+                self.lineEdit_pub_qq.setText(self.pub_path)
+            else:
+                self.sub_force_path = "/ft_sensor_topic"
+                self.lineEdit_sub_f.setText(self.sub_force_path)
+                self.sub_pos_path = "/armc/joint_states"
+                self.lineEdit_sub_qq.setText(self.sub_pos_path)
+                self.pub_path = "/armc/joint_positions_controller/command"
+                self.lineEdit_pub_qq.setText(self.pub_path)
+
+        # 输入参数
+        robot = 'armc'
+        if (self.armt_flag):
+            robot = 'armt'
+        [DH0, q_max, q_min] = gf.get_robot_parameter(robot)
+        self.DH0 = DH0
+        self.q_max = q_max
+        self.q_min = q_min
+        self.robot = robot
 
     # 计算初始位置
     def calculation_init_point(self):
@@ -3042,7 +3107,7 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         qq = qq * np.pi / 180.0
 
         # 计算初始位置
-        xx_b = gf.get_begin_point(qq, False)
+        xx_b = gf.get_begin_point(qq, self.robot)
 
         # 转换到显示单位
         xx = np.copy(xx_b)  # 转化为mm显示
@@ -3073,7 +3138,7 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         qq[5] = self.lineEdit_q6.text()
         qq[6] = self.lineEdit_q7.text()
 
-        #读取期望末端位置
+        # 读取期望末端位置
         xx = np.zeros(6)
         xx[0] = self.lineEdit_x1.text()
         xx[1] = self.lineEdit_x2.text()
@@ -3081,11 +3146,11 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         xx[3] = self.lineEdit_x4.text()
         xx[4] = self.lineEdit_x5.text()
         xx[5] = self.lineEdit_x6.text()
-        #改变为输入单位
+        # 改变为输入单位
         x_d = np.copy(xx)
         x_d[0:3] = xx[0:3] / 1000.0
 
-        #读取期望末端力,工具坐标系中描述
+        # 读取期望末端力,工具坐标系中描述
         f = np.zeros(6)
         f[0] = self.lineEdit_f1.text()
         f[1] = self.lineEdit_f2.text()
@@ -3094,7 +3159,8 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         f[4] = self.lineEdit_f5.text()
         f[5] = self.lineEdit_f6.text()
 
-        #读取阻抗参数
+        # 获取阻抗参数
+        # 读取阻抗参数
         M = np.zeros(6)
         M[0] = self.lineEdit_m1.text()
         M[1] = self.lineEdit_m2.text()
@@ -3133,39 +3199,41 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
                     "," + str(qq[5]) + "," + str(qq[6]) + "]" + "\n"
 
         msg_pos = "期望末端位置\n" + \
-                    "Xd:" + "[" + str(xx[0]) + "," + str(xx[1]) + "," + \
-                    str(xx[2]) + "," + str(xx[3]) + "," + str(xx[4]) + \
-                    "," + str(xx[5]) + "]" + "\n"
+                  "Xd:" + "[" + str(xx[0]) + "," + str(xx[1]) + "," + \
+                  str(xx[2]) + "," + str(xx[3]) + "," + str(xx[4]) + \
+                  "," + str(xx[5]) + "]" + "\n"
 
         msg_force = "期望末端力\n" + \
-                  "Fd:" + "[" + str(f[0]) + "," + str(f[1]) + "," + \
-                  str(f[2]) + "," + str(f[3]) + "," + str(f[4]) + \
-                  "," + str(f[5]) + "]" + "\n"
+                    "Fd:" + "[" + str(f[0]) + "," + str(f[1]) + "," + \
+                    str(f[2]) + "," + str(f[3]) + "," + str(f[4]) + \
+                    "," + str(f[5]) + "]" + "\n"
 
         msg_imp = "阻抗参数\n" + \
-                      "M:" + "[" + str(M[0]) + "," + str(M[1]) + "," + \
-                      str(M[2]) + "," + str(M[3]) + "," + str(M[4]) + \
-                      "," + str(M[5]) + "]" + "\n" + \
-                      "B:" + "[" + str(B[0]) + "," + str(B[1]) + "," + \
-                      str(B[2]) + "," + str(B[3]) + "," + str(B[4]) + \
-                      "," + str(B[5]) + "]" + "\n" + \
-                      "K:" + "[" + str(K[0]) + "," + str(K[1]) + "," + \
-                      str(K[2]) + "," + str(K[3]) + "," + str(K[4]) + \
-                      "," + str(K[5]) + "]" + "\n" + \
-                      "I:" + "[" + str(I[0]) + "," + str(I[1]) + "," + \
-                      str(I[2]) + "," + str(I[3]) + "," + str(I[4]) + \
-                      "," + str(I[5]) + "]" + "\n"
+                  "M:" + "[" + str(M[0]) + "," + str(M[1]) + "," + \
+                  str(M[2]) + "," + str(M[3]) + "," + str(M[4]) + \
+                  "," + str(M[5]) + "]" + "\n" + \
+                  "B:" + "[" + str(B[0]) + "," + str(B[1]) + "," + \
+                  str(B[2]) + "," + str(B[3]) + "," + str(B[4]) + \
+                  "," + str(B[5]) + "]" + "\n" + \
+                  "K:" + "[" + str(K[0]) + "," + str(K[1]) + "," + \
+                  str(K[2]) + "," + str(K[3]) + "," + str(K[4]) + \
+                  "," + str(K[5]) + "]" + "\n" + \
+                  "I:" + "[" + str(I[0]) + "," + str(I[1]) + "," + \
+                  str(I[2]) + "," + str(I[3]) + "," + str(I[4]) + \
+                  "," + str(I[5]) + "]" + "\n"
 
         msg = msg_joint + msg_pos + msg_force + msg_imp
         self.textEdit.setText(msg)
         # 转化为输入单位，并保存到全局变量
-        self.qq_b = np.copy(qq * np.pi / 180.0)
+        self.qq_init = np.copy(qq * np.pi / 180.0)
         self.xx_d = np.copy(x_d)
         self.f_d = np.copy(f)
         self.M = np.copy(M)
         self.B = np.copy(B)
         self.K = np.copy(K)
         self.I = np.copy(I)
+
+        self.read_flag = True
 
     ##关节角订阅回调函数
     def joint_callback(self, msg):
@@ -3233,23 +3301,74 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         self.textEdit.setText(msg_tip)
         t1.start()
 
+    def go_init(self):
+        print "sss"
+        if (not self.read_flag):
+            msg = "未读取参数！\n"
+            self.textEdit.setText(msg)
+            return -1
+
+        self.init_flag = True
+        self.imp_flag = False
+        self.home_flag = False
+
+        # 获得规划起点
+        qq_b = np.array(self.state_qq_list[-1])
+        # 调用规划函数
+        [qq, _, _] = gf.q_joint_space_plan_time(qq_b, self.qq_init, self.T, self.t)
+        # 调用绘图函数
+        k = len(qq[:, 0])
+        t = np.linspace(0, self.T * (k - 1), k)
+        # 绘制关节角位置速度图
+        self.plot_joint(t, qq, t, np.zeros([k, 6]))
+        # 将规划好的位置定义为全局变量
+        self.command_qq_init = np.copy(qq)
+        msg = "运动到初始点已规划！\n"
+        self.textEdit.setText(msg)
+
+    def go_imp(self):
+        self.init_flag = False
+        self.imp_flag = True
+        self.home_flag = False
+
+        msg = "已切换到阻抗模式！\n"
+        self.textEdit.setText(msg)
+
+    def go_home(self):
+        self.init_flag = False
+        self.imp_flag = False
+        self.home_flag = True
+
+        # 获得规划起点
+        qq_b = np.array(self.state_qq_list[-1])
+        qq_home = np.array([0, 0, 0, 0, 0, 0, 0.0])
+        # 调用规划函数
+        [qq, qv, qa] = gf.q_joint_space_plan_time(qq_b, qq_home, self.T, self.t)
+        # 调用绘图函数
+        k = len(qq[:, 0])
+        t = np.linspace(0, self.T * (k - 1), k)
+        # 绘制关节角位置速度图
+        self.plot_joint(t, qq, t, np.zeros([k, 6]))
+        # 将规划好的位置定义为全局变量
+        self.command_qq_home = np.copy(qq)
+        msg = "运动到家点已规划！\n"
+        self.textEdit.setText(msg)
+
     def begin_function(self):
         # 运行标签启动
         self.run_flag = True
 
+        # 提示标语
+        msg = "开始下发命令！\n"
+        self.textEdit.setText(msg)
         # 创建阻抗自适应阻抗实例
-        imp_arm1 = imp.IIMPController_iter()
+        imp_arm1 = imp.IIMPController_iter_vel()
 
-        #输入参数
-        [DH0, q_max, q_min] = gf.get_robot_parameter(False)
-        imp_arm1.get_robot_parameter(DH0, q_max, q_min,)
+        # 输入参数
+        imp_arm1.get_robot_parameter(self.DH0, self.q_max, self.q_min, )
         imp_arm1.get_period(self.T)
-
-        # 设置ProgressBar,用Qtimer开线程处理（线程3）
-        # self.step_p = 0
-        # self.timer_p = QTimer()
-        # self.timer_p.timeout.connect(self.probar_show)
-        # self.timer_p.start(100)
+        # 实时调整阻抗参数
+        imp_arm1.get_imp_parameter(self.M, self.B, self.K, self.I)
 
         # 设置绘图,用Qtimer开线程处理（线程4）
         # self.timer_plot = QTimer()
@@ -3258,48 +3377,68 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
 
         # 发送关节角度
         rate = rospy.Rate(100)
-        k = 0
+        kk1 = 0
+        k1 = 0
+        kk2 = 1
+        k2 = 0
+        kk3 = 0
+        k3 = 0
+        if (self.init_flag):
+            kk1 = len(self.command_qq_init)
+            k1 = 0
+        if (self.home_flag):
+            kk3 = len(self.command_qq_home)
+            k3 = 0
+
         while not rospy.is_shutdown():
             # 检测是否启动急停
             if (not self.run_flag):
-                # self.timer_plot.stop()
-                # self.timer_p.stop()
                 break
-            t1 = time.time()
-            #实时调整阻抗参数
-            imp_arm1.get_imp_parameter(self.M, self.B, self.K, self.I)
-            #读取期望位姿和关节角
-            imp_arm1.get_expect_pos(self.xx_d)
-            imp_arm1.get_current_joint(self.qq_state)
-            #读取当前关节角和力
-            imp_arm1.get_expect_force(self.f_d)
-            imp_arm1.get_current_force(self.f_state)
-            #计算修正关节角
-            qr = imp_arm1.compute_imp_joint()
-            # 发送数据
-            command_data = Float64MultiArray()
-            command_data.data = qr
-            self.pub.publish(command_data)
-            #显示数据
 
-            if (k % 10 == 0):
-                pub_msg = "armc" + "第" + str(k) + "次" + "publisher data is: " + '\n' \
-                                                                                "q1:" + str(
-                    command_data.data[0]) + '\n' \
-                                            "q2:" + str(command_data.data[1]) + '\n' \
-                                                                                "q3:" + str(
-                    command_data.data[2]) + '\n' \
-                                            "q4:" + str(command_data.data[3]) + '\n' \
-                                                                                "q5:" + str(
-                    command_data.data[4]) + '\n' \
-                                            "q6:" + str(command_data.data[5]) + '\n' \
-                                                                                "q7:" + str(
-                    command_data.data[6]) + '\n'
-                self.textEdit.setText(pub_msg)
+            if (self.init_flag):
+                command_data = Float64MultiArray()
+                if (k1 < kk1):
+                    command_data.data = self.command_qq_init[k1, 0:self.n]
+                else:
+                    command_data.data = self.command_qq_init[-1, 0:self.n]
+                self.pub.publish(command_data)
+                if (k1 == 0):
+                    msg = "运动到初始位置已经开始！"
+                    self.textEdit.setText(msg)
+                k1 = k1 + 1
+
+            if (self.imp_flag):
+                # 读取期望位姿和关节角
+                imp_arm1.get_expect_joint(self.qq_init)
+                imp_arm1.get_current_joint(np.array(self.state_qq_list[-1]))
+                # 读取当前关节角和力
+                imp_arm1.get_expect_force(self.f_d)
+                imp_arm1.get_current_force(np.array(self.state_f_list[-1]))
+                # 计算修正关节角
+                qr = imp_arm1.compute_imp_joint()
+                # 发送数据
+                command_data = Float64MultiArray()
+                command_data.data = qr
+                self.pub.publish(command_data)
+
+                if (k2 == 0):
+                    msg = "阻抗控制已经开始！"
+                    self.textEdit.setText(msg)
+                k2 = k2 + 1
+
+            if (self.home_flag):
+                command_data = Float64MultiArray()
+                if (k3 < kk3):
+                    command_data.data = self.command_qq_home[k3, 0:self.n]
+                else:
+                    command_data.data = self.command_qq_home[-1, 0:self.n]
+                self.pub.publish(command_data)
+                if (k3 == 0):
+                    msg = "返回到家点已经开始！"
+                    self.textEdit.setText(msg)
+                k3 = k3 + 1
             QApplication.processEvents()
-            k = k + 1
-            t2 = time.time()
-            print "阻抗时间：", (t2 - t1)
+
             rate.sleep()
 
     def gotoMain(self):
@@ -4273,12 +4412,12 @@ class ImpWindow3(QMainWindow, Ui_ImpForm3):
         msg = "开始下发命令！\n"
         self.textEdit.setText(msg)
         # 创建阻抗自适应阻抗实例
-        imp_arm1 = imp.IIMPController_iter()
+        imp_arm1 = imp.IIMPController_iter_vel()
 
         # 获取阻抗参数
-        self.M = np.array([0.0, 0.0, 1.0, 0.0, 0.0, 0.0])
-        self.B = np.array([0.0, 0.0, 200.0, 0.0, 0.0, 0.0])
-        self.K = np.array([0.0, 0.0, 1000.0, 0.0, 0.0, 0.0])
+        self.M = np.array([0.0, 0.0, 10.0, 0.0, 0.0, 0.0])
+        self.B = np.array([0.0, 0.0, 1000.0, 0.0, 0.0, 0.0])
+        self.K = np.array([0.0, 0.0, 0, 0.0, 0.0, 0.0])
         self.I = np.array([0.0, 0.0, 0, 0.0, 0.0, 0.0])
 
         # 输入参数

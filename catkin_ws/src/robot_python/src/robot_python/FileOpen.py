@@ -50,6 +50,22 @@ def write(write_data,path):
 				file_to_write.write(' ') #用空格分隔数据
 			file_to_write.write('\n') #末尾转行符
 
+def write_sigle(write_data, path):
+	''' write函数用于写入矩阵型数据，共两个参数
+		第一个参数为所需写入的数据，第二格参数为写入文件路径和名字
+		文件为用单空格分隔数据，末尾转行
+		写入模式为添加模式
+	'''
+	with open(path, 'w') as file_to_write:
+		print ('开始读写')
+		row = len(write_data)
+		for i in range(row):
+			data = write_data[i]
+			file_to_write.write(str(data))
+			file_to_write.write(' ')  # 用空格分隔数据
+		file_to_write.write('\n')  # 末尾转行符
+
+
 #将数据写入文件，用单空格分隔数据，末尾转行
 def write_a(write_data,path):
 	''' write函数用于写入矩阵型数据，共两个参数
