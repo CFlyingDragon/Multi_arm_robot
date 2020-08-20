@@ -9,6 +9,7 @@ import numpy as np
 
 import rospy
 from std_msgs.msg import Float64MultiArray
+from sensor_msgs.msg import JointState
 
 def callback(data):
     print "msg:", data
@@ -25,7 +26,7 @@ def listener2():
     #用循环来订阅所有数据
     while not rospy.is_shutdown():
         #订阅话题
-        msg = rospy.wait_for_message('joint_command', Float64MultiArray, timeout=None)
+        msg = rospy.wait_for_message('/joint_states', JointState, timeout=None)
         print "msg: %s" % msg
 
 if __name__ == '__main__':

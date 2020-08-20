@@ -30,7 +30,7 @@ def smooth(x, window_len=11, window='hanning'):
         return x
     if not window in WINDOWS:
         raise ValueError('Window is one of "flat", "hanning", "hamming", "bartlett", "blackman"')
-    s = np.r_[x[window_len - 1:0:-1], x, x[-1:-window_len:-1]]
+    s = np.r_[x[window_len - 1:0:-1], x, x[-1:-window_len:]]
     if window == 'flat':
         w = np.ones(window_len, 'd')
     else:
@@ -258,6 +258,48 @@ def deal_with_data2():
     plt.legend()
     plt.show()
 
+#单点恒力控制响应曲线
+def deal_with_sigle_force():
+    #获取地址
+    file_path = os.path.join(os.getcwd(), '../../', 'data/impedance/constant_force')
+    file_path = os.path.abspath(file_path)
+    file_force = file_path + '/sigle_force3.txt'
+
+    # 读取数据
+    force = FileOpen.read(file_force)
+    num = len(force)
+    T = 0.01
+    print "num:", num
+    t = np.linspace(0, T * (num - 1), num)
+    # 绘制数据图
+    MyPlot.plot2_nd(t, force, title='force', xlab='t/s', ylab='N', lable='f')
+
+    #切片处理
+    f1 = -force[2500:9000, 2]
+    num1 = len(f1)
+    print 'num1： ', num1
+    t = np.linspace(0, T * (num1 - 1), num1)
+
+    #滑动滤波
+    f2 = smooth(f1, window_len=11)
+    num2 = len(f2)
+    print 'num2：', num2
+    f3 = smooth(f2, window_len=21)
+    num3 = len(f3)
+    print 'num3：', num3
+
+    #仅处理z方向
+    plt.figure(2)
+    plt.plot(t, f1, label='Fz', color='b')
+    #plt.plot(t, f2, label='Fz', color='r')
+    plt.plot(t, f3, label='smooth', color='g')
+    plt.title("Fz")
+    plt.xlabel("t/s")
+    plt.ylabel("fz/N")
+    plt.legend()
+
+    plt.show()
+
 
 def main():
     num = 1000
@@ -277,5 +319,6 @@ def main():
 
 if __name__ == "__main__":
     #main()
-    deal_with_data2()
+    #deal_with_data2()
+    deal_with_sigle_force()
     print "finish!"

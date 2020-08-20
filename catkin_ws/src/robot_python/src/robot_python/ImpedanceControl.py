@@ -892,6 +892,10 @@ class IMPParamater(object):
         self.K = self.K_init + self.K_diff
         self.I = self.I_init + self.I_diff
 
+    def sfunc(self, x, k=1, a=400, b=1, m=0.005):
+        y = k / (1 + math.exp(m*(a - b * x)))
+        return y
+
     def get_function_paramter(self, a, b):
         '''
         :param a: 切变点1,以周期数为单位
@@ -906,6 +910,15 @@ class IMPParamater(object):
         for i in range(l):
             self.f[i] = float(i)/l
 
+    def out_sfun_paramter(self, k):
+        f = self.sfunc(k, a= (self.a +self.b)/2)
+        # 计算方程
+        M = self.M_init + f * self.M_diff
+        B = self.B_init + f * self.B_diff
+        K = self.K_init + f * self.K_diff
+        I = self.I_init + f * self.I_diff
+
+        return [M, B, K, I]
 
     def out_expect_imp_paramter(self, k):
         '''
@@ -932,39 +945,39 @@ def main():
     imp_param = IMPParamater()
     #输入阻抗参数
     M = np.zeros(6)
-    M[2] = 2
-    dM = -1
+    M[2] = 1
+    dM = -0
     B = np.zeros(6)
-    B[2] = 400
+    B[2] = 200
     dB = -200
     K = np.zeros(6)
     K[2] = 0
     dK = 0
     I = np.zeros(6)
-    I[2] = 0
-    dI = 20
+    I[2] = 10
+    dI = 25
 
-    a = 50
-    b = 600
+    a = 1000
+    b = 1000
 
     imp_param.get_init_imp_paramter(M[2], B[2], K[2], I[2])
     imp_param.get_diff_imp_paramter(dM, dB, dK, dI)
     imp_param.get_function_paramter(a, b)
 
     #控制周期
-    T = 0.01
+    T = 0.005
     imp.get_period(T)
 
     #输入DH参数
     imp.get_robot_parameter(rp.DHfa_armc, rp.q_max_armc, rp.q_min_armc)
 
-    num_imp = 1001
-    num_init = 600
+    num_imp = 2001
+    num_init = 1000
     num = num_init + num_imp
-    k = 10
+    k = 5
 
     # 环境刚度参数
-    ke = 27000
+    ke = 40000
 
     '''
     多次实验表明，需要解决两个问题
@@ -987,30 +1000,31 @@ def main():
             Xd_array[i, 0] = Xd[0] + ld * np.sin(0.5*np.pi / k * tt[i-num_init])
 
     #建立实际环境
-    le = 0.040
+    le = 0
+    led = - 0
     Xe = np.copy(Xd)
     Xe_array = np.zeros([num, 6])
     for i in range(num):
         if(i<num_init):
             Xe_array[i, :] = Xe
             Xe_array[i, 0] = Xe[0] + ld * np.sin(0.5*np.pi / k * tt[0])
-            Xe_array[i, 2] = Xe[2] - le * np.sin(2*np.pi / k * tt[0]) - 0.005
+            Xe_array[i, 2] = Xe[2] - le * np.cos(2*np.pi / k * tt[0]) - led
         else:
             Xe_array[i, :] = Xe
             Xe_array[i, 0] = Xe[0] + ld * np.sin(0.5*np.pi/k * tt[i-num_init])
-            Xe_array[i, 2] = Xe[2] - le * np.sin(2*np.pi/k * tt[i-num_init]) - 0.005
+            Xe_array[i, 2] = Xe[2] - le * np.cos(2*np.pi/k * tt[i-num_init]) - led
 
     #建立期望力
-    lf = 0.0
+    lf = -10
     Fd = np.array([0, 0, -15.0, 0, 0.0, 0])
     Fd_array = np.zeros([num, 6])
     for i in range(num):
         if(i<num_init):
             Fd_array[i, :] = Fd
-            Fd_array[i, 2] = Fd[2] + lf * np.sin(2 * np.pi * tt[0])
+            Fd_array[i, 2] = Fd[2] + lf * np.sin(2 * np.pi/k * tt[0])
         else:
             Fd_array[i, :] = Fd
-            Fd_array[i, 2] = Fd[2] + lf * np.sin(2*np.pi * tt[i-num_init])
+            Fd_array[i, 2] = Fd[2] + lf * np.sin(2*np.pi/k * tt[i-num_init])
 
     #建立运动学
     kin1 = kin.GeneralKinematic(rp.DHfa_armc)
@@ -1035,7 +1049,9 @@ def main():
     #合成阻抗轨迹
     for i in range(num):
         #变阻抗参数
-        [M[2], B[2], K[2], I[2]] = imp_param.out_expect_imp_paramter(i)
+        #[M[2], B[2], K[2], I[2]] = imp_param.out_expect_imp_paramter(i)
+        #[M[2], B[2], K[2], I[2]] = imp_param.out_sfun_paramter(i)
+
         #输入阻抗参数
         imp.get_imp_parameter(M, B, K, I)
 
