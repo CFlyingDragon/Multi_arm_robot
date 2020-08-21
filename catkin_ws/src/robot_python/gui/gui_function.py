@@ -175,8 +175,8 @@ def q_joint_space_plan(qq_b, qq_e, T=0.01):
 
     q_max = np.max(np.abs(qqe - qqb))
     t = q_max/vel
-    if(t < pow(10,-6)):
-        t = 1
+    if(t < 10):
+        t = 10
     [qq,qv,qa] = jp.pos1_to_pos2(qqb, qqe, T, t)
     return [qq, qv, T]
 
@@ -270,6 +270,10 @@ def get_robot_parameter(flag_str):
         qq_max = rp.q_max_ur5
         qq_min = rp.q_min_ur5
     elif(flag_str=='armt'):
+        DH0 = rp.DHf_armt
+        qq_max = rp.q_max_armc
+        qq_min = rp.q_min_armc
+    elif(flag_str=='armc_actor'):
         DH0 = rp.DHf_armt
         qq_max = rp.q_max_armc
         qq_min = rp.q_min_armc

@@ -19,7 +19,15 @@ from geometry_msgs.msg import WrenchStamped
 F = np.zeros(6)
 def tcp_connect():
     #设置IP和端口号
-    IP_ADDR	= '192.168.0.108'
+    '''
+    采集卡：M8128B1
+          SN04889
+    传感器：
+    M3705C
+    SN8961
+    :return:
+    '''
+    IP_ADDR	= '192.168.0.101'
     PORT = 4008
 
     #创建连接插口并连接
@@ -78,8 +86,8 @@ def tcp_connect():
 
 def pub_force_node():
     # 运行话题
-    rospy.init_node('force_sensor_node')
-    pub = rospy.Publisher("/ft_sensor_topic", WrenchStamped, queue_size=100)
+    rospy.init_node('force_sensor_armc_node')
+    pub = rospy.Publisher("/armc/ft_sensor_topic", WrenchStamped, queue_size=100)
 
     #建立线程接收六维力
     t1 = threading.Thread(target=tcp_connect)

@@ -7,6 +7,8 @@
 import numpy as np
 from math import pi
 
+q_min = np.array([-180, -90, 180, -90, -180, -90, -180])*pi/180
+q_max = np.array([180, 90, 180, 90, 180, 90, 180])*pi/180
 #自制机械臂armc的DH参数表,长度单位m
 # DH0_armc = np.array([[0, -pi/2, 0, 0.248],
 # 					[0,  pi/2, 0, 0    ],

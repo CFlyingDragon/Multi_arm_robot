@@ -187,7 +187,6 @@ def quaternion_to_rot(Q):
 	R[2, 1] = 2 * (Q[2] * Q[3] - Q[1] * Q[0])
 	return R
 
-
 #==================相邻关节齐次变换矩阵================#
 def  trans(theta,alpha,a,d):
 	'''
@@ -445,10 +444,10 @@ def exceed_joint_limit(qq,q_min,q_max):
 		outpu：0,未超出，1超出
 	'''
 	n = len(qq)
-	limit = 0
+	limit = False
 	for i in range(n):
 		if((qq[i] < q_min[i]) or (qq[i] > q_max[i])):
-			limit = 1
+			limit = True
 			break
 	return limit
 

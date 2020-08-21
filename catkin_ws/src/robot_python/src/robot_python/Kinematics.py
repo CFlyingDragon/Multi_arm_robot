@@ -1236,12 +1236,14 @@ class GeneralKinematic(object):
 	'''
 	函数依赖math和numpy
 	'''
-	def __init__(self, DH_0):
+	def __init__(self, DH_0,q_min=rp.q_min, q_max=rp.q_max):
 		self.DH_0 = DH_0
 		self.theta = DH_0[:, 0]
 		self.alpha = DH_0[:, 1]
 		self.a = DH_0[:, 2]
 		self.d = DH_0[:, 3]
+		self.q_min = q_min
+		self.q_max = q_max
 
 		self.n = len(self.theta)
 
@@ -1430,6 +1432,18 @@ class GeneralKinematic(object):
 	def ur_ikine(self,Te, qq_k):
 		qr = ur_ikine_choice(self.DH_0, Te, qq_k)
 		return qr
+
+	#带关节限制
+	def iterate_ikine_limit(self, q_guess, Xe):
+		Te = np.eye(4)
+		Te[0:3, 0:3] = self.euler_zyx2rot(Xe[3:])
+		Te[0:3, 3] = Xe[:3]
+		qr = self.iterate_ikine(q_guess, Te)
+		flag = bf.exceed_joint_limit(qr,self.q_min, self.q_max)
+		if(flag):
+			qr = np.copy(q_guess)
+		return [qr, flag]
+
 
 def ur_ikine_test():
 	DH_0 = rp.DH0_ur5

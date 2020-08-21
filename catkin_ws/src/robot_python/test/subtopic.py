@@ -26,7 +26,7 @@ def listener2():
     #用循环来订阅所有数据
     while not rospy.is_shutdown():
         #订阅话题
-        msg = rospy.wait_for_message('/joint_states', JointState, timeout=None)
+        msg = rospy.wait_for_message('/robot1/joint_states', JointState, timeout=None)
         print "msg: %s" % msg
 
 if __name__ == '__main__':

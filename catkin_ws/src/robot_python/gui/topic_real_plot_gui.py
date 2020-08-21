@@ -648,7 +648,6 @@ class PlotArmcWindow1(QMainWindow, Ui_PlotArmcForm1):
         del self.state_t_list[0]
         del self.state_qq_list[0]
         del self.state_qv_list[0]
-        print "qq: ", qq
 
     ##关节角订阅回调函数
     def force_callback(self, msg):

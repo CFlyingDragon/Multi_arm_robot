@@ -30,6 +30,7 @@ import threading
 #界面函数
 from main_windon import Ui_MainWindow
 from armc_form1 import Ui_ArmcForm1
+from armc_form2 import Ui_ArmcForm2
 from urs_form1 import Ui_UrsForm1
 from urs_form2 import Ui_UrsForm2
 from urs_form3 import Ui_UrsForm3
@@ -51,6 +52,7 @@ import gui_function as gf
 from robot_python import ImpedanceControl as imp
 from robot_python import TeachingLearning as tl
 from robot_python import FileOpen as fo
+from robot_python import Kinematics as kin
 
 #**********************************主窗口***************************************#
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -111,6 +113,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         openArmc1.setStatusTip('Open armc joint plan form')
         openArmc1.triggered.connect(self.gotoArmc1)
         armcMenu.addAction(openArmc1)
+
+        # armc机械臂增量规划
+        openArmc2 = QAction(QIcon('exit.png'), 'armc inc plan', self)
+        openArmc2.setShortcut('Ctrl+c')
+        openArmc2.setStatusTip('Open armc inc plan form')
+        openArmc2.triggered.connect(self.gotoArmc2)
+        armcMenu.addAction(openArmc2)
 
         # -------------------URs菜单-------------------#
         #3个UR机械臂关节空间规划
@@ -533,6 +542,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.armc1 = ArmcWindow1()
         self.armc1.show()
 
+    def gotoArmc2(self):
+        self.hide()
+        self.armc2 = ArmcWindow2()
+        self.armc2.show()
+
 #***************************armc窗口：加入速度控制********************************#
 class ArmcWindow1(QMainWindow, Ui_ArmcForm1):
     # 建立全局变量
@@ -650,14 +664,14 @@ class ArmcWindow1(QMainWindow, Ui_ArmcForm1):
             if(self.vel_flag):
                 self.sub_force_path = "/armc/ft_sensor_topic"
                 self.lineEdit_sub_f.setText(self.sub_force_path)
-                self.sub_pos_path = "/armc/joint_states"
+                self.sub_pos_path = "/joint_states"
                 self.lineEdit_sub_qq.setText(self.sub_pos_path)
                 self.pub_path = "/all_joints_velocity_group_controller/command"
                 self.lineEdit_pub_qq.setText(self.pub_path)
             else:
                 self.sub_force_path = "/armc/ft_sensor_topic"
                 self.lineEdit_sub_f.setText(self.sub_force_path)
-                self.sub_pos_path = "/armc/joint_states"
+                self.sub_pos_path = "/joint_states"
                 self.lineEdit_sub_qq.setText(self.sub_pos_path)
                 self.pub_path = "/all_joints_position_group_controller/command"
                 self.lineEdit_pub_qq.setText(self.pub_path)
@@ -890,6 +904,759 @@ class ArmcWindow1(QMainWindow, Ui_ArmcForm1):
             rate.sleep()
 
     # ===============窗口跳转函数================#
+    def gotoMain(self):
+        self.hide()
+        self.main_windon = MainWindow()
+        self.main_windon.show()
+
+# ================阻抗控制窗口1:阻抗参数调试================#
+class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
+    # 建立全局变量
+    state_qq_list = list(np.zeros([1000, 7]))
+    state_f_list = list(np.zeros([1000, 6]))
+    state_t_list = list(np.zeros(1000))
+    state_t = 0
+
+    def __init__(self, parent=None):
+        super(ArmcWindow2, self).__init__(parent)
+        self.T = 0.01
+        self.t = 15
+
+        self.run_flag = False  # 开始或停止标签
+        self.real_flag = False
+        self.joint_flag = False
+
+        self.init_flag = False
+        self.inc_flag = False
+        self.home_flag = False
+
+        self.pos1 = False
+        self.pos2 = False
+
+        self.read_flag = False
+
+        [DH0, q_max, q_min] = gf.get_robot_parameter("armc")
+        self.DH0 = DH0
+        self.q_max = q_max
+        self.q_min = q_min
+        self.robot = "armc"
+
+        self.sub_pos_path = "/armc/joint_states"
+        self.pub_path = "/armc/joint_positions_controller/command"
+        self.n = 7  #机械臂关节数
+
+        self.setupUi(self)
+        self.initUI()
+
+    def initUI(self):
+        # ======================菜单栏功能模块=======================#
+        # 创建菜单
+        menubar = self.menuBar()
+        fileMenu = menubar.addMenu('&File')
+
+        # 文件菜单:返回主窗口
+        openMain = QAction(QIcon('exit.png'), 'main window ', self)
+        openMain.setShortcut('Ctrl+z')
+        openMain.setStatusTip('Return main window')
+        openMain.triggered.connect(self.gotoMain)
+        fileMenu.addAction(openMain)
+
+        # =======================绘图相关设置=======================#
+        self.p1, self.p2 = self.set_graph_ui()  # 设置绘图窗口
+
+        # =======================按钮功能模块=======================#
+        # 读取积分自适应阻抗参数MBKI
+        self.button_begin.clicked.connect(self.begin_function)
+        self.button_stop.clicked.connect(self.stop)
+        self.button_get_init_qq.clicked.connect(self.calculation_init_point_qq)
+        self.checkBox_real.stateChanged.connect(self.real_and_joint)
+        self.checkBox_joint.stateChanged.connect(self.real_and_joint)
+        self.button_get_init_xx.clicked.connect(self.calculation_init_point_xx)
+        self.button_receive.clicked.connect(self.run_topic)
+        self.button_init.clicked.connect(self.go_init)
+        self.button_inc.clicked.connect(self.go_inc)
+        self.button_home.clicked.connect(self.go_home)
+
+        #-------增量控制按钮栏--------#
+        self.button_qq1_N.clicked.connect(self.fun_qq1_n)
+        self.button_qq2_N.clicked.connect(self.fun_qq2_n)
+        self.button_qq3_N.clicked.connect(self.fun_qq3_n)
+        self.button_qq4_N.clicked.connect(self.fun_qq4_n)
+        self.button_qq5_N.clicked.connect(self.fun_qq5_n)
+        self.button_qq6_N.clicked.connect(self.fun_qq6_n)
+        self.button_qq7_N.clicked.connect(self.fun_qq7_n)
+        self.button_qq1_P.clicked.connect(self.fun_qq1_p)
+        self.button_qq2_P.clicked.connect(self.fun_qq2_p)
+        self.button_qq3_P.clicked.connect(self.fun_qq3_p)
+        self.button_qq4_P.clicked.connect(self.fun_qq4_p)
+        self.button_qq5_P.clicked.connect(self.fun_qq5_p)
+        self.button_qq6_P.clicked.connect(self.fun_qq6_p)
+        self.button_qq7_P.clicked.connect(self.fun_qq7_p)
+        self.button_xx1_N.clicked.connect(self.fun_xx1_n)
+        self.button_xx2_N.clicked.connect(self.fun_xx2_n)
+        self.button_xx3_N.clicked.connect(self.fun_xx3_n)
+        self.button_xx4_N.clicked.connect(self.fun_xx4_n)
+        self.button_xx5_N.clicked.connect(self.fun_xx5_n)
+        self.button_xx6_N.clicked.connect(self.fun_xx6_n)
+        self.button_xx1_P.clicked.connect(self.fun_xx1_p)
+        self.button_xx2_P.clicked.connect(self.fun_xx2_p)
+        self.button_xx3_P.clicked.connect(self.fun_xx3_p)
+        self.button_xx4_P.clicked.connect(self.fun_xx4_p)
+        self.button_xx5_P.clicked.connect(self.fun_xx5_p)
+        self.button_xx6_P.clicked.connect(self.fun_xx6_p)
+
+
+    # ===============按钮功能模块相关函数================#
+    # 采用pyqtgraph绘制曲线,添加画板
+    def set_graph_ui(self):
+        pg.setConfigOptions(antialias=True)  # pg全局变量设置函数，antialias=True开启曲线抗锯齿
+
+        win1 = pg.GraphicsLayoutWidget()  # 创建pg layout，可实现数据界面布局自动管理
+        win2 = pg.GraphicsLayoutWidget()
+
+        # pg绘图窗口可以作为一个widget添加到GUI中的graph_layout，当然也可以添加到Qt其他所有的容器中
+        self.horizontalLayout_1.addWidget(win1)
+        self.horizontalLayout_2.addWidget(win2)
+
+        p1 = win1.addPlot(title="joint pos")  # 添加第一个绘图窗口
+        p1.setLabel('left', text='pos/rad', color='#ffffff')  # y轴设置函数
+        p1.showGrid(x=True, y=True)  # 栅格设置函数
+        p1.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+        p1.setLabel('bottom', text='time', units='s')  # x轴设置函数
+        p1.addLegend(size=(50, 30))  # 可选择是否添加legend
+
+        p2 = win2.addPlot(title="joint vel")  # 添加第一个绘图窗口
+        p2.setLabel('left', text='vel/N', color='#ffffff')  # y轴设置函数
+        p2.showGrid(x=True, y=True)  # 栅格设置函数
+        p2.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+        p2.setLabel('bottom', text='time', units='s')  # x轴设置函数
+        p2.addLegend(size=(50, 30))
+        return p1, p2
+
+        # 绘画关节角和关节角速度曲线
+
+    def plot_pos(self, t1, qq):
+        # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
+        self.p1.plot(t1, qq[:, 0], pen='b', name='qq1', clear=True)
+        self.p1.plot(t1, qq[:, 1], pen='g', name='qq2', clear=False)
+        self.p1.plot(t1, qq[:, 2], pen='r', name='qq3', clear=False)
+        self.p1.plot(t1, qq[:, 3], pen='c', name='qq4', clear=False)
+        self.p1.plot(t1, qq[:, 4], pen='m', name='qq5', clear=False)
+        self.p1.plot(t1, qq[:, 5], pen='y', name='qq6', clear=False)
+        self.p1.plot(t1, qq[:, 6], pen='w', name='qq7', clear=False)
+
+    def plot_vel(self, t1, qv):
+        # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
+        self.p2.plot(t1, qv[:, 0], pen='b', name='qv1', clear=True)
+        self.p2.plot(t1, qv[:, 1], pen='g', name='qv2', clear=False)
+        self.p2.plot(t1, qv[:, 2], pen='r', name='qv3', clear=False)
+        self.p2.plot(t1, qv[:, 3], pen='c', name='qv4', clear=False)
+        self.p2.plot(t1, qv[:, 4], pen='m', name='qv5', clear=False)
+        self.p2.plot(t1, qv[:, 5], pen='y', name='qv6', clear=False)
+        self.p2.plot(t1, qv[:, 6], pen='w', name='qv7', clear=False)
+
+    # 支持armt、armc四种状态切换
+    def real_and_joint(self):
+        self.real_flag = self.checkBox_real.isChecked()
+        self.joint_flag = self.checkBox_joint.isChecked()
+        if (self.real_flag):
+            self.sub_pos_path = "/joint_states"
+            self.pub_path = "/all_joints_position_group_controller/command"
+
+        else:
+            self.sub_pos_path = "/armc/joint_states"
+            self.pub_path = "/armc/joint_positions_controller/command"
+
+    # 计算初始位置
+    def calculation_init_point_xx(self):
+        # 初始关节角
+        qq = np.zeros(7)
+        qq[0] = self.lineEdit_q1.text()
+        qq[1] = self.lineEdit_q2.text()
+        qq[2] = self.lineEdit_q3.text()
+        qq[3] = self.lineEdit_q4.text()
+        qq[4] = self.lineEdit_q5.text()
+        qq[5] = self.lineEdit_q6.text()
+        qq[6] = self.lineEdit_q7.text()
+
+        # 转换单位
+        qq = qq * np.pi / 180.0
+
+        # 计算初始位置
+        xx_b = gf.get_begin_point(qq, self.robot)
+
+        # 转换到显示单位
+        xx = np.copy(xx_b)  # 转化为mm显示
+        xx[0:3] = xx_b[0:3] * 1000  # 转换为mm显示
+
+        # 显示到界面
+        self.lineEdit_x1.setText(str(round(xx[0], 4)))
+        self.lineEdit_x2.setText(str(round(xx[1], 4)))
+        self.lineEdit_x3.setText(str(round(xx[2], 4)))
+        self.lineEdit_x4.setText(str(round(xx[3], 4)))
+        self.lineEdit_x5.setText(str(round(xx[4], 4)))
+        self.lineEdit_x6.setText(str(round(xx[5], 4)))
+        msg = "初始末端位置\n" + \
+              "x1:" + str(xx[0]) + "\n" + "x2:" + str(xx[1]) + \
+              "\n" + "x3:" + str(xx[2]) + "\n" + "x4:" + str(xx[3]) + \
+              "\n" + "x5:" + str(xx[4]) + "\n" + "x6:" + str(xx[5]) + "\n"
+        self.textEdit.setText(msg)
+
+    def calculation_init_point_qq(self):
+        # 初始关节角
+        qq = np.zeros(7)
+        qq[0] = self.lineEdit_q1.text()
+        qq[1] = self.lineEdit_q2.text()
+        qq[2] = self.lineEdit_q3.text()
+        qq[3] = self.lineEdit_q4.text()
+        qq[4] = self.lineEdit_q5.text()
+        qq[5] = self.lineEdit_q6.text()
+        qq[6] = self.lineEdit_q7.text()
+
+        # 转换单位
+        qq = qq * np.pi / 180.0
+
+        self.qq_init = np.copy(qq)
+        # 计算初始位置
+        xx_b = gf.get_begin_point(qq, self.robot)
+
+        # 转换到显示单位
+        xx = np.copy(xx_b)  # 转化为mm显示
+        xx[0:3] = xx_b[0:3] * 1000  # 转换为mm显示
+
+        # 显示到界面
+        self.lineEdit_x1.setText(str(round(xx[0], 4)))
+        self.lineEdit_x2.setText(str(round(xx[1], 4)))
+        self.lineEdit_x3.setText(str(round(xx[2], 4)))
+        self.lineEdit_x4.setText(str(round(xx[3], 4)))
+        self.lineEdit_x5.setText(str(round(xx[4], 4)))
+        self.lineEdit_x6.setText(str(round(xx[5], 4)))
+        msg = "初始末端位置\n" + \
+              "x1:" + str(xx[0]) + "\n" + "x2:" + str(xx[1]) + \
+              "\n" + "x3:" + str(xx[2]) + "\n" + "x4:" + str(xx[3]) + \
+              "\n" + "x5:" + str(xx[4]) + "\n" + "x6:" + str(xx[5]) + "\n"
+        self.textEdit.setText(msg)
+
+        self.read_flag = True
+
+    # 读取所有初始参数
+    def read_paramter(self):
+        # 初始关节角
+        qq = np.zeros(7)
+        qq[0] = self.lineEdit_q1.text()
+        qq[1] = self.lineEdit_q2.text()
+        qq[2] = self.lineEdit_q3.text()
+        qq[3] = self.lineEdit_q4.text()
+        qq[4] = self.lineEdit_q5.text()
+        qq[5] = self.lineEdit_q6.text()
+        qq[6] = self.lineEdit_q7.text()
+
+        # 读取期望末端位置
+        xx = np.zeros(6)
+        xx[0] = self.lineEdit_x1.text()
+        xx[1] = self.lineEdit_x2.text()
+        xx[2] = self.lineEdit_x3.text()
+        xx[3] = self.lineEdit_x4.text()
+        xx[4] = self.lineEdit_x5.text()
+        xx[5] = self.lineEdit_x6.text()
+        # 改变为输入单位
+        x_d = np.copy(xx)
+        x_d[0:3] = xx[0:3] / 1000.0
+
+        msg_joint = "初始关节角\n" + \
+                    "qq:" + "[" + str(qq[0]) + "," + str(qq[1]) + "," + \
+                    str(qq[2]) + "," + str(qq[3]) + "," + str(qq[4]) + \
+                    "," + str(qq[5]) + "," + str(qq[6]) + "]" + "\n"
+
+        msg_pos = "期望末端位置\n" + \
+                  "Xd:" + "[" + str(xx[0]) + "," + str(xx[1]) + "," + \
+                  str(xx[2]) + "," + str(xx[3]) + "," + str(xx[4]) + \
+                  "," + str(xx[5]) + "]" + "\n"
+
+
+        msg = msg_joint + msg_pos
+        self.textEdit.setText(msg)
+        # 转化为输入单位，并保存到全局变量
+        self.qq_init = np.copy(qq * np.pi / 180.0)
+        self.xx_d = np.copy(x_d)
+        self.read_flag = True
+
+    ##关节角订阅回调函数
+    def joint_callback(self, msg):
+        qq = np.zeros(self.n)
+        for i in range(self.n):
+            qq[i] = msg.position[i]
+
+        # 存储数据
+        self.qq_state = np.copy(qq)
+        self.state_t = self.state_t + self.T
+        self.state_qq_list.append(self.qq_state)
+        self.state_t_list.append(self.state_t)
+        # 仅记录1000个数据点
+        del self.state_t_list[0]
+        del self.state_qq_list[0]
+
+    ##末端力订阅线程
+    def thread_spin(self):
+        rospy.spin()
+
+    def probar_show(self):
+        self.step_p = self.step_p + 1
+        self.progressBar.setValue(self.step_p)
+        if (self.step_p > 99):
+            self.timer_p.stop()
+
+    def stop(self):
+        self.run_flag = False
+
+    def realtime_plot(self):
+        plot_t = np.array(self.state_t_list)
+        plot_qq = np.array(self.state_qq_list)
+        self.plot_pos(plot_t, plot_qq)
+
+    def run_topic(self):
+        # 运行话题
+        rospy.init_node('upper_controller_node')
+        rospy.Subscriber(self.sub_pos_path, JointState, self.joint_callback)
+        self.pub = rospy.Publisher(self.pub_path, Float64MultiArray, queue_size=100)
+
+        # 运行线程1,收话题线程
+        t1 = threading.Thread(target=self.thread_spin)  # 末端位置订阅线程
+        msg_tip = "upper_controller_node run!"
+        self.textEdit.setText(msg_tip)
+        t1.start()
+
+    def go_init(self):
+        if (not self.read_flag):
+            msg = "未读取参数！\n"
+            self.textEdit.setText(msg)
+            return -1
+
+        self.init_flag = True
+        self.imp_flag = False
+        self.home_flag = False
+
+        # 获得规划起点
+        qq_b = np.array(self.state_qq_list[-1])
+        # 调用规划函数
+        [qq, qv, _] = gf.q_joint_space_plan_time(qq_b, self.qq_init, self.T, self.t)
+        # 调用绘图函数
+        k = len(qq[:, 0])
+        t = np.linspace(0, self.T * (k - 1), k)
+        # 绘制关节角位置速度图
+        self.plot_pos(t, qq)
+        self.plot_vel(t, qv)
+        # 将规划好的位置定义为全局变量
+        self.command_qq_init = np.copy(qq)
+        msg = "运动到初始点已规划！\n"
+        self.textEdit.setText(msg)
+
+    def go_inc(self):
+        self.init_flag = False
+        self.inc_flag = True
+        self.home_flag = False
+
+        #创建运动学求解器
+        self.my_kin = kin.GeneralKinematic(self.DH0)
+
+        xx = self.my_kin.fkine_euler(self.qq_state)
+        self.XX = np.copy(xx)
+        self.qq = np.copy(self.qq_state)
+        qq = self.qq_state*180/np.pi
+        qq = np.around(qq, 2)
+        xx[:3] = xx[:3]*1000
+        xx[3:] = xx[3:]*180/np.pi
+        xx = np.around(xx, 2)
+
+        self.lineEdit_qq1.setText(str(qq[0]))
+        self.lineEdit_qq2.setText(str(qq[1]))
+        self.lineEdit_qq3.setText(str(qq[2]))
+        self.lineEdit_qq4.setText(str(qq[3]))
+        self.lineEdit_qq5.setText(str(qq[4]))
+        self.lineEdit_qq6.setText(str(qq[5]))
+        self.lineEdit_qq7.setText(str(qq[6]))
+
+        self.lineEdit_xx1.setText(str(xx[0]))
+        self.lineEdit_xx2.setText(str(xx[1]))
+        self.lineEdit_xx3.setText(str(xx[2]))
+        self.lineEdit_xx4.setText(str(xx[3]))
+        self.lineEdit_xx5.setText(str(xx[4]))
+        self.lineEdit_xx6.setText(str(xx[5]))
+
+        msg = "已切换到增量模式！\n"
+        self.textEdit.setText(msg)
+
+    def go_home(self):
+        self.init_flag = False
+        self.imp_flag = False
+        self.home_flag = True
+
+        # 获得规划起点
+        qq_b = np.array(self.state_qq_list[-1])
+        qq_home = np.array([0, 0, 0, 0, 0, 0, 0.0])
+        # 调用规划函数
+        [qq, qv, qa] = gf.q_joint_space_plan_time(qq_b, qq_home, self.T, self.t)
+        # 调用绘图函数
+        k = len(qq[:, 0])
+        t = np.linspace(0, self.T * (k - 1), k)
+        # 绘制关节角位置速度图
+        self.plot_vel(t, qv)
+        self.plot_pos(t, qq)
+        # 将规划好的位置定义为全局变量
+        self.command_qq_home = np.copy(qq)
+        msg = "运动到家点已规划！\n"
+        self.textEdit.setText(msg)
+
+    #增量运动程序
+    def inc_run(self):
+        t = 1
+        qq_command = np.zeros(self.n)
+        xx = np.zeros(6)
+        if(self.joint_flag):
+            qq_command[0] = self.lineEdit_qq1.text()
+            qq_command[1] = self.lineEdit_qq2.text()
+            qq_command[2] = self.lineEdit_qq3.text()
+            qq_command[3] = self.lineEdit_qq4.text()
+            qq_command[4] = self.lineEdit_qq5.text()
+            qq_command[5] = self.lineEdit_qq6.text()
+            qq_command[6] = self.lineEdit_qq7.text()
+            qq_command = qq_command*np.pi/180.0
+            t = int(self.dq)/5 + 1
+
+        else:
+            xx[0] = self.lineEdit_xx1.text()
+            xx[1] = self.lineEdit_xx2.text()
+            xx[2] = self.lineEdit_xx3.text()
+            xx[3] = self.lineEdit_xx4.text()
+            xx[4] = self.lineEdit_xx5.text()
+            xx[5] = self.lineEdit_xx6.text()
+            xx[:3] = xx[:3]*0.001
+            xx[3:] = xx[3:]*np.pi/180.0
+            [qq_command, flag] = self.my_kin.iterate_ikine_limit(self.qq_state, xx)
+            if(flag):
+                msg = "超出关节极限！"
+                self.textEdit.setText(msg)
+                return -1
+            dq = max(np.abs(qq_command-self.qq_state))
+            t = int(dq)/5 + 1
+
+        [qq, qv, qa] = gf.q_joint_space_plan_time(self.qq_state, qq_command, t)
+        # 绘制关节角位置速度图
+        self.plot_vel(t, qv)
+        self.plot_pos(t, qq)
+
+        self.command_qq_inc = np.copy(qq)
+        self.begin_function()
+
+    #---------增量按钮组---------#
+    def fun_qq1_n(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq1.text())
+        qq = qq - self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq1.setText(str(qq))
+        #启动程序
+        self.inc_run()
+
+    def fun_qq2_n(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq2.text())
+        qq = qq - self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq2.setText(str(qq))
+        #启动程序
+        self.inc_run()
+
+    def fun_qq3_n(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq3.text())
+        qq = qq - self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq3.setText(str(qq))
+        #启动程序
+        self.inc_run()
+
+    def fun_qq4_n(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq4.text())
+        qq = qq - self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq4.setText(str(qq))
+        #启动程序
+        self.inc_run()
+
+    def fun_qq5_n(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq5.text())
+        qq = qq - self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq5.setText(str(qq))
+        #启动程序
+        self.inc_run()
+
+    def fun_qq6_n(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq6.text())
+        qq = qq - self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq6.setText(str(qq))
+        #启动程序
+        self.inc_run()
+
+    def fun_qq7_n(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq7.text())
+        qq = qq - self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq7.setText(str(qq))
+        #启动程序
+        self.inc_run()
+
+    def fun_qq1_p(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq1.text())
+        qq = qq + self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq1.setText(str(qq))
+        # 启动程序
+        self.inc_run()
+
+    def fun_qq2_p(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq2.text())
+        qq = qq + self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq2.setText(str(qq))
+        # 启动程序
+        self.inc_run()
+
+    def fun_qq3_p(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq3.text())
+        qq = qq + self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq3.setText(str(qq))
+        # 启动程序
+        self.inc_run()
+
+    def fun_qq4_p(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq4.text())
+        qq = qq + self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq4.setText(str(qq))
+        # 启动程序
+        self.inc_run()
+
+    def fun_qq5_p(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq5.text())
+        qq = qq + self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq5.setText(str(qq))
+        # 启动程序
+        self.inc_run()
+
+    def fun_qq6_p(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq6.text())
+        qq = qq + self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq6.setText(str(qq))
+        # 启动程序
+        self.inc_run()
+
+    def fun_qq7_p(self):
+        self.dq = float(self.lineEdit_dq.text())
+        qq = float(self.lineEdit_qq7.text())
+        qq = qq + self.dq
+        qq = np.round(qq, 2)
+        self.lineEdit_qq7.setText(str(qq))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx1_n(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx1.text())
+        xx = xx - self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx1.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx2_n(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx2.text())
+        xx = xx - self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx2.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx3_n(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx3.text())
+        xx = xx - self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx3.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx4_n(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx4.text())
+        xx = xx - self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx4.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx5_n(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx5.text())
+        xx = xx - self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx5.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx6_n(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx6.text())
+        xx = xx - self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx6.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx1_p(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx1.text())
+        xx = xx + self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx1.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx2_p(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx2.text())
+        xx = xx + self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx2.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx3_p(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx3.text())
+        xx = xx + self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx3.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx4_p(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx4.text())
+        xx = xx + self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx4.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx5_p(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx5.text())
+        xx = xx + self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx5.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+
+    def fun_xx6_p(self):
+        self.dx = float(self.lineEdit_dx.text())
+        xx = float(self.lineEdit_xx6.text())
+        xx = xx + self.dx
+        xx = np.round(xx, 2)
+        self.lineEdit_xx6.setText(str(xx))
+        # 启动程序
+        self.inc_run()
+    #----------增量按钮结束---------#
+
+    def begin_function(self):
+        # 运行标签启动
+        self.run_flag = True
+
+        # 提示标语
+        msg = "开始下发命令！\n"
+        self.textEdit.setText(msg)
+
+        # 设置绘图,用Qtimer开线程处理（线程4）
+        if(not self.real_flag):
+            self.timer_plot = QTimer()
+            self.timer_plot.timeout.connect(self.realtime_plot)
+            self.timer_plot.start(1000)
+
+        # 发送关节角度
+        rate = rospy.Rate(100)
+        kk = 0
+        k = 0
+        if (self.init_flag):
+            kk = len(self.command_qq_init)
+
+        if (self.inc_flag):
+            kk = len(self.command_qq_inc)
+
+        if (self.home_flag):
+            kk = len(self.command_qq_home)
+
+        # 进度条显示时间间隔
+        show_time = int(kk * self.T * 10)
+
+        # 设置ProgressBar,用Qtimer开线程处理（线程3）
+        self.step_p = 0
+        self.timer_p = QTimer()
+        self.timer_p.timeout.connect(self.probar_show)
+        self.timer_p.start(show_time)
+
+        while not rospy.is_shutdown():
+            # 检测是否启动急停
+            if ((not self.run_flag) or k==kk):
+                self.timer_p.stop()
+                if(not self.real_flag):
+                    self.timer_plot.stop()
+                break
+
+            command_data = Float64MultiArray()
+            if (self.init_flag):
+                command_data.data = self.command_qq_init[k, 0:self.n]
+            if (self.inc_flag):
+                command_data.data = self.command_qq_inc[k, 0:self.n]
+            if (self.home_flag):
+                command_data.data = self.command_qq_home[k, 0:self.n]
+
+            self.pub.publish(command_data)
+            if (k/10 == 0):
+                msg = "armc" + "第" + str(k) + "次" + "publisher data is: " + '\n' \
+                                                                                "q1:" + str(
+                    command_data.data[0]) + '\n' \
+                                            "q2:" + str(command_data.data[1]) + '\n' \
+                                                                                "q3:" + str(
+                    command_data.data[2]) + '\n' \
+                                            "q4:" + str(command_data.data[3]) + '\n' \
+                                                                                "q5:" + str(
+                    command_data.data[4]) + '\n' \
+                                            "q6:" + str(command_data.data[5]) + '\n' \
+                                                                                "q7:" + str(
+                    command_data.data[6]) + '\n'
+                self.textEdit.setText(msg)
+            k = k + 1
+            QApplication.processEvents()
+            rate.sleep()
+        msg = "运动完成！"
+        self.textEdit.setText(msg)
+
     def gotoMain(self):
         self.hide()
         self.main_windon = MainWindow()
