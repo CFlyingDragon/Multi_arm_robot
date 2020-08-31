@@ -1434,15 +1434,25 @@ class GeneralKinematic(object):
 		return qr
 
 	#带关节限制
-	def iterate_ikine_limit(self, q_guess, Xe):
+	def iterate_ikine_limit_xyz(self, q_guess, Xe):
 		Te = np.eye(4)
 		Te[0:3, 0:3] = self.euler_zyx2rot(Xe[3:])
 		Te[0:3, 3] = Xe[:3]
 		qr = self.iterate_ikine(q_guess, Te)
-		flag = bf.exceed_joint_limit(qr,self.q_min, self.q_max)
+		flag = bf.exceed_joint_limit(qr ,self.q_min, self.q_max)
 		if(flag):
+			#print "flag:", flag
 			qr = np.copy(q_guess)
-		return [qr, flag]
+		return qr
+
+	# 带关节限制
+	def iterate_ikine_limit(self, q_guess, Te):
+		qr = self.iterate_ikine(q_guess, Te)
+		flag = bf.exceed_joint_limit(qr, self.q_min, self.q_max)
+		if (flag):
+			# print "flag:", flag
+			qr = np.copy(q_guess)
+		return qr
 
 
 def ur_ikine_test():

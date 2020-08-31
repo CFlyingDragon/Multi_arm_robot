@@ -437,7 +437,7 @@ def spline_tt1(t,f,current_time,m,h):
 
 #=================机械臂关节角极限及跳跃=================#
 #机械臂关节极限判断，返回值为0或1
-def exceed_joint_limit(qq,q_min,q_max):
+def exceed_joint_limit(qq, q_min, q_max):
 	'''
 		判断关节角是否超出限制
 		input:关节角，关节角范围
@@ -447,6 +447,8 @@ def exceed_joint_limit(qq,q_min,q_max):
 	limit = False
 	for i in range(n):
 		if((qq[i] < q_min[i]) or (qq[i] > q_max[i])):
+
+			print "第", i+1, "关节超出极限！！"
 			limit = True
 			break
 	return limit

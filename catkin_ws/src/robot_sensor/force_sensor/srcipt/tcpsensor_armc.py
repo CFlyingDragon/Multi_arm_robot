@@ -96,10 +96,10 @@ def pub_force_node():
 
     #求取偏置
     F_offset = np.zeros(6)
-    for i in range(10):
+    for i in range(100):
         F_offset = F_offset + F
         time.sleep(0.01)
-    F_offset = F_offset/10.0
+    F_offset = F_offset/100.0
 
     # 发送关节角度
     rate = rospy.Rate(100)
@@ -114,9 +114,10 @@ def pub_force_node():
         command_force.wrench.torque.y = F1[4]
         command_force.wrench.torque.z = F1[5]
         pub.publish(command_force)
+        if(k==10):
+            k=0
+            print "六维力：",np.around(F1, 3)
         k = k + 1
-        #if(k/10==0):
-        print "六维力：",np.around(F1, 3)
         rate.sleep()
 
 if __name__ == '__main__':

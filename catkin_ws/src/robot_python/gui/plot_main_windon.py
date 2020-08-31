@@ -238,7 +238,7 @@ class Ui_PlotMainWindow(object):
         self.button_storage_begin.setText(_translate("PlotMainWindow", "开始存储"))
         self.button_storage_end.setText(_translate("PlotMainWindow", "结束存储"))
         self.label_11.setText(_translate("PlotMainWindow", "读取数据和话题地址"))
-        self.lineEdit_sub_f.setText(_translate("PlotMainWindow", "/ft_sensor_topic"))
+        self.lineEdit_sub_f.setText(_translate("PlotMainWindow", "/armc/ft_sensor_topic"))
         self.label_12.setText(_translate("PlotMainWindow", "Sub_F:"))
         self.label_13.setText(_translate("PlotMainWindow", "Sub_qq:"))
         self.lineEdit_sub_qq.setText(_translate("PlotMainWindow", "/joint_states"))

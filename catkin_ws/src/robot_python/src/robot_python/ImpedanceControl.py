@@ -131,7 +131,127 @@ class IIMPController_iter(object):
 
         #[qr, succeed_label] = kin.arm_angle_ikine_limit(Tr, self.qq_state, self.DH0, self.qq_min, self.qq_max)
         qr = self.kin.iterate_ikine(self.qq_state, Tr)
+        return qr
 
+#基于迭代求解自适应导纳方程:TCP坐标系中求解
+class IIMPController_iter_TCP(object):
+    # **定义属性**#
+    # 阻抗参数
+    M = np.zeros(6)
+    B = np.zeros(6)
+    K = np.zeros(6)
+    I = np.zeros(6)
+
+    # 构造函数
+    def __init__(self):
+        # 位置、力误差
+        self.Ex = np.zeros(6)  # Ex=Xr - Xd=>Xr = Xd + Ex
+        self.Ef = np.zeros(6)  # Ef=Fs - Fd
+        self.Ex_d = np.zeros(6)
+        self.Ef_i = np.zeros(6)
+        # 周期
+        self.T = 0.01
+        # 第一次标签
+        self.first_flag = True
+
+    # **定义方法**#
+    # 获取控制周期
+    def get_period(self, T):
+        self.T = np.copy(T)
+
+    # 获取阻抗参数
+    def get_imp_parameter(self, Md, Bd, Kd, Ki):
+        self.M = np.copy(Md)
+        self.B = np.copy(Bd)
+        self.K = np.copy(Kd)
+        self.I = np.copy(Ki)
+
+    def get_robot_parameter(self, DH_0, q_max, q_min):
+        # DH参数
+        self.DH0 = np.copy(DH_0)
+        # 关节极限
+        self.qq_max = np.copy(q_max)
+        self.qq_min = np.copy(q_min)
+        # 求取关节个数
+        self.n = len(self.qq_max)
+
+        # 创建运动学类
+        self.kin = kin.GeneralKinematic(DH_0, self.qq_min, self.qq_max)
+
+    def get_current_joint(self, qq):
+        self.qq_state = np.copy(qq)
+
+    def get_current_force(self, F_t):
+        # 转换到基坐标系
+        self.tcp_f = np.copy(F_t)
+
+        # 更新力误差
+        self.Ef = self.tcp_f - self.ff_d
+        #print "力误差：EF", np.round(self.Ef, 2)
+
+    def get_expect_joint(self, qd):
+        Xd = self.kin.fkine_euler(qd)
+        self.xx_d = np.copy(Xd)
+
+    def get_expect_pos(self, Xd):
+        self.xx_d = np.copy(Xd)
+
+    def get_expect_force(self, Fd):
+        self.ff_d = np.copy(Fd)
+
+    def force_end_to_base(self, F):
+        base_F = np.zeros(6)
+
+        Te = self.kin.fkine(self.qq_state)
+        Re = Te[0:3, 0:3]
+        base_F[0:3] = np.dot(Re, F[0:3])
+        base_F[3:6] = np.dot(Re, F[3:6])
+        return base_F
+
+    def int_adp_iter_solve(self, m, b, k, ki, T, ef, ef_i, ex, ex_d):
+        # 求当前时刻积分项
+
+        efk_i = ef_i + T * ef
+        # 计算当前加速度
+        ex_dd = (ef + ki * efk_i - b * ex_d - k * ex) / m
+        print "ex_dd:", ex_dd
+
+        # 求当前时刻速度
+        exk_d = ex_d + ex_dd * T
+        print "exk_d:", exk_d
+        exk = ex + exk_d * T# - ex_dd * T * T / 2.0
+
+        # print "积分项：",efk_i
+        return [exk, exk_d, efk_i]
+
+    def compute_imp_joint(self):
+        # 计算末端位置偏差
+        for i in range(6):
+            if (self.M[i] > math.pow(10, -6)):
+                [self.Ex[i], self.Ex_d[i], self.Ef_i[i]] = self.int_adp_iter_solve(
+                    self.M[i], self.B[i], self.K[i], self.I[i],
+                    self.T, self.Ef[i], self.Ef_i[i],
+                    self.Ex[i], self.Ex_d[i])
+
+
+        print "误差修正项：", np.round(self.Ex, 3)
+
+        #转换修正项,将TCP修正量转化到基座标系
+        Ex = np.zeros(6)
+        Te = self.kin.fkine(self.qq_state)
+        Ex[0:3] = np.dot(Te[0:3, 0:3], self.Ex[0:3])
+        Ex[3:6] = np.dot(Te[0:3, 0:3], self.Ex[3:6])
+
+        #计算参考位置
+        beta = 1
+        Xr = np.copy(self.xx_d + beta * Ex)
+        Tr = np.eye(4)
+        Rr = bf.euler_zyx2rot(Xr[3:6])
+        Tr[0:3, 0:3] = Rr
+        Tr[0:3, 3] = Xr[0:3]
+
+        # [qr, succeed_label] = kin.arm_angle_ikine_limit(Tr, self.qq_state, self.DH0, self.qq_min, self.qq_max)
+        qr = self.kin.iterate_ikine_limit(self.qq_state, Tr)
         return qr
 
 # 基于迭代求解自适应导纳方程:加入速度反馈
@@ -256,7 +376,7 @@ class IIMPController_iter_vel(object):
 
         # 计算参考位置
         print "误差修正项：", np.round(self.Ex, 3)
-        beta = 1
+        beta = 0.5
         Xr = np.copy(self.xx_d + beta * self.Ex)
         Tr = np.eye(4)
         Rr = bf.euler_zyx2rot(Xr[3:6])
@@ -516,7 +636,7 @@ class IMPController_diff(object):
 
         #计算参考位置
         print "误差修正项：", np.round(E, 6)
-        beta = 1
+        beta = 0.1
         Xr = np.copy(self.xx_d + beta*E)
         Tr = np.eye(4)
         Rr = self.kin.euler_zyx2rot(Xr[3:6])
@@ -940,7 +1060,7 @@ class IMPParamater(object):
 
 def main():
     #创建阻抗
-    imp = IIMPController_iter()
+    imp = IIMPController_iter_TCP()
     #创建阻抗参数调节器
     imp_param = IMPParamater()
     #输入阻抗参数

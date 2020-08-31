@@ -77,7 +77,7 @@ def tcp_connect():
         mx = struct.unpack('f', data[18:22])[0]
         my = struct.unpack('f', data[22:26])[0]
         mz = struct.unpack('f', data[26:30])[0]
-        F[0] = float(fx)
+        F[0] = -float(fx)
         F[1] = float(fy)
         F[2] = float(fz)
         F[3] = float(mx)

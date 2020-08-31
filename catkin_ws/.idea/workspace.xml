@@ -26,13 +26,13 @@
     <SUITE FILE_PATH="coverage/catkin_ws$hrl_geom_demo.coverage" NAME="hrl_geom_demo Coverage Results" MODIFIED="1576415367707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$ftsensoreth.coverage" NAME="ftsensoreth Coverage Results" MODIFIED="1591968165104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/tcp_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$geometric_trans.coverage" NAME="geometric_trans Coverage Results" MODIFIED="1596539051795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/opencv_learn" />
-    <SUITE FILE_PATH="coverage/catkin_ws$robot_path_plan.coverage" NAME="robot_path_plan Coverage Results" MODIFIED="1597713424045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
+    <SUITE FILE_PATH="coverage/catkin_ws$robot_path_plan.coverage" NAME="robot_path_plan Coverage Results" MODIFIED="1598751212128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
     <SUITE FILE_PATH="coverage/catkin_ws$kdl_demo1.coverage" NAME="kdl_demo1 Coverage Results" MODIFIED="1592827718464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo5.coverage" NAME="pyqt_demo5 Coverage Results" MODIFIED="1587365180983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo18.coverage" NAME="pyqt_demo18 Coverage Results" MODIFIED="1587440797492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$demo1__1_.coverage" NAME="demo1 (1) Coverage Results" MODIFIED="1576411560203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$rospyqt_demo1.coverage" NAME="rospyqt_demo1 Coverage Results" MODIFIED="1587639694532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_gui/python_gui/demo/ros_pyqt" />
-    <SUITE FILE_PATH="coverage/catkin_ws$topic_real_plot_gui.coverage" NAME="topic_real_plot_gui Coverage Results" MODIFIED="1597928007223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
+    <SUITE FILE_PATH="coverage/catkin_ws$topic_real_plot_gui.coverage" NAME="topic_real_plot_gui Coverage Results" MODIFIED="1598692723808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
     <SUITE FILE_PATH="coverage/catkin_ws$plot_app.coverage" NAME="plot_app Coverage Results" MODIFIED="1574905834563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/kinematics/script" />
     <SUITE FILE_PATH="coverage/catkin_ws$time.coverage" NAME="time Coverage Results" MODIFIED="1590503161916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$tf_conversions_demo.coverage" NAME="tf_conversions_demo Coverage Results" MODIFIED="1576420260309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
@@ -86,14 +86,14 @@
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo9.coverage" NAME="pyqt_demo9 Coverage Results" MODIFIED="1587371380655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$send_cmd_node.coverage" NAME="send_cmd_node Coverage Results" MODIFIED="1591701239661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
     <SUITE FILE_PATH="coverage/catkin_ws$send_single_cmd_gaebo_node.coverage" NAME="send_single_cmd_gaebo_node Coverage Results" MODIFIED="1576208778917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
-    <SUITE FILE_PATH="coverage/catkin_ws$gui_main.coverage" NAME="gui_main Coverage Results" MODIFIED="1598019953665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
+    <SUITE FILE_PATH="coverage/catkin_ws$gui_main.coverage" NAME="gui_main Coverage Results" MODIFIED="1598857461012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
     <SUITE FILE_PATH="coverage/catkin_ws$moveit_cartesion_demo.coverage" NAME="moveit_cartesion_demo Coverage Results" MODIFIED="1570604335715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/kinematics/moveit_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$run_controller.coverage" NAME="run_controller Coverage Results" MODIFIED="1575095725003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_driver/impedance_controler/scripts" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo15.coverage" NAME="pyqt_demo15 Coverage Results" MODIFIED="1587437191698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$key.coverage" NAME="key Coverage Results" MODIFIED="1592101270098" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqtgraph" />
     <SUITE FILE_PATH="coverage/catkin_ws$tcp_demo.coverage" NAME="tcp_demo Coverage Results" MODIFIED="1592010560052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/tcp_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$demo1.coverage" NAME="demo1 Coverage Results" MODIFIED="1587996207384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqtgraph" />
-    <SUITE FILE_PATH="coverage/catkin_ws$tcpsensor_armc.coverage" NAME="tcpsensor_armc Coverage Results" MODIFIED="1597991789522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
+    <SUITE FILE_PATH="coverage/catkin_ws$tcpsensor_armc.coverage" NAME="tcpsensor_armc Coverage Results" MODIFIED="1598755968428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
     <SUITE FILE_PATH="coverage/catkin_ws$qtqy_demo1.coverage" NAME="qtqy_demo1 Coverage Results" MODIFIED="1587347647897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$read_mouse.coverage" NAME="read_mouse Coverage Results" MODIFIED="1596501298933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/opencv_learn" />
     <SUITE FILE_PATH="coverage/catkin_ws$Kinematics.coverage" NAME="Kinematics Coverage Results" MODIFIED="1593745681931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
@@ -116,14 +116,14 @@
     <SUITE FILE_PATH="coverage/catkin_ws$subtopic.coverage" NAME="subtopic Coverage Results" MODIFIED="1597924972145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/test" />
     <SUITE FILE_PATH="coverage/catkin_ws$kdlu_demo1.coverage" NAME="kdlu_demo1 Coverage Results" MODIFIED="1593224729261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$time1.coverage" NAME="time1 Coverage Results" MODIFIED="1590505112036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo" />
-    <SUITE FILE_PATH="coverage/catkin_ws$tcpsensor_armt.coverage" NAME="tcpsensor_armt Coverage Results" MODIFIED="1597991811243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
+    <SUITE FILE_PATH="coverage/catkin_ws$tcpsensor_armt.coverage" NAME="tcpsensor_armt Coverage Results" MODIFIED="1598258642269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
     <SUITE FILE_PATH="coverage/catkin_ws$demo2.coverage" NAME="demo2 Coverage Results" MODIFIED="1587277668482" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo4.coverage" NAME="pyqt_demo4 Coverage Results" MODIFIED="1587363769177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$plot_test.coverage" NAME="plot_test Coverage Results" MODIFIED="1577536224072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/scripts" />
     <SUITE FILE_PATH="coverage/catkin_ws$quote.coverage" NAME="quote Coverage Results" MODIFIED="1578836938341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/test" />
-    <SUITE FILE_PATH="coverage/catkin_ws$ImpedanceControl.coverage" NAME="ImpedanceControl Coverage Results" MODIFIED="1597711482853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
+    <SUITE FILE_PATH="coverage/catkin_ws$ImpedanceControl.coverage" NAME="ImpedanceControl Coverage Results" MODIFIED="1598857338087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo12.coverage" NAME="pyqt_demo12 Coverage Results" MODIFIED="1587384611020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
-    <SUITE FILE_PATH="coverage/catkin_ws$DataProcessing.coverage" NAME="DataProcessing Coverage Results" MODIFIED="1597655086410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
+    <SUITE FILE_PATH="coverage/catkin_ws$DataProcessing.coverage" NAME="DataProcessing Coverage Results" MODIFIED="1598667189908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo2.coverage" NAME="pyqt_demo2 Coverage Results" MODIFIED="1587639193337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_gui/python_gui/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$basic_operation.coverage" NAME="basic_operation Coverage Results" MODIFIED="1596531863219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/opencv_learn" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo17.coverage" NAME="pyqt_demo17 Coverage Results" MODIFIED="1587438565096" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
@@ -152,7 +152,7 @@
       <file leaf-file-name="topic_real_plot_gui.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robot_python/gui/topic_real_plot_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3321">
+            <state relative-caret-position="2700">
               <caret line="645" column="46" selection-start-line="645" selection-start-column="46" selection-end-line="645" selection-end-column="46" />
               <folding>
                 <element signature="e#100#110#0" expanded="true" />
@@ -186,12 +186,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tcpsensor_armt.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armt.py">
+      <file leaf-file-name="robot_path_plan.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/robot_path_plan.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-              <folding />
+            <state relative-caret-position="607">
+              <caret line="352" column="0" selection-start-line="352" selection-start-column="0" selection-end-line="352" selection-end-column="0" />
+              <folding>
+                <element signature="e#334#1406#0" expanded="false" />
+                <element signature="e#1477#2677#0" expanded="false" />
+                <element signature="e#2759#3959#0" expanded="false" />
+                <element signature="e#4043#5364#0" expanded="false" />
+                <element signature="e#5439#6873#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -199,20 +205,21 @@
       <file leaf-file-name="tcpsensor_armc.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="92" column="45" selection-start-line="92" selection-start-column="45" selection-end-line="92" selection-end-column="45" />
+            <state relative-caret-position="2970">
+              <caret line="118" column="4" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gui_main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gui_main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="790">
-              <caret line="1367" column="22" selection-start-line="1367" selection-start-column="22" selection-end-line="1367" selection-end-column="22" />
+            <state relative-caret-position="1430">
+              <caret line="5061" column="0" selection-start-line="5061" selection-start-column="0" selection-end-line="5061" selection-end-column="0" />
               <folding>
                 <element signature="e#102#112#0" expanded="true" />
+                <element signature="e#1508#19244#0" expanded="false" />
                 <element signature="e#8880#9192#0" expanded="false" />
                 <element signature="e#9298#10368#0" expanded="false" />
                 <element signature="e#10438#11371#0" expanded="false" />
@@ -241,7 +248,7 @@
                 <element signature="e#18828#18918#0" expanded="false" />
                 <element signature="e#18953#19028#0" expanded="false" />
                 <element signature="e#19063#19135#0" expanded="false" />
-                <element signature="e#19369#33182#0" expanded="false" />
+                <element signature="e#19369#33229#0" expanded="false" />
                 <element signature="e#21089#21402#0" expanded="false" />
                 <element signature="e#21510#22589#0" expanded="false" />
                 <element signature="e#22651#23167#0" expanded="false" />
@@ -249,193 +256,203 @@
                 <element signature="e#26368#26676#0" expanded="false" />
                 <element signature="e#26737#27065#0" expanded="false" />
                 <element signature="e#27165#27304#0" expanded="false" />
-                <element signature="e#28447#30720#0" expanded="false" />
-                <element signature="e#30753#33024#0" expanded="false" />
-                <element signature="e#37166#38264#0" expanded="false" />
-                <element signature="e#38306#38822#0" expanded="false" />
-                <element signature="e#38864#39380#0" expanded="false" />
-                <element signature="e#39444#39847#0" expanded="false" />
-                <element signature="e#39905#41059#0" expanded="false" />
-                <element signature="e#42384#43749#0" expanded="false" />
-                <element signature="e#43810#44181#0" expanded="false" />
-                <element signature="e#44281#44420#0" expanded="false" />
-                <element signature="e#44510#44632#0" expanded="false" />
-                <element signature="e#44667#45079#0" expanded="false" />
-                <element signature="e#45112#45788#0" expanded="false" />
-                <element signature="e#46955#47554#0" expanded="false" />
-                <element signature="e#49099#49319#0" expanded="false" />
-                <element signature="e#49354#49574#0" expanded="false" />
-                <element signature="e#49609#49829#0" expanded="false" />
-                <element signature="e#49864#50084#0" expanded="false" />
-                <element signature="e#50119#50339#0" expanded="false" />
-                <element signature="e#50374#50594#0" expanded="false" />
-                <element signature="e#50629#50849#0" expanded="false" />
-                <element signature="e#50884#51105#0" expanded="false" />
-                <element signature="e#51140#51361#0" expanded="false" />
-                <element signature="e#51396#51617#0" expanded="false" />
-                <element signature="e#51652#51873#0" expanded="false" />
-                <element signature="e#51908#52129#0" expanded="false" />
-                <element signature="e#52164#52385#0" expanded="false" />
-                <element signature="e#52420#52641#0" expanded="false" />
-                <element signature="e#52676#52897#0" expanded="false" />
-                <element signature="e#52932#53153#0" expanded="false" />
-                <element signature="e#53188#53409#0" expanded="false" />
-                <element signature="e#53444#53665#0" expanded="false" />
-                <element signature="e#53700#53921#0" expanded="false" />
-                <element signature="e#53956#54177#0" expanded="false" />
-                <element signature="e#54468#54689#0" expanded="false" />
-                <element signature="e#54724#54945#0" expanded="false" />
-                <element signature="e#54980#55201#0" expanded="false" />
-                <element signature="e#55236#55457#0" expanded="false" />
-                <element signature="e#55492#55713#0" expanded="false" />
-                <element signature="e#55785#58441#0" expanded="false" />
-                <element signature="e#58733#76974#0" expanded="false" />
-                <element signature="e#59124#60290#0" expanded="false" />
-                <element signature="e#60321#61384#0" expanded="false" />
-                <element signature="e#61496#62566#0" expanded="false" />
-                <element signature="e#62636#63501#0" expanded="false" />
-                <element signature="e#63556#64181#0" expanded="false" />
-                <element signature="e#64234#66023#0" expanded="false" />
-                <element signature="e#66065#67401#0" expanded="false" />
-                <element signature="e#67438#67745#0" expanded="false" />
-                <element signature="e#67785#69526#0" expanded="false" />
-                <element signature="e#68904#69364#0" expanded="false" />
-                <element signature="e#69588#70005#0" expanded="false" />
-                <element signature="e#70051#70343#0" expanded="false" />
-                <element signature="e#70389#70681#0" expanded="false" />
-                <element signature="e#70743#71073#0" expanded="false" />
-                <element signature="e#71119#71449#0" expanded="false" />
-                <element signature="e#71495#71825#0" expanded="false" />
-                <element signature="e#72151#72878#0" expanded="false" />
-                <element signature="e#72913#74161#0" expanded="false" />
-                <element signature="e#77078#93987#0" expanded="false" />
-                <element signature="e#94080#113294#0" expanded="false" />
-                <element signature="e#113401#129119#0" expanded="false" />
-                <element signature="e#114547#115675#0" expanded="false" />
-                <element signature="e#115789#116860#0" expanded="false" />
-                <element signature="e#116925#117441#0" expanded="false" />
-                <element signature="e#117485#117994#0" expanded="false" />
-                <element signature="e#118036#118438#0" expanded="false" />
-                <element signature="e#118478#119411#0" expanded="false" />
-                <element signature="e#119461#119833#0" expanded="false" />
-                <element signature="e#119887#121335#0" expanded="false" />
-                <element signature="e#121378#121733#0" expanded="false" />
-                <element signature="e#121776#122127#0" expanded="false" />
-                <element signature="e#122168#123381#0" expanded="false" />
-                <element signature="e#123443#123753#0" expanded="false" />
-                <element signature="e#123799#124003#0" expanded="false" />
-                <element signature="e#124065#124395#0" expanded="false" />
-                <element signature="e#124441#124771#0" expanded="false" />
-                <element signature="e#124871#125010#0" expanded="false" />
-                <element signature="e#125100#125640#0" expanded="false" />
-                <element signature="e#125137#125365#0" expanded="false" />
-                <element signature="e#126713#128961#0" expanded="false" />
-                <element signature="e#129227#146702#0" expanded="false" />
-                <element signature="e#129526#130415#0" expanded="false" />
-                <element signature="e#130447#132210#0" expanded="false" />
-                <element signature="e#132324#133395#0" expanded="false" />
-                <element signature="e#133446#133914#0" expanded="false" />
-                <element signature="e#133973#134489#0" expanded="false" />
-                <element signature="e#134533#135042#0" expanded="false" />
-                <element signature="e#135084#135486#0" expanded="false" />
-                <element signature="e#135526#136477#0" expanded="false" />
-                <element signature="e#136527#136899#0" expanded="false" />
-                <element signature="e#137585#139131#0" expanded="false" />
-                <element signature="e#139165#139344#0" expanded="false" />
-                <element signature="e#139377#140725#0" expanded="false" />
-                <element signature="e#140787#141097#0" expanded="false" />
-                <element signature="e#141143#141347#0" expanded="false" />
-                <element signature="e#141409#141739#0" expanded="false" />
-                <element signature="e#141785#142115#0" expanded="false" />
-                <element signature="e#142166#142178#0" expanded="false" />
-                <element signature="e#142215#142354#0" expanded="false" />
-                <element signature="e#142384#142405#0" expanded="false" />
-                <element signature="e#142444#142984#0" expanded="false" />
-                <element signature="e#143019#143789#0" expanded="false" />
-                <element signature="e#145400#146538#0" expanded="false" />
-                <element signature="e#146800#165033#0" expanded="false" />
-                <element signature="e#147002#147778#0" expanded="false" />
-                <element signature="e#147810#149043#0" expanded="false" />
-                <element signature="e#149157#150253#0" expanded="false" />
-                <element signature="e#150304#151237#0" expanded="false" />
-                <element signature="e#151299#153321#0" expanded="false" />
-                <element signature="e#153382#154536#0" expanded="false" />
-                <element signature="e#154590#158481#0" expanded="false" />
-                <element signature="e#158542#158913#0" expanded="false" />
-                <element signature="e#158974#159336#0" expanded="false" />
-                <element signature="e#159436#159575#0" expanded="false" />
-                <element signature="e#159665#159850#0" expanded="false" />
-                <element signature="e#159885#160576#0" expanded="false" />
-                <element signature="e#160609#161298#0" expanded="false" />
-                <element signature="e#161330#161476#0" expanded="false" />
-                <element signature="e#161509#162102#0" expanded="false" />
-                <element signature="e#165131#182757#0" expanded="false" />
-                <element signature="e#165937#167833#0" expanded="false" />
-                <element signature="e#167947#169043#0" expanded="false" />
-                <element signature="e#169087#169603#0" expanded="false" />
-                <element signature="e#169646#170080#0" expanded="false" />
-                <element signature="e#170131#170579#0" expanded="false" />
-                <element signature="e#170634#172397#0" expanded="false" />
-                <element signature="e#172434#173289#0" expanded="false" />
-                <element signature="e#173701#174073#0" expanded="false" />
-                <element signature="e#174125#174283#0" expanded="false" />
-                <element signature="e#174334#174913#0" expanded="false" />
-                <element signature="e#174974#175383#0" expanded="false" />
-                <element signature="e#175444#175856#0" expanded="false" />
-                <element signature="e#175956#176095#0" expanded="false" />
-                <element signature="e#176125#176146#0" expanded="false" />
-                <element signature="e#176185#176370#0" expanded="false" />
-                <element signature="e#176405#177342#0" expanded="false" />
-                <element signature="e#177375#177965#0" expanded="false" />
-                <element signature="e#177997#178143#0" expanded="false" />
-                <element signature="e#178176#178748#0" expanded="false" />
-                <element signature="e#178788#182638#0" expanded="false" />
-                <element signature="e#182672#182755#0" expanded="false" />
-                <element signature="e#182855#202072#0" expanded="false" />
-                <element signature="e#183057#183833#0" expanded="false" />
-                <element signature="e#185404#186500#0" expanded="false" />
-                <element signature="e#186551#187484#0" expanded="false" />
-                <element signature="e#187546#189693#0" expanded="false" />
-                <element signature="e#189741#190119#0" expanded="false" />
-                <element signature="e#190162#190535#0" expanded="false" />
-                <element signature="e#190576#191026#0" expanded="false" />
-                <element signature="e#191087#192241#0" expanded="false" />
-                <element signature="e#192295#195270#0" expanded="false" />
-                <element signature="e#195331#195702#0" expanded="false" />
-                <element signature="e#195763#196125#0" expanded="false" />
-                <element signature="e#196225#196364#0" expanded="false" />
-                <element signature="e#196454#196639#0" expanded="false" />
-                <element signature="e#196674#197365#0" expanded="false" />
-                <element signature="e#197398#198087#0" expanded="false" />
-                <element signature="e#198119#198265#0" expanded="false" />
-                <element signature="e#198298#198891#0" expanded="false" />
-                <element signature="e#202166#215064#0" expanded="false" />
-                <element signature="e#202674#203800#0" expanded="false" />
-                <element signature="e#203914#204984#0" expanded="false" />
-                <element signature="e#205056#205795#0" expanded="false" />
-                <element signature="e#208915#209695#0" expanded="false" />
-                <element signature="e#209725#210273#0" expanded="false" />
-                <element signature="e#210334#210799#0" expanded="false" />
-                <element signature="e#211119#211307#0" expanded="false" />
-                <element signature="e#211344#211518#0" expanded="false" />
-                <element signature="e#215161#227789#0" expanded="false" />
-                <element signature="e#227885#237406#0" expanded="false" />
-                <element signature="e#237502#248311#0" expanded="false" />
-                <element signature="e#248406#259713#0" expanded="false" />
-                <element signature="e#259820#282872#0" expanded="false" />
-                <element signature="e#282979#301884#0" expanded="false" />
-                <marker date="1598019783800" expanded="false" signature="41101:42330" ph="..." />
+                <element signature="e#30778#33071#0" expanded="false" />
+                <element signature="e#33329#60349#0" expanded="false" />
+                <element signature="e#34291#37028#0" expanded="false" />
+                <element signature="e#37143#38241#0" expanded="false" />
+                <element signature="e#38283#38799#0" expanded="false" />
+                <element signature="e#38841#39357#0" expanded="false" />
+                <element signature="e#39824#40978#0" expanded="false" />
+                <element signature="e#41029#42249#0" expanded="false" />
+                <element signature="e#42303#43668#0" expanded="false" />
+                <element signature="e#44200#44339#0" expanded="false" />
+                <element signature="e#44429#44551#0" expanded="false" />
+                <element signature="e#44586#44998#0" expanded="false" />
+                <element signature="e#45031#45707#0" expanded="false" />
+                <element signature="e#45739#46865#0" expanded="false" />
+                <element signature="e#46898#47497#0" expanded="false" />
+                <element signature="e#47542#49950#0" expanded="false" />
+                <element signature="e#50015#50266#0" expanded="false" />
+                <element signature="e#50301#50552#0" expanded="false" />
+                <element signature="e#50587#50838#0" expanded="false" />
+                <element signature="e#50873#51124#0" expanded="false" />
+                <element signature="e#51159#51410#0" expanded="false" />
+                <element signature="e#51445#51696#0" expanded="false" />
+                <element signature="e#51731#51982#0" expanded="false" />
+                <element signature="e#52017#52269#0" expanded="false" />
+                <element signature="e#52304#52556#0" expanded="false" />
+                <element signature="e#52591#52843#0" expanded="false" />
+                <element signature="e#52878#53130#0" expanded="false" />
+                <element signature="e#53165#53417#0" expanded="false" />
+                <element signature="e#53452#53704#0" expanded="false" />
+                <element signature="e#53739#53991#0" expanded="false" />
+                <element signature="e#54026#54279#0" expanded="false" />
+                <element signature="e#54314#54567#0" expanded="false" />
+                <element signature="e#54602#54855#0" expanded="false" />
+                <element signature="e#54890#55143#0" expanded="false" />
+                <element signature="e#55178#55431#0" expanded="false" />
+                <element signature="e#55466#55719#0" expanded="false" />
+                <element signature="e#55754#56007#0" expanded="false" />
+                <element signature="e#56042#56295#0" expanded="false" />
+                <element signature="e#56330#56583#0" expanded="false" />
+                <element signature="e#56618#56871#0" expanded="false" />
+                <element signature="e#56906#57159#0" expanded="false" />
+                <element signature="e#57194#57447#0" expanded="false" />
+                <element signature="e#57519#60230#0" expanded="false" />
+                <element signature="e#60522#78763#0" expanded="false" />
+                <element signature="e#60913#62079#0" expanded="false" />
+                <element signature="e#62110#63173#0" expanded="false" />
+                <element signature="e#63285#64355#0" expanded="false" />
+                <element signature="e#64425#65290#0" expanded="false" />
+                <element signature="e#65345#65970#0" expanded="false" />
+                <element signature="e#66023#67812#0" expanded="false" />
+                <element signature="e#67854#69190#0" expanded="false" />
+                <element signature="e#69227#69534#0" expanded="false" />
+                <element signature="e#69574#71315#0" expanded="false" />
+                <element signature="e#70693#71153#0" expanded="false" />
+                <element signature="e#71377#71794#0" expanded="false" />
+                <element signature="e#71840#72132#0" expanded="false" />
+                <element signature="e#72178#72470#0" expanded="false" />
+                <element signature="e#72532#72862#0" expanded="false" />
+                <element signature="e#72908#73238#0" expanded="false" />
+                <element signature="e#73284#73614#0" expanded="false" />
+                <element signature="e#73940#74667#0" expanded="false" />
+                <element signature="e#74702#75950#0" expanded="false" />
+                <element signature="e#78867#95776#0" expanded="false" />
+                <element signature="e#95869#115083#0" expanded="false" />
+                <element signature="e#115190#130908#0" expanded="false" />
+                <element signature="e#116336#117464#0" expanded="false" />
+                <element signature="e#117578#118649#0" expanded="false" />
+                <element signature="e#118714#119230#0" expanded="false" />
+                <element signature="e#119274#119783#0" expanded="false" />
+                <element signature="e#119825#120227#0" expanded="false" />
+                <element signature="e#120267#121200#0" expanded="false" />
+                <element signature="e#121250#121622#0" expanded="false" />
+                <element signature="e#121676#123124#0" expanded="false" />
+                <element signature="e#123167#123522#0" expanded="false" />
+                <element signature="e#123565#123916#0" expanded="false" />
+                <element signature="e#123957#125170#0" expanded="false" />
+                <element signature="e#125232#125542#0" expanded="false" />
+                <element signature="e#125588#125792#0" expanded="false" />
+                <element signature="e#125854#126184#0" expanded="false" />
+                <element signature="e#126230#126560#0" expanded="false" />
+                <element signature="e#126660#126799#0" expanded="false" />
+                <element signature="e#126889#127429#0" expanded="false" />
+                <element signature="e#126926#127154#0" expanded="false" />
+                <element signature="e#131016#148491#0" expanded="false" />
+                <element signature="e#131315#132204#0" expanded="false" />
+                <element signature="e#132236#133999#0" expanded="false" />
+                <element signature="e#134113#135184#0" expanded="false" />
+                <element signature="e#135235#135703#0" expanded="false" />
+                <element signature="e#135762#136278#0" expanded="false" />
+                <element signature="e#136322#136831#0" expanded="false" />
+                <element signature="e#136873#137275#0" expanded="false" />
+                <element signature="e#137315#138266#0" expanded="false" />
+                <element signature="e#138316#138688#0" expanded="false" />
+                <element signature="e#139374#140920#0" expanded="false" />
+                <element signature="e#140954#141133#0" expanded="false" />
+                <element signature="e#141166#142514#0" expanded="false" />
+                <element signature="e#142576#142886#0" expanded="false" />
+                <element signature="e#142932#143136#0" expanded="false" />
+                <element signature="e#143198#143528#0" expanded="false" />
+                <element signature="e#143574#143904#0" expanded="false" />
+                <element signature="e#143955#143967#0" expanded="false" />
+                <element signature="e#144004#144143#0" expanded="false" />
+                <element signature="e#144173#144194#0" expanded="false" />
+                <element signature="e#144233#144773#0" expanded="false" />
+                <element signature="e#144808#145578#0" expanded="false" />
+                <element signature="e#147189#148327#0" expanded="false" />
+                <element signature="e#148589#166843#0" expanded="false" />
+                <element signature="e#149599#150832#0" expanded="false" />
+                <element signature="e#150946#152042#0" expanded="false" />
+                <element signature="e#152093#153026#0" expanded="false" />
+                <element signature="e#153088#155105#0" expanded="false" />
+                <element signature="e#155166#156320#0" expanded="false" />
+                <element signature="e#156374#160265#0" expanded="false" />
+                <element signature="e#160326#160697#0" expanded="false" />
+                <element signature="e#160758#161120#0" expanded="false" />
+                <element signature="e#161220#161359#0" expanded="false" />
+                <element signature="e#161449#161634#0" expanded="false" />
+                <element signature="e#161669#162360#0" expanded="false" />
+                <element signature="e#162393#163082#0" expanded="false" />
+                <element signature="e#163114#163260#0" expanded="false" />
+                <element signature="e#163293#163886#0" expanded="false" />
+                <element signature="e#167747#169643#0" expanded="false" />
+                <element signature="e#169757#170853#0" expanded="false" />
+                <element signature="e#170897#171413#0" expanded="false" />
+                <element signature="e#171456#171890#0" expanded="false" />
+                <element signature="e#171941#172389#0" expanded="false" />
+                <element signature="e#172444#174202#0" expanded="false" />
+                <element signature="e#174239#175094#0" expanded="false" />
+                <element signature="e#175131#175472#0" expanded="false" />
+                <element signature="e#175506#175878#0" expanded="false" />
+                <element signature="e#175930#176088#0" expanded="false" />
+                <element signature="e#176139#176718#0" expanded="false" />
+                <element signature="e#176779#177188#0" expanded="false" />
+                <element signature="e#177249#177661#0" expanded="false" />
+                <element signature="e#177761#177900#0" expanded="false" />
+                <element signature="e#177930#177951#0" expanded="false" />
+                <element signature="e#177990#178175#0" expanded="false" />
+                <element signature="e#178210#179147#0" expanded="false" />
+                <element signature="e#179180#179770#0" expanded="false" />
+                <element signature="e#179802#179948#0" expanded="false" />
+                <element signature="e#179981#180553#0" expanded="false" />
+                <element signature="e#184097#184180#0" expanded="false" />
+                <element signature="e#184280#203497#0" expanded="false" />
+                <element signature="e#184482#185258#0" expanded="false" />
+                <element signature="e#186829#187925#0" expanded="false" />
+                <element signature="e#187976#188909#0" expanded="false" />
+                <element signature="e#188971#191118#0" expanded="false" />
+                <element signature="e#191166#191544#0" expanded="false" />
+                <element signature="e#191587#191960#0" expanded="false" />
+                <element signature="e#192001#192451#0" expanded="false" />
+                <element signature="e#192512#193666#0" expanded="false" />
+                <element signature="e#193720#196695#0" expanded="false" />
+                <element signature="e#196756#197127#0" expanded="false" />
+                <element signature="e#197188#197550#0" expanded="false" />
+                <element signature="e#197650#197789#0" expanded="false" />
+                <element signature="e#197879#198064#0" expanded="false" />
+                <element signature="e#198099#198790#0" expanded="false" />
+                <element signature="e#198823#199512#0" expanded="false" />
+                <element signature="e#199544#199690#0" expanded="false" />
+                <element signature="e#199723#200316#0" expanded="false" />
+                <element signature="e#203591#216489#0" expanded="false" />
+                <element signature="e#204099#205225#0" expanded="false" />
+                <element signature="e#205339#206409#0" expanded="false" />
+                <element signature="e#206481#207220#0" expanded="false" />
+                <element signature="e#210340#211120#0" expanded="false" />
+                <element signature="e#211150#211698#0" expanded="false" />
+                <element signature="e#211759#212224#0" expanded="false" />
+                <element signature="e#212544#212732#0" expanded="false" />
+                <element signature="e#212769#212943#0" expanded="false" />
+                <element signature="e#216586#229214#0" expanded="false" />
+                <element signature="e#229310#238831#0" expanded="false" />
+                <element signature="e#238927#249736#0" expanded="false" />
+                <element signature="e#249831#261138#0" expanded="false" />
+                <element signature="e#261245#284297#0" expanded="false" />
+                <element signature="e#284404#303309#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="armc_form2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robot_python/gui/armc_form2.py">
+      <file leaf-file-name="ImpedanceControl.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-              <folding />
+            <state relative-caret-position="324">
+              <caret line="256" column="22" selection-start-line="256" selection-start-column="22" selection-end-line="256" selection-end-column="22" />
+              <folding>
+                <element signature="e#449#3415#0" expanded="false" />
+                <element signature="e#3483#6681#0" expanded="false" />
+                <element signature="e#4217#4486#0" expanded="false" />
+                <element signature="e#6747#10448#0" expanded="false" />
+                <element signature="e#10511#14322#0" expanded="false" />
+                <element signature="e#14368#17971#0" expanded="false" />
+                <element signature="e#18027#21934#0" expanded="false" />
+                <element signature="e#21988#25433#0" expanded="false" />
+                <element signature="e#25520#27107#0" expanded="false" />
+                <element signature="e#27191#29264#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -443,11 +460,10 @@
       <file leaf-file-name="Kinematics.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/Kinematics.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="1439" column="24" selection-start-line="1439" selection-start-column="24" selection-end-line="1439" selection-end-column="24" />
+            <state relative-caret-position="580">
+              <caret line="1453" column="33" selection-start-line="1453" selection-start-column="33" selection-end-line="1453" selection-end-column="33" />
               <folding>
                 <element signature="e#30635#30975#0" expanded="false" />
-                <element signature="e#31026#31627#0" expanded="false" />
                 <element signature="e#31678#32364#0" expanded="false" />
                 <element signature="e#32409#32650#0" expanded="false" />
                 <element signature="e#32690#32858#0" expanded="false" />
@@ -458,11 +474,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlotDataItem.py" pinned="false" current-in-tab="true">
-        <entry file="file:///usr/local/lib/python2.7/dist-packages/pyqtgraph/graphicsItems/PlotDataItem.py">
+      <file leaf-file-name="RobotParameter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="394" column="0" selection-start-line="394" selection-start-column="0" selection-end-line="394" selection-end-column="0" />
+            <state relative-caret-position="567">
+              <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -471,14 +487,13 @@
       <file leaf-file-name="BaseFunction.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/BaseFunction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="439" column="4" selection-start-line="439" selection-start-column="4" selection-end-line="439" selection-end-column="4" />
+            <state relative-caret-position="499">
+              <caret line="450" column="37" selection-start-line="450" selection-start-column="37" selection-end-line="450" selection-end-column="37" />
               <folding>
                 <element signature="e#273#424#0" expanded="false" />
                 <element signature="e#501#683#0" expanded="false" />
                 <element signature="e#778#945#0" expanded="false" />
                 <element signature="e#987#1530#0" expanded="false" />
-                <element signature="e#1571#2201#0" expanded="false" />
                 <element signature="e#2237#2393#0" expanded="false" />
                 <element signature="e#2439#2658#0" expanded="false" />
                 <element signature="e#2697#3909#0" expanded="false" />
@@ -492,29 +507,8 @@
                 <element signature="e#9292#10217#0" expanded="false" />
                 <element signature="e#10278#10992#0" expanded="false" />
                 <element signature="e#11062#11637#0" expanded="false" />
+                <element signature="e#12034#12242#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gui_function.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_function.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="192" column="23" selection-start-line="192" selection-start-column="11" selection-end-line="192" selection-end-column="23" />
-              <folding>
-                <element signature="e#99#108#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RobotParameter.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -556,7 +550,6 @@
         <option value="$PROJECT_DIR$/src/opencv_learn/morphology.py" />
         <option value="$PROJECT_DIR$/src/opencv_learn/edge_detection.py" />
         <option value="$PROJECT_DIR$/src/opencv_learn/outline.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/gui/plot_main_windon.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/impedance_controller.py" />
         <option value="$PROJECT_DIR$/src/robot_python/gui/main_windon.py" />
         <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor.py" />
@@ -566,21 +559,22 @@
         <option value="$PROJECT_DIR$/src/robot_python/gui/impedance_form3.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/FileOpen.py" />
         <option value="$PROJECT_DIR$/src/robot_python/test/s_fun.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/DataProcessing.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/gui/impedance_form2.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/robot_path_plan.py" />
         <option value="$PROJECT_DIR$/src/robot_python/demo/my_test.py" />
         <option value="$PROJECT_DIR$/src/robot_python/gui/armc_form1.py" />
         <option value="$PROJECT_DIR$/src/robot_python/test/subtopic.py" />
         <option value="$PROJECT_DIR$/src/robot_python/gui/topic_real_plot_gui.py" />
-        <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armt.py" />
-        <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armc.py" />
         <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armct.py" />
         <option value="$PROJECT_DIR$/src/robot_python/gui/gui_function.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/BaseFunction.py" />
+        <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armt.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/DataProcessing.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/gui/plot_main_windon.py" />
+        <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armc.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/gui/impedance_form2.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/robot_path_plan.py" />
         <option value="$PROJECT_DIR$/src/robot_python/gui/gui_main.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/BaseFunction.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/Kinematics.py" />
       </list>
     </option>
@@ -593,9 +587,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="80" />
+    <option name="y" value="52" />
     <option name="width" value="1845" />
-    <option name="height" value="998" />
+    <option name="height" value="1028" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -638,7 +632,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -703,6 +696,54 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="robot_sensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="force_sensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robot_sensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="force_sensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="srcipt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="robot_python" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -747,33 +788,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="catkin_ws" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="catkin_ws" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="robot_python" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="robot_python" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -823,6 +838,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -834,16 +850,16 @@
     <property name="SearchEverywhereHistoryKey" value="increase&#9;ACTION&#9;EditorIncreaseFontSize" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/robot_python/nodes" />
+      <recent name="$PROJECT_DIR$/src/robot_gui/robot_gui" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/robot_python/gui" />
       <recent name="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
       <recent name="$PROJECT_DIR$/src/robot_python/src/robot_python" />
       <recent name="$PROJECT_DIR$/src/robot_python/ui" />
       <recent name="$PROJECT_DIR$/src/robot_python/scripts" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/robot_python/nodes" />
-      <recent name="$PROJECT_DIR$/src/robot_gui/robot_gui" />
     </key>
   </component>
   <component name="RunManager" selected="Python.gui_main">
@@ -883,42 +899,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="tcpsensor_armt" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="catkin_ws" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armt.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="subtopic" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_python/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="catkin_ws" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_python/test/subtopic.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="tcpsensor_armc" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -933,6 +913,42 @@
       <module name="catkin_ws" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="robot_path_plan" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_python/src/robot_python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catkin_ws" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_python/src/robot_python/robot_path_plan.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="ImpedanceControl" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_python/src/robot_python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catkin_ws" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -1148,17 +1164,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.gui_main" />
       <item index="1" class="java.lang.String" itemvalue="Python.topic_real_plot_gui" />
-      <item index="2" class="java.lang.String" itemvalue="Python.tcpsensor_armt" />
-      <item index="3" class="java.lang.String" itemvalue="Python.subtopic" />
-      <item index="4" class="java.lang.String" itemvalue="Python.tcpsensor_armc" />
+      <item index="2" class="java.lang.String" itemvalue="Python.tcpsensor_armc" />
+      <item index="3" class="java.lang.String" itemvalue="Python.robot_path_plan" />
+      <item index="4" class="java.lang.String" itemvalue="Python.ImpedanceControl" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.gui_main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.tcpsensor_armt" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ImpedanceControl" />
         <item index="2" class="java.lang.String" itemvalue="Python.tcpsensor_armc" />
-        <item index="3" class="java.lang.String" itemvalue="Python.topic_real_plot_gui" />
-        <item index="4" class="java.lang.String" itemvalue="Python.subtopic" />
+        <item index="3" class="java.lang.String" itemvalue="Python.robot_path_plan" />
+        <item index="4" class="java.lang.String" itemvalue="Python.topic_real_plot_gui" />
       </list>
     </recent_temporary>
   </component>
@@ -1188,26 +1204,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="80" width="1845" height="998" extended-state="0" />
+    <frame x="65" y="52" width="1845" height="1028" extended-state="4" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2254627" sideWeight="0.824" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22882782" sideWeight="0.8171558" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34462616" sideWeight="0.5105054" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963988" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3271028" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3442438" sideWeight="0.5105054" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.00448682" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963374" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26985982" sideWeight="0.4894946" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295711" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2697517" sideWeight="0.4894946" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24930748" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852387" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2254627" sideWeight="0.176" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22882782" sideWeight="0.18284424" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3271028" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1244,18 +1260,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="52" />
+      <option name="time" value="55" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/opencv_learn/plot_trajectory.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="45" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/opencv_learn/read_mouse.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1305,13 +1314,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/plot_main_windon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="243" column="67" selection-start-line="243" selection-start-column="67" selection-end-line="243" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/gui/main_windon.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -1337,13 +1339,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3474">
           <caret line="200" column="0" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/PathPlan.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7488">
-          <caret line="425" column="21" selection-start-line="425" selection-start-column="21" selection-end-line="426" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -1471,35 +1466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/DataProcessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="824">
-          <caret line="266" column="0" selection-start-line="266" selection-start-column="0" selection-end-line="266" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/impedance_form2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="294" column="61" selection-start-line="294" selection-start-column="61" selection-end-line="294" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/robot_path_plan.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="119" column="22" selection-start-line="119" selection-start-column="22" selection-end-line="119" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2322">
-          <caret line="980" column="0" selection-start-line="980" selection-start-column="0" selection-end-line="980" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/demo/my_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -1526,15 +1492,131 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
           <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2016.2/system/python_stubs/-1247972723/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="3032" column="8" selection-start-line="3032" selection-start-column="8" selection-end-line="3032" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/pyqtgraph/graphicsItems/PlotDataItem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="394" column="0" selection-start-line="394" selection-start-column="0" selection-end-line="394" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/armc_form2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armct.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="192" column="23" selection-start-line="192" selection-start-column="11" selection-end-line="192" selection-end-column="23" />
           <folding>
-            <element signature="e#102#120#0" expanded="false" />
+            <element signature="e#99#108#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python2.7/dist-packages/matplotlib/axes/_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="222" column="0" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/DataProcessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="419" column="23" selection-start-line="419" selection-start-column="23" selection-end-line="419" selection-end-column="23" />
+          <folding>
+            <element signature="e#531#1134#0" expanded="false" />
+            <element signature="e#1231#2827#0" expanded="false" />
+            <element signature="e#2916#4402#0" expanded="false" />
+            <element signature="e#4436#7332#0" expanded="false" />
+            <element signature="e#7379#8360#0" expanded="false" />
+            <element signature="e#8451#10193#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/plot_main_windon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="240" column="71" selection-start-line="240" selection-start-column="71" selection-end-line="240" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/PathPlan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="562" column="8" selection-start-line="562" selection-start-column="8" selection-end-line="562" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/impedance_form2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="289" column="127" selection-start-line="289" selection-start-column="127" selection-end-line="289" selection-end-column="127" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/robot_path_plan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="352" column="0" selection-start-line="352" selection-start-column="0" selection-end-line="352" selection-end-column="0" />
+          <folding>
+            <element signature="e#334#1406#0" expanded="false" />
+            <element signature="e#1477#2677#0" expanded="false" />
+            <element signature="e#2759#3959#0" expanded="false" />
+            <element signature="e#4043#5364#0" expanded="false" />
+            <element signature="e#5439#6873#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2970">
+          <caret line="118" column="4" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/gui/topic_real_plot_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3321">
+        <state relative-caret-position="2700">
           <caret line="645" column="46" selection-start-line="645" selection-start-column="46" selection-end-line="645" selection-end-column="46" />
           <folding>
             <element signature="e#100#110#0" expanded="true" />
@@ -1567,42 +1649,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="92" column="45" selection-start-line="92" selection-start-column="45" selection-end-line="92" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armct.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1296">
-          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-          <folding>
-            <element signature="e#124#142#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/BaseFunction.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="439" column="4" selection-start-line="439" selection-start-column="4" selection-end-line="439" selection-end-column="4" />
+        <state relative-caret-position="499">
+          <caret line="450" column="37" selection-start-line="450" selection-start-column="37" selection-end-line="450" selection-end-column="37" />
           <folding>
             <element signature="e#273#424#0" expanded="false" />
             <element signature="e#501#683#0" expanded="false" />
             <element signature="e#778#945#0" expanded="false" />
             <element signature="e#987#1530#0" expanded="false" />
-            <element signature="e#1571#2201#0" expanded="false" />
             <element signature="e#2237#2393#0" expanded="false" />
             <element signature="e#2439#2658#0" expanded="false" />
             <element signature="e#2697#3909#0" expanded="false" />
@@ -1616,50 +1671,60 @@
             <element signature="e#9292#10217#0" expanded="false" />
             <element signature="e#10278#10992#0" expanded="false" />
             <element signature="e#11062#11637#0" expanded="false" />
+            <element signature="e#12034#12242#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+        <state relative-caret-position="567">
+          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2016.2/system/python_stubs/-1247972723/__builtin__.py">
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/Kinematics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="3032" column="8" selection-start-line="3032" selection-start-column="8" selection-end-line="3032" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/armc_form2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="192" column="23" selection-start-line="192" selection-start-column="11" selection-end-line="192" selection-end-column="23" />
+        <state relative-caret-position="580">
+          <caret line="1453" column="33" selection-start-line="1453" selection-start-column="33" selection-end-line="1453" selection-end-column="33" />
           <folding>
-            <element signature="e#99#108#0" expanded="true" />
+            <element signature="e#30635#30975#0" expanded="false" />
+            <element signature="e#31678#32364#0" expanded="false" />
+            <element signature="e#32409#32650#0" expanded="false" />
+            <element signature="e#32690#32858#0" expanded="false" />
+            <element signature="e#33209#33803#0" expanded="false" />
+            <element signature="e#33902#35393#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="256" column="22" selection-start-line="256" selection-start-column="22" selection-end-line="256" selection-end-column="22" />
+          <folding>
+            <element signature="e#449#3415#0" expanded="false" />
+            <element signature="e#3483#6681#0" expanded="false" />
+            <element signature="e#4217#4486#0" expanded="false" />
+            <element signature="e#6747#10448#0" expanded="false" />
+            <element signature="e#10511#14322#0" expanded="false" />
+            <element signature="e#14368#17971#0" expanded="false" />
+            <element signature="e#18027#21934#0" expanded="false" />
+            <element signature="e#21988#25433#0" expanded="false" />
+            <element signature="e#25520#27107#0" expanded="false" />
+            <element signature="e#27191#29264#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="790">
-          <caret line="1367" column="22" selection-start-line="1367" selection-start-column="22" selection-end-line="1367" selection-end-column="22" />
+        <state relative-caret-position="1430">
+          <caret line="5061" column="0" selection-start-line="5061" selection-start-column="0" selection-end-line="5061" selection-end-column="0" />
           <folding>
             <element signature="e#102#112#0" expanded="true" />
+            <element signature="e#1508#19244#0" expanded="false" />
             <element signature="e#8880#9192#0" expanded="false" />
             <element signature="e#9298#10368#0" expanded="false" />
             <element signature="e#10438#11371#0" expanded="false" />
@@ -1688,7 +1753,7 @@
             <element signature="e#18828#18918#0" expanded="false" />
             <element signature="e#18953#19028#0" expanded="false" />
             <element signature="e#19063#19135#0" expanded="false" />
-            <element signature="e#19369#33182#0" expanded="false" />
+            <element signature="e#19369#33229#0" expanded="false" />
             <element signature="e#21089#21402#0" expanded="false" />
             <element signature="e#21510#22589#0" expanded="false" />
             <element signature="e#22651#23167#0" expanded="false" />
@@ -1696,207 +1761,182 @@
             <element signature="e#26368#26676#0" expanded="false" />
             <element signature="e#26737#27065#0" expanded="false" />
             <element signature="e#27165#27304#0" expanded="false" />
-            <element signature="e#28447#30720#0" expanded="false" />
-            <element signature="e#30753#33024#0" expanded="false" />
-            <element signature="e#37166#38264#0" expanded="false" />
-            <element signature="e#38306#38822#0" expanded="false" />
-            <element signature="e#38864#39380#0" expanded="false" />
-            <element signature="e#39444#39847#0" expanded="false" />
-            <element signature="e#39905#41059#0" expanded="false" />
-            <element signature="e#42384#43749#0" expanded="false" />
-            <element signature="e#43810#44181#0" expanded="false" />
-            <element signature="e#44281#44420#0" expanded="false" />
-            <element signature="e#44510#44632#0" expanded="false" />
-            <element signature="e#44667#45079#0" expanded="false" />
-            <element signature="e#45112#45788#0" expanded="false" />
-            <element signature="e#46955#47554#0" expanded="false" />
-            <element signature="e#49099#49319#0" expanded="false" />
-            <element signature="e#49354#49574#0" expanded="false" />
-            <element signature="e#49609#49829#0" expanded="false" />
-            <element signature="e#49864#50084#0" expanded="false" />
-            <element signature="e#50119#50339#0" expanded="false" />
-            <element signature="e#50374#50594#0" expanded="false" />
-            <element signature="e#50629#50849#0" expanded="false" />
-            <element signature="e#50884#51105#0" expanded="false" />
-            <element signature="e#51140#51361#0" expanded="false" />
-            <element signature="e#51396#51617#0" expanded="false" />
-            <element signature="e#51652#51873#0" expanded="false" />
-            <element signature="e#51908#52129#0" expanded="false" />
-            <element signature="e#52164#52385#0" expanded="false" />
-            <element signature="e#52420#52641#0" expanded="false" />
-            <element signature="e#52676#52897#0" expanded="false" />
-            <element signature="e#52932#53153#0" expanded="false" />
-            <element signature="e#53188#53409#0" expanded="false" />
-            <element signature="e#53444#53665#0" expanded="false" />
-            <element signature="e#53700#53921#0" expanded="false" />
-            <element signature="e#53956#54177#0" expanded="false" />
-            <element signature="e#54468#54689#0" expanded="false" />
-            <element signature="e#54724#54945#0" expanded="false" />
-            <element signature="e#54980#55201#0" expanded="false" />
-            <element signature="e#55236#55457#0" expanded="false" />
-            <element signature="e#55492#55713#0" expanded="false" />
-            <element signature="e#55785#58441#0" expanded="false" />
-            <element signature="e#58733#76974#0" expanded="false" />
-            <element signature="e#59124#60290#0" expanded="false" />
-            <element signature="e#60321#61384#0" expanded="false" />
-            <element signature="e#61496#62566#0" expanded="false" />
-            <element signature="e#62636#63501#0" expanded="false" />
-            <element signature="e#63556#64181#0" expanded="false" />
-            <element signature="e#64234#66023#0" expanded="false" />
-            <element signature="e#66065#67401#0" expanded="false" />
-            <element signature="e#67438#67745#0" expanded="false" />
-            <element signature="e#67785#69526#0" expanded="false" />
-            <element signature="e#68904#69364#0" expanded="false" />
-            <element signature="e#69588#70005#0" expanded="false" />
-            <element signature="e#70051#70343#0" expanded="false" />
-            <element signature="e#70389#70681#0" expanded="false" />
-            <element signature="e#70743#71073#0" expanded="false" />
-            <element signature="e#71119#71449#0" expanded="false" />
-            <element signature="e#71495#71825#0" expanded="false" />
-            <element signature="e#72151#72878#0" expanded="false" />
-            <element signature="e#72913#74161#0" expanded="false" />
-            <element signature="e#77078#93987#0" expanded="false" />
-            <element signature="e#94080#113294#0" expanded="false" />
-            <element signature="e#113401#129119#0" expanded="false" />
-            <element signature="e#114547#115675#0" expanded="false" />
-            <element signature="e#115789#116860#0" expanded="false" />
-            <element signature="e#116925#117441#0" expanded="false" />
-            <element signature="e#117485#117994#0" expanded="false" />
-            <element signature="e#118036#118438#0" expanded="false" />
-            <element signature="e#118478#119411#0" expanded="false" />
-            <element signature="e#119461#119833#0" expanded="false" />
-            <element signature="e#119887#121335#0" expanded="false" />
-            <element signature="e#121378#121733#0" expanded="false" />
-            <element signature="e#121776#122127#0" expanded="false" />
-            <element signature="e#122168#123381#0" expanded="false" />
-            <element signature="e#123443#123753#0" expanded="false" />
-            <element signature="e#123799#124003#0" expanded="false" />
-            <element signature="e#124065#124395#0" expanded="false" />
-            <element signature="e#124441#124771#0" expanded="false" />
-            <element signature="e#124871#125010#0" expanded="false" />
-            <element signature="e#125100#125640#0" expanded="false" />
-            <element signature="e#125137#125365#0" expanded="false" />
-            <element signature="e#126713#128961#0" expanded="false" />
-            <element signature="e#129227#146702#0" expanded="false" />
-            <element signature="e#129526#130415#0" expanded="false" />
-            <element signature="e#130447#132210#0" expanded="false" />
-            <element signature="e#132324#133395#0" expanded="false" />
-            <element signature="e#133446#133914#0" expanded="false" />
-            <element signature="e#133973#134489#0" expanded="false" />
-            <element signature="e#134533#135042#0" expanded="false" />
-            <element signature="e#135084#135486#0" expanded="false" />
-            <element signature="e#135526#136477#0" expanded="false" />
-            <element signature="e#136527#136899#0" expanded="false" />
-            <element signature="e#137585#139131#0" expanded="false" />
-            <element signature="e#139165#139344#0" expanded="false" />
-            <element signature="e#139377#140725#0" expanded="false" />
-            <element signature="e#140787#141097#0" expanded="false" />
-            <element signature="e#141143#141347#0" expanded="false" />
-            <element signature="e#141409#141739#0" expanded="false" />
-            <element signature="e#141785#142115#0" expanded="false" />
-            <element signature="e#142166#142178#0" expanded="false" />
-            <element signature="e#142215#142354#0" expanded="false" />
-            <element signature="e#142384#142405#0" expanded="false" />
-            <element signature="e#142444#142984#0" expanded="false" />
-            <element signature="e#143019#143789#0" expanded="false" />
-            <element signature="e#145400#146538#0" expanded="false" />
-            <element signature="e#146800#165033#0" expanded="false" />
-            <element signature="e#147002#147778#0" expanded="false" />
-            <element signature="e#147810#149043#0" expanded="false" />
-            <element signature="e#149157#150253#0" expanded="false" />
-            <element signature="e#150304#151237#0" expanded="false" />
-            <element signature="e#151299#153321#0" expanded="false" />
-            <element signature="e#153382#154536#0" expanded="false" />
-            <element signature="e#154590#158481#0" expanded="false" />
-            <element signature="e#158542#158913#0" expanded="false" />
-            <element signature="e#158974#159336#0" expanded="false" />
-            <element signature="e#159436#159575#0" expanded="false" />
-            <element signature="e#159665#159850#0" expanded="false" />
-            <element signature="e#159885#160576#0" expanded="false" />
-            <element signature="e#160609#161298#0" expanded="false" />
-            <element signature="e#161330#161476#0" expanded="false" />
-            <element signature="e#161509#162102#0" expanded="false" />
-            <element signature="e#165131#182757#0" expanded="false" />
-            <element signature="e#165937#167833#0" expanded="false" />
-            <element signature="e#167947#169043#0" expanded="false" />
-            <element signature="e#169087#169603#0" expanded="false" />
-            <element signature="e#169646#170080#0" expanded="false" />
-            <element signature="e#170131#170579#0" expanded="false" />
-            <element signature="e#170634#172397#0" expanded="false" />
-            <element signature="e#172434#173289#0" expanded="false" />
-            <element signature="e#173701#174073#0" expanded="false" />
-            <element signature="e#174125#174283#0" expanded="false" />
-            <element signature="e#174334#174913#0" expanded="false" />
-            <element signature="e#174974#175383#0" expanded="false" />
-            <element signature="e#175444#175856#0" expanded="false" />
-            <element signature="e#175956#176095#0" expanded="false" />
-            <element signature="e#176125#176146#0" expanded="false" />
-            <element signature="e#176185#176370#0" expanded="false" />
-            <element signature="e#176405#177342#0" expanded="false" />
-            <element signature="e#177375#177965#0" expanded="false" />
-            <element signature="e#177997#178143#0" expanded="false" />
-            <element signature="e#178176#178748#0" expanded="false" />
-            <element signature="e#178788#182638#0" expanded="false" />
-            <element signature="e#182672#182755#0" expanded="false" />
-            <element signature="e#182855#202072#0" expanded="false" />
-            <element signature="e#183057#183833#0" expanded="false" />
-            <element signature="e#185404#186500#0" expanded="false" />
-            <element signature="e#186551#187484#0" expanded="false" />
-            <element signature="e#187546#189693#0" expanded="false" />
-            <element signature="e#189741#190119#0" expanded="false" />
-            <element signature="e#190162#190535#0" expanded="false" />
-            <element signature="e#190576#191026#0" expanded="false" />
-            <element signature="e#191087#192241#0" expanded="false" />
-            <element signature="e#192295#195270#0" expanded="false" />
-            <element signature="e#195331#195702#0" expanded="false" />
-            <element signature="e#195763#196125#0" expanded="false" />
-            <element signature="e#196225#196364#0" expanded="false" />
-            <element signature="e#196454#196639#0" expanded="false" />
-            <element signature="e#196674#197365#0" expanded="false" />
-            <element signature="e#197398#198087#0" expanded="false" />
-            <element signature="e#198119#198265#0" expanded="false" />
-            <element signature="e#198298#198891#0" expanded="false" />
-            <element signature="e#202166#215064#0" expanded="false" />
-            <element signature="e#202674#203800#0" expanded="false" />
-            <element signature="e#203914#204984#0" expanded="false" />
-            <element signature="e#205056#205795#0" expanded="false" />
-            <element signature="e#208915#209695#0" expanded="false" />
-            <element signature="e#209725#210273#0" expanded="false" />
-            <element signature="e#210334#210799#0" expanded="false" />
-            <element signature="e#211119#211307#0" expanded="false" />
-            <element signature="e#211344#211518#0" expanded="false" />
-            <element signature="e#215161#227789#0" expanded="false" />
-            <element signature="e#227885#237406#0" expanded="false" />
-            <element signature="e#237502#248311#0" expanded="false" />
-            <element signature="e#248406#259713#0" expanded="false" />
-            <element signature="e#259820#282872#0" expanded="false" />
-            <element signature="e#282979#301884#0" expanded="false" />
-            <marker date="1598019783800" expanded="false" signature="41101:42330" ph="..." />
+            <element signature="e#30778#33071#0" expanded="false" />
+            <element signature="e#33329#60349#0" expanded="false" />
+            <element signature="e#34291#37028#0" expanded="false" />
+            <element signature="e#37143#38241#0" expanded="false" />
+            <element signature="e#38283#38799#0" expanded="false" />
+            <element signature="e#38841#39357#0" expanded="false" />
+            <element signature="e#39824#40978#0" expanded="false" />
+            <element signature="e#41029#42249#0" expanded="false" />
+            <element signature="e#42303#43668#0" expanded="false" />
+            <element signature="e#44200#44339#0" expanded="false" />
+            <element signature="e#44429#44551#0" expanded="false" />
+            <element signature="e#44586#44998#0" expanded="false" />
+            <element signature="e#45031#45707#0" expanded="false" />
+            <element signature="e#45739#46865#0" expanded="false" />
+            <element signature="e#46898#47497#0" expanded="false" />
+            <element signature="e#47542#49950#0" expanded="false" />
+            <element signature="e#50015#50266#0" expanded="false" />
+            <element signature="e#50301#50552#0" expanded="false" />
+            <element signature="e#50587#50838#0" expanded="false" />
+            <element signature="e#50873#51124#0" expanded="false" />
+            <element signature="e#51159#51410#0" expanded="false" />
+            <element signature="e#51445#51696#0" expanded="false" />
+            <element signature="e#51731#51982#0" expanded="false" />
+            <element signature="e#52017#52269#0" expanded="false" />
+            <element signature="e#52304#52556#0" expanded="false" />
+            <element signature="e#52591#52843#0" expanded="false" />
+            <element signature="e#52878#53130#0" expanded="false" />
+            <element signature="e#53165#53417#0" expanded="false" />
+            <element signature="e#53452#53704#0" expanded="false" />
+            <element signature="e#53739#53991#0" expanded="false" />
+            <element signature="e#54026#54279#0" expanded="false" />
+            <element signature="e#54314#54567#0" expanded="false" />
+            <element signature="e#54602#54855#0" expanded="false" />
+            <element signature="e#54890#55143#0" expanded="false" />
+            <element signature="e#55178#55431#0" expanded="false" />
+            <element signature="e#55466#55719#0" expanded="false" />
+            <element signature="e#55754#56007#0" expanded="false" />
+            <element signature="e#56042#56295#0" expanded="false" />
+            <element signature="e#56330#56583#0" expanded="false" />
+            <element signature="e#56618#56871#0" expanded="false" />
+            <element signature="e#56906#57159#0" expanded="false" />
+            <element signature="e#57194#57447#0" expanded="false" />
+            <element signature="e#57519#60230#0" expanded="false" />
+            <element signature="e#60522#78763#0" expanded="false" />
+            <element signature="e#60913#62079#0" expanded="false" />
+            <element signature="e#62110#63173#0" expanded="false" />
+            <element signature="e#63285#64355#0" expanded="false" />
+            <element signature="e#64425#65290#0" expanded="false" />
+            <element signature="e#65345#65970#0" expanded="false" />
+            <element signature="e#66023#67812#0" expanded="false" />
+            <element signature="e#67854#69190#0" expanded="false" />
+            <element signature="e#69227#69534#0" expanded="false" />
+            <element signature="e#69574#71315#0" expanded="false" />
+            <element signature="e#70693#71153#0" expanded="false" />
+            <element signature="e#71377#71794#0" expanded="false" />
+            <element signature="e#71840#72132#0" expanded="false" />
+            <element signature="e#72178#72470#0" expanded="false" />
+            <element signature="e#72532#72862#0" expanded="false" />
+            <element signature="e#72908#73238#0" expanded="false" />
+            <element signature="e#73284#73614#0" expanded="false" />
+            <element signature="e#73940#74667#0" expanded="false" />
+            <element signature="e#74702#75950#0" expanded="false" />
+            <element signature="e#78867#95776#0" expanded="false" />
+            <element signature="e#95869#115083#0" expanded="false" />
+            <element signature="e#115190#130908#0" expanded="false" />
+            <element signature="e#116336#117464#0" expanded="false" />
+            <element signature="e#117578#118649#0" expanded="false" />
+            <element signature="e#118714#119230#0" expanded="false" />
+            <element signature="e#119274#119783#0" expanded="false" />
+            <element signature="e#119825#120227#0" expanded="false" />
+            <element signature="e#120267#121200#0" expanded="false" />
+            <element signature="e#121250#121622#0" expanded="false" />
+            <element signature="e#121676#123124#0" expanded="false" />
+            <element signature="e#123167#123522#0" expanded="false" />
+            <element signature="e#123565#123916#0" expanded="false" />
+            <element signature="e#123957#125170#0" expanded="false" />
+            <element signature="e#125232#125542#0" expanded="false" />
+            <element signature="e#125588#125792#0" expanded="false" />
+            <element signature="e#125854#126184#0" expanded="false" />
+            <element signature="e#126230#126560#0" expanded="false" />
+            <element signature="e#126660#126799#0" expanded="false" />
+            <element signature="e#126889#127429#0" expanded="false" />
+            <element signature="e#126926#127154#0" expanded="false" />
+            <element signature="e#131016#148491#0" expanded="false" />
+            <element signature="e#131315#132204#0" expanded="false" />
+            <element signature="e#132236#133999#0" expanded="false" />
+            <element signature="e#134113#135184#0" expanded="false" />
+            <element signature="e#135235#135703#0" expanded="false" />
+            <element signature="e#135762#136278#0" expanded="false" />
+            <element signature="e#136322#136831#0" expanded="false" />
+            <element signature="e#136873#137275#0" expanded="false" />
+            <element signature="e#137315#138266#0" expanded="false" />
+            <element signature="e#138316#138688#0" expanded="false" />
+            <element signature="e#139374#140920#0" expanded="false" />
+            <element signature="e#140954#141133#0" expanded="false" />
+            <element signature="e#141166#142514#0" expanded="false" />
+            <element signature="e#142576#142886#0" expanded="false" />
+            <element signature="e#142932#143136#0" expanded="false" />
+            <element signature="e#143198#143528#0" expanded="false" />
+            <element signature="e#143574#143904#0" expanded="false" />
+            <element signature="e#143955#143967#0" expanded="false" />
+            <element signature="e#144004#144143#0" expanded="false" />
+            <element signature="e#144173#144194#0" expanded="false" />
+            <element signature="e#144233#144773#0" expanded="false" />
+            <element signature="e#144808#145578#0" expanded="false" />
+            <element signature="e#147189#148327#0" expanded="false" />
+            <element signature="e#148589#166843#0" expanded="false" />
+            <element signature="e#149599#150832#0" expanded="false" />
+            <element signature="e#150946#152042#0" expanded="false" />
+            <element signature="e#152093#153026#0" expanded="false" />
+            <element signature="e#153088#155105#0" expanded="false" />
+            <element signature="e#155166#156320#0" expanded="false" />
+            <element signature="e#156374#160265#0" expanded="false" />
+            <element signature="e#160326#160697#0" expanded="false" />
+            <element signature="e#160758#161120#0" expanded="false" />
+            <element signature="e#161220#161359#0" expanded="false" />
+            <element signature="e#161449#161634#0" expanded="false" />
+            <element signature="e#161669#162360#0" expanded="false" />
+            <element signature="e#162393#163082#0" expanded="false" />
+            <element signature="e#163114#163260#0" expanded="false" />
+            <element signature="e#163293#163886#0" expanded="false" />
+            <element signature="e#167747#169643#0" expanded="false" />
+            <element signature="e#169757#170853#0" expanded="false" />
+            <element signature="e#170897#171413#0" expanded="false" />
+            <element signature="e#171456#171890#0" expanded="false" />
+            <element signature="e#171941#172389#0" expanded="false" />
+            <element signature="e#172444#174202#0" expanded="false" />
+            <element signature="e#174239#175094#0" expanded="false" />
+            <element signature="e#175131#175472#0" expanded="false" />
+            <element signature="e#175506#175878#0" expanded="false" />
+            <element signature="e#175930#176088#0" expanded="false" />
+            <element signature="e#176139#176718#0" expanded="false" />
+            <element signature="e#176779#177188#0" expanded="false" />
+            <element signature="e#177249#177661#0" expanded="false" />
+            <element signature="e#177761#177900#0" expanded="false" />
+            <element signature="e#177930#177951#0" expanded="false" />
+            <element signature="e#177990#178175#0" expanded="false" />
+            <element signature="e#178210#179147#0" expanded="false" />
+            <element signature="e#179180#179770#0" expanded="false" />
+            <element signature="e#179802#179948#0" expanded="false" />
+            <element signature="e#179981#180553#0" expanded="false" />
+            <element signature="e#184097#184180#0" expanded="false" />
+            <element signature="e#184280#203497#0" expanded="false" />
+            <element signature="e#184482#185258#0" expanded="false" />
+            <element signature="e#186829#187925#0" expanded="false" />
+            <element signature="e#187976#188909#0" expanded="false" />
+            <element signature="e#188971#191118#0" expanded="false" />
+            <element signature="e#191166#191544#0" expanded="false" />
+            <element signature="e#191587#191960#0" expanded="false" />
+            <element signature="e#192001#192451#0" expanded="false" />
+            <element signature="e#192512#193666#0" expanded="false" />
+            <element signature="e#193720#196695#0" expanded="false" />
+            <element signature="e#196756#197127#0" expanded="false" />
+            <element signature="e#197188#197550#0" expanded="false" />
+            <element signature="e#197650#197789#0" expanded="false" />
+            <element signature="e#197879#198064#0" expanded="false" />
+            <element signature="e#198099#198790#0" expanded="false" />
+            <element signature="e#198823#199512#0" expanded="false" />
+            <element signature="e#199544#199690#0" expanded="false" />
+            <element signature="e#199723#200316#0" expanded="false" />
+            <element signature="e#203591#216489#0" expanded="false" />
+            <element signature="e#204099#205225#0" expanded="false" />
+            <element signature="e#205339#206409#0" expanded="false" />
+            <element signature="e#206481#207220#0" expanded="false" />
+            <element signature="e#210340#211120#0" expanded="false" />
+            <element signature="e#211150#211698#0" expanded="false" />
+            <element signature="e#211759#212224#0" expanded="false" />
+            <element signature="e#212544#212732#0" expanded="false" />
+            <element signature="e#212769#212943#0" expanded="false" />
+            <element signature="e#216586#229214#0" expanded="false" />
+            <element signature="e#229310#238831#0" expanded="false" />
+            <element signature="e#238927#249736#0" expanded="false" />
+            <element signature="e#249831#261138#0" expanded="false" />
+            <element signature="e#261245#284297#0" expanded="false" />
+            <element signature="e#284404#303309#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/Kinematics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="1439" column="24" selection-start-line="1439" selection-start-column="24" selection-end-line="1439" selection-end-column="24" />
-          <folding>
-            <element signature="e#30635#30975#0" expanded="false" />
-            <element signature="e#31026#31627#0" expanded="false" />
-            <element signature="e#31678#32364#0" expanded="false" />
-            <element signature="e#32409#32650#0" expanded="false" />
-            <element signature="e#32690#32858#0" expanded="false" />
-            <element signature="e#33209#33803#0" expanded="false" />
-            <element signature="e#33902#35393#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/pyqtgraph/graphicsItems/PlotDataItem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="394" column="0" selection-start-line="394" selection-start-column="0" selection-end-line="394" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

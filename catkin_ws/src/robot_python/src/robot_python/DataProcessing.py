@@ -100,8 +100,8 @@ class HighGainObserver(object):
     def put_diff_data(self):
         return self.qv_d
 
-#======================数据处理=======================#
-def deal_with_data1():
+#======================数据处理:armt=======================#
+def armt_deal_with_data1():
     #获取地址
     file_path = os.path.join(os.getcwd(), '../../', 'data/impedance/sigle_z')
     file_path = os.path.abspath(file_path)
@@ -131,14 +131,14 @@ def deal_with_data1():
 
     #绘制单轴曲线
     plt.figure(2)
-    plt.plot(t1[5000:12000], XX[5000:12000, 2], label='Xz', color='r')
+    plt.plot(t1, XX[:, 2], label='Xz', color='r')
     plt.title("Xz")
     plt.xlabel("t/s")
     plt.ylabel("x/m")
     plt.legend()
 
     plt.figure(3)
-    plt.plot(t2[6000:14000], force[6000:14000, 2], label='Fz', color='r')
+    plt.plot(t2[:], force[:, 2], label='Fz', color='r')
     plt.title("Fz")
     plt.xlabel("t/s")
     plt.ylabel("fz/N")
@@ -152,10 +152,10 @@ def deal_with_data1():
     file_path = os.path.abspath(file_path)
     file_pos = file_path + '/armt_real_Xz1.txt'
     file_force = file_path + '/armt_real_Fz1.txt'
-    FileOpen.write([XX[5000:12000, 2]], file_pos)
-    FileOpen.write([force[6000:14000, 2]], file_force)
+    FileOpen.write([XX[:, 2]], file_pos)
+    FileOpen.write([force[:, 2]], file_force)
 
-def deal_with_data2():
+def armt_deal_with_data2():
     # 获取地址
     file_path = os.path.join(os.getcwd(), '../../', 'data/impedance/deal_with')
     file_path = os.path.abspath(file_path)
@@ -300,6 +300,173 @@ def deal_with_sigle_force():
 
     plt.show()
 
+#======================数据处理:armc=======================#
+def armc_deal_with_data1():
+    #获取地址
+    file_path = os.path.join(os.getcwd(), '../../', 'data/impedance/sigle_z')
+    file_path = os.path.abspath(file_path)
+    file_pos = file_path + '/armc_stiff_position2.txt'
+    print file_path
+    file_force = file_path + '/armc_stiff_force2.txt'
+
+    #读取数据
+    pos = FileOpen.read(file_pos)[:-1, :]
+    force = FileOpen.read(file_force)
+    num1 = len(pos)
+    print "num1:", num1
+    T = 0.01
+    t1 = np.linspace(0, T*(num1-1), num1)
+    num2 = len(force)
+    print "num2:", num2
+    #压缩数据
+    num2 = num2/1
+    force_2 = np.zeros([num2, 6])
+    for i in range(num2):
+        force_2[i, :] = force[1*i, :]
+
+    t2 = np.linspace(0, T * (num2 - 1), num2)
+    #绘制数据图
+    MyPlot.plot2_nd(t1, pos, title='position', xlab='t/s', ylab='red', lable='qq')
+    MyPlot.plot2_nd(t2, force_2, title='force', xlab='t/s', ylab='N', lable='f')
+
+    #求取正运动学
+    DH0 = rp.DHfa_armc
+    XX = np.zeros([num1, 6])
+    for i in range(num1):
+        XX[i, :] = kin.fkine_euler(DH0, pos[i, :])
+
+    num_b = 0
+    num_e = -1
+    #绘制单轴曲线
+    plt.figure(2)
+    plt.plot(t1[num_b:num_e], XX[num_b:num_e, 2], label='Xz', color='r')
+    plt.title("Xz")
+    plt.xlabel("t/s")
+    plt.ylabel("x/m")
+    plt.legend()
+
+    plt.figure(3)
+    plt.plot(t2[num_b:num_e], force_2[num_b:num_e, 2], label='Fz', color='r')
+    plt.title("Fz")
+    plt.xlabel("t/s")
+    plt.ylabel("fz/N")
+    plt.legend()
+
+    plt.show()
+
+    #写入文件
+    # 获取地址
+    file_path = os.path.join(os.getcwd(), '../../', 'data/impedance/deal_with')
+    file_path = os.path.abspath(file_path)
+    file_pos = file_path + '/armc_real_Xz2.txt'
+    file_force = file_path + '/armc_real_Fz2.txt'
+    FileOpen.write([XX[num_b:num_e, 2]], file_pos)
+    FileOpen.write([force_2[num_b:num_e, 2]], file_force)
+
+def armc_deal_with_data2():
+    # 获取地址
+    file_path = os.path.join(os.getcwd(), '../../', 'data/impedance/deal_with')
+    file_path = os.path.abspath(file_path)
+    file_pos = file_path + '/armc_real_Xz2.txt'
+    file_force = file_path + '/armc_real_Fz2.txt'
+
+    #读取数据
+    pos = FileOpen.read(file_pos)[-1, :]
+    force = FileOpen.read(file_force)[-1, :]
+    num1 = len(pos)
+    print "num1:", num1
+    T = 0.01
+    t1 = np.linspace(0, T*(num1-1), num1)
+    num2 = len(force)
+    print "num2:", num2
+    t2 = np.linspace(0, T * (num2 - 1), num2)
+
+    #绘制单轴曲线
+    plt.figure(1)
+    plt.plot(t1, pos, label='Xz', color='r')
+    plt.title("Position: Xz")
+    plt.xlabel("t/s")
+    plt.ylabel("x/m")
+    plt.legend()
+
+    plt.figure(2)
+    plt.plot(t2, force, label='Fz', color='r')
+    plt.title("Force: Fz")
+    plt.xlabel("t/s")
+    plt.ylabel("fz/N")
+    plt.legend()
+
+
+
+    #截取每段中相对平稳的部分:每段截取100个点
+    # idx_pos = [[50, 250],
+    #            [350, 550],
+    #            [750, 950],
+    #            [1100, 1300],
+    #            [1500, 1700],
+    #            [1850, 2050],
+    #            [2200, 2400],
+    #            [2550, 2750],
+    #            [2850, 3050],
+    #            [3200, 3400],
+    #            [3600, 3800]]
+    idx_pos = [[0, 400],
+               [1000, 1400],
+               [2000, 2400],
+               [3000, 3400],
+               [3900, 4300],
+               [4800, 5200],
+               [5600, 6000],
+               [6400, 6800],
+               [7200, 7600],
+               [8200, 8600],
+               [9100, 9500]]
+    idx_force = idx_pos
+    #求取刚度
+    m = 11
+    k = np.zeros(m-1)
+    f = np.zeros(m)
+    ff = np.zeros(m-1)
+    x = np.zeros(m)
+
+    for i in range(m):
+        f[i] = sum(force[idx_force[i][0]:idx_force[i][1]])/400
+        x[i] = sum(pos[idx_pos[i][0]:idx_pos[i][1]])/400
+    for i in range(m - 1):
+        k[i] = (f[i]-f[i+1])/(x[i]-x[i+1])
+        ff[i] = (f[i] + f[i+1])/2
+
+    '''
+    基础位置qq[0, 60, 0, 60, 0, 60, 0]
+    所以z轴力在基座标系或在工具坐标系中只是方向相反
+    '''
+    x = x*1000 #单位改为mm
+    print "k: ", np.round(k, 3)
+    print "f: ", np.around(f, 3)
+    print "x: ", np.around(x, 3)
+
+    # 绘制单轴曲线
+    plt.figure(3)
+    plt.plot(f[:6], x[0:6], label='increase', color='r',
+             linestyle=':', marker='o', markerfacecolor='r', markersize=8)
+    plt.plot(f[5:], x[5:], label='reduce', color='b',
+             linestyle=':', marker='x', markerfacecolor='b', markersize=8)
+    plt.title("Position and force diagram")
+    plt.xlabel("Fz/N")
+    plt.ylabel("Xz/mm")
+    plt.legend()
+
+    plt.figure(4)
+    plt.plot(ff[:5], k[:5], label='increase', color='r',
+             linestyle=':', marker='o', markerfacecolor='r', markersize=8)
+    plt.plot(ff[5:], k[5:], label='reduce', color='b',
+             linestyle=':', marker='x', markerfacecolor='b', markersize=8)
+    plt.title("Relationship between stiffness and force")
+    plt.xlabel("Fz/N")
+    plt.ylabel("Kz/(N/m)")
+    plt.legend()
+    plt.show()
+
 
 def main():
     num = 1000
@@ -319,6 +486,9 @@ def main():
 
 if __name__ == "__main__":
     #main()
-    #deal_with_data2()
-    deal_with_sigle_force()
+    # armt_deal_with_data1()
+    # armt_deal_with_data2()
+    armc_deal_with_data1()
+    armc_deal_with_data2()
+    #deal_with_sigle_force()
     print "finish!"
