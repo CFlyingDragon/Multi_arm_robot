@@ -30,6 +30,7 @@ import time
 #界面函数
 from plot_main_windon import Ui_PlotMainWindow
 from plot_armc_form1 import Ui_PlotArmcForm1
+from plot_armct_form1 import Ui_PlotArmctForm1
 
 #自定义文件
 import gui_function as gf
@@ -84,6 +85,7 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
         menubar = self.menuBar()
         fileMenu = menubar.addMenu('&File')
         armcMenu = menubar.addMenu('Armc')
+        armctMenu = menubar.addMenu('Armct')
 
         #-------------------文件菜单-------------------#
         # 中打开文件操作
@@ -107,6 +109,14 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
         armcForm1.setStatusTip('Open new armc form1')
         armcForm1.triggered.connect(self.gotoArmc1)
         armcMenu.addAction(armcForm1)
+
+        # -------------------armct菜单-------------------#
+        # armc1机械臂
+        armctForm1 = QAction(QIcon('exit.png'), 'Armct form1', self)
+        armctForm1.setShortcut('Ctrl+o')
+        armctForm1.setStatusTip('Open new armct form1')
+        armctForm1.triggered.connect(self.gotoArmct1)
+        armctMenu.addAction(armctForm1)
 
         # =======================绘图相关设置=======================#
         self.p1, self.p2 = self.set_graph_ui()  # 设置绘图窗口
@@ -396,6 +406,11 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
         self.hide()
         self.plot_armc1 = PlotArmcWindow1()
         self.plot_armc1.show()
+
+    def gotoArmct1(self):
+        self.hide()
+        self.plot_armct1 = PlotArmctWindow1()
+        self.plot_armct1.show()
 
 #**********************************主窗口***************************************#
 class PlotArmcWindow1(QMainWindow, Ui_PlotArmcForm1):
@@ -761,6 +776,375 @@ class PlotArmcWindow1(QMainWindow, Ui_PlotArmcForm1):
         rospy.init_node('real_plot_node')
         rospy.Subscriber(self.sub_pos_path, JointState, self.joint_callback)
         rospy.Subscriber(self.sub_force_path, WrenchStamped, self.force_callback)
+
+        # 运行线程1,收话题线程
+        t1 = threading.Thread(target=self.thread_spin)  # 末端位置订阅线程
+        msg_tip = "real_plot_node run!"
+        self.textEdit.setText(msg_tip)
+        t1.start()
+
+    def begin_function(self):
+        #运行标签启动
+        self.run_flag = True
+
+        # 设置绘图,用Qtimer开线程处理（线程4）
+        self.timer_plot = QTimer()
+        self.timer_plot.timeout.connect(self.realtime_plot)
+        self.timer_plot.start(1000)
+
+        rate = rospy.Rate(100)
+        while not rospy.is_shutdown():
+            #判断是否停止
+            if (not self.run_flag):
+                self.timer_plot.stop()
+                break
+            QApplication.processEvents()
+            rate.sleep()
+
+    # ===============窗口跳转函数================#
+    def gotoMain(self):
+        self.hide()
+        self.plot_main = PlotWindow()
+        self.plot_main.show()
+
+#**********************************主窗口***************************************#
+class PlotArmctWindow1(QMainWindow, Ui_PlotArmctForm1):
+    #建立全局变量
+    state_qq_list1 = list(np.zeros([1000, 7]))
+    state_qq_list2 = list(np.zeros([1000, 7]))
+    state_f_list1 = list(np.zeros([1000, 6]))
+    state_f_list2 = list(np.zeros([1000, 6]))
+    state_t_list = list(np.zeros(1000))
+    state_t = 0
+
+    #构造函数
+    def __init__(self, parent=None):
+        super(PlotArmctWindow1, self).__init__(parent)
+        self.T = 0.01
+
+        #存储标签
+        self.storage_flag = False
+
+        #速度标志
+        self.force_flag = False
+        self.real_flag = False
+
+        self.sub_force_path1 = "/robot1/ft_sensor_topic"
+        self.sub_pos_path1 = "/robot1/joint_states"
+        self.sub_force_path2 = "/robot2/ft_sensor_topic"
+        self.sub_pos_path2 = "/robot2/joint_states"
+        self.n = 7  # 机械臂关节数
+
+        self.setupUi(self)
+        self.initUI()
+
+    #初始化UI
+    def initUI(self):
+        # ======================菜单栏功能模块=======================#
+        #创建菜单
+        menubar = self.menuBar()
+        fileMenu = menubar.addMenu('&File')
+        mainMenu = menubar.addMenu('&Main')
+
+        #-------------------文件菜单-------------------#
+        # 中打开文件操作
+        openFile = QAction(QIcon('exit.png'), 'Open', self)
+        openFile.setShortcut('Ctrl+o')
+        openFile.setStatusTip('Open new File')
+        openFile.triggered.connect(self.fileOpen)
+        fileMenu.addAction(openFile)
+
+        #文件菜单中关闭操作
+        exitAction = QAction(QIcon('exit.png'), '&Exit', self)
+        exitAction.setShortcut('Ctrl+q')
+        exitAction.setStatusTip('Exit application')
+        exitAction.triggered.connect(qApp.quit)
+        fileMenu.addAction(exitAction)
+
+        #-------------------armc菜单-------------------#
+        #armc1机械臂
+        mainForm = QAction(QIcon('exit.png'), 'go main form', self)
+        mainForm.setShortcut('Ctrl+o')
+        mainForm.setStatusTip('Open new ain form')
+        mainForm.triggered.connect(self.gotoMain)
+        mainMenu.addAction(mainForm)
+
+        # =======================绘图相关设置=======================#
+        self.set_graph_ui()  # 设置绘图窗口
+
+        # =======================按钮功能模块=======================#
+        self.button_begin.clicked.connect(self.begin_function)
+        self.button_stop.clicked.connect(self.stop)
+        self.button_receive.clicked.connect(self.run_topic)
+        self.button_storage_begin.clicked.connect(self.storage_begin)
+        self.button_storage_end.clicked.connect(self.storage_end)
+        self.checkBox_force.stateChanged.connect(self.force_or_pos)
+        self.checkBox_real.stateChanged.connect(self.gazebo_or_real)
+
+    #打开文件的地址和内容
+    def fileOpen(self):
+        #打开文件操作
+        fname = QFileDialog.getOpenFileName(self, 'Open file', '/home')
+
+        if fname[0]:
+            f = open(fname[0], 'r')
+            self.filedir = fname[0]
+
+            with f:
+                data = f.read()
+                self.pubdata = data
+                self.textEdit.setText(data)
+
+    #===============按钮功能模块相关函数================#
+    #采用pyqtgraph绘制曲线,添加画板
+    def set_graph_ui(self):
+        pg.setConfigOptions(antialias=True)  # pg全局变量设置函数，antialias=True开启曲线抗锯齿
+
+        self.win1 = pg.GraphicsLayoutWidget()  # 创建pg layout，可实现数据界面布局自动管理
+        self.win2 = pg.GraphicsLayoutWidget()
+
+        # pg绘图窗口可以作为一个widget添加到GUI中的graph_layout，当然也可以添加到Qt其他所有的容器中
+        self.horizontalLayout_1.addWidget(self.win1)
+        self.horizontalLayout_2.addWidget(self.win2)
+        self.force_or_pos()
+
+    # 选择位置或六维力,设置对应画板
+    def force_or_pos(self):
+        #清空画板
+        self.win1.clear()
+        self.win2.clear()
+
+        #设置绘制
+        self.force_flag = self.checkBox_force.isChecked()
+
+        #设置画板
+        if (self.force_flag):
+            p1 = self.win1.addPlot(title="armt_force")  # 添加第一个绘图窗口
+            p1.setLabel('left', text='force/N', color='#ffffff')  # y轴设置函数
+            p1.showGrid(x=True, y=True)  # 栅格设置函数
+            p1.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+            p1.setLabel('bottom', text='time', units='s')  # x轴设置函数
+            p1.addLegend(size=(50, 30))
+
+            p2 = self.win2.addPlot(title="armc_force")  # 添加第一个绘图窗口
+            p2.setLabel('left', text='force/N', color='#ffffff')  # y轴设置函数
+            p2.showGrid(x=True, y=True)  # 栅格设置函数
+            p2.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+            p2.setLabel('bottom', text='time', units='s')  # x轴设置函数
+            p2.addLegend(size=(50, 30))
+
+            self.p1 = p1
+            self.p2 = p2
+        else:
+            p1 = self.win1.addPlot(title="armt_joint pos")  # 添加第一个绘图窗口
+            p1.setLabel('left', text='pos/rad', color='#ffffff')  # y轴设置函数
+            p1.showGrid(x=True, y=True)  # 栅格设置函数
+            p1.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+            p1.setLabel('bottom', text='time', units='s')  # x轴设置函数
+            p1.addLegend(size=(50, 30))  # 可选择是否添加legend
+
+            p2 = self.win2.addPlot(title="armc_joint pos")  # 添加第一个绘图窗口
+            p2.setLabel('left', text='pos/rad', color='#ffffff')  # y轴设置函数
+            p2.showGrid(x=True, y=True)  # 栅格设置函数
+            p2.setLogMode(x=False, y=False)  # False代表线性坐标轴，True代表对数坐标轴
+            p2.setLabel('bottom', text='time', units='s')  # x轴设置函数
+            p2.addLegend(size=(50, 30))  # 可选择是否添加legend
+
+            self.p1 = p1
+            self.p2 = p2
+
+    # 绘画关节角和关节角速度曲线
+    def plot_joint1(self, t, qq):
+        # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
+        self.p1.plot(t, qq[:, 0], pen='b', name='qq1', clear=True)
+        self.p1.plot(t, qq[:, 1], pen='g', name='qq2', clear=False)
+        self.p1.plot(t, qq[:, 2], pen='r', name='qq3', clear=False)
+        self.p1.plot(t, qq[:, 3], pen='c', name='qq4', clear=False)
+        self.p1.plot(t, qq[:, 4], pen='m', name='qq5', clear=False)
+        self.p1.plot(t, qq[:, 5], pen='y', name='qq6', clear=False)
+        self.p1.plot(t, qq[:, 6], pen='k', name='qq7', clear=False)
+
+    def plot_joint2(self, t, qq):
+        # 绘制位置图,表示颜色的单字符串（b，g，r，c，m，y，k，w）
+        self.p2.plot(t, qq[:, 0], pen='b', name='qq1', clear=True)
+        self.p2.plot(t, qq[:, 1], pen='g', name='qq2', clear=False)
+        self.p2.plot(t, qq[:, 2], pen='r', name='qq3', clear=False)
+        self.p2.plot(t, qq[:, 3], pen='c', name='qq4', clear=False)
+        self.p2.plot(t, qq[:, 4], pen='m', name='qq5', clear=False)
+        self.p2.plot(t, qq[:, 5], pen='y', name='qq6', clear=False)
+        self.p2.plot(t, qq[:, 6], pen='k', name='qq7', clear=False)
+
+    def plot_force1(self, t, f):
+        # 绘制速度图
+        self.p1.plot(t, f[:, 0], pen='b', name='F1', clear=True)
+        self.p1.plot(t, f[:, 1], pen='g', name='F2', clear=False)
+        self.p1.plot(t, f[:, 2], pen='r', name='F3', clear=False)
+        self.p1.plot(t, f[:, 3], pen='c', name='F4', clear=False)
+        self.p1.plot(t, f[:, 4], pen='m', name='F5', clear=False)
+        self.p1.plot(t, f[:, 5], pen='y', name='F6', clear=False)
+
+    def plot_force2(self, t, f):
+        # 绘制速度图
+        self.p2.plot(t, f[:, 0], pen='b', name='F1', clear=True)
+        self.p2.plot(t, f[:, 1], pen='g', name='F2', clear=False)
+        self.p2.plot(t, f[:, 2], pen='r', name='F3', clear=False)
+        self.p2.plot(t, f[:, 3], pen='c', name='F4', clear=False)
+        self.p2.plot(t, f[:, 4], pen='m', name='F5', clear=False)
+        self.p2.plot(t, f[:, 5], pen='y', name='F6', clear=False)
+
+    #机械臂切换
+    def gazebo_or_real(self):
+        self.real_flag = self.checkBox_real.isChecked()
+        if(self.real_flag):
+            self.sub_force_path1 = "/armt/ft_sensor_topic"
+            self.sub_pos_path1 = "/armt/joint_states"
+            self.sub_force_path2 = "armc/ft_sensor_topic"
+            self.sub_pos_path2 = "/joint_states"
+            msg = "选择实物"
+            self.textEdit.setText(msg)
+        else:
+            self.sub_force_path1 = "/robot1/ft_sensor_topic"
+            self.sub_pos_path1 = "/robot1/joint_states"
+            self.sub_force_path2 = "/robot2/ft_sensor_topic"
+            self.sub_pos_path2 = "/robot2/joint_states"
+            msg = "选择仿真"
+            self.textEdit.setText(msg)
+
+    # 开始存储取数据
+    def storage_begin(self):
+        #获取写入地址
+        self.storage_qq1_path = str(self.lineEdit_data_qq_1.text())
+        self.storage_f1_path = str(self.lineEdit_data_f_1.text())
+        self.storage_qq2_path = str(self.lineEdit_data_qq_2.text())
+        self.storage_f2_path = str(self.lineEdit_data_f_2.text())
+
+        # 存储变量清空
+        self.storage_qq1 = []
+        self.storage_f1 = []
+        self.storage_qq2 = []
+        self.storage_f2 = []
+
+        self.storage_flag = True
+        msg = "开始写入数据！\n"
+        self.textEdit.setText(msg)
+
+    # 开始存储取数据
+    def storage_end(self):
+        self.storage_flag = False
+        # 转换数据类型
+        qq_data1 = np.array(self.storage_qq1)
+        force_data1 = np.array(self.storage_f1)
+        qq_data2 = np.array(self.storage_qq1)
+        force_data2 = np.array(self.storage_f1)
+
+        # 写入数据
+        fo.write(qq_data1, self.storage_qq1_path)
+        fo.write(force_data1, self.storage_f1_path)
+        fo.write(qq_data2, self.storage_qq2_path)
+        fo.write(force_data2, self.storage_f2_path)
+
+        msg = "数据已写入：/home/d/catkin_ws/src/robot_bag/armct\n"
+        self.textEdit.setText(msg)
+
+    ##关节角订阅回调函数
+    def joint_callback1(self, msg):
+        qq = np.zeros(self.n)
+        for i in range(self.n):
+            qq[i] = msg.position[i]
+
+        # 存储数据
+        if (self.storage_flag):
+            self.storage_qq1.append(qq)
+
+        # 绘图数据
+        self.state_t = self.state_t + self.T
+        self.state_qq_list1.append(qq)
+        self.state_t_list.append(self.state_t)
+        # 仅记录1000个数据点
+        del self.state_t_list[0]
+        del self.state_qq_list1[0]
+
+    ##关节角订阅回调函数
+    def force_callback1(self, msg):
+        f = np.zeros(6)
+        f[0] = msg.wrench.force.x
+        f[1] = msg.wrench.force.y
+        f[2] = msg.wrench.force.z
+        f[3] = msg.wrench.torque.x
+        f[4] = msg.wrench.torque.y
+        f[5] = msg.wrench.torque.z
+        # 存储数据
+        if (self.storage_flag):
+            self.storage_f1.append(f)
+
+        # 绘图数据
+        self.state_f_list1.append(f)
+        # 仅记录1000个数据点
+        del self.state_f_list1[0]
+
+    ##关节角订阅回调函数
+    def joint_callback2(self, msg):
+        qq = np.zeros(self.n)
+        for i in range(self.n):
+            qq[i] = msg.position[i]
+
+        # 存储数据
+        if (self.storage_flag):
+            self.storage_qq2.append(qq)
+
+        # 绘图数据
+        self.state_qq_list2.append(qq)
+        # 仅记录1000个数据点
+        del self.state_qq_list2[0]
+
+    ##关节角订阅回调函数
+    def force_callback2(self, msg):
+        f = np.zeros(6)
+        f[0] = msg.wrench.force.x
+        f[1] = msg.wrench.force.y
+        f[2] = msg.wrench.force.z
+        f[3] = msg.wrench.torque.x
+        f[4] = msg.wrench.torque.y
+        f[5] = msg.wrench.torque.z
+        # 存储数据
+        if (self.storage_flag):
+            self.storage_f2.append(f)
+
+        # 绘图数据
+        self.state_f_list2.append(f)
+        # 仅记录1000个数据点
+        del self.state_f_list2[0]
+
+    ##末端力订阅线程
+    def thread_spin(self):
+        rospy.spin()
+
+    def stop(self):
+        self.run_flag = False
+
+    def realtime_plot(self):
+        # 将列表转换为数组
+        if (self.force_flag):
+            plot_t = np.array(self.state_t_list)
+            plot_f1 = np.array(self.state_f_list1)
+            plot_f2 = np.array(self.state_f_list2)
+            self.plot_force1(plot_t, plot_f1)
+            self.plot_force2(plot_t, plot_f2)
+
+        else:
+            plot_t = np.array(self.state_t_list)
+            plot_qq1 = np.array(self.state_qq_list1)
+            plot_qq2 = np.array(self.state_qq_list2)
+            self.plot_joint1(plot_t, plot_qq1)
+            self.plot_joint2(plot_t, plot_qq2)
+
+    def run_topic(self):
+        # 运行话题
+        rospy.init_node('real_plot_node')
+        rospy.Subscriber(self.sub_pos_path1, JointState, self.joint_callback1)
+        rospy.Subscriber(self.sub_force_path1, WrenchStamped, self.force_callback1)
+        rospy.Subscriber(self.sub_pos_path2, JointState, self.joint_callback2)
+        rospy.Subscriber(self.sub_force_path2, WrenchStamped, self.force_callback2)
 
         # 运行线程1,收话题线程
         t1 = threading.Thread(target=self.thread_spin)  # 末端位置订阅线程

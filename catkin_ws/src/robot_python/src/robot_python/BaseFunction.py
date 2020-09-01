@@ -447,8 +447,7 @@ def exceed_joint_limit(qq, q_min, q_max):
 	limit = False
 	for i in range(n):
 		if((qq[i] < q_min[i]) or (qq[i] > q_max[i])):
-
-			print "第", i+1, "关节超出极限！！"
+			print "第", i+1, "关节超出极限:", qq[i]*180/np.pi
 			limit = True
 			break
 	return limit

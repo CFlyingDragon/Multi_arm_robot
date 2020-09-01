@@ -259,6 +259,6 @@ class Ui_ArmcForm1(object):
         self.button_begin.setText(_translate("ArmcForm1", "开始"))
         self.button_stop.setText(_translate("ArmcForm1", "停止"))
         self.checkBox_vel.setText(_translate("ArmcForm1", "速度勾   位置默认"))
-        self.checkBox_gazebo.setText(_translate("ArmcForm1", "实物勾   仿真默认"))
+        self.checkBox_gazebo.setText(_translate("ArmcForm1", "仿真勾   实物默认"))
         self.button_plan.setText(_translate("ArmcForm1", "规划"))
 

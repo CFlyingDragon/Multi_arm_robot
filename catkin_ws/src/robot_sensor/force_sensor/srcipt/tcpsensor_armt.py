@@ -93,16 +93,17 @@ def pub_force_node():
     #建立线程接收六维力
     t1 = threading.Thread(target=tcp_connect)
     t1.start()
-    time.sleep(2)
+    time.sleep(5)
 
     #求取偏置
     F_offset = np.zeros(6)
-    for i in range(10):
+    for i in range(100):
         F_offset = F_offset + F
         time.sleep(0.01)
-    F_offset = F_offset/10.0
+    F_offset = F_offset/100.0
 
     # 发送关节角度
+    k=0
     rate = rospy.Rate(100)
     while not rospy.is_shutdown():
         F1 = F - F_offset
@@ -114,8 +115,10 @@ def pub_force_node():
         command_force.wrench.torque.y = F1[4]
         command_force.wrench.torque.z = F1[5]
         pub.publish(command_force)
-        #if(k/10==0):
-        print "六维力：",np.around(F1, 3)
+        if(k==10):
+            print "六维力：",np.around(F1, 3)
+            k=0
+        k = k+1
         rate.sleep()
 
 if __name__ == '__main__':

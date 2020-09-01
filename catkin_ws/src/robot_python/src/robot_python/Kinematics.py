@@ -1454,7 +1454,6 @@ class GeneralKinematic(object):
 			qr = np.copy(q_guess)
 		return qr
 
-
 def ur_ikine_test():
 	DH_0 = rp.DH0_ur5
 	#正运动学
