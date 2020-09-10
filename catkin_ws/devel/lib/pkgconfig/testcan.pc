@@ -4,5 +4,5 @@ Name: testcan
 Description: Description of testcan
 Version: 0.0.0
 Cflags: -I/home/d/catkin_ws/devel/include -I/home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/include
-Libs: -L/home/d/catkin_ws/devel/lib -ltestcan
+Libs: -L${prefix}/lib -ltestcan
 Requires: message_runtime

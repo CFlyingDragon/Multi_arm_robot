@@ -91,7 +91,7 @@ kdl_jacobian_node_EXTERNAL_OBJECTS =
 devel/lib/kdl_kinematic/kdl_jacobian_node: robot_kinematic/kdl_kinematic/CMakeFiles/kdl_jacobian_node.dir/demo/kdl_jacobian.cpp.o
 devel/lib/kdl_kinematic/kdl_jacobian_node: robot_kinematic/kdl_kinematic/CMakeFiles/kdl_jacobian_node.dir/build.make
 devel/lib/kdl_kinematic/kdl_jacobian_node: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/kdl_kinematic/kdl_jacobian_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/kdl_kinematic/kdl_jacobian_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/kdl_kinematic/kdl_jacobian_node: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/kdl_kinematic/kdl_jacobian_node: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/kdl_kinematic/kdl_jacobian_node: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -120,7 +120,7 @@ devel/lib/kdl_kinematic/kdl_jacobian_node: /usr/lib/x86_64-linux-gnu/libpthread.
 devel/lib/kdl_kinematic/kdl_jacobian_node: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 devel/lib/kdl_kinematic/kdl_jacobian_node: devel/lib/libchainjnttojacdotsolver.so
 devel/lib/kdl_kinematic/kdl_jacobian_node: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/kdl_kinematic/kdl_jacobian_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/kdl_kinematic/kdl_jacobian_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/kdl_kinematic/kdl_jacobian_node: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/kdl_kinematic/kdl_jacobian_node: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/kdl_kinematic/kdl_jacobian_node: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

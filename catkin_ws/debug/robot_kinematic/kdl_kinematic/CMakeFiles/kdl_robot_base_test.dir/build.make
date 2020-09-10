@@ -91,7 +91,7 @@ kdl_robot_base_test_EXTERNAL_OBJECTS =
 devel/lib/kdl_kinematic/kdl_robot_base_test: robot_kinematic/kdl_kinematic/CMakeFiles/kdl_robot_base_test.dir/test/kdl_robot_base_test.cpp.o
 devel/lib/kdl_kinematic/kdl_robot_base_test: robot_kinematic/kdl_kinematic/CMakeFiles/kdl_robot_base_test.dir/build.make
 devel/lib/kdl_kinematic/kdl_robot_base_test: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/kdl_kinematic/kdl_robot_base_test: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/kdl_kinematic/kdl_robot_base_test: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/kdl_kinematic/kdl_robot_base_test: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/kdl_kinematic/kdl_robot_base_test: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/kdl_kinematic/kdl_robot_base_test: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -121,7 +121,7 @@ devel/lib/kdl_kinematic/kdl_robot_base_test: /usr/lib/x86_64-linux-gnu/libconsol
 devel/lib/kdl_kinematic/kdl_robot_base_test: devel/lib/libkdlRobotBase.so
 devel/lib/kdl_kinematic/kdl_robot_base_test: devel/lib/libchainjnttojacdotsolver.so
 devel/lib/kdl_kinematic/kdl_robot_base_test: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/kdl_kinematic/kdl_robot_base_test: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/kdl_kinematic/kdl_robot_base_test: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/kdl_kinematic/kdl_robot_base_test: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/kdl_kinematic/kdl_robot_base_test: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/kdl_kinematic/kdl_robot_base_test: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

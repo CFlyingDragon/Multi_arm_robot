@@ -1,0 +1,10 @@
+(cl:defpackage armc_controller-srv
+  (:use )
+  (:export
+   "SETARMCCONFIGURE"
+   "<SETARMCCONFIGURE-REQUEST>"
+   "SETARMCCONFIGURE-REQUEST"
+   "<SETARMCCONFIGURE-RESPONSE>"
+   "SETARMCCONFIGURE-RESPONSE"
+  ))
+

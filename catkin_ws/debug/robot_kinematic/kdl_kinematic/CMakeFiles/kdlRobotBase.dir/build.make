@@ -91,7 +91,7 @@ kdlRobotBase_EXTERNAL_OBJECTS =
 devel/lib/libkdlRobotBase.so: robot_kinematic/kdl_kinematic/CMakeFiles/kdlRobotBase.dir/lib/kdl_robot_base.cpp.o
 devel/lib/libkdlRobotBase.so: robot_kinematic/kdl_kinematic/CMakeFiles/kdlRobotBase.dir/build.make
 devel/lib/libkdlRobotBase.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libkdlRobotBase.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libkdlRobotBase.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libkdlRobotBase.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libkdlRobotBase.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libkdlRobotBase.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -120,7 +120,7 @@ devel/lib/libkdlRobotBase.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 devel/lib/libkdlRobotBase.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 devel/lib/libkdlRobotBase.so: devel/lib/libchainjnttojacdotsolver.so
 devel/lib/libkdlRobotBase.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libkdlRobotBase.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libkdlRobotBase.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libkdlRobotBase.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libkdlRobotBase.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libkdlRobotBase.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

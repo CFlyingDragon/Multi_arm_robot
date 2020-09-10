@@ -91,7 +91,7 @@ armc_imp_econtroller_node_EXTERNAL_OBJECTS =
 devel/lib/libarmc_imp_econtroller_node.so: robot_controller/impedance_controller/CMakeFiles/armc_imp_econtroller_node.dir/lib/armc_imp_econtroller.cpp.o
 devel/lib/libarmc_imp_econtroller_node.so: robot_controller/impedance_controller/CMakeFiles/armc_imp_econtroller_node.dir/build.make
 devel/lib/libarmc_imp_econtroller_node.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libarmc_imp_econtroller_node.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libarmc_imp_econtroller_node.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libarmc_imp_econtroller_node.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libarmc_imp_econtroller_node.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libarmc_imp_econtroller_node.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -129,7 +129,7 @@ devel/lib/libarmc_imp_econtroller_node.so: /usr/lib/x86_64-linux-gnu/libboost_at
 devel/lib/libarmc_imp_econtroller_node.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 devel/lib/libarmc_imp_econtroller_node.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 devel/lib/libarmc_imp_econtroller_node.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libarmc_imp_econtroller_node.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libarmc_imp_econtroller_node.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libarmc_imp_econtroller_node.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libarmc_imp_econtroller_node.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libarmc_imp_econtroller_node.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

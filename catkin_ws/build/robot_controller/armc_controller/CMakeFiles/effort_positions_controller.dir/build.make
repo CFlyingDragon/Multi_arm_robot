@@ -101,9 +101,9 @@ effort_positions_controller_EXTERNAL_OBJECTS =
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/librealtime_tools.so
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /home/d/catkin_ws/devel/lib/libros_ethercat_hardware_interface.so
-/home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/libsoem.so
+/home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/libsoem.a
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/libkdl_parser.so
-/home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+/home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liburdf.so
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -147,7 +147,7 @@ effort_positions_controller_EXTERNAL_OBJECTS =
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/libpython2.7.so
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/libkdl_parser.so
-/home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+/home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liburdf.so
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 /home/d/catkin_ws/devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

@@ -3,6 +3,6 @@ prefix=/home/d/catkin_ws/install
 Name: ros_ethercat_driver
 Description: Description of ros_ethercat_driver
 Version: 0.0.0
-Cflags: -I/home/d/catkin_ws/install/include
-Libs: -L/home/d/catkin_ws/install/lib -lros_ethercat_hardware_interface
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lros_ethercat_hardware_interface
 Requires: roscpp soem soem

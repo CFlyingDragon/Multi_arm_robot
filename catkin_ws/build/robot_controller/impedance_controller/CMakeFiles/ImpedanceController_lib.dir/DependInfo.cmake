@@ -20,6 +20,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/d/catkin_ws/src/robot_controller/impedance_controller/include"
   "/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include"
   "/opt/ros/kinetic/include"
+  "/opt/ros/kinetic/share/orocos_kdl/../../include"
   "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/include/eigen3"
   )

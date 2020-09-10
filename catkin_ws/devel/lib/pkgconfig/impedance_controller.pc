@@ -4,5 +4,5 @@ Name: impedance_controller
 Description: Description of impedance_controller
 Version: 0.0.0
 Cflags: -I/home/d/catkin_ws/src/robot_controller/impedance_controller/include
-Libs: -L/home/d/catkin_ws/devel/lib 
+Libs: -L${prefix}/lib 
 Requires: roscpp rospy std_msgs

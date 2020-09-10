@@ -90,7 +90,7 @@ hardware_interface_test_EXTERNAL_OBJECTS =
 
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/hardware_interface_test.dir/test/hardware_interface_test.cpp.o
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/hardware_interface_test.dir/build.make
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libsoem.so
+/home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libsoem.a
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/librealtime_tools.so
@@ -133,7 +133,7 @@ hardware_interface_test_EXTERNAL_OBJECTS =
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /home/d/catkin_ws/devel/lib/libros_ethercat_hardware_interface.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libsoem.so
+/home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libsoem.a
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/librealtime_tools.so

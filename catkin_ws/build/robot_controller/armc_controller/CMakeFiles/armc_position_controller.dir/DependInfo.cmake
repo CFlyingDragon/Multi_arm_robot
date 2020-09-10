@@ -23,6 +23,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include"
   "/opt/ros/kinetic/include"
   "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
+  "/opt/ros/kinetic/include/soem"
+  "/opt/ros/kinetic/share/orocos_kdl/../../include"
   "/usr/include/eigen3"
   )
 

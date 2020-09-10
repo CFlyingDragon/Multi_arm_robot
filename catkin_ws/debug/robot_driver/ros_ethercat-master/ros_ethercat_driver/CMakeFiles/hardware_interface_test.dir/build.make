@@ -90,7 +90,7 @@ hardware_interface_test_EXTERNAL_OBJECTS =
 
 devel/lib/ros_ethercat_driver/hardware_interface_test: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/hardware_interface_test.dir/test/hardware_interface_test.cpp.o
 devel/lib/ros_ethercat_driver/hardware_interface_test: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/hardware_interface_test.dir/build.make
-devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libsoem.so
+devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libsoem.a
 devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
 devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/librealtime_tools.so
@@ -133,7 +133,7 @@ devel/lib/ros_ethercat_driver/hardware_interface_test: /usr/lib/x86_64-linux-gnu
 devel/lib/ros_ethercat_driver/hardware_interface_test: /usr/lib/x86_64-linux-gnu/libpthread.so
 devel/lib/ros_ethercat_driver/hardware_interface_test: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 devel/lib/ros_ethercat_driver/hardware_interface_test: devel/lib/libros_ethercat_hardware_interface.so
-devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libsoem.so
+devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libsoem.a
 devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
 devel/lib/ros_ethercat_driver/hardware_interface_test: /opt/ros/kinetic/lib/librealtime_tools.so

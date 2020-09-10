@@ -79,6 +79,7 @@ robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_har
 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir/hardware_interface/ros_ethercat_hardware_interface.cpp.o: /opt/ros/kinetic/include/ros/message_traits.h
 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir/hardware_interface/ros_ethercat_hardware_interface.cpp.o: /opt/ros/kinetic/include/ros/names.h
 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir/hardware_interface/ros_ethercat_hardware_interface.cpp.o: /opt/ros/kinetic/include/ros/node_handle.h
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir/hardware_interface/ros_ethercat_hardware_interface.cpp.o: /opt/ros/kinetic/include/ros/package.h
 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir/hardware_interface/ros_ethercat_hardware_interface.cpp.o: /opt/ros/kinetic/include/ros/param.h
 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir/hardware_interface/ros_ethercat_hardware_interface.cpp.o: /opt/ros/kinetic/include/ros/parameter_adapter.h
 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir/hardware_interface/ros_ethercat_hardware_interface.cpp.o: /opt/ros/kinetic/include/ros/platform.h

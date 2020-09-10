@@ -4,5 +4,5 @@ Name: ros_ethercat_driver
 Description: Description of ros_ethercat_driver
 Version: 0.0.0
 Cflags: -I/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include
-Libs: -L/home/d/catkin_ws/devel/lib -lros_ethercat_hardware_interface
+Libs: -L${prefix}/lib -lros_ethercat_hardware_interface
 Requires: roscpp soem soem

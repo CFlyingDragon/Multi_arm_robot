@@ -91,7 +91,7 @@ ImpedanceController_lib_EXTERNAL_OBJECTS =
 devel/lib/libImpedanceController_lib.so: robot_controller/impedance_controller/CMakeFiles/ImpedanceController_lib.dir/lib/imp_controller.cpp.o
 devel/lib/libImpedanceController_lib.so: robot_controller/impedance_controller/CMakeFiles/ImpedanceController_lib.dir/build.make
 devel/lib/libImpedanceController_lib.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libImpedanceController_lib.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libImpedanceController_lib.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libImpedanceController_lib.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libImpedanceController_lib.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libImpedanceController_lib.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -129,7 +129,7 @@ devel/lib/libImpedanceController_lib.so: /usr/lib/x86_64-linux-gnu/libboost_atom
 devel/lib/libImpedanceController_lib.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 devel/lib/libImpedanceController_lib.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 devel/lib/libImpedanceController_lib.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libImpedanceController_lib.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libImpedanceController_lib.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libImpedanceController_lib.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libImpedanceController_lib.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libImpedanceController_lib.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

@@ -90,7 +90,7 @@ frictions_test_EXTERNAL_OBJECTS =
 
 devel/lib/ros_ethercat_driver/frictions_test: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/test/frictions_test.cpp.o
 devel/lib/ros_ethercat_driver/frictions_test: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/build.make
-devel/lib/ros_ethercat_driver/frictions_test: /opt/ros/kinetic/lib/libsoem.so
+devel/lib/ros_ethercat_driver/frictions_test: /opt/ros/kinetic/lib/libsoem.a
 devel/lib/ros_ethercat_driver/frictions_test: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 devel/lib/ros_ethercat_driver/frictions_test: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
 devel/lib/ros_ethercat_driver/frictions_test: /opt/ros/kinetic/lib/librealtime_tools.so

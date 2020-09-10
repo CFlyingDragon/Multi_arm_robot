@@ -91,7 +91,7 @@ kdl_fdyna_node_EXTERNAL_OBJECTS =
 devel/lib/kdl_kinematic/kdl_fdyna_node: robot_kinematic/kdl_kinematic/CMakeFiles/kdl_fdyna_node.dir/demo/kdl_fdyna.cpp.o
 devel/lib/kdl_kinematic/kdl_fdyna_node: robot_kinematic/kdl_kinematic/CMakeFiles/kdl_fdyna_node.dir/build.make
 devel/lib/kdl_kinematic/kdl_fdyna_node: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/kdl_kinematic/kdl_fdyna_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/kdl_kinematic/kdl_fdyna_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/kdl_kinematic/kdl_fdyna_node: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/kdl_kinematic/kdl_fdyna_node: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/kdl_kinematic/kdl_fdyna_node: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -122,7 +122,7 @@ devel/lib/kdl_kinematic/kdl_fdyna_node: devel/lib/libchainfdsolver_recursive_new
 devel/lib/kdl_kinematic/kdl_fdyna_node: devel/lib/libldl_solver_eigen.so
 devel/lib/kdl_kinematic/kdl_fdyna_node: devel/lib/libchainjnttojacdotsolver.so
 devel/lib/kdl_kinematic/kdl_fdyna_node: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/kdl_kinematic/kdl_fdyna_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/kdl_kinematic/kdl_fdyna_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/kdl_kinematic/kdl_fdyna_node: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/kdl_kinematic/kdl_fdyna_node: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/kdl_kinematic/kdl_fdyna_node: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

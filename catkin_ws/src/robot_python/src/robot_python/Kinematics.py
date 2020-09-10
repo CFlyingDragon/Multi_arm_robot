@@ -1447,6 +1447,7 @@ class GeneralKinematic(object):
 
 	# 带关节限制
 	def iterate_ikine_limit(self, q_guess, Te):
+		print Te
 		qr = self.iterate_ikine(q_guess, Te)
 		flag = bf.exceed_joint_limit(qr, self.q_min, self.q_max)
 		if (flag):

@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/devel
+
+Name: robots_ethercat_master
+Description: Description of robots_ethercat_master
+Version: 0.0.0
+Cflags: -I/home/d/catkin_ws/src/robot_driver/robots_ethercat_master/include
+Libs: -L/home/d/catkin_ws/devel/lib -lrobots_ethercat_master
+Requires: roscpp rospy std_msgs soem soem

@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIC   -std=c++11
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"kdl_kinematic\" -Dldl_solver_eigen_EXPORTS
 
-CXX_INCLUDES = -I/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/eigen3 
+CXX_INCLUDES = -I/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/opt/ros/kinetic/share/orocos_kdl/../../include -I/usr/include/eigen3 
 

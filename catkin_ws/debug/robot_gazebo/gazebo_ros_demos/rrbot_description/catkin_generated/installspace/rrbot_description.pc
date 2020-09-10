@@ -4,5 +4,5 @@ Name: rrbot_description
 Description: Description of rrbot_description
 Version: 0.0.0
 Cflags: 
-Libs: -L/usr/local/lib 
+Libs: -L${prefix}/lib 
 Requires: 

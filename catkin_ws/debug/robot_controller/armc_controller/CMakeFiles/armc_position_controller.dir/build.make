@@ -101,9 +101,9 @@ devel/lib/libarmc_position_controller.so: /usr/lib/x86_64-linux-gnu/libpython2.7
 devel/lib/libarmc_position_controller.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
 devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/librealtime_tools.so
 devel/lib/libarmc_position_controller.so: devel/lib/libros_ethercat_hardware_interface.so
-devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/libsoem.so
+devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/libsoem.a
 devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libarmc_position_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libarmc_position_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -147,7 +147,7 @@ devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/librospack.so
 devel/lib/libarmc_position_controller.so: /usr/lib/x86_64-linux-gnu/libpython2.7.so
 devel/lib/libarmc_position_controller.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
 devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libarmc_position_controller.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libarmc_position_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libarmc_position_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

@@ -91,7 +91,7 @@ ldl_solver_eigen_EXTERNAL_OBJECTS =
 devel/lib/libldl_solver_eigen.so: robot_kinematic/kdl_kinematic/CMakeFiles/ldl_solver_eigen.dir/lib/ldl_solver_eigen.cpp.o
 devel/lib/libldl_solver_eigen.so: robot_kinematic/kdl_kinematic/CMakeFiles/ldl_solver_eigen.dir/build.make
 devel/lib/libldl_solver_eigen.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libldl_solver_eigen.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libldl_solver_eigen.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libldl_solver_eigen.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libldl_solver_eigen.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libldl_solver_eigen.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

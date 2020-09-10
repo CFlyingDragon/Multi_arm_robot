@@ -64,3 +64,4 @@ robot_driver/CANopen_v1-master/testcan/CMakeFiles/joint_command_canopen_interfac
  /opt/ros/kinetic/include/std_msgs/Header.h
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
+ devel/include/testcan/IpPos.h

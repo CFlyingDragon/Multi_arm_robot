@@ -3,6 +3,6 @@ prefix=/home/d/catkin_ws/install
 Name: position_controllers
 Description: Description of position_controllers
 Version: 0.15.0
-Cflags: -I/home/d/catkin_ws/install/include
-Libs: -L/home/d/catkin_ws/install/lib -lposition_controllers
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lposition_controllers
 Requires: controller_interface forward_command_controller

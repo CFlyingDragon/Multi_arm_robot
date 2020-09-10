@@ -226,7 +226,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # ----------------------测试菜单栏------------------------#
         #测试菜单栏
-        openTest1 = QAction(QIcon('exit.png'), 'Open test1', self)
+        openTest1 = QAction(QIcon('exit.png'), 'Open fitt test1', self)
         openTest1.setStatusTip('Open run test form1')
         openTest1.triggered.connect(self.gotoTest1)
         testMenu.addAction(openTest1)
@@ -442,7 +442,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         k = 0
         while not rospy.is_shutdown():
             #检测是否启动急停
-            if(not self.run_flag):
+            if(not self.run_flag or k==kk):
                 if(not self.real_flag):
                     self.timer_p.stop()
                     self.timer_plot.stop()
@@ -451,8 +451,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             command_data = Float64MultiArray()
             if (k < kk):
                 command_data.data = self.command_qq_list[k, 0:self.n]
-            else:
-                command_data.data = self.command_qq_list[-1, 0:self.n]
             self.pub.publish(command_data)
             if(k%20==0):
                 pub_msg = "armc" + "第" + str(k) + "次" + "publisher data is: " + '\n'\
@@ -1356,24 +1354,21 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
             xx[5] = self.lineEdit_xx6.text()
             xx[:3] = xx[:3]*0.001
             xx[3:] = xx[3:]*np.pi/180.0
-            [qq_command, flag] = self.my_kin.iterate_ikine_limit(self.qq_state, xx)
-            if(flag):
-                msg = "超出关节极限！"
-                self.textEdit.setText(msg)
-                return -1
+            qq_command = self.my_kin.iterate_ikine_limit_xyz(self.qq_state, xx)
 
             dq = max(np.abs(qq_command-self.qq_state))
             t = int(dq)/5 + 5
 
             #更新关节角度
             qq = qq_command * 180 / np.pi
-            self.lineEdit_qq1.setText(str(qq[0]))
-            self.lineEdit_qq2.setText(str(qq[1]))
-            self.lineEdit_qq3.setText(str(qq[2]))
-            self.lineEdit_qq4.setText(str(qq[3]))
-            self.lineEdit_qq5.setText(str(qq[4]))
-            self.lineEdit_qq6.setText(str(qq[5]))
-            self.lineEdit_qq7.setText(str(qq[6]))
+            qq1 = np.around(qq,1)
+            self.lineEdit_qq1.setText(str(qq1[0]))
+            self.lineEdit_qq2.setText(str(qq1[1]))
+            self.lineEdit_qq3.setText(str(qq1[2]))
+            self.lineEdit_qq4.setText(str(qq1[3]))
+            self.lineEdit_qq5.setText(str(qq1[4]))
+            self.lineEdit_qq6.setText(str(qq1[5]))
+            self.lineEdit_qq7.setText(str(qq1[6]))
 
         [qq, qv, qa] = gf.q_joint_space_plan_time(self.qq_state, qq_command, t)
         # 绘制关节角位置速度图
@@ -1697,7 +1692,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
                 command_data.data = self.command_qq_inc[k, 0:self.n]
             if (self.home_flag):
                 command_data.data = self.command_qq_home[k, 0:self.n]
-
+            #仿真1关节不动
+            command_data.data[0] = 0.0
             self.pub.publish(command_data)
             if (k/10 == 0):
                 msg = "armc" + "第" + str(k) + "次" + "publisher data is: " + '\n' \
@@ -4655,7 +4651,7 @@ class ArmctWindow3(QMainWindow, Ui_ArmctForm3):
         self.M = np.array([0.0, 0.0, 4.0, 0.0, 0.0, 0.0])
         self.B = np.array([0.0, 0.0, 800.0, 0.0, 0.0, 0.0])
         self.K = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
-        self.I = np.array([0.0, 0.0, 0.5, 0.0, 0.0, 0.0])
+        self.I = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
 
         # 输入参数
         robot = 'armc'
@@ -5688,10 +5684,10 @@ class ImpWindow2(QMainWindow, Ui_ImpForm2):
         imp_arm1 = imp.IIMPController_iter_vel()
 
         #获取阻抗参数
-        self.M = np.array([0.0, 0.0, 4.0, 0.0, 0.0, 0.0])
-        self.B = np.array([0.0, 0.0, 800.0, 0.0, 0.0, 0.0])
+        self.M = np.array([0.0, 0.0, 10.0, 0.0, 0.0, 0.0])
+        self.B = np.array([0.0, 0.0, 2000.0, 0.0, 0.0, 0.0])
         self.K = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
-        self.I = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+        self.I = np.array([0.0, 0.0, 2.0, 0.0, 0.0, 0.0])
 
         # 输入参数
         robot = 'armc'
@@ -5797,7 +5793,7 @@ class ImpWindow3(QMainWindow, Ui_ImpForm3):
     def __init__(self, parent=None):
         super(ImpWindow3, self).__init__(parent)
         self.T = 0.01
-        self.t = 30
+        self.t = 10
 
         self.run_flag = False  # 开始或停止标签
         self.real_flag = False
@@ -6244,8 +6240,8 @@ class ImpWindow3(QMainWindow, Ui_ImpForm3):
         imp_arm1 = imp.IIMPController_iter_vel()
 
         # 获取阻抗参数
-        self.M = np.array([0.0, 0.0, 10.0, 0.0, 0.0, 0.0])
-        self.B = np.array([0.0, 0.0, 2000.0, 0.0, 0.0, 0.0])
+        self.M = np.array([0.0, 0.0, 5.0, 0.0, 0.0, 0.0])
+        self.B = np.array([0.0, 0.0, 1000.0, 0.0, 0.0, 0.0])
         self.K = np.array([0.0, 0.0, 0, 0.0, 0.0, 0.0])
         self.I = np.array([0.0, 0.0, 0, 0.0, 0.0, 0.0])
 
@@ -7585,9 +7581,9 @@ class TestWindow1(QMainWindow, Ui_TestForm1):
     flag = 1  # 开始或停止标签
     arm_flag = False
     gazebo_flag = 0
-    sub_force_path = "/robot3/ft_sensor_topic"
-    sub_pos_path = "/robot3/joint_states"
-    pub_path = "/robot3/armc_position_controller/command"
+    sub_force_path = "/ft_sensor_topic"
+    sub_pos_path = "/armc/joint_states"
+    pub_path = "/armc/joint_positions_controller/command"
     n = 7  # 机械臂关节数
 
     def __init__(self, parent=None):
@@ -7780,13 +7776,28 @@ class TestWindow1(QMainWindow, Ui_TestForm1):
         plot_f = np.array(self.state_f_list)
         self.plot_joint(plot_t, plot_qq, plot_t, plot_f)
 
-    def armc_or_ur5(self):
-        # 运行该函数切换到ur5
-        self.sub_pos_path = "/robot2/joint_states"
-        self.sub_force_path = "/robot2/ft_sensor_topic"
-        self.pub_path = "/robot2/ur5_position_controller/command"
-        self.arm_flag = True
-        self.n = 6
+    # 支持armt、armc四种状态切换
+    def real_and_arm(self):
+        self.real_flag = self.checkBox_real.isChecked()
+        self.armt_flag = self.checkBox_arm.isChecked()
+        if (self.real_flag):
+            if (self.armt_flag):
+                self.sub_force_path = "/armt/ft_sensor_topic"
+                self.sub_pos_path = "/armt/joint_states"
+                self.pub_path = "/armt/joint_command"
+            else:
+                self.sub_force_path = "/armc/ft_sensor_topic"
+                self.sub_pos_path = "/joint_states"
+                self.pub_path = "/all_joints_position_group_controller/command"
+        else:
+            if (self.armt_flag):
+                self.sub_force_path = "/robot1/ft_sensor_topic"
+                self.sub_pos_path = "/robot1/joint_states"
+                self.pub_path = "/robot1/armt_position_controller/command"
+            else:
+                self.sub_force_path = "/ft_sensor_topic"
+                self.sub_pos_path = "/armc/joint_states"
+                self.pub_path = "/armc/joint_positions_controller/command"
 
     def begin_function(self):
         # 运行标签启动

@@ -83,6 +83,7 @@ robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_etherca
  /opt/ros/kinetic/include/ros/message_traits.h
  /opt/ros/kinetic/include/ros/names.h
  /opt/ros/kinetic/include/ros/node_handle.h
+ /opt/ros/kinetic/include/ros/package.h
  /opt/ros/kinetic/include/ros/param.h
  /opt/ros/kinetic/include/ros/parameter_adapter.h
  /opt/ros/kinetic/include/ros/platform.h
@@ -333,6 +334,7 @@ robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_etherca
  /opt/ros/kinetic/include/ros/message_traits.h
  /opt/ros/kinetic/include/ros/names.h
  /opt/ros/kinetic/include/ros/node_handle.h
+ /opt/ros/kinetic/include/ros/package.h
  /opt/ros/kinetic/include/ros/param.h
  /opt/ros/kinetic/include/ros/parameter_adapter.h
  /opt/ros/kinetic/include/ros/platform.h
@@ -582,6 +584,7 @@ robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_etherca
  /opt/ros/kinetic/include/ros/message_traits.h
  /opt/ros/kinetic/include/ros/names.h
  /opt/ros/kinetic/include/ros/node_handle.h
+ /opt/ros/kinetic/include/ros/package.h
  /opt/ros/kinetic/include/ros/param.h
  /opt/ros/kinetic/include/ros/parameter_adapter.h
  /opt/ros/kinetic/include/ros/platform.h

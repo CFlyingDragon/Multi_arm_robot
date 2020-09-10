@@ -467,6 +467,57 @@ def armc_deal_with_data2():
     plt.legend()
     plt.show()
 
+#双臂搬运armct搬运力处理
+def armct_move_basketball():
+    # 获取地址
+    file_path = os.path.join(os.getcwd(), '../../../', 'robot_bag/armct/抓篮球数据')
+    file_path = os.path.abspath(file_path)
+    file_force = file_path + '/f_armc_force2.txt'
+
+    # 读取数据
+    force = FileOpen.read(file_force)
+    num = len(force)
+    print "num:", num
+    T = 0.01
+    t = np.linspace(0, T * (num - 1), num)
+
+    # 绘制数据图
+    m1 = 1140
+    m2 = 11400
+    force[m1:m2, 2] = force[m1:m2, 2] - 1.2*np.ones(m2-m1)
+    force[m1:4000, 2] = smooth(force[m1:4000, 2], window_len=35)
+    force[4000:7500, 2] = smooth(force[4000:7500, 2], window_len=10)
+    force[7500:m2, 2] = smooth(force[7500:m2, 2], window_len=35)
+    MyPlot.plot2_nd(t, force, title='force', xlab='t/s', ylab='N', lable='f')
+
+
+    # 绘制单轴曲线
+    plt.figure(2)
+    plt.plot(t, force[:, 2], label='Fz', color='r')
+    plt.title("Fz")
+    plt.xlabel("t/s")
+    plt.ylabel("fz/N")
+    plt.legend()
+
+    #研究力控段
+    fz = force[m1:m2, 2]
+    plt.figure(3)
+    plt.plot(t[m1:m2], fz, label='Fz_s', color='g')
+    plt.title("Fz_s")
+    plt.xlabel("t/s")
+    plt.ylabel("fz/N")
+    plt.legend()
+
+    fz = force[m1:m2, 2] + 30*np.ones(m2-m1)
+    plt.figure(4)
+    plt.plot(t[m1:m2], fz, label='Fz_s', color='b')
+    plt.title("Fz_s")
+    plt.xlabel("t/s")
+    plt.ylabel("fz/N")
+    plt.legend()
+
+    plt.show()
+
 
 def main():
     num = 1000
@@ -488,7 +539,8 @@ if __name__ == "__main__":
     #main()
     # armt_deal_with_data1()
     # armt_deal_with_data2()
-    armc_deal_with_data1()
-    armc_deal_with_data2()
+    # armc_deal_with_data1()
+    # armc_deal_with_data2()
     #deal_with_sigle_force()
+    armct_move_basketball()
     print "finish!"

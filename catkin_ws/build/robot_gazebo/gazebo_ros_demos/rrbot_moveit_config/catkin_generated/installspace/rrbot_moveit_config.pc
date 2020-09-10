@@ -4,5 +4,5 @@ Name: rrbot_moveit_config
 Description: Description of rrbot_moveit_config
 Version: 0.3.0
 Cflags: 
-Libs: -L/home/d/catkin_ws/install/lib 
+Libs: -L${prefix}/lib 
 Requires: 

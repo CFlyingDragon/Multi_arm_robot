@@ -4,5 +4,5 @@ Name: python_gui
 Description: Description of python_gui
 Version: 0.0.0
 Cflags: 
-Libs: -L/usr/local/lib 
+Libs: -L${prefix}/lib 
 Requires: 

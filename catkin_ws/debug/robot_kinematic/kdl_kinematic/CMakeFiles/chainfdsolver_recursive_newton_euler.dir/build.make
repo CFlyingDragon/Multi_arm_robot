@@ -91,7 +91,7 @@ chainfdsolver_recursive_newton_euler_EXTERNAL_OBJECTS =
 devel/lib/libchainfdsolver_recursive_newton_euler.so: robot_kinematic/kdl_kinematic/CMakeFiles/chainfdsolver_recursive_newton_euler.dir/lib/chainfdsolver_recursive_newton_euler.cpp.o
 devel/lib/libchainfdsolver_recursive_newton_euler.so: robot_kinematic/kdl_kinematic/CMakeFiles/chainfdsolver_recursive_newton_euler.dir/build.make
 devel/lib/libchainfdsolver_recursive_newton_euler.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libchainfdsolver_recursive_newton_euler.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libchainfdsolver_recursive_newton_euler.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libchainfdsolver_recursive_newton_euler.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libchainfdsolver_recursive_newton_euler.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libchainfdsolver_recursive_newton_euler.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -121,7 +121,7 @@ devel/lib/libchainfdsolver_recursive_newton_euler.so: /usr/lib/x86_64-linux-gnu/
 devel/lib/libchainfdsolver_recursive_newton_euler.so: devel/lib/libldl_solver_eigen.so
 devel/lib/libchainfdsolver_recursive_newton_euler.so: devel/lib/libchainjnttojacdotsolver.so
 devel/lib/libchainfdsolver_recursive_newton_euler.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libchainfdsolver_recursive_newton_euler.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libchainfdsolver_recursive_newton_euler.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libchainfdsolver_recursive_newton_euler.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libchainfdsolver_recursive_newton_euler.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libchainfdsolver_recursive_newton_euler.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

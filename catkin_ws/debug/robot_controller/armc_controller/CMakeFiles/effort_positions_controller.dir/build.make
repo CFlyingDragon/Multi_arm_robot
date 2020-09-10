@@ -101,9 +101,9 @@ devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/libpython
 devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
 devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/librealtime_tools.so
 devel/lib/libeffort_positions_controller.so: devel/lib/libros_ethercat_hardware_interface.so
-devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/libsoem.so
+devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/libsoem.a
 devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -147,7 +147,7 @@ devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/librospack.so
 devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/libpython2.7.so
 devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
 devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libeffort_positions_controller.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libeffort_positions_controller.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

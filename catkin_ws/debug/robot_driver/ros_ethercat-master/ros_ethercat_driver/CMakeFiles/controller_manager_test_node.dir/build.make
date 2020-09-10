@@ -90,7 +90,7 @@ controller_manager_test_node_EXTERNAL_OBJECTS =
 
 devel/lib/ros_ethercat_driver/controller_manager_test_node: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/controller_manager_test_node.dir/test/controller_manager_test.cpp.o
 devel/lib/ros_ethercat_driver/controller_manager_test_node: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/controller_manager_test_node.dir/build.make
-devel/lib/ros_ethercat_driver/controller_manager_test_node: /opt/ros/kinetic/lib/libsoem.so
+devel/lib/ros_ethercat_driver/controller_manager_test_node: /opt/ros/kinetic/lib/libsoem.a
 devel/lib/ros_ethercat_driver/controller_manager_test_node: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 devel/lib/ros_ethercat_driver/controller_manager_test_node: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
 devel/lib/ros_ethercat_driver/controller_manager_test_node: /opt/ros/kinetic/lib/librealtime_tools.so
@@ -133,7 +133,7 @@ devel/lib/ros_ethercat_driver/controller_manager_test_node: /usr/lib/x86_64-linu
 devel/lib/ros_ethercat_driver/controller_manager_test_node: /usr/lib/x86_64-linux-gnu/libpthread.so
 devel/lib/ros_ethercat_driver/controller_manager_test_node: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 devel/lib/ros_ethercat_driver/controller_manager_test_node: devel/lib/libros_ethercat_hardware_interface.so
-devel/lib/ros_ethercat_driver/controller_manager_test_node: /opt/ros/kinetic/lib/libsoem.so
+devel/lib/ros_ethercat_driver/controller_manager_test_node: /opt/ros/kinetic/lib/libsoem.a
 devel/lib/ros_ethercat_driver/controller_manager_test_node: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 devel/lib/ros_ethercat_driver/controller_manager_test_node: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
 devel/lib/ros_ethercat_driver/controller_manager_test_node: /opt/ros/kinetic/lib/librealtime_tools.so

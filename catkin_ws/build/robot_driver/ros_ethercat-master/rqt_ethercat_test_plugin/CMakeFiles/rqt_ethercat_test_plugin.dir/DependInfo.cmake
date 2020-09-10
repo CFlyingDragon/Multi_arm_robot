@@ -29,6 +29,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include"
   "/opt/ros/kinetic/include"
   "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
+  "/opt/ros/kinetic/include/soem"
   "/usr/include/x86_64-linux-gnu/qt5"
   "/usr/include/x86_64-linux-gnu/qt5/QtWidgets"
   "/usr/include/x86_64-linux-gnu/qt5/QtGui"

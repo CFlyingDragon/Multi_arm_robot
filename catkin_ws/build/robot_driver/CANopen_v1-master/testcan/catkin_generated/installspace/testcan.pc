@@ -3,6 +3,6 @@ prefix=/home/d/catkin_ws/install
 Name: testcan
 Description: Description of testcan
 Version: 0.0.0
-Cflags: -I/home/d/catkin_ws/install/include
-Libs: -L/home/d/catkin_ws/install/lib -ltestcan
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -ltestcan
 Requires: message_runtime

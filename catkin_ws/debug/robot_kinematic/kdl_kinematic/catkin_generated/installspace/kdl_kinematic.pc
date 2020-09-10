@@ -3,6 +3,6 @@ prefix=/usr/local
 Name: kdl_kinematic
 Description: Description of kdl_kinematic
 Version: 0.0.0
-Cflags: -I/usr/local/include
-Libs: -L/usr/local/lib -lchainjnttojacdotsolver
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lchainjnttojacdotsolver
 Requires: roscpp rospy std_msgs

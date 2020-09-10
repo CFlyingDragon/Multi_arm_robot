@@ -59,6 +59,14 @@ eigen3/Eigen/Eigen
 /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include/ros_ethercat_driver/hardware_interface/eigen3/Eigen/Eigen
 unordered_map
 /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include/ros_ethercat_driver/hardware_interface/unordered_map
+fstream
+-
+iostream
+-
+algorithm
+-
+ros/package.h
+/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include/ros_ethercat_driver/hardware_interface/ros/package.h
 
 /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include/ros_ethercat_driver/slave_info/ANYDrive.hpp
 stdio.h
@@ -1014,6 +1022,16 @@ common.h
 boost/bind.hpp
 -
 xmlrpcpp/XmlRpcValue.h
+-
+
+/opt/ros/kinetic/include/ros/package.h
+string
+-
+utility
+-
+vector
+-
+map
 -
 
 /opt/ros/kinetic/include/ros/param.h

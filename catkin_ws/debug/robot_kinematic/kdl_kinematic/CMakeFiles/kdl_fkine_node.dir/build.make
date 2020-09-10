@@ -91,7 +91,7 @@ kdl_fkine_node_EXTERNAL_OBJECTS =
 devel/lib/kdl_kinematic/kdl_fkine_node: robot_kinematic/kdl_kinematic/CMakeFiles/kdl_fkine_node.dir/demo/kdl_fkine.cpp.o
 devel/lib/kdl_kinematic/kdl_fkine_node: robot_kinematic/kdl_kinematic/CMakeFiles/kdl_fkine_node.dir/build.make
 devel/lib/kdl_kinematic/kdl_fkine_node: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/kdl_kinematic/kdl_fkine_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/kdl_kinematic/kdl_fkine_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/kdl_kinematic/kdl_fkine_node: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/kdl_kinematic/kdl_fkine_node: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/kdl_kinematic/kdl_fkine_node: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

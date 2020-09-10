@@ -4,5 +4,5 @@ Name: rrbot_control
 Description: Description of rrbot_control
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/d/catkin_ws/devel/lib 
+Libs: -L${prefix}/lib 
 Requires: 

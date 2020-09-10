@@ -91,7 +91,7 @@ chainjnttojacdotsolver_EXTERNAL_OBJECTS =
 devel/lib/libchainjnttojacdotsolver.so: robot_kinematic/kdl_kinematic/CMakeFiles/chainjnttojacdotsolver.dir/lib/chainjnttojacdotsolver.cpp.o
 devel/lib/libchainjnttojacdotsolver.so: robot_kinematic/kdl_kinematic/CMakeFiles/chainjnttojacdotsolver.dir/build.make
 devel/lib/libchainjnttojacdotsolver.so: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/libchainjnttojacdotsolver.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/libchainjnttojacdotsolver.so: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/libchainjnttojacdotsolver.so: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/libchainjnttojacdotsolver.so: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/libchainjnttojacdotsolver.so: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

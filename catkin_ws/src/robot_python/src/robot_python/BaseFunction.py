@@ -93,6 +93,9 @@ def rot2euler_zyx(Re):
 	euler_zyx[0] = alpha
 	euler_zyx[1] = beta
 	euler_zyx[2] = gamma
+	for i in range(3):
+		if(euler_zyx[i]>=3.14 or euler_zyx[i]<=3.14):
+			euler_zyx[i] = 0.0
 	return euler_zyx
 
 #齐次坐标系转换为六维坐标系

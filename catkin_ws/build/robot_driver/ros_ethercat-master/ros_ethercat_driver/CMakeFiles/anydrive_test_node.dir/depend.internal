@@ -5,16 +5,17 @@ robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_no
  /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include/ros_ethercat_driver/anydrive_test.h
  /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include/ros_ethercat_driver/slave_info/ANYDrive.hpp
  /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/anydrive_test.cpp
- /opt/ros/kinetic/include/soem/osal/osal.h
- /opt/ros/kinetic/include/soem/osal/osal_defs.h
- /opt/ros/kinetic/include/soem/oshw/nicdrv.h
- /opt/ros/kinetic/include/soem/soem/ethercat.h
- /opt/ros/kinetic/include/soem/soem/ethercatbase.h
- /opt/ros/kinetic/include/soem/soem/ethercatcoe.h
- /opt/ros/kinetic/include/soem/soem/ethercatconfig.h
- /opt/ros/kinetic/include/soem/soem/ethercatdc.h
- /opt/ros/kinetic/include/soem/soem/ethercatfoe.h
- /opt/ros/kinetic/include/soem/soem/ethercatmain.h
- /opt/ros/kinetic/include/soem/soem/ethercatprint.h
- /opt/ros/kinetic/include/soem/soem/ethercatsoe.h
- /opt/ros/kinetic/include/soem/soem/ethercattype.h
+ /opt/ros/kinetic/include/soem/ethercat.h
+ /opt/ros/kinetic/include/soem/ethercatbase.h
+ /opt/ros/kinetic/include/soem/ethercatcoe.h
+ /opt/ros/kinetic/include/soem/ethercatconfig.h
+ /opt/ros/kinetic/include/soem/ethercatdc.h
+ /opt/ros/kinetic/include/soem/ethercateoe.h
+ /opt/ros/kinetic/include/soem/ethercatfoe.h
+ /opt/ros/kinetic/include/soem/ethercatmain.h
+ /opt/ros/kinetic/include/soem/ethercatprint.h
+ /opt/ros/kinetic/include/soem/ethercatsoe.h
+ /opt/ros/kinetic/include/soem/ethercattype.h
+ /opt/ros/kinetic/include/soem/nicdrv.h
+ /opt/ros/kinetic/include/soem/osal.h
+ /opt/ros/kinetic/include/soem/osal_defs.h

@@ -267,66 +267,6 @@
             <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="goldentwittertest_node">
-         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/goldentwittertest_node" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver" />
-         <Option object_output="./" />
-         <Option type="1" />
-         <Option compiler="gcc" />
-         <Compiler>
-            <Add option="-DROS_BUILD_SHARED_LIBS=1" />
-            <Add option="-DROS_PACKAGE_NAME=&quot;ros_ethercat_driver&quot;" />
-            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
-            <Add directory="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include" />
-            <Add directory="/opt/ros/kinetic/include" />
-            <Add directory="/opt/ros/kinetic/include/soem" />
-            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
-            <Add directory="/usr/include" />
-            <Add directory="/usr/include/c++/5" />
-            <Add directory="/usr/include/c++/5/backward" />
-            <Add directory="/usr/include/x86_64-linux-gnu" />
-            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-            <Add directory="/usr/local/include" />
-         </Compiler>
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 goldentwittertest_node" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
-      <Target title="goldentwittertest_node/fast">
-         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/goldentwittertest_node" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver" />
-         <Option object_output="./" />
-         <Option type="1" />
-         <Option compiler="gcc" />
-         <Compiler>
-            <Add option="-DROS_BUILD_SHARED_LIBS=1" />
-            <Add option="-DROS_PACKAGE_NAME=&quot;ros_ethercat_driver&quot;" />
-            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
-            <Add directory="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include" />
-            <Add directory="/opt/ros/kinetic/include" />
-            <Add directory="/opt/ros/kinetic/include/soem" />
-            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
-            <Add directory="/usr/include" />
-            <Add directory="/usr/include/c++/5" />
-            <Add directory="/usr/include/c++/5/backward" />
-            <Add directory="/usr/include/x86_64-linux-gnu" />
-            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-            <Add directory="/usr/local/include" />
-         </Compiler>
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 goldentwittertest_node/fast" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
       <Target title="control_msgs_generate_messages_nodejs">
          <Option working_dir="/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver" />
          <Option type="4" />
@@ -417,8 +357,8 @@
             <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="jointpositioncommand">
-         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/jointpositioncommand" prefix_auto="0" extension_auto="0" />
+      <Target title="frictions_test">
+         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/frictions_test" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver" />
          <Option object_output="./" />
          <Option type="1" />
@@ -441,14 +381,14 @@
             <Add directory="/usr/local/include" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 jointpositioncommand" />
+            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 frictions_test" />
             <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="jointpositioncommand/fast">
-         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/jointpositioncommand" prefix_auto="0" extension_auto="0" />
+      <Target title="frictions_test/fast">
+         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/frictions_test" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver" />
          <Option object_output="./" />
          <Option type="1" />
@@ -471,7 +411,7 @@
             <Add directory="/usr/local/include" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 jointpositioncommand/fast" />
+            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 frictions_test/fast" />
             <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
@@ -537,8 +477,8 @@
             <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="frictions_test">
-         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/frictions_test" prefix_auto="0" extension_auto="0" />
+      <Target title="jointpositioncommand">
+         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/jointpositioncommand" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver" />
          <Option object_output="./" />
          <Option type="1" />
@@ -561,14 +501,14 @@
             <Add directory="/usr/local/include" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 frictions_test" />
+            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 jointpositioncommand" />
             <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="frictions_test/fast">
-         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/frictions_test" prefix_auto="0" extension_auto="0" />
+      <Target title="jointpositioncommand/fast">
+         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/jointpositioncommand" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver" />
          <Option object_output="./" />
          <Option type="1" />
@@ -591,67 +531,7 @@
             <Add directory="/usr/local/include" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 frictions_test/fast" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
-      <Target title="anydrive_test_node">
-         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/anydrive_test_node" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver" />
-         <Option object_output="./" />
-         <Option type="1" />
-         <Option compiler="gcc" />
-         <Compiler>
-            <Add option="-DROS_BUILD_SHARED_LIBS=1" />
-            <Add option="-DROS_PACKAGE_NAME=&quot;ros_ethercat_driver&quot;" />
-            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
-            <Add directory="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include" />
-            <Add directory="/opt/ros/kinetic/include" />
-            <Add directory="/opt/ros/kinetic/include/soem" />
-            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
-            <Add directory="/usr/include" />
-            <Add directory="/usr/include/c++/5" />
-            <Add directory="/usr/include/c++/5/backward" />
-            <Add directory="/usr/include/x86_64-linux-gnu" />
-            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-            <Add directory="/usr/local/include" />
-         </Compiler>
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 anydrive_test_node" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
-      <Target title="anydrive_test_node/fast">
-         <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/anydrive_test_node" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver" />
-         <Option object_output="./" />
-         <Option type="1" />
-         <Option compiler="gcc" />
-         <Compiler>
-            <Add option="-DROS_BUILD_SHARED_LIBS=1" />
-            <Add option="-DROS_PACKAGE_NAME=&quot;ros_ethercat_driver&quot;" />
-            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
-            <Add directory="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include" />
-            <Add directory="/opt/ros/kinetic/include" />
-            <Add directory="/opt/ros/kinetic/include/soem" />
-            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
-            <Add directory="/usr/include" />
-            <Add directory="/usr/include/c++/5" />
-            <Add directory="/usr/include/c++/5/backward" />
-            <Add directory="/usr/include/x86_64-linux-gnu" />
-            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-            <Add directory="/usr/local/include" />
-         </Compiler>
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 anydrive_test_node/fast" />
+            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 jointpositioncommand/fast" />
             <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
@@ -670,17 +550,11 @@
       <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/src/JointPositionCommand.cpp">
          <Option target="jointpositioncommand"/>
       </Unit>
-      <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/anydrive_test.cpp">
-         <Option target="anydrive_test_node"/>
-      </Unit>
       <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/controller_manager_test.cpp">
          <Option target="controller_manager_test_node"/>
       </Unit>
       <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/frictions_test.cpp">
          <Option target="frictions_test"/>
-      </Unit>
-      <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/goldentwittertest.cpp">
-         <Option target="goldentwittertest_node"/>
       </Unit>
       <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/hardware_interface_test.cpp">
          <Option target="hardware_interface_test"/>
@@ -14002,10 +13876,7 @@
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
-      </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
@@ -14014,10 +13885,7 @@
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
-      </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
@@ -14026,10 +13894,34 @@
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/control_toolbox/cmake/control_toolboxConfig-version.cmake">

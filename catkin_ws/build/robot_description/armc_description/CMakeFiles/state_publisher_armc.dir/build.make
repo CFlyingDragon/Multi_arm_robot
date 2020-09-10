@@ -92,7 +92,7 @@ robot_description/armc_description/state_publisher_armc: robot_description/armc_
 robot_description/armc_description/state_publisher_armc: robot_description/armc_description/CMakeFiles/state_publisher_armc.dir/build.make
 robot_description/armc_description/state_publisher_armc: /opt/ros/kinetic/lib/librobot_state_publisher_solver.so
 robot_description/armc_description/state_publisher_armc: /opt/ros/kinetic/lib/libkdl_parser.so
-robot_description/armc_description/state_publisher_armc: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+robot_description/armc_description/state_publisher_armc: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 robot_description/armc_description/state_publisher_armc: /opt/ros/kinetic/lib/libtf.so
 robot_description/armc_description/state_publisher_armc: /opt/ros/kinetic/lib/libtf2_ros.so
 robot_description/armc_description/state_publisher_armc: /opt/ros/kinetic/lib/libactionlib.so

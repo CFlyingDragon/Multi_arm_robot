@@ -91,7 +91,7 @@ imp_controller_test_EXTERNAL_OBJECTS =
 devel/lib/impedance_controller/imp_controller_test: robot_controller/impedance_controller/CMakeFiles/imp_controller_test.dir/test/imp_controller_test.cpp.o
 devel/lib/impedance_controller/imp_controller_test: robot_controller/impedance_controller/CMakeFiles/imp_controller_test.dir/build.make
 devel/lib/impedance_controller/imp_controller_test: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/impedance_controller/imp_controller_test: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/impedance_controller/imp_controller_test: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/impedance_controller/imp_controller_test: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/impedance_controller/imp_controller_test: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/impedance_controller/imp_controller_test: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -130,7 +130,7 @@ devel/lib/impedance_controller/imp_controller_test: /usr/lib/x86_64-linux-gnu/li
 devel/lib/impedance_controller/imp_controller_test: devel/lib/libImpedanceController_lib.so
 devel/lib/impedance_controller/imp_controller_test: devel/lib/libchainjnttojacdotsolver.so
 devel/lib/impedance_controller/imp_controller_test: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/impedance_controller/imp_controller_test: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/impedance_controller/imp_controller_test: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/impedance_controller/imp_controller_test: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/impedance_controller/imp_controller_test: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/impedance_controller/imp_controller_test: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

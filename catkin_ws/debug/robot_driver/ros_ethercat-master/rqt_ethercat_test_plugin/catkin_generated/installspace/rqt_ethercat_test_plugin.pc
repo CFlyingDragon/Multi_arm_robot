@@ -3,6 +3,6 @@ prefix=/usr/local
 Name: rqt_ethercat_test_plugin
 Description: Description of rqt_ethercat_test_plugin
 Version: 0.0.0
-Cflags: -I/usr/local/include
-Libs: -L/usr/local/lib 
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
 Requires: 

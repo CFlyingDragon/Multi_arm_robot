@@ -4,5 +4,5 @@ Name: armt_gazebo
 Description: Description of armt_gazebo
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/d/catkin_ws/debug/devel/lib 
+Libs: -L${prefix}/lib 
 Requires: 

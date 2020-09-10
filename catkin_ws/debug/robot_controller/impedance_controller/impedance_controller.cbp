@@ -30,6 +30,7 @@
             <Add directory="/home/d/catkin_ws/src/robot_controller/impedance_controller/include" />
             <Add directory="/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include" />
             <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/orocos_kdl/../../include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
             <Add directory="/usr/include" />
             <Add directory="/usr/include/c++/5" />
@@ -61,6 +62,7 @@
             <Add directory="/home/d/catkin_ws/src/robot_controller/impedance_controller/include" />
             <Add directory="/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include" />
             <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/orocos_kdl/../../include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
             <Add directory="/usr/include" />
             <Add directory="/usr/include/c++/5" />
@@ -92,6 +94,7 @@
             <Add directory="/home/d/catkin_ws/src/robot_controller/impedance_controller/include" />
             <Add directory="/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include" />
             <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/orocos_kdl/../../include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
             <Add directory="/usr/include" />
             <Add directory="/usr/include/c++/5" />
@@ -123,6 +126,7 @@
             <Add directory="/home/d/catkin_ws/src/robot_controller/impedance_controller/include" />
             <Add directory="/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include" />
             <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/orocos_kdl/../../include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
             <Add directory="/usr/include" />
             <Add directory="/usr/include/c++/5" />
@@ -154,6 +158,7 @@
             <Add directory="/home/d/catkin_ws/src/robot_controller/impedance_controller/include" />
             <Add directory="/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include" />
             <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/orocos_kdl/../../include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
             <Add directory="/usr/include" />
             <Add directory="/usr/include/c++/5" />
@@ -185,6 +190,7 @@
             <Add directory="/home/d/catkin_ws/src/robot_controller/impedance_controller/include" />
             <Add directory="/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include" />
             <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/orocos_kdl/../../include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
             <Add directory="/usr/include" />
             <Add directory="/usr/include/c++/5" />
@@ -216,6 +222,7 @@
             <Add directory="/home/d/catkin_ws/src/robot_controller/impedance_controller/include" />
             <Add directory="/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include" />
             <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/orocos_kdl/../../include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
             <Add directory="/usr/include" />
             <Add directory="/usr/include/c++/5" />
@@ -247,6 +254,7 @@
             <Add directory="/home/d/catkin_ws/src/robot_controller/impedance_controller/include" />
             <Add directory="/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include" />
             <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/orocos_kdl/../../include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
             <Add directory="/usr/include" />
             <Add directory="/usr/include/c++/5" />
@@ -278,6 +286,7 @@
             <Add directory="/home/d/catkin_ws/src/robot_controller/impedance_controller/include" />
             <Add directory="/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include" />
             <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/orocos_kdl/../../include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
             <Add directory="/usr/include" />
             <Add directory="/usr/include/c++/5" />
@@ -309,6 +318,7 @@
             <Add directory="/home/d/catkin_ws/src/robot_controller/impedance_controller/include" />
             <Add directory="/home/d/catkin_ws/src/robot_kinematic/kdl_kinematic/include" />
             <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/orocos_kdl/../../include" />
             <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
             <Add directory="/usr/include" />
             <Add directory="/usr/include/c++/5" />
@@ -13660,10 +13670,7 @@
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
-      </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
@@ -13672,10 +13679,7 @@
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
-      </Unit>
-      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
@@ -13684,10 +13688,34 @@
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig-version.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soemConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
+      </Unit>
+      <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/soem/cmake/soem-ros-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\opt\ros\kinetic\share\soem\cmake\" />
       </Unit>
       <Unit filename="/home/d/catkin_ws/src/../../../../opt/ros/kinetic/share/control_toolbox/cmake/control_toolboxConfig-version.cmake">

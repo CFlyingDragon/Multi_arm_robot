@@ -92,7 +92,7 @@ c_lightlobot/arm_description/joint_command_interface_node1: c_lightlobot/arm_des
 c_lightlobot/arm_description/joint_command_interface_node1: c_lightlobot/arm_description/CMakeFiles/joint_command_interface_node1.dir/build.make
 c_lightlobot/arm_description/joint_command_interface_node1: /opt/ros/kinetic/lib/librobot_state_publisher_solver.so
 c_lightlobot/arm_description/joint_command_interface_node1: /opt/ros/kinetic/lib/libkdl_parser.so
-c_lightlobot/arm_description/joint_command_interface_node1: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+c_lightlobot/arm_description/joint_command_interface_node1: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 c_lightlobot/arm_description/joint_command_interface_node1: /opt/ros/kinetic/lib/libtf.so
 c_lightlobot/arm_description/joint_command_interface_node1: /opt/ros/kinetic/lib/libtf2_ros.so
 c_lightlobot/arm_description/joint_command_interface_node1: /opt/ros/kinetic/lib/libactionlib.so

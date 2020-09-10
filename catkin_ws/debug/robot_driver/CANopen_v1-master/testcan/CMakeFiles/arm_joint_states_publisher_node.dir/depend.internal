@@ -4,8 +4,6 @@
 robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o
  /home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/include/testcan/canopen_vci_ros.h
  /home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/include/testcan/controlcan.h
- /home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/include/testcan/testcan/Frame.h
- /home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/include/testcan/testcan/IpPos.h
  /home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/src/arm_joint_states_publisher.cpp
  /opt/ros/kinetic/include/geometry_msgs/Twist.h
  /opt/ros/kinetic/include/geometry_msgs/Vector3.h
@@ -69,3 +67,5 @@ robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_nod
  /opt/ros/kinetic/include/std_msgs/Header.h
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
  /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
+ devel/include/testcan/Frame.h
+ devel/include/testcan/IpPos.h

@@ -319,9 +319,9 @@ def armct_move_object_plan():
     qq2_guess = np.array([0, -45, 0, 85, 0, 50, 0]) * np.pi / 180.0
     [qq1, qq2] = robots1.put_robots_joint_position(qq1_guess, qq2_guess)
 
-    fr1 = -0.5
-    fr2 = 0.5
-    fd = -10
+    fr1 = -0.0
+    fr2 = 0.0
+    fd = -30
     [f1, f2] = robots1.put_expect_force(fr1, fd, fr2)
 
     # 绘制关节角

@@ -90,7 +90,7 @@ jointpositioncommand_EXTERNAL_OBJECTS =
 
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libsoem.so
+/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libsoem.a
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/librealtime_tools.so
@@ -132,7 +132,7 @@ jointpositioncommand_EXTERNAL_OBJECTS =
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libsoem.so
+/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libsoem.a
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/librealtime_tools.so

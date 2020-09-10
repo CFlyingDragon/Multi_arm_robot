@@ -90,7 +90,7 @@ two_joints_controller_EXTERNAL_OBJECTS =
 
 /home/d/catkin_ws/devel/lib/libtwo_joints_controller.so: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/lib/two_joints_control.cpp.o
 /home/d/catkin_ws/devel/lib/libtwo_joints_controller.so: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/build.make
-/home/d/catkin_ws/devel/lib/libtwo_joints_controller.so: /opt/ros/kinetic/lib/libsoem.so
+/home/d/catkin_ws/devel/lib/libtwo_joints_controller.so: /opt/ros/kinetic/lib/libsoem.a
 /home/d/catkin_ws/devel/lib/libtwo_joints_controller.so: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 /home/d/catkin_ws/devel/lib/libtwo_joints_controller.so: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
 /home/d/catkin_ws/devel/lib/libtwo_joints_controller.so: /opt/ros/kinetic/lib/librealtime_tools.so

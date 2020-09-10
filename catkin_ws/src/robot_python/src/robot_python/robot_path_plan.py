@@ -303,12 +303,12 @@ def line_force_plan_armc():
     linePlan.get_robot_parameter(DH_0, qq_max, qq_min)
 
     #规划起点和终点
-    Xb = np.array([0.454, 0, -0.005, 0, 3.14, 0])
-    Xe = Xb + np.array([0.1, 0, 0, 0, 0, 0])
+    Xb = np.array([0.410, 0, 0.022, 0, 3.14, 0])
+    Xe = Xb + np.array([0.17, 0, 0, 0, 0, 0])
     linePlan.get_begin_end_point(Xb, Xe)
 
     #获取起点关节角猜测值
-    qq_guess = np.array([0, 35, 0, 80, 0, 65, 0])*np.pi/180.0
+    qq_guess = np.array([0, 30, 0, 85, 0, 65, 0])*np.pi/180.0
     linePlan.get_init_guess_joint(qq_guess)
 
     #时间和周期

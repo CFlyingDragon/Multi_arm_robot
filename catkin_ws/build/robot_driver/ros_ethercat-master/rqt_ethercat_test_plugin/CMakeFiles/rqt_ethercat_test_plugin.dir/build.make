@@ -212,9 +212,9 @@ rqt_ethercat_test_plugin_EXTERNAL_OBJECTS =
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /opt/ros/kinetic/lib/libsoem.so
+/home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /opt/ros/kinetic/lib/libsoem.a
+/home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
@@ -255,8 +255,8 @@ rqt_ethercat_test_plugin_EXTERNAL_OBJECTS =
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
+/home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1
 /home/d/catkin_ws/devel/lib/librqt_ethercat_test_plugin.so: robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/link.txt

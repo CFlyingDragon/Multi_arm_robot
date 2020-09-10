@@ -4,5 +4,5 @@ Name: armc_gazebo1
 Description: Description of armc_gazebo1
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/d/catkin_ws/devel/lib 
+Libs: -L${prefix}/lib 
 Requires: 

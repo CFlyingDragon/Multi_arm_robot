@@ -82,6 +82,7 @@ robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_etherca
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/include/rqt_ethercat_test_plugin/moc_rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/message_traits.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/include/rqt_ethercat_test_plugin/moc_rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/names.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/include/rqt_ethercat_test_plugin/moc_rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/node_handle.h
+robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/include/rqt_ethercat_test_plugin/moc_rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/package.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/include/rqt_ethercat_test_plugin/moc_rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/param.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/include/rqt_ethercat_test_plugin/moc_rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/parameter_adapter.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/include/rqt_ethercat_test_plugin/moc_rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/platform.h
@@ -332,6 +333,7 @@ robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_etherca
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin.cpp.o: /opt/ros/kinetic/include/ros/message_traits.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin.cpp.o: /opt/ros/kinetic/include/ros/names.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin.cpp.o: /opt/ros/kinetic/include/ros/node_handle.h
+robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin.cpp.o: /opt/ros/kinetic/include/ros/package.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin.cpp.o: /opt/ros/kinetic/include/ros/param.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin.cpp.o: /opt/ros/kinetic/include/ros/parameter_adapter.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin.cpp.o: /opt/ros/kinetic/include/ros/platform.h
@@ -581,6 +583,7 @@ robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_etherca
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/message_traits.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/names.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/node_handle.h
+robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/package.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/param.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/parameter_adapter.h
 robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/src/rqt_ethercat_test_plugin/rqt_ethercat_test_plugin_widget.cpp.o: /opt/ros/kinetic/include/ros/platform.h

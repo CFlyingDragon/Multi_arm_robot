@@ -91,7 +91,7 @@ imp_command_node_EXTERNAL_OBJECTS =
 devel/lib/impedance_controller/imp_command_node: robot_controller/impedance_controller/CMakeFiles/imp_command_node.dir/src/imp_command.cpp.o
 devel/lib/impedance_controller/imp_command_node: robot_controller/impedance_controller/CMakeFiles/imp_command_node.dir/build.make
 devel/lib/impedance_controller/imp_command_node: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/impedance_controller/imp_command_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/impedance_controller/imp_command_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/impedance_controller/imp_command_node: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/impedance_controller/imp_command_node: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/impedance_controller/imp_command_node: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
@@ -130,7 +130,7 @@ devel/lib/impedance_controller/imp_command_node: /usr/lib/x86_64-linux-gnu/libco
 devel/lib/impedance_controller/imp_command_node: devel/lib/libImpedanceController_lib.so
 devel/lib/impedance_controller/imp_command_node: devel/lib/libchainjnttojacdotsolver.so
 devel/lib/impedance_controller/imp_command_node: /opt/ros/kinetic/lib/libkdl_parser.so
-devel/lib/impedance_controller/imp_command_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+devel/lib/impedance_controller/imp_command_node: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 devel/lib/impedance_controller/imp_command_node: /opt/ros/kinetic/lib/liburdf.so
 devel/lib/impedance_controller/imp_command_node: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
 devel/lib/impedance_controller/imp_command_node: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so

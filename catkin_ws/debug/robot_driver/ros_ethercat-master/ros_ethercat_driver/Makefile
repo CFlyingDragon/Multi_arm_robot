@@ -77,17 +77,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -132,6 +121,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -391,21 +391,6 @@ controller_manager_msgs_generate_messages_lisp/fast:
 .PHONY : controller_manager_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/rule:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/rule
-.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/rule
-
-# Convenience name for target.
-goldentwittertest_node: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/rule
-
-.PHONY : goldentwittertest_node
-
-# fast build rule for target.
-goldentwittertest_node/fast:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/build
-.PHONY : goldentwittertest_node/fast
-
-# Convenience name for target.
 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule:
 	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule
 .PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule
@@ -466,19 +451,19 @@ ros_ethercat_hardware_interface/fast:
 .PHONY : ros_ethercat_hardware_interface/fast
 
 # Convenience name for target.
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/rule:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/rule
-.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/rule
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/rule:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/rule
+.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/rule
 
 # Convenience name for target.
-jointpositioncommand: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/rule
+frictions_test: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/rule
 
-.PHONY : jointpositioncommand
+.PHONY : frictions_test
 
 # fast build rule for target.
-jointpositioncommand/fast:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build
-.PHONY : jointpositioncommand/fast
+frictions_test/fast:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/build
+.PHONY : frictions_test/fast
 
 # Convenience name for target.
 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/rule:
@@ -496,34 +481,19 @@ two_joints_controller/fast:
 .PHONY : two_joints_controller/fast
 
 # Convenience name for target.
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/rule:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/rule
-.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/rule
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/rule:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/rule
+.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/rule
 
 # Convenience name for target.
-frictions_test: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/rule
+jointpositioncommand: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/rule
 
-.PHONY : frictions_test
+.PHONY : jointpositioncommand
 
 # fast build rule for target.
-frictions_test/fast:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/build
-.PHONY : frictions_test/fast
-
-# Convenience name for target.
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/rule:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/rule
-.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/rule
-
-# Convenience name for target.
-anydrive_test_node: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/rule
-
-.PHONY : anydrive_test_node
-
-# fast build rule for target.
-anydrive_test_node/fast:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/build
-.PHONY : anydrive_test_node/fast
+jointpositioncommand/fast:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build
+.PHONY : jointpositioncommand/fast
 
 hardware_interface/ros_ethercat_hardware_interface.o: hardware_interface/ros_ethercat_hardware_interface.cpp.o
 
@@ -606,33 +576,6 @@ src/JointPositionCommand.cpp.s:
 	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.s
 .PHONY : src/JointPositionCommand.cpp.s
 
-test/anydrive_test.o: test/anydrive_test.cpp.o
-
-.PHONY : test/anydrive_test.o
-
-# target to build an object file
-test/anydrive_test.cpp.o:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/test/anydrive_test.cpp.o
-.PHONY : test/anydrive_test.cpp.o
-
-test/anydrive_test.i: test/anydrive_test.cpp.i
-
-.PHONY : test/anydrive_test.i
-
-# target to preprocess a source file
-test/anydrive_test.cpp.i:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/test/anydrive_test.cpp.i
-.PHONY : test/anydrive_test.cpp.i
-
-test/anydrive_test.s: test/anydrive_test.cpp.s
-
-.PHONY : test/anydrive_test.s
-
-# target to generate assembly for a file
-test/anydrive_test.cpp.s:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/test/anydrive_test.cpp.s
-.PHONY : test/anydrive_test.cpp.s
-
 test/controller_manager_test.o: test/controller_manager_test.cpp.o
 
 .PHONY : test/controller_manager_test.o
@@ -687,33 +630,6 @@ test/frictions_test.cpp.s:
 	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/test/frictions_test.cpp.s
 .PHONY : test/frictions_test.cpp.s
 
-test/goldentwittertest.o: test/goldentwittertest.cpp.o
-
-.PHONY : test/goldentwittertest.o
-
-# target to build an object file
-test/goldentwittertest.cpp.o:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/test/goldentwittertest.cpp.o
-.PHONY : test/goldentwittertest.cpp.o
-
-test/goldentwittertest.i: test/goldentwittertest.cpp.i
-
-.PHONY : test/goldentwittertest.i
-
-# target to preprocess a source file
-test/goldentwittertest.cpp.i:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/test/goldentwittertest.cpp.i
-.PHONY : test/goldentwittertest.cpp.i
-
-test/goldentwittertest.s: test/goldentwittertest.cpp.s
-
-.PHONY : test/goldentwittertest.s
-
-# target to generate assembly for a file
-test/goldentwittertest.cpp.s:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/test/goldentwittertest.cpp.s
-.PHONY : test/goldentwittertest.cpp.s
-
 test/hardware_interface_test.o: test/hardware_interface_test.cpp.o
 
 .PHONY : test/hardware_interface_test.o
@@ -749,7 +665,6 @@ help:
 	@echo "... depend"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... install/strip"
 	@echo "... control_msgs_generate_messages_py"
 	@echo "... control_toolbox_generate_messages_nodejs"
 	@echo "... controller_manager_msgs_generate_messages_nodejs"
@@ -768,16 +683,15 @@ help:
 	@echo "... install"
 	@echo "... controller_manager_msgs_generate_messages_cpp"
 	@echo "... controller_manager_msgs_generate_messages_lisp"
-	@echo "... goldentwittertest_node"
 	@echo "... control_msgs_generate_messages_nodejs"
 	@echo "... controller_manager_msgs_generate_messages_py"
 	@echo "... edit_cache"
 	@echo "... control_toolbox_generate_messages_eus"
 	@echo "... ros_ethercat_hardware_interface"
-	@echo "... jointpositioncommand"
-	@echo "... two_joints_controller"
 	@echo "... frictions_test"
-	@echo "... anydrive_test_node"
+	@echo "... two_joints_controller"
+	@echo "... jointpositioncommand"
+	@echo "... install/strip"
 	@echo "... hardware_interface/ros_ethercat_hardware_interface.o"
 	@echo "... hardware_interface/ros_ethercat_hardware_interface.i"
 	@echo "... hardware_interface/ros_ethercat_hardware_interface.s"
@@ -787,18 +701,12 @@ help:
 	@echo "... src/JointPositionCommand.o"
 	@echo "... src/JointPositionCommand.i"
 	@echo "... src/JointPositionCommand.s"
-	@echo "... test/anydrive_test.o"
-	@echo "... test/anydrive_test.i"
-	@echo "... test/anydrive_test.s"
 	@echo "... test/controller_manager_test.o"
 	@echo "... test/controller_manager_test.i"
 	@echo "... test/controller_manager_test.s"
 	@echo "... test/frictions_test.o"
 	@echo "... test/frictions_test.i"
 	@echo "... test/frictions_test.s"
-	@echo "... test/goldentwittertest.o"
-	@echo "... test/goldentwittertest.i"
-	@echo "... test/goldentwittertest.s"
 	@echo "... test/hardware_interface_test.o"
 	@echo "... test/hardware_interface_test.i"
 	@echo "... test/hardware_interface_test.s"

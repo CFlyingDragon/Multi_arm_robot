@@ -4,5 +4,5 @@ Name: gazebo_tutorials
 Description: Description of gazebo_tutorials
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/d/catkin_ws/install/lib -lgazebo_tutorials
+Libs: -L${prefix}/lib -lgazebo_tutorials
 Requires: roscpp gazebo_ros

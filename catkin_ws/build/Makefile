@@ -2532,19 +2532,6 @@ controller_manager_msgs_generate_messages_lisp/fast:
 .PHONY : controller_manager_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named goldentwittertest_node
-
-# Build rule for target.
-goldentwittertest_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 goldentwittertest_node
-.PHONY : goldentwittertest_node
-
-# fast build rule for target.
-goldentwittertest_node/fast:
-	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/goldentwittertest_node.dir/build
-.PHONY : goldentwittertest_node/fast
-
-#=============================================================================
 # Target rules for targets named control_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -2597,17 +2584,17 @@ ros_ethercat_hardware_interface/fast:
 .PHONY : ros_ethercat_hardware_interface/fast
 
 #=============================================================================
-# Target rules for targets named jointpositioncommand
+# Target rules for targets named frictions_test
 
 # Build rule for target.
-jointpositioncommand: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 jointpositioncommand
-.PHONY : jointpositioncommand
+frictions_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 frictions_test
+.PHONY : frictions_test
 
 # fast build rule for target.
-jointpositioncommand/fast:
-	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build
-.PHONY : jointpositioncommand/fast
+frictions_test/fast:
+	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/build
+.PHONY : frictions_test/fast
 
 #=============================================================================
 # Target rules for targets named two_joints_controller
@@ -2623,30 +2610,17 @@ two_joints_controller/fast:
 .PHONY : two_joints_controller/fast
 
 #=============================================================================
-# Target rules for targets named frictions_test
+# Target rules for targets named jointpositioncommand
 
 # Build rule for target.
-frictions_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 frictions_test
-.PHONY : frictions_test
+jointpositioncommand: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 jointpositioncommand
+.PHONY : jointpositioncommand
 
 # fast build rule for target.
-frictions_test/fast:
-	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir/build
-.PHONY : frictions_test/fast
-
-#=============================================================================
-# Target rules for targets named anydrive_test_node
-
-# Build rule for target.
-anydrive_test_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 anydrive_test_node
-.PHONY : anydrive_test_node
-
-# fast build rule for target.
-anydrive_test_node/fast:
-	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/anydrive_test_node.dir/build
-.PHONY : anydrive_test_node/fast
+jointpositioncommand/fast:
+	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build
+.PHONY : jointpositioncommand/fast
 
 #=============================================================================
 # Target rules for targets named armc_controller_generate_messages_py
@@ -3298,15 +3272,13 @@ help:
 	@echo "... control_toolbox_generate_messages_lisp"
 	@echo "... controller_manager_msgs_generate_messages_cpp"
 	@echo "... controller_manager_msgs_generate_messages_lisp"
-	@echo "... goldentwittertest_node"
 	@echo "... control_msgs_generate_messages_nodejs"
 	@echo "... controller_manager_msgs_generate_messages_py"
 	@echo "... control_toolbox_generate_messages_eus"
 	@echo "... ros_ethercat_hardware_interface"
-	@echo "... jointpositioncommand"
-	@echo "... two_joints_controller"
 	@echo "... frictions_test"
-	@echo "... anydrive_test_node"
+	@echo "... two_joints_controller"
+	@echo "... jointpositioncommand"
 	@echo "... armc_controller_generate_messages_py"
 	@echo "... armc_controller_generate_messages_nodejs"
 	@echo "... effort_positions_controller"

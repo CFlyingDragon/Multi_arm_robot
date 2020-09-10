@@ -4,5 +4,5 @@ Name: armc_moveit
 Description: Description of armc_moveit
 Version: 0.3.0
 Cflags: 
-Libs: -L/home/d/catkin_ws/install/lib 
+Libs: -L${prefix}/lib 
 Requires: 

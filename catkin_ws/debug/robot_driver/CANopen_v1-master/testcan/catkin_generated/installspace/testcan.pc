@@ -3,6 +3,6 @@ prefix=/usr/local
 Name: testcan
 Description: Description of testcan
 Version: 0.0.0
-Cflags: -I/usr/local/include
-Libs: -L/usr/local/lib -ltestcan
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -ltestcan
 Requires: message_runtime

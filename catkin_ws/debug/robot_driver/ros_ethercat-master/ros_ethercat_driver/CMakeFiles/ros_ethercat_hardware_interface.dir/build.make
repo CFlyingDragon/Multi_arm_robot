@@ -90,7 +90,7 @@ ros_ethercat_hardware_interface_EXTERNAL_OBJECTS =
 
 devel/lib/libros_ethercat_hardware_interface.so: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir/hardware_interface/ros_ethercat_hardware_interface.cpp.o
 devel/lib/libros_ethercat_hardware_interface.so: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir/build.make
-devel/lib/libros_ethercat_hardware_interface.so: /opt/ros/kinetic/lib/libsoem.so
+devel/lib/libros_ethercat_hardware_interface.so: /opt/ros/kinetic/lib/libsoem.a
 devel/lib/libros_ethercat_hardware_interface.so: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 devel/lib/libros_ethercat_hardware_interface.so: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
 devel/lib/libros_ethercat_hardware_interface.so: /opt/ros/kinetic/lib/librealtime_tools.so

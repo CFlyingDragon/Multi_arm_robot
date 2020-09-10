@@ -4,5 +4,5 @@ Name: rrbot_gazebo
 Description: Description of rrbot_gazebo
 Version: 0.1.0
 Cflags: 
-Libs: -L/home/d/catkin_ws/install/lib 
+Libs: -L${prefix}/lib 
 Requires: 

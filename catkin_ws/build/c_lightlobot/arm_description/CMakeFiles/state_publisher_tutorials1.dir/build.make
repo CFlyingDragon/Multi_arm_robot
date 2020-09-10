@@ -92,7 +92,7 @@ c_lightlobot/arm_description/state_publisher_tutorials1: c_lightlobot/arm_descri
 c_lightlobot/arm_description/state_publisher_tutorials1: c_lightlobot/arm_description/CMakeFiles/state_publisher_tutorials1.dir/build.make
 c_lightlobot/arm_description/state_publisher_tutorials1: /opt/ros/kinetic/lib/librobot_state_publisher_solver.so
 c_lightlobot/arm_description/state_publisher_tutorials1: /opt/ros/kinetic/lib/libkdl_parser.so
-c_lightlobot/arm_description/state_publisher_tutorials1: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.0
+c_lightlobot/arm_description/state_publisher_tutorials1: /opt/ros/kinetic/lib/liborocos-kdl.so.1.3.2
 c_lightlobot/arm_description/state_publisher_tutorials1: /opt/ros/kinetic/lib/libtf.so
 c_lightlobot/arm_description/state_publisher_tutorials1: /opt/ros/kinetic/lib/libtf2_ros.so
 c_lightlobot/arm_description/state_publisher_tutorials1: /opt/ros/kinetic/lib/libactionlib.so

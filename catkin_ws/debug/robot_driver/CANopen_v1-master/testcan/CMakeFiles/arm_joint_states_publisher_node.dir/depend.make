@@ -3,8 +3,6 @@
 
 robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: /home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/include/testcan/canopen_vci_ros.h
 robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: /home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/include/testcan/controlcan.h
-robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: /home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/include/testcan/testcan/Frame.h
-robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: /home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/include/testcan/testcan/IpPos.h
 robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: /home/d/catkin_ws/src/robot_driver/CANopen_v1-master/testcan/src/arm_joint_states_publisher.cpp
 robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Twist.h
 robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: /opt/ros/kinetic/include/geometry_msgs/Vector3.h
@@ -68,4 +66,6 @@ robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_nod
 robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: /opt/ros/kinetic/include/std_msgs/Header.h
 robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcDecl.h
 robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: /opt/ros/kinetic/include/xmlrpcpp/XmlRpcValue.h
+robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: devel/include/testcan/Frame.h
+robot_driver/CANopen_v1-master/testcan/CMakeFiles/arm_joint_states_publisher_node.dir/src/arm_joint_states_publisher.cpp.o: devel/include/testcan/IpPos.h
 

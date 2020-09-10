@@ -212,9 +212,9 @@ devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_thr
 devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
 devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
 devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-devel/lib/librqt_ethercat_test_plugin.so: /opt/ros/kinetic/lib/libsoem.so
+devel/lib/librqt_ethercat_test_plugin.so: /opt/ros/kinetic/lib/libsoem.a
+devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1
 devel/lib/librqt_ethercat_test_plugin.so: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 devel/lib/librqt_ethercat_test_plugin.so: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
@@ -255,8 +255,8 @@ devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_thr
 devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
 devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
 devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
+devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
 devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1
 devel/lib/librqt_ethercat_test_plugin.so: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1
 devel/lib/librqt_ethercat_test_plugin.so: robot_driver/ros_ethercat-master/rqt_ethercat_test_plugin/CMakeFiles/rqt_ethercat_test_plugin.dir/link.txt
