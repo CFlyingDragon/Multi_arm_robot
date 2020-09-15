@@ -10,6 +10,7 @@ import numpy.linalg as nla
 import math
 from math import pi
 import time
+import PyKDL
 
 #====================叉乘操作矩阵=====================#
 def cross_matrix(v):
@@ -94,9 +95,17 @@ def rot2euler_zyx(Re):
 	euler_zyx[1] = beta
 	euler_zyx[2] = gamma
 	for i in range(3):
-		if(euler_zyx[i]>=3.14 or euler_zyx[i]<=3.14):
+		if(euler_zyx[i]>=3.14 or euler_zyx[i]<=-3.14):
 			euler_zyx[i] = 0.0
 	return euler_zyx
+
+def rot2euler_zyx_pykdl(R):
+	#创建旋转矩阵
+	r = PyKDL.Rotation(R[0, 0], R[1, 0], R[2, 0],
+					   R[0, 1], R[1, 1], R[2, 1],
+					   R[0, 2], R[1, 2], R[2, 2])
+	phi = r.GetRPY()
+	return phi
 
 #齐次坐标系转换为六维坐标系
 def T_to_Xzyx(T):

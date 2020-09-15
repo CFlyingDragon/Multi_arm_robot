@@ -57,81 +57,39 @@ include robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpos
 # Include the compile flags for this target's objects.
 include robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/flags.make
 
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/flags.make
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o: /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/src/JointPositionCommand.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o"
-	cd /home/d/catkin_ws/build/robot_driver/ros_ethercat-master/ros_ethercat_driver && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o -c /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/src/JointPositionCommand.cpp
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/flags.make
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o: /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/JointPositionCommand.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o"
+	cd /home/d/catkin_ws/build/robot_driver/ros_ethercat-master/ros_ethercat_driver && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o -c /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/JointPositionCommand.cpp
 
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.i"
-	cd /home/d/catkin_ws/build/robot_driver/ros_ethercat-master/ros_ethercat_driver && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/src/JointPositionCommand.cpp > CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.i
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.i"
+	cd /home/d/catkin_ws/build/robot_driver/ros_ethercat-master/ros_ethercat_driver && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/JointPositionCommand.cpp > CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.i
 
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.s"
-	cd /home/d/catkin_ws/build/robot_driver/ros_ethercat-master/ros_ethercat_driver && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/src/JointPositionCommand.cpp -o CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.s
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.s"
+	cd /home/d/catkin_ws/build/robot_driver/ros_ethercat-master/ros_ethercat_driver && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/JointPositionCommand.cpp -o CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.s
 
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o.requires:
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o.requires:
 
-.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o.requires
+.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o.requires
 
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o.provides: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o.requires
-	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o.provides.build
-.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o.provides
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o.provides: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o.requires
+	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o.provides.build
+.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o.provides
 
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o.provides.build: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o.provides.build: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o
 
 
 # Object files for target jointpositioncommand
 jointpositioncommand_OBJECTS = \
-"CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o"
+"CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o"
 
 # External object files for target jointpositioncommand
 jointpositioncommand_EXTERNAL_OBJECTS =
 
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o
+/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libsoem.a
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libcontrol_toolbox.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/librealtime_tools.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libcontroller_manager.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libtransmission_interface_parser.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libtransmission_interface_loader.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libtransmission_interface_loader_plugins.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libclass_loader.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/libPocoFoundation.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libdl.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libroslib.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/librospack.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libpython2.7.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/liburdf.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/liburdfdom_sensor.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/liburdfdom_model_state.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/liburdfdom_model.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/liburdfdom_world.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libtinyxml.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/librosconsole_bridge.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libroscpp.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libboost_signals.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/librosconsole.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/librosconsole_log4cxx.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/librosconsole_backend_interface.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libroscpp_serialization.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libxmlrpcpp.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/librostime.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libcpp_common.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libsoem.a
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libcontrol_toolbox.so
 /home/d/catkin_ws/devel/lib/ros_ethercat_driver/jointpositioncommand: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
@@ -183,7 +141,7 @@ robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncom
 
 .PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build
 
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/requires: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o.requires
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/requires: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o.requires
 
 .PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/requires
 

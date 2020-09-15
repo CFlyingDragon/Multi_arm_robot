@@ -77,17 +77,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -132,6 +121,17 @@ install/strip: preinstall
 install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -224,21 +224,6 @@ controller_manager_test_node: robot_driver/ros_ethercat-master/ros_ethercat_driv
 controller_manager_test_node/fast:
 	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/controller_manager_test_node.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/controller_manager_test_node.dir/build
 .PHONY : controller_manager_test_node/fast
-
-# Convenience name for target.
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
-.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-control_msgs_generate_messages_cpp: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : control_msgs_generate_messages_cpp
-
-# fast build rule for target.
-control_msgs_generate_messages_cpp/fast:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/build
-.PHONY : control_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_toolbox_generate_messages_cpp.dir/rule:
@@ -466,21 +451,6 @@ frictions_test/fast:
 .PHONY : frictions_test/fast
 
 # Convenience name for target.
-robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/rule:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/rule
-.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/rule
-
-# Convenience name for target.
-two_joints_controller: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/rule
-
-.PHONY : two_joints_controller
-
-# fast build rule for target.
-two_joints_controller/fast:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/build
-.PHONY : two_joints_controller/fast
-
-# Convenience name for target.
 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/rule:
 	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/rule
 .PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/rule
@@ -494,6 +464,21 @@ jointpositioncommand: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMake
 jointpositioncommand/fast:
 	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build
 .PHONY : jointpositioncommand/fast
+
+# Convenience name for target.
+robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
+.PHONY : robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+control_msgs_generate_messages_cpp: robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : control_msgs_generate_messages_cpp
+
+# fast build rule for target.
+control_msgs_generate_messages_cpp/fast:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/build
+.PHONY : control_msgs_generate_messages_cpp/fast
 
 hardware_interface/ros_ethercat_hardware_interface.o: hardware_interface/ros_ethercat_hardware_interface.cpp.o
 
@@ -522,59 +507,32 @@ hardware_interface/ros_ethercat_hardware_interface.cpp.s:
 	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir/hardware_interface/ros_ethercat_hardware_interface.cpp.s
 .PHONY : hardware_interface/ros_ethercat_hardware_interface.cpp.s
 
-lib/two_joints_control.o: lib/two_joints_control.cpp.o
+test/JointPositionCommand.o: test/JointPositionCommand.cpp.o
 
-.PHONY : lib/two_joints_control.o
-
-# target to build an object file
-lib/two_joints_control.cpp.o:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/lib/two_joints_control.cpp.o
-.PHONY : lib/two_joints_control.cpp.o
-
-lib/two_joints_control.i: lib/two_joints_control.cpp.i
-
-.PHONY : lib/two_joints_control.i
-
-# target to preprocess a source file
-lib/two_joints_control.cpp.i:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/lib/two_joints_control.cpp.i
-.PHONY : lib/two_joints_control.cpp.i
-
-lib/two_joints_control.s: lib/two_joints_control.cpp.s
-
-.PHONY : lib/two_joints_control.s
-
-# target to generate assembly for a file
-lib/two_joints_control.cpp.s:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/lib/two_joints_control.cpp.s
-.PHONY : lib/two_joints_control.cpp.s
-
-src/JointPositionCommand.o: src/JointPositionCommand.cpp.o
-
-.PHONY : src/JointPositionCommand.o
+.PHONY : test/JointPositionCommand.o
 
 # target to build an object file
-src/JointPositionCommand.cpp.o:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o
-.PHONY : src/JointPositionCommand.cpp.o
+test/JointPositionCommand.cpp.o:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o
+.PHONY : test/JointPositionCommand.cpp.o
 
-src/JointPositionCommand.i: src/JointPositionCommand.cpp.i
+test/JointPositionCommand.i: test/JointPositionCommand.cpp.i
 
-.PHONY : src/JointPositionCommand.i
+.PHONY : test/JointPositionCommand.i
 
 # target to preprocess a source file
-src/JointPositionCommand.cpp.i:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.i
-.PHONY : src/JointPositionCommand.cpp.i
+test/JointPositionCommand.cpp.i:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.i
+.PHONY : test/JointPositionCommand.cpp.i
 
-src/JointPositionCommand.s: src/JointPositionCommand.cpp.s
+test/JointPositionCommand.s: test/JointPositionCommand.cpp.s
 
-.PHONY : src/JointPositionCommand.s
+.PHONY : test/JointPositionCommand.s
 
 # target to generate assembly for a file
-src/JointPositionCommand.cpp.s:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.s
-.PHONY : src/JointPositionCommand.cpp.s
+test/JointPositionCommand.cpp.s:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.s
+.PHONY : test/JointPositionCommand.cpp.s
 
 test/controller_manager_test.o: test/controller_manager_test.cpp.o
 
@@ -669,8 +627,6 @@ help:
 	@echo "... control_toolbox_generate_messages_nodejs"
 	@echo "... controller_manager_msgs_generate_messages_nodejs"
 	@echo "... controller_manager_test_node"
-	@echo "... install/local"
-	@echo "... control_msgs_generate_messages_cpp"
 	@echo "... control_toolbox_generate_messages_cpp"
 	@echo "... control_msgs_generate_messages_lisp"
 	@echo "... controller_manager_msgs_generate_messages_eus"
@@ -689,18 +645,16 @@ help:
 	@echo "... control_toolbox_generate_messages_eus"
 	@echo "... ros_ethercat_hardware_interface"
 	@echo "... frictions_test"
-	@echo "... two_joints_controller"
 	@echo "... jointpositioncommand"
 	@echo "... install/strip"
+	@echo "... control_msgs_generate_messages_cpp"
+	@echo "... install/local"
 	@echo "... hardware_interface/ros_ethercat_hardware_interface.o"
 	@echo "... hardware_interface/ros_ethercat_hardware_interface.i"
 	@echo "... hardware_interface/ros_ethercat_hardware_interface.s"
-	@echo "... lib/two_joints_control.o"
-	@echo "... lib/two_joints_control.i"
-	@echo "... lib/two_joints_control.s"
-	@echo "... src/JointPositionCommand.o"
-	@echo "... src/JointPositionCommand.i"
-	@echo "... src/JointPositionCommand.s"
+	@echo "... test/JointPositionCommand.o"
+	@echo "... test/JointPositionCommand.i"
+	@echo "... test/JointPositionCommand.s"
 	@echo "... test/controller_manager_test.o"
 	@echo "... test/controller_manager_test.i"
 	@echo "... test/controller_manager_test.s"

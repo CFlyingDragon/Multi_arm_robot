@@ -3,6 +3,6 @@ prefix=/home/d/catkin_ws/install
 Name: robots_ethercat_master
 Description: Description of robots_ethercat_master
 Version: 0.0.0
-Cflags: -I/home/d/catkin_ws/install/include
-Libs: -L/home/d/catkin_ws/install/lib -lrobots_ethercat_master
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lrobots_ethercat_master
 Requires: roscpp rospy std_msgs soem soem

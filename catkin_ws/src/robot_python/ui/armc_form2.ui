@@ -1156,7 +1156,7 @@
           </rect>
          </property>
          <property name="text">
-          <string>初始关节角q/°</string>
+          <string>目标关节角q/°</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_16">
@@ -1379,7 +1379,7 @@
          </property>
         </widget>
        </widget>
-       <widget class="QPushButton" name="button_get_init_qq">
+       <widget class="QPushButton" name="button_read">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -1389,7 +1389,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>关节起点</string>
+         <string>读取</string>
         </property>
         <property name="autoDefault">
          <bool>true</bool>

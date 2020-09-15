@@ -11,9 +11,11 @@ import math
 #自定义函数
 import Kinematics as kin
 from RobotParameter import DH0_armc
+import RobotParameter as rp
 from RobotParameter import q_limit_armc
 import BaseFunction as bf
 import GeneticAlgorithm as ga
+import MyPlot
 
 #=================基于位置级求逆圆轨迹规划=================#
 def circle_space(DH_0,rc):
@@ -453,7 +455,6 @@ def multipoint_plan_position_aa(qr_init,X0_e,T,q_limit = q_limit_armc,DH_0 = DH0
 
 	return [qq,qv,qa]
 
-
 # =================多点轨迹跟踪：位置级求逆，关节空间插补,基于遗传算法优化的臂型角=================#
 def multipoint_plan_position_FGA(qr_init, X0_e, T, q_limit=q_limit_armc, DH_0=DH0_armc, kk=10):
 	'''
@@ -563,7 +564,7 @@ class LinePlan(object):
 	def get_plan_time(self, t):
 		self.t = t
 
-	def get_robot_parameter(self, DH_0, q_max, q_min):
+	def get_robot_parameter(self, DH_0, q_min, q_max):
 		# DH参数
 		self.DH0 = np.copy(DH_0)
 		# 关节极限
@@ -573,7 +574,7 @@ class LinePlan(object):
 		self.n = len(self.qq_max)
 
 		# 创建运动学类
-		self.kin = kin.GeneralKinematic(DH_0)
+		self.kin = kin.GeneralKinematic(DH_0, self.qq_min, self.qq_max)
 
 	def get_begin_end_point(self, X1, X2):
 		self.X1 = np.copy(X1)
@@ -611,6 +612,111 @@ class LinePlan(object):
 				Tr[0:3, 0:3] = self.R
 			else:
 				Tr[0:3, 0:3] = bf.euler_zyx2rot(self.X0_e[i, 3:6])
-			qq[i, :] = self.kin.iterate_ikine(qq_guess, Tr)
+			qq[i, :] = self.kin.iterate_ikine_limit(qq_guess, Tr)
 			qq_guess = qq[i, :]
 		return qq
+
+#armc直线规划算法
+class ArmcLinePlan(object):
+	# 构造函数
+	def __init__(self):
+		# 周期
+		self.T = 0.01
+		self.t = 10
+		self.pos_flag = False
+
+	def get_period(self, T):
+		self.T = np.copy(T)
+
+	def get_plan_time(self, t):
+		self.t = t
+
+	def get_robot_parameter(self, DH_0, q_min, q_max):
+		# DH参数
+		self.DH0 = np.copy(DH_0)
+		# 关节极限
+		self.qq_max = np.copy(q_max)
+		self.qq_min = np.copy(q_min)
+		# 求取关节个数
+		self.n = len(self.qq_max)
+
+		# 创建运动学类
+		self.kin = kin.GeneralKinematic(DH_0, self.qq_min, self.qq_max)
+
+	def get_begin_end_point(self, X1, X2):
+		self.X1 = np.copy(X1)
+		self.X2 = np.copy(X2)
+
+	def get_init_guess_joint(self, qq_guess):
+		self.qq_guess = np.copy(qq_guess)
+
+	def get_pos(self, R):
+		self.R = np.copy(R)
+		self.pos_flag = True
+
+	def lineEnd_plan(self):
+		#调用5次多项式规划
+		X_0 = np.zeros(6)
+		[self.X, _, _] = bf.interp5rdPoly(self.X1, X_0, X_0,
+									 self.X2, X_0, X_0, self.t,
+									 self.T * 10)
+
+	def out_joint(self):
+		#末端规划
+		self.lineEnd_plan()
+		nodeNum = len(self.X)
+
+		#解关节角
+		qq = np.zeros([nodeNum, self.n])
+		#获取迭代解初始点
+		qq_guess = self.qq_guess
+		#转换为齐次矩阵
+		for i in range(nodeNum):
+			qq[i, :] = self.kin.iterate_ikine_limit_xyz(qq_guess, self.X[i, :])
+			qq_guess = qq[i, :]
+		#样条插值
+		kq = 10*(nodeNum - 1) + 1
+		tt_seq = np.linspace(0, (nodeNum - 1) * self.T*10, nodeNum)
+		qq_1 = np.zeros([kq, self.n])
+		qv_1 = np.zeros([kq, self.n])
+		qa_1 = np.zeros([kq, self.n])
+		for i in range(self.n):
+			[qq_1[:, i], qv_1[:, i], qa_1[:, i]] = bf.spline1(tt_seq, qq[:, i], self.T, 0, 0)
+		return [qq_1, qv_1, qa_1]
+
+def path_plan_test():
+	#机器人参数
+	DH0 = rp.DHfa_armc
+	qq_min = rp.q_min_armc
+	qq_max = rp.q_max_armc
+	#直线规划算法
+	my_plan =  ArmcLinePlan()
+	my_plan.get_robot_parameter(DH0, qq_min, qq_max)
+	t = 20
+	T = 0.01
+	my_plan.get_plan_time(20)
+	my_plan.get_period(0.01)
+
+	#位置转换
+	qq_guess = np.array([0, -30, 0, 60, 0, 60, 0.0]) / 180.0 * np.pi
+	X1 = kin.fkine_euler(DH0, qq_guess)
+
+	X2 = X1 + np.array([0.1, 0, 0, 0, 0, 0])
+	my_plan.get_begin_end_point(X1, X2)
+
+	#猜测关节角
+	my_plan.get_init_guess_joint(qq_guess)
+
+	#输出关节角度
+	[qq, qv, qa] = my_plan.out_joint()
+
+	#时间系列
+	num = len(qq)
+	tt = np.linspace(0, T*(num - 1), num)
+
+	#绘制关节角度
+	MyPlot.plot2_nd(tt,qq, title='qq',xlab='t/s',ylab='qq/rad',lable = "qq")
+	MyPlot.plot2_nd(tt, qv, title='qv', xlab='t/s', ylab='qv/rad', lable="qv")
+
+if __name__=="__main__":
+	path_plan_test()

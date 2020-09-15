@@ -323,3 +323,14 @@ def read_data(path):
         for j in range(n):
             command_data[i, j] = command_pos[i, j]
     return command_data
+
+#设置关节极限
+def out_joint_limit(qq, qq_min, qq_max):
+    n = len(qq)
+    flag = False
+    for i in range(n):
+        if(qq[i]<qq_min[i] or qq[i]>qq_max[i]):
+            print "关节", i+1, "超出关节极限:", np.round(qq[i], 2)
+            flag = True
+            break
+    return flag

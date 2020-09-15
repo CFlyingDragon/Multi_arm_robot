@@ -430,8 +430,6 @@
 /home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_toolbox_generate_messages_nodejs.dir
 /home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/controller_manager_msgs_generate_messages_nodejs.dir
 /home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/controller_manager_test_node.dir
-/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/install/local.dir
-/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir
 /home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_toolbox_generate_messages_cpp.dir
 /home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_lisp.dir
 /home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir
@@ -450,9 +448,10 @@
 /home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_toolbox_generate_messages_eus.dir
 /home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/ros_ethercat_hardware_interface.dir
 /home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/frictions_test.dir
-/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir
 /home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir
 /home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/install/strip.dir
+/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir
+/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/install/local.dir
 /home/d/catkin_ws/debug/robot_controller/armc_controller/CMakeFiles/install.dir
 /home/d/catkin_ws/debug/robot_controller/armc_controller/CMakeFiles/armc_controller_generate_messages_py.dir
 /home/d/catkin_ws/debug/robot_controller/armc_controller/CMakeFiles/armc_controller_generate_messages_nodejs.dir

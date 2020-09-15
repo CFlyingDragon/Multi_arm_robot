@@ -1278,29 +1278,7 @@ class GeneralKinematic(object):
 			input:旋转矩阵
 			output:欧拉角[alpha,beta,gamma]
 		'''
-		euler_zyx = np.zeros(3)
-		if (abs(abs(Re[2, 0]) - 1) < math.pow(10, -6)):
-			if (Re[2, 0] < 0):
-				beta = pi / 2
-				alpha = np.arctan2(-Re[1, 2], Re[1, 1])
-				gamma = 0
-			else:
-				beta = -pi / 2
-				alpha = -np.arctan2(-Re[1, 2], Re[1, 1])
-				gamma = 0
-		else:
-			p_beta = math.asin(-Re[2, 0])
-			cb = np.cos(p_beta)
-			alpha = math.atan2(Re[1, 0] * cb, Re[0, 0] * cb)
-			gamma = math.atan2(Re[2, 1] * cb, Re[2, 2] * cb)
-			if ((math.sin(gamma) * Re[2, 1]) < 0):
-				beta = pi - p_beta
-			else:
-				beta = p_beta
-		euler_zyx[0] = alpha
-		euler_zyx[1] = beta
-		euler_zyx[2] = gamma
-		return euler_zyx
+		return bf.rot2euler_zyx(Re)
 
 	# 将关节角计算到正负pi
 	def qq_choose(self, qq):
@@ -1447,7 +1425,6 @@ class GeneralKinematic(object):
 
 	# 带关节限制
 	def iterate_ikine_limit(self, q_guess, Te):
-		print Te
 		qr = self.iterate_ikine(q_guess, Te)
 		flag = bf.exceed_joint_limit(qr, self.q_min, self.q_max)
 		if (flag):
@@ -1474,8 +1451,15 @@ def ur_ikine_test():
 		print "Te_",str(i+1),":\n", np.around(Te_i, 2)
 		print "Te_", str(i+1), "_error:\n", np.around(Te_i - Te, 2)
 
+def test():
+	DH0 = DH0_armc
+	qq = np.array([45,-60, -45, 90, 0, 30, 0])*np.pi/180.0
+	Te = fkine(DH0[:, 0] + qq, DH0[:, 1], DH0[:, 2], DH0[:, 3])
+	print "Te = \n ", Te
+
 def main():
 	ur_ikine_test()
 
 if __name__=="__main__":
-	main()
+	#main()
+	test()

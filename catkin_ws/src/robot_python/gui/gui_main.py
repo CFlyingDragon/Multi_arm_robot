@@ -54,6 +54,7 @@ from robot_python import ImpedanceControl as imp
 from robot_python import TeachingLearning as tl
 from robot_python import FileOpen as fo
 from robot_python import Kinematics as kin
+from robot_python import PathPlan as pap
 
 #**********************************主窗口***************************************#
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -935,6 +936,7 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.t = 15
 
         self.run_flag = False  # 开始或停止标签
+        self.run_finish = True
         self.real_flag = False
         self.joint_flag = False
 
@@ -952,6 +954,11 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.q_max = q_max
         self.q_min = q_min
         self.robot = "armc"
+
+        #建立规划类
+        self.line_plan = pap.ArmcLinePlan()
+        self.line_plan.get_period(self.T)
+        self.line_plan.get_robot_parameter(DH0, q_min, q_max)
 
         self.sub_pos_path = "/armc/joint_states"
         self.pub_path = "/armc/joint_positions_controller/command"
@@ -980,7 +987,7 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         # 读取积分自适应阻抗参数MBKI
         self.button_begin.clicked.connect(self.begin_function)
         self.button_stop.clicked.connect(self.stop)
-        self.button_get_init_qq.clicked.connect(self.calculation_init_point_qq)
+        self.button_read.clicked.connect(self.read_qq)
         self.checkBox_real.stateChanged.connect(self.real_and_joint)
         self.button_get_init_xx.clicked.connect(self.calculation_init_point_xx)
         self.button_receive.clicked.connect(self.run_topic)
@@ -1098,6 +1105,7 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         # 转换到显示单位
         xx = np.copy(xx_b)  # 转化为mm显示
         xx[0:3] = xx_b[0:3] * 1000  # 转换为mm显示
+        xx[3:] = xx_b[3:] * 180.0/np.pi  # 转换为mm显示
 
         # 显示到界面
         self.lineEdit_x1.setText(str(round(xx[0], 4)))
@@ -1112,7 +1120,7 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
               "\n" + "x5:" + str(xx[4]) + "\n" + "x6:" + str(xx[5]) + "\n"
         self.textEdit.setText(msg)
 
-    def calculation_init_point_qq(self):
+    def read_qq(self):
         # 初始关节角
         qq = np.zeros(7)
         qq[0] = self.lineEdit_q1.text()
@@ -1124,27 +1132,14 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         qq[6] = self.lineEdit_q7.text()
 
         # 转换单位
-        qq = qq * np.pi / 180.0
+        qq1 = qq * np.pi / 180.0
+        self.qq_init = np.copy(qq1)
 
-        self.qq_init = np.copy(qq)
-        # 计算初始位置
-        xx_b = gf.get_begin_point(qq, self.robot)
-
-        # 转换到显示单位
-        xx = np.copy(xx_b)  # 转化为mm显示
-        xx[0:3] = xx_b[0:3] * 1000  # 转换为mm显示
-
-        # 显示到界面
-        self.lineEdit_x1.setText(str(round(xx[0], 4)))
-        self.lineEdit_x2.setText(str(round(xx[1], 4)))
-        self.lineEdit_x3.setText(str(round(xx[2], 4)))
-        self.lineEdit_x4.setText(str(round(xx[3], 4)))
-        self.lineEdit_x5.setText(str(round(xx[4], 4)))
-        self.lineEdit_x6.setText(str(round(xx[5], 4)))
-        msg = "初始末端位置\n" + \
-              "x1:" + str(xx[0]) + "\n" + "x2:" + str(xx[1]) + \
-              "\n" + "x3:" + str(xx[2]) + "\n" + "x4:" + str(xx[3]) + \
-              "\n" + "x5:" + str(xx[4]) + "\n" + "x6:" + str(xx[5]) + "\n"
+        msg = "读取目标关节角:\n" + \
+                    "q1:"  + str(qq[0]) + "\n" + "q2:" + str(qq[1]) + "\n" + \
+                    "q3:" + str(qq[2]) + "\n" + "q4:" + str(qq[3]) + "\n" + \
+                    "q5:" + str(qq[4]) + "\n" + "q6:" + str(qq[5]) + "\n" + \
+                    "q7:" + str(qq[6]) + "\n"
         self.textEdit.setText(msg)
 
         self.read_flag = True
@@ -1243,7 +1238,7 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
             return -1
 
         self.init_flag = True
-        self.imp_flag = False
+        self.inc_flag = False
         self.home_flag = False
 
         # 获得规划起点
@@ -1298,7 +1293,7 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
 
     def go_home(self):
         self.init_flag = False
-        self.imp_flag = False
+        self.inc_flag = False
         self.home_flag = True
 
         # 获得规划起点
@@ -1319,9 +1314,9 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
 
     #增量运动程序
     def inc_run(self):
-        t = 1
+        t = 5
         qq_command = np.zeros(self.n)
-        xx = np.zeros(6)
+        xx2 = np.zeros(6)
         if(self.joint_flag):
             qq_command[0] = self.lineEdit_qq1.text()
             qq_command[1] = self.lineEdit_qq2.text()
@@ -1331,11 +1326,19 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
             qq_command[5] = self.lineEdit_qq6.text()
             qq_command[6] = self.lineEdit_qq7.text()
             qq_command = qq_command*np.pi/180.0
+
+            #判断是否超出关节极限
+            flag = gf.out_joint_limit(qq_command, self.q_min, self.q_max)
+            if(flag):
+                msg = "超出关节极限！！！\n" + "请反向操作撤回！"
+                self.textEdit.setText(msg)
+                return -1
+
             t = int(self.dq)/5 + 5
             #更新末端位置
             xx = self.my_kin.fkine_euler(qq_command)
             xx[:3] = xx[:3] * 1000
-            xx[3:] = xx[3:] * 180 / np.pi
+            xx[3:] = xx[3:] * 180.0 / np.pi
             xx = np.around(xx, 2)
             self.lineEdit_xx1.setText(str(xx[0]))
             self.lineEdit_xx2.setText(str(xx[1]))
@@ -1343,25 +1346,29 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
             self.lineEdit_xx4.setText(str(xx[3]))
             self.lineEdit_xx5.setText(str(xx[4]))
             self.lineEdit_xx6.setText(str(xx[5]))
-
+            [qq_list, qv, qa] = gf.q_joint_space_plan_time(self.qq_state, qq_command,
+                                                           T=self.T, t=t)
 
         else:
-            xx[0] = self.lineEdit_xx1.text()
-            xx[1] = self.lineEdit_xx2.text()
-            xx[2] = self.lineEdit_xx3.text()
-            xx[3] = self.lineEdit_xx4.text()
-            xx[4] = self.lineEdit_xx5.text()
-            xx[5] = self.lineEdit_xx6.text()
-            xx[:3] = xx[:3]*0.001
-            xx[3:] = xx[3:]*np.pi/180.0
-            qq_command = self.my_kin.iterate_ikine_limit_xyz(self.qq_state, xx)
+            xx2[0] = self.lineEdit_xx1.text()
+            xx2[1] = self.lineEdit_xx2.text()
+            xx2[2] = self.lineEdit_xx3.text()
+            xx2[3] = self.lineEdit_xx4.text()
+            xx2[4] = self.lineEdit_xx5.text()
+            xx2[5] = self.lineEdit_xx6.text()
+            xx2[:3] = xx2[:3]*0.001
+            xx2[3:] = xx2[3:]*np.pi/180.0
+            t = int(self.dx)/5 + 5
+            #设计笛卡尔空间规划
+            xx1 = self.my_kin.fkine_euler(self.qq_state)
+            self.line_plan.get_begin_end_point(xx1, xx2)
+            self.line_plan.get_init_guess_joint(self.qq_state)
 
-            dq = max(np.abs(qq_command-self.qq_state))
-            t = int(dq)/5 + 5
+            [qq_list, qv, qa] = self.line_plan.out_joint()
 
             #更新关节角度
-            qq = qq_command * 180 / np.pi
-            qq1 = np.around(qq,1)
+            qq = qq_list[-1, :] * 180 / np.pi
+            qq1 = np.around(qq, 1)
             self.lineEdit_qq1.setText(str(qq1[0]))
             self.lineEdit_qq2.setText(str(qq1[1]))
             self.lineEdit_qq3.setText(str(qq1[2]))
@@ -1370,17 +1377,18 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
             self.lineEdit_qq6.setText(str(qq1[5]))
             self.lineEdit_qq7.setText(str(qq1[6]))
 
-        [qq, qv, qa] = gf.q_joint_space_plan_time(self.qq_state, qq_command, t)
         # 绘制关节角位置速度图
-        num = len(qq)
+        num = len(qq_list)
         t1 = np.linspace(0, self.T*(num - 1), num)
         self.plot_vel(t1, qv)
-        self.plot_pos(t1, qq)
-        self.command_qq_inc = np.copy(qq)
+        self.plot_pos(t1, qq_list)
+        self.command_qq_inc = np.copy(qq_list)
         self.begin_function()
 
     #---------增量按钮组---------#
     def fun_qq1_n(self):
+        if(not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq1.text())
@@ -1391,6 +1399,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq2_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq2.text())
@@ -1401,6 +1411,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq3_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq3.text())
@@ -1411,6 +1423,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq4_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq4.text())
@@ -1421,6 +1435,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq5_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq5.text())
@@ -1431,6 +1447,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq6_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq6.text())
@@ -1441,6 +1459,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq7_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq7.text())
@@ -1451,6 +1471,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq1_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq1.text())
@@ -1461,6 +1483,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq2_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq2.text())
@@ -1471,6 +1495,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq3_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq3.text())
@@ -1481,6 +1507,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq4_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq4.text())
@@ -1491,6 +1519,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq5_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq5.text())
@@ -1501,6 +1531,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq6_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq6.text())
@@ -1511,6 +1543,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_qq7_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = True
         self.dq = float(self.lineEdit_dq.text())
         qq = float(self.lineEdit_qq7.text())
@@ -1521,6 +1555,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx1_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx1.text())
@@ -1531,6 +1567,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx2_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx2.text())
@@ -1541,6 +1579,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx3_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx3.text())
@@ -1551,6 +1591,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx4_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx4.text())
@@ -1561,6 +1603,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx5_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx5.text())
@@ -1571,6 +1615,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx6_n(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx6.text())
@@ -1581,6 +1627,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx1_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx1.text())
@@ -1591,6 +1639,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx2_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx2.text())
@@ -1601,6 +1651,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx3_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx3.text())
@@ -1611,6 +1663,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx4_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx4.text())
@@ -1621,6 +1675,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx5_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx5.text())
@@ -1631,6 +1687,8 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
         self.inc_run()
 
     def fun_xx6_p(self):
+        if (not self.run_finish):
+            return -1
         self.joint_flag = False
         self.dx = float(self.lineEdit_dx.text())
         xx = float(self.lineEdit_xx6.text())
@@ -1644,6 +1702,7 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
     def begin_function(self):
         # 运行标签启动
         self.run_flag = True
+        self.run_finish = False
 
         # 提示标语
         msg = "开始下发命令！\n"
@@ -1669,13 +1728,13 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
             kk = len(self.command_qq_home)
 
         # # 进度条显示时间间隔
-        # show_time = int(kk * self.T * 10)
-        #
-        # # 设置ProgressBar,用Qtimer开线程处理（线程3）
-        # self.step_p = 0
-        # self.timer_p = QTimer()
-        # self.timer_p.timeout.connect(self.probar_show)
-        # self.timer_p.start(show_time)
+        show_time = int(kk * self.T * 10)
+
+        # 设置ProgressBar,用Qtimer开线程处理（线程3）
+        self.step_p = 0
+        self.timer_p = QTimer()
+        self.timer_p.timeout.connect(self.probar_show)
+        self.timer_p.start(show_time)
 
         while not rospy.is_shutdown():
             # 检测是否启动急停
@@ -1687,15 +1746,14 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
 
             command_data = Float64MultiArray()
             if (self.init_flag):
-                command_data.data = self.command_qq_init[k, 0:self.n]
+                command_data.data = self.command_qq_init[k, :]
             if (self.inc_flag):
-                command_data.data = self.command_qq_inc[k, 0:self.n]
+                command_data.data = self.command_qq_inc[k, :]
             if (self.home_flag):
-                command_data.data = self.command_qq_home[k, 0:self.n]
+                command_data.data = self.command_qq_home[k, :]
             #仿真1关节不动
-            command_data.data[0] = 0.0
             self.pub.publish(command_data)
-            if (k/10 == 0):
+            if (k%10 == 0):
                 msg = "armc" + "第" + str(k) + "次" + "publisher data is: " + '\n' \
                                                                                 "q1:" + str(
                     command_data.data[0]) + '\n' \
@@ -1713,8 +1771,10 @@ class ArmcWindow2(QMainWindow, Ui_ArmcForm2):
             QApplication.processEvents()
             rate.sleep()
         msg = "运动完成！"
-        self.timer_plot.stop()
+        if (not self.real_flag):
+            self.timer_plot.stop()
         self.textEdit.setText(msg)
+        self.run_finish = True
 
     def gotoMain(self):
         self.hide()

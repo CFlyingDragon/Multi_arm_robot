@@ -4223,16 +4223,6 @@
             <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="control_msgs_generate_messages_cpp">
-         <Option working_dir="/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver" />
-         <Option type="4" />
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 control_msgs_generate_messages_cpp" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
       <Target title="control_toolbox_generate_messages_cpp">
          <Option working_dir="/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver" />
          <Option type="4" />
@@ -4533,66 +4523,6 @@
             <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="two_joints_controller">
-         <Option output="/home/d/catkin_ws/debug/devel/lib/libtwo_joints_controller.so" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver" />
-         <Option object_output="./" />
-         <Option type="3" />
-         <Option compiler="gcc" />
-         <Compiler>
-            <Add option="-DROS_BUILD_SHARED_LIBS=1" />
-            <Add option="-DROS_PACKAGE_NAME=&quot;ros_ethercat_driver&quot;" />
-            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
-            <Add directory="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include" />
-            <Add directory="/opt/ros/kinetic/include" />
-            <Add directory="/opt/ros/kinetic/include/soem" />
-            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
-            <Add directory="/usr/include" />
-            <Add directory="/usr/include/c++/5" />
-            <Add directory="/usr/include/c++/5/backward" />
-            <Add directory="/usr/include/x86_64-linux-gnu" />
-            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-            <Add directory="/usr/local/include" />
-         </Compiler>
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 two_joints_controller" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
-      <Target title="two_joints_controller/fast">
-         <Option output="/home/d/catkin_ws/debug/devel/lib/libtwo_joints_controller.so" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver" />
-         <Option object_output="./" />
-         <Option type="3" />
-         <Option compiler="gcc" />
-         <Compiler>
-            <Add option="-DROS_BUILD_SHARED_LIBS=1" />
-            <Add option="-DROS_PACKAGE_NAME=&quot;ros_ethercat_driver&quot;" />
-            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
-            <Add directory="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/include" />
-            <Add directory="/opt/ros/kinetic/include" />
-            <Add directory="/opt/ros/kinetic/include/soem" />
-            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
-            <Add directory="/usr/include" />
-            <Add directory="/usr/include/c++/5" />
-            <Add directory="/usr/include/c++/5/backward" />
-            <Add directory="/usr/include/x86_64-linux-gnu" />
-            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-            <Add directory="/usr/local/include" />
-         </Compiler>
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 two_joints_controller/fast" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
       <Target title="jointpositioncommand">
          <Option output="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver/jointpositioncommand" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/d/catkin_ws/debug/devel/lib/ros_ethercat_driver" />
@@ -4648,6 +4578,16 @@
          </Compiler>
          <MakeCommands>
             <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 jointpositioncommand/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="control_msgs_generate_messages_cpp">
+         <Option working_dir="/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 control_msgs_generate_messages_cpp" />
             <CompileFile command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/d/catkin_ws/debug/robot_driver/ros_ethercat-master/ros_ethercat_driver/Makefile&quot;  VERBOSE=1 clean" />
@@ -5668,13 +5608,7 @@
       <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/hardware_interface/ros_ethercat_hardware_interface.cpp">
          <Option target="ros_ethercat_hardware_interface"/>
       </Unit>
-      <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/lib/two_joints_control.cpp">
-         <Option target="two_joints_controller"/>
-      </Unit>
-      <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/lib/two_joints_control.hpp">
-         <Option target="two_joints_controller"/>
-      </Unit>
-      <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/src/JointPositionCommand.cpp">
+      <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/JointPositionCommand.cpp">
          <Option target="jointpositioncommand"/>
       </Unit>
       <Unit filename="/home/d/catkin_ws/src/robot_driver/ros_ethercat-master/ros_ethercat_driver/test/controller_manager_test.cpp">

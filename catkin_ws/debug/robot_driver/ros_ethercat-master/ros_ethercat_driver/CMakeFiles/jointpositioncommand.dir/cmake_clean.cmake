@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/jointpositioncommand.dir/src/JointPositionCommand.cpp.o"
+  "CMakeFiles/jointpositioncommand.dir/test/JointPositionCommand.cpp.o"
   "../../../devel/lib/ros_ethercat_driver/jointpositioncommand.pdb"
   "../../../devel/lib/ros_ethercat_driver/jointpositioncommand"
 )

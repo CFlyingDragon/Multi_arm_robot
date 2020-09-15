@@ -2389,19 +2389,6 @@ controller_manager_test_node/fast:
 .PHONY : controller_manager_test_node/fast
 
 #=============================================================================
-# Target rules for targets named control_msgs_generate_messages_cpp
-
-# Build rule for target.
-control_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 control_msgs_generate_messages_cpp
-.PHONY : control_msgs_generate_messages_cpp
-
-# fast build rule for target.
-control_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/build
-.PHONY : control_msgs_generate_messages_cpp/fast
-
-#=============================================================================
 # Target rules for targets named control_toolbox_generate_messages_cpp
 
 # Build rule for target.
@@ -2597,19 +2584,6 @@ frictions_test/fast:
 .PHONY : frictions_test/fast
 
 #=============================================================================
-# Target rules for targets named two_joints_controller
-
-# Build rule for target.
-two_joints_controller: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 two_joints_controller
-.PHONY : two_joints_controller
-
-# fast build rule for target.
-two_joints_controller/fast:
-	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/two_joints_controller.dir/build
-.PHONY : two_joints_controller/fast
-
-#=============================================================================
 # Target rules for targets named jointpositioncommand
 
 # Build rule for target.
@@ -2621,6 +2595,19 @@ jointpositioncommand: cmake_check_build_system
 jointpositioncommand/fast:
 	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/jointpositioncommand.dir/build
 .PHONY : jointpositioncommand/fast
+
+#=============================================================================
+# Target rules for targets named control_msgs_generate_messages_cpp
+
+# Build rule for target.
+control_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 control_msgs_generate_messages_cpp
+.PHONY : control_msgs_generate_messages_cpp
+
+# fast build rule for target.
+control_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/build.make robot_driver/ros_ethercat-master/ros_ethercat_driver/CMakeFiles/control_msgs_generate_messages_cpp.dir/build
+.PHONY : control_msgs_generate_messages_cpp/fast
 
 #=============================================================================
 # Target rules for targets named armc_controller_generate_messages_py
@@ -3261,7 +3248,6 @@ help:
 	@echo "... control_toolbox_generate_messages_nodejs"
 	@echo "... controller_manager_msgs_generate_messages_nodejs"
 	@echo "... controller_manager_test_node"
-	@echo "... control_msgs_generate_messages_cpp"
 	@echo "... control_toolbox_generate_messages_cpp"
 	@echo "... control_msgs_generate_messages_lisp"
 	@echo "... controller_manager_msgs_generate_messages_eus"
@@ -3277,8 +3263,8 @@ help:
 	@echo "... control_toolbox_generate_messages_eus"
 	@echo "... ros_ethercat_hardware_interface"
 	@echo "... frictions_test"
-	@echo "... two_joints_controller"
 	@echo "... jointpositioncommand"
+	@echo "... control_msgs_generate_messages_cpp"
 	@echo "... armc_controller_generate_messages_py"
 	@echo "... armc_controller_generate_messages_nodejs"
 	@echo "... effort_positions_controller"

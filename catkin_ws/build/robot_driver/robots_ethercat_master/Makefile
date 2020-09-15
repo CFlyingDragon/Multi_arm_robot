@@ -222,32 +222,32 @@ src/AX58100_master.cpp.s:
 	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/robots_ethercat_master/CMakeFiles/AX58100_master_node.dir/build.make robot_driver/robots_ethercat_master/CMakeFiles/AX58100_master_node.dir/src/AX58100_master.cpp.s
 .PHONY : src/AX58100_master.cpp.s
 
-src/goldentwittertest.o: src/goldentwittertest.cpp.o
+src/goldentwittertest1.o: src/goldentwittertest1.cpp.o
 
-.PHONY : src/goldentwittertest.o
+.PHONY : src/goldentwittertest1.o
 
 # target to build an object file
-src/goldentwittertest.cpp.o:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/build.make robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o
-.PHONY : src/goldentwittertest.cpp.o
+src/goldentwittertest1.cpp.o:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/build.make robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o
+.PHONY : src/goldentwittertest1.cpp.o
 
-src/goldentwittertest.i: src/goldentwittertest.cpp.i
+src/goldentwittertest1.i: src/goldentwittertest1.cpp.i
 
-.PHONY : src/goldentwittertest.i
+.PHONY : src/goldentwittertest1.i
 
 # target to preprocess a source file
-src/goldentwittertest.cpp.i:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/build.make robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.i
-.PHONY : src/goldentwittertest.cpp.i
+src/goldentwittertest1.cpp.i:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/build.make robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.i
+.PHONY : src/goldentwittertest1.cpp.i
 
-src/goldentwittertest.s: src/goldentwittertest.cpp.s
+src/goldentwittertest1.s: src/goldentwittertest1.cpp.s
 
-.PHONY : src/goldentwittertest.s
+.PHONY : src/goldentwittertest1.s
 
 # target to generate assembly for a file
-src/goldentwittertest.cpp.s:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/build.make robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.s
-.PHONY : src/goldentwittertest.cpp.s
+src/goldentwittertest1.cpp.s:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/build.make robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.s
+.PHONY : src/goldentwittertest1.cpp.s
 
 # Help Target
 help:
@@ -267,9 +267,9 @@ help:
 	@echo "... src/AX58100_master.o"
 	@echo "... src/AX58100_master.i"
 	@echo "... src/AX58100_master.s"
-	@echo "... src/goldentwittertest.o"
-	@echo "... src/goldentwittertest.i"
-	@echo "... src/goldentwittertest.s"
+	@echo "... src/goldentwittertest1.o"
+	@echo "... src/goldentwittertest1.i"
+	@echo "... src/goldentwittertest1.s"
 .PHONY : help
 
 

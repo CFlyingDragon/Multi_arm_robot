@@ -57,38 +57,38 @@ include robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.d
 # Include the compile flags for this target's objects.
 include robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/flags.make
 
-robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/flags.make
-robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o: /home/d/catkin_ws/src/robot_driver/robots_ethercat_master/src/goldentwittertest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o"
-	cd /home/d/catkin_ws/build/robot_driver/robots_ethercat_master && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o -c /home/d/catkin_ws/src/robot_driver/robots_ethercat_master/src/goldentwittertest.cpp
+robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/flags.make
+robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o: /home/d/catkin_ws/src/robot_driver/robots_ethercat_master/src/goldentwittertest1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o"
+	cd /home/d/catkin_ws/build/robot_driver/robots_ethercat_master && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o -c /home/d/catkin_ws/src/robot_driver/robots_ethercat_master/src/goldentwittertest1.cpp
 
-robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.i"
-	cd /home/d/catkin_ws/build/robot_driver/robots_ethercat_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/d/catkin_ws/src/robot_driver/robots_ethercat_master/src/goldentwittertest.cpp > CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.i
+robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.i"
+	cd /home/d/catkin_ws/build/robot_driver/robots_ethercat_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/d/catkin_ws/src/robot_driver/robots_ethercat_master/src/goldentwittertest1.cpp > CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.i
 
-robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.s"
-	cd /home/d/catkin_ws/build/robot_driver/robots_ethercat_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/d/catkin_ws/src/robot_driver/robots_ethercat_master/src/goldentwittertest.cpp -o CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.s
+robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.s"
+	cd /home/d/catkin_ws/build/robot_driver/robots_ethercat_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/d/catkin_ws/src/robot_driver/robots_ethercat_master/src/goldentwittertest1.cpp -o CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.s
 
-robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o.requires:
+robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o.requires:
 
-.PHONY : robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o.requires
+.PHONY : robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o.requires
 
-robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o.provides: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o.requires
-	$(MAKE) -f robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/build.make robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o.provides.build
-.PHONY : robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o.provides
+robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o.provides: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o.requires
+	$(MAKE) -f robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/build.make robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o.provides.build
+.PHONY : robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o.provides
 
-robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o.provides.build: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o
+robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o.provides.build: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o
 
 
 # Object files for target goldentwittertest_node1
 goldentwittertest_node1_OBJECTS = \
-"CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o"
+"CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o"
 
 # External object files for target goldentwittertest_node1
 goldentwittertest_node1_EXTERNAL_OBJECTS =
 
-/home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o
+/home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/build.make
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: /opt/ros/kinetic/lib/libroscpp.so
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
@@ -107,9 +107,9 @@ goldentwittertest_node1_EXTERNAL_OBJECTS =
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: /opt/ros/kinetic/lib/libsoem.so
+/home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: /opt/ros/kinetic/lib/libsoem.a
+/home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/d/catkin_ws/devel/lib/robots_ethercat_master/goldentwittertest_node1"
 	cd /home/d/catkin_ws/build/robot_driver/robots_ethercat_master && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/goldentwittertest_node1.dir/link.txt --verbose=$(VERBOSE)
@@ -119,7 +119,7 @@ robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/build
 
 .PHONY : robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/build
 
-robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/requires: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest.cpp.o.requires
+robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/requires: robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/src/goldentwittertest1.cpp.o.requires
 
 .PHONY : robot_driver/robots_ethercat_master/CMakeFiles/goldentwittertest_node1.dir/requires
 

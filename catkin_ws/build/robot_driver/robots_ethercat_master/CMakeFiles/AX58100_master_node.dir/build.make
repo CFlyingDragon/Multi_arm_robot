@@ -107,9 +107,9 @@ AX58100_master_node_EXTERNAL_OBJECTS =
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/AX58100_master_node: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/AX58100_master_node: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/AX58100_master_node: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/d/catkin_ws/devel/lib/robots_ethercat_master/AX58100_master_node: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/AX58100_master_node: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/d/catkin_ws/devel/lib/robots_ethercat_master/AX58100_master_node: /opt/ros/kinetic/lib/libsoem.so
+/home/d/catkin_ws/devel/lib/robots_ethercat_master/AX58100_master_node: /opt/ros/kinetic/lib/libsoem.a
+/home/d/catkin_ws/devel/lib/robots_ethercat_master/AX58100_master_node: /usr/lib/x86_64-linux-gnu/libpthread.so
 /home/d/catkin_ws/devel/lib/robots_ethercat_master/AX58100_master_node: robot_driver/robots_ethercat_master/CMakeFiles/AX58100_master_node.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/d/catkin_ws/devel/lib/robots_ethercat_master/AX58100_master_node"
 	cd /home/d/catkin_ws/build/robot_driver/robots_ethercat_master && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AX58100_master_node.dir/link.txt --verbose=$(VERBOSE)
