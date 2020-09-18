@@ -678,6 +678,7 @@ def arm_angle_ikine_chose(Q, qk, q_min,q_max):
 	if(dq_min >= 1000.0):
 		print "关节角超出关节极限：无解"
 		limit_flag = True
+		return [qk,limit_flag]
 	#选取最佳关节角
 	dq_minIndex = np.where(dq == dq_min)
 	qq =np.array(Q[dq_minIndex,:]).reshape(1,-1)[0] #转换成向量
@@ -1015,7 +1016,7 @@ def arm_angle_ikine_second_limit(DH,Te):
 	return Q
 
 #选择求取关节所需参考面,并调用对应算法求取8组关节角
-def arm_angle_all_ikine_limit( DH_0,Te):
+def arm_angle_all_ikine_limit(DH_0,Te):
 	'''
 	:param DH_0:
 	:param psi:
@@ -1312,8 +1313,13 @@ class GeneralKinematic(object):
 			An = np.dot(An, T)  # 末端到惯性坐标系传递矩阵
 		xe[0:3] = An[0:3, 3]
 		xe[3:6] = self.rot2euler_zyx(An[0:3, 0:3])
-
 		return xe
+
+	def fkine_zeros(self, qr):
+		xx = np.zeros(7)
+		xx[:6] = self.fkine_euler(qr)
+		xx[-1] = self.arm_angle(qr)
+		return xx
 
 	#求取雅克比矩阵
 	def jeco(self, qr):
@@ -1431,6 +1437,37 @@ class GeneralKinematic(object):
 			# print "flag:", flag
 			qr = np.copy(q_guess)
 		return qr
+
+	#SRS型解析解
+	def SRS_ikine(self, q_guess, Te, psi):
+		# 建立求解是否成功标签
+		succeed_label = True  # 默认成功求逆
+
+		# 调用求解函数求取8组解
+		Q = arm_angle_all_ikine(self.DH_0, psi, Te)
+
+		[qq, limit_flag] = arm_angle_ikine_chose(Q, q_guess, self.q_min, self.q_max)
+		if (limit_flag):
+			print "求解失败！"
+		return qq
+
+	def SRS_ikine_zyx(self, q_guess, Xe, psi):
+		# 转化矩阵
+		Te = np.eye(4)
+		Te[0:3, 0:3] = self.euler_zyx2rot(Xe[3:])
+		Te[0:3, 3] = Xe[:3]
+
+		# 调用求解函数求取8组解
+		Q = arm_angle_all_ikine(self.DH_0, psi, Te)
+
+		[qq, limit_flag] = arm_angle_ikine_chose(Q, q_guess, self.q_min, self.q_max)
+		if (limit_flag):
+			print "求解失败！"
+		return qq
+
+	#通过关节角求取臂型角
+	def arm_angle(self, qq):
+		return arm_angle_by_joint(qq, self.DH_0)
 
 def ur_ikine_test():
 	DH_0 = rp.DH0_ur5

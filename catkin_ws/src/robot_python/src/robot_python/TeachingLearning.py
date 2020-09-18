@@ -304,6 +304,96 @@ class TeachingLearn(object):
         # rbf参数
         FileOpen.write(self.rbf_param, self.rbf_path)
 
+# 设置为已知dmps参数和
+class JointTeachingLearn(object):
+    def __init__(self, dmps_path, rbf_path):
+        # 学习数据的维数
+        self.dmps_path = dmps_path
+        self.rbf_path = rbf_path
+
+        self.get_dmps_paramter()
+
+    def get_dmps_paramter(self):
+        # 加载dmps参数
+        dmps_param = FileOpen.read(self.dmps_path)
+        # 时间尺度
+        self.tau = dmps_param[0, 0]
+        # 正则常数
+        self.alpha = dmps_param[1, 0]
+        # 刚度项
+        self.k = dmps_param[:, 1]
+        # 阻尼项
+        self.d = dmps_param[:, 2]
+
+    # 高斯径向基参数
+    def get_rbf_paramter(self, h):
+        # rbf隐藏节点个数
+        self.h = h
+
+    # 示教函数
+    def get_teaching_data(self, qq_list, T):
+        # 关节角度
+        self.qq_array = np.array(qq_list)
+
+        # 数据长度
+        self.num = len(self.qq_array[:, 0])
+        self.n = len(self.qq_array[0, :])
+
+        # 时间和周期
+        self.T = T
+        self.tt = np.linspace(0, T * (self.num - 1), self.num)
+        # 正则时间
+        self.ss = np.exp(-(self.alpha / self.tau) * self.tt)
+
+        # 数据预处理
+        self.data_preprocess()
+
+    # 数据处理函数
+    def data_preprocess(self):
+
+        qq_qva = np.zeros([self.num, self.n, 3])
+        qq_qva[:, :, 0] = self.qq_array
+
+        # 建立高增益观测器
+        observer = dp.HighGainObserver()
+        for i in range(self.n):
+            observer.get_original_data(self.qq_array[:, i], self.T)
+            qq_qva[:, i, 1] = observer.put_observer_data()
+            observer.get_original_data(qq_qva[:, i, 1], self.T)
+            qq_qva[:, i, 2] = observer.put_observer_data()
+
+        self.qq_qva = qq_qva
+
+    # 采用DMPS模型计算估计,高斯径向基函数拟合强迫项
+    def learn(self):
+        # 计算DMPS模型计算强迫项
+        f_demo = np.zeros([self.num, self.n])
+        for i in range(self.n):
+            f_demo[:, i] = (self.tau * self.tau * self.qq_qva[:, i, 2] + self.d[i] * self.qq_qva[:, i, 1]) \
+                           / self.k[i] - (self.qq_qva[-1, i, 0] * np.ones(self.num) - self.qq_qva[:, i, 0]) \
+                           - (self.qq_qva[-1, i, 0] - self.qq_qva[0, i, 0]) * self.ss
+        self.f_demo = f_demo
+
+        # 采用rbf拟合强迫项,求取rbf参数
+        # 中心值,h*m个,时间变量为m=1
+        c = np.linspace(self.ss[0], self.ss[-1], self.h)
+        # 方差
+        sigma = abs(self.ss[0] - self.ss[-1])
+        # rbf隐藏层到输出层权重n*h
+        w = ml.rbf_weight_oput_nout(self.ss, c, sigma, f_demo)
+
+        # 存储rbf参数
+        rbf_param = np.zeros([self.n + 2, self.h])
+        rbf_param[0, 0] = sigma  # 存在第1位,方差sigma
+        rbf_param[1, :] = c  # 第二行存放中心值
+        rbf_param[2:self.n + 2, :] = w  # 第三行后存储权重
+        self.rbf_param = rbf_param
+
+    # 写入数据到指定文件
+    def write_data(self):
+        # rbf参数
+        FileOpen.write(self.rbf_param, self.rbf_path)
+
 #================================轨迹泛化,在现阶段==============================#
 class TeachingReproduction(object):
     def __init__(self, dmps_path, rbf_path):
@@ -377,6 +467,75 @@ class TeachingReproduction(object):
     def get_plan_joint(self, DH_0):
         #建立运动学
         kin1 = kin.GeneralKinematic(DH_0)
+
+# ================================轨迹泛化,在现阶段==============================#
+class JointTeachingReproduction(object):
+    def __init__(self, dmps_path, rbf_path):
+        # 参数路径
+        self.dmps_path = dmps_path
+        self.rbf_path = rbf_path
+        # 加载参数
+        self.read_paramter()
+
+    def read_paramter(self):
+        # 加载rbf参数
+        rbf_param = FileOpen.read(self.rbf_path)
+
+        # 方差sigma
+        self.sigma = rbf_param[0, 0]
+        # 中心值
+        self.c = rbf_param[1, :]
+        # 权重w
+        self.w = rbf_param[2:, :]  # w= m*h
+        # 输出自由度
+        self.m = len(self.w[:, 0])
+
+        # 加载dmps参数
+        dmps_param = FileOpen.read(self.dmps_path)
+        # 时间尺度
+        self.tau = dmps_param[0, 0]
+        # 正则系统常数
+        self.alpha = dmps_param[1, 0]
+        # 刚度项
+        self.k = dmps_param[:, 1]
+        # 阻尼项
+        self.d = dmps_param[:, 2]
+
+    def reproduction(self, xx0, gg, tt, T):
+        '''
+        :param xx0: 规划起点
+        :param gg: 规划目标点
+        :param tt: 规划中采样时刻
+        :return: 采样时刻对应的规划位置
+        '''
+        # 规划时间
+        ss = np.exp(-(self.alpha / self.tau) * tt)
+        num = len(ss)
+
+        # 求取强迫项,用rbf求取强迫性
+        f = np.zeros([num, self.m])
+        for i in range(num):
+            f[i, :] = ml.rbf_oput_nout(ss[i], self.c, self.sigma, self.w)
+        self.f = f
+        print f.shape
+
+        # 求取末端位置
+        XX = np.zeros([num, self.m])
+
+        x_dot = np.zeros(self.m)
+        xx = np.copy(xx0)
+
+        # 采用迭代发求微分方程
+        for i in range(num):
+            for j in range(self.m):
+                [xx[j], x_dot[j]] = dmps_solve_2(
+                    self.tau, self.k[j], self.d[j],
+                    gg[j], xx0[j], ss[i], T, f[i, j],
+                    xx[j], x_dot[j])
+                XX[i, j] = xx[j]
+        self.xx = np.copy(XX)
+
+        return self.xx
 
 # ================================采用局部加权回归算法拟合==============================#
 #设置为已知dmps参数和
@@ -900,6 +1059,112 @@ def local_test():
     f = teach_repro1.f
     # 绘制力跟踪图
     MyPlot.plot2_nd(tt, f, title="f")
+
+    MyPlot.plot2_nd(tt, X_data, title="X_data")
+
+#门把手抓取规划
+def door_handle_grab():
+    # 获取目标路径
+    current_path = os.getcwd()
+    file_path = os.path.join(current_path, "../..", "data/teaching")
+    file_path = os.path.abspath(file_path)
+
+    # *****示教阶段******#
+    # 读取数据
+    qq_file_name = "teaching_data.txt"
+    qq_path = os.path.join(file_path, qq_file_name)
+    qq_demo = FileOpen.read(qq_path)[0:2000, :]
+
+    # 绘制原始数据图
+    # 时间系列
+    T = 0.01
+    num = len(qq_demo)
+    tt = np.linspace(0, T * (num - 1), num)
+    # 绘制数据图
+    MyPlot.plot2_nd(tt, qq_demo, title="qq_demo", lable="qq")
+
+    print "shape:", qq_demo.shape
+    # 创建运动学
+    DH_0 = np.copy(rp.DHfa_armc)
+    kin1 = kin.GeneralKinematic(DH_0)
+
+    # 获取起始点
+    X0 = kin1.fkine_euler(qq_demo[0, :])
+    # 获取目标点
+    X_goal = kin1.fkine_euler(qq_demo[-1, :])
+
+    # 求取正运动学
+    X_demo = np.zeros([num, 6])
+    for i in range(num):
+        X_demo[i, :] = kin1.fkine_euler(qq_demo[i, :])
+
+    # 绘制数据图
+    MyPlot.plot2_nd(tt, X_demo, title="X_demo")
+
+    for i in range(num):
+        for j in range(6):
+            X_demo[i, j] = X_demo[i, j] + 0.01 * (np.random.random() - 0.5)
+            # 绘制数据图
+    MyPlot.plot2_nd(tt, X_demo, title="X_rdemo", lable="Xr")
+
+    # *****学习阶段:关节空间学习,直接得到规划关节角******#
+    dmps_file_name = "dhg_dmps_parameter.txt"
+    dmps_path = os.path.join(file_path, dmps_file_name)
+
+    rbf_file_name = "dhg_rbf_parameter.txt"
+    rbf_path = os.path.join(file_path, rbf_file_name)
+
+    # 创建一个示教学习器
+    teach_learn1 = TeachingLearn(dmps_path, rbf_path)
+
+    # 获取rbf参数
+    h = 1000  # 隐藏层个数
+    teach_learn1.get_rbf_paramter(h)
+
+    # 获取示教数据
+    teach_learn1.get_teaching_data(qq_demo,   T)
+
+    # 采用最小二乘学习获取权重
+    teach_learn1.learn()
+
+    # 绘制拟合图
+    X_xva = teach_learn1.X_xva
+    MyPlot.plot2_nd(tt, X_xva[:, :, 0], title="Xx", lable="Xx")
+    MyPlot.plot2_nd(tt, X_xva[:, :, 1], title="Xv", lable="Xv")
+    MyPlot.plot2_nd(tt, X_xva[:, :, 2], title="Xa", lable="Xa")
+
+    # 将权重写入文件
+    teach_learn1.write_data()
+
+    # 获取强迫项
+    f_demo = teach_learn1.f_demo
+    MyPlot.plot2_nd(tt, f_demo, title="f_demo", lable="fd")
+
+    # *****示教再现阶段******#
+    # 穿件示教再现器
+    dmps_file_name = "dmps_parameter.txt"
+    dmps_path = os.path.join(file_path, dmps_file_name)
+
+    rbf_file_name = "rbf_parameter.txt"
+    rbf_path = os.path.join(file_path, rbf_file_name)
+    teach_repro1 = TeachingReproduction(dmps_path, rbf_path)
+
+    # 规划新轨迹
+    # 时间系列
+    T = 0.01
+    num = len(qq_demo)
+    tt = np.linspace(0, T * (num - 1), num)
+    print "X0:", X0
+    print "X_goal:", X_goal
+    xx0 = X0 + np.array([0.0, 0, -0.0, 0, 0, 0])  # 轨迹起点
+    gg = X_goal + np.array([0.01, 0.00, -0.1, 0, 0, 0])  # 规划目标点
+    teach_repro1.reproduction(xx0, gg, tt, T)
+    X_data = teach_repro1.get_plan_tcp()
+
+    # 获取强迫项
+    f = teach_repro1.f
+    # 绘制力跟踪图
+    MyPlot.plot2_nd(tt, f, title="f", lable="f")
 
     MyPlot.plot2_nd(tt, X_data, title="X_data")
 

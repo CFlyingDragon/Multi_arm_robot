@@ -1,0 +1,8 @@
+prefix=/home/d/catkin_ws/debug/devel
+
+Name: armc_visual
+Description: Description of armc_visual
+Version: 0.0.0
+Cflags: -I/home/d/catkin_ws/debug/devel/include -I/home/d/catkin_ws/src/robot_visual/armc_visual/include
+Libs: -L${prefix}/lib -larmc_visual
+Requires: roscpp rospy std_msgs

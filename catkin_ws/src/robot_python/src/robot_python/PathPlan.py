@@ -684,6 +684,74 @@ class ArmcLinePlan(object):
 			[qq_1[:, i], qv_1[:, i], qa_1[:, i]] = bf.spline1(tt_seq, qq[:, i], self.T, 0, 0)
 		return [qq_1, qv_1, qa_1]
 
+#armc直线规划算法:采用了臂形角求解
+class ArmcLinePlanZeros(object):
+	# 构造函数
+	def __init__(self):
+		# 周期
+		self.T = 0.01
+		self.t = 10
+		self.pos_flag = False
+
+	def get_period(self, T):
+		self.T = np.copy(T)
+
+	def get_plan_time(self, t):
+		self.t = t
+
+	def get_robot_parameter(self, DH_0, q_min, q_max):
+		# DH参数
+		self.DH0 = np.copy(DH_0)
+		# 关节极限
+		self.qq_max = np.copy(q_max)
+		self.qq_min = np.copy(q_min)
+		# 求取关节个数
+		self.n = len(self.qq_max)
+
+		# 创建运动学类
+		self.kin = kin.GeneralKinematic(DH_0, self.qq_min, self.qq_max)
+
+	def get_begin_end_point(self, X1, X2):
+		self.X1 = np.copy(X1)
+		self.X2 = np.copy(X2)
+
+	def get_init_guess_joint(self, qq_guess):
+		self.qq_guess = np.copy(qq_guess)
+
+	def get_pos(self, R):
+		self.R = np.copy(R)
+		self.pos_flag = True
+
+	def lineEnd_plan(self):
+		#调用5次多项式规划
+		X_0 = np.zeros(7)
+		[self.X, _, _] = bf.interp5rdPoly(self.X1, X_0, X_0,
+									 self.X2, X_0, X_0, self.t,
+									 self.T * 10)
+
+	def out_joint(self):
+		#末端规划
+		self.lineEnd_plan()
+		nodeNum = len(self.X)
+
+		#解关节角
+		qq = np.zeros([nodeNum, self.n])
+		#获取迭代解初始点
+		qq_guess = self.qq_guess
+		#转换为齐次矩阵
+		for i in range(nodeNum):
+			qq[i, :] = self.kin.SRS_ikine_zyx(qq_guess, self.X[i, 0:6], self.X[i, -1])
+			qq_guess = qq[i, :]
+		#样条插值
+		kq = 10*(nodeNum - 1) + 1
+		tt_seq = np.linspace(0, (nodeNum - 1) * self.T*10, nodeNum)
+		qq_1 = np.zeros([kq, self.n])
+		qv_1 = np.zeros([kq, self.n])
+		qa_1 = np.zeros([kq, self.n])
+		for i in range(self.n):
+			[qq_1[:, i], qv_1[:, i], qa_1[:, i]] = bf.spline1(tt_seq, qq[:, i], self.T, 0, 0)
+		return [qq_1, qv_1, qa_1]
+
 def path_plan_test():
 	#机器人参数
 	DH0 = rp.DHfa_armc

@@ -26,7 +26,7 @@ from robot_python import Kinematics as kin
 
 #===============================话题发送和订阅================================#
 #发送两个ur5机械臂位置
-def publisher2ur5(path1,path2):
+def publisher2ur5(path1, path2):
     #建立节点
     pub1 = rospy.Publisher("/robot1/ur5_position_controller/command",
                            Float64MultiArray, queue_size=1)
@@ -306,6 +306,7 @@ def joint_pos_Pretreatment(qq,q_list,T):
         else:
             qq_p[i] = qq[i]
     return qq_p
+
 #给定地址，读取数据
 def read_data(path):
     '''
@@ -334,3 +335,4 @@ def out_joint_limit(qq, qq_min, qq_max):
             flag = True
             break
     return flag
+

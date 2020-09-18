@@ -1,5 +1,6 @@
 # Hashes of file build rules.
 e948e1a6fd160546ea39e28adcaffced /home/d/catkin_ws/devel/include/armc_controller/SetArmcConfigure.h
+023f3f9fa544c0146bae873abf8b2308 /home/d/catkin_ws/devel/include/armc_visual/AddTwoInts.h
 0eb0dfb56dc8f6c018acdcab473b3431 /home/d/catkin_ws/devel/include/robot_msg/IpPos.h
 f100cdc90d4d92861a3f1d2ecad8567b /home/d/catkin_ws/devel/include/robot_msg/SetArmcConfigure.h
 bfb1be392a16cfa0c0f24841c4725eb7 /home/d/catkin_ws/devel/include/robot_python/Frame.h
@@ -18,6 +19,8 @@ c6a2a499306e9ef1d3ffa8586d24ad1e /home/d/catkin_ws/devel/include/ur_msgs/RobotMo
 43dcb5e162ccf3f4147bf81e85797b61 /home/d/catkin_ws/devel/include/ur_msgs/ToolDataMsg.h
 2f878136a05082e606c2e666a01a0daa /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_controller/srv/_SetArmcConfigure.py
 3203e72bbbfe2d8908eb90f4160a9e47 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_controller/srv/__init__.py
+8e7938eabf535b23f575fcd08d2cd542 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_AddTwoInts.py
+67f3a961d7cb2d5e5a15ffb3ef1a0a67 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/__init__.py
 c9fd8b8cabf983a3de4709910fc0ee08 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/robot_msg/msg/_IpPos.py
 cc7ad0fb552cecd2b6dc41a6e12bd533 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/robot_msg/msg/__init__.py
 829d8683290f74efe57d5b38fe37be28 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/robot_msg/srv/_SetArmcConfigure.py
@@ -40,6 +43,7 @@ ac2d7a380de6fafb7d6efd71b753e21b /home/d/catkin_ws/devel/lib/python2.7/dist-pack
 0f869c2fc24417d50eaf4e1dff09ec12 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/ur_msgs/srv/_SetPayload.py
 996315e764401299f958f22e4d524841 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/ur_msgs/srv/__init__.py
 e3ec9a763d3c6b9fa130c2b45cadf437 /home/d/catkin_ws/devel/share/common-lisp/ros/armc_controller/srv/SetArmcConfigure.lisp
+f9f90c1ec328d3edf1533d493a4a3c51 /home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv/AddTwoInts.lisp
 753ff138eacec15ca20683c1e2d0f116 /home/d/catkin_ws/devel/share/common-lisp/ros/robot_msg/msg/IpPos.lisp
 d21469cbb3f47ccb20bb4946b5d34af7 /home/d/catkin_ws/devel/share/common-lisp/ros/robot_msg/srv/SetArmcConfigure.lisp
 d8ed525d8b6478968ef5268dad67c117 /home/d/catkin_ws/devel/share/common-lisp/ros/robot_python/msg/Frame.lisp
@@ -56,6 +60,7 @@ a8b659ef5cc41afd0fe21d8cd880d377 /home/d/catkin_ws/devel/share/common-lisp/ros/u
 e8259c86db89bc41f89510afc70101ed /home/d/catkin_ws/devel/share/common-lisp/ros/ur_msgs/srv/SetIO.lisp
 fa659e2fd519c27fa8f7273e8b27afa0 /home/d/catkin_ws/devel/share/common-lisp/ros/ur_msgs/srv/SetPayload.lisp
 a248006d665478702b775d31fbf9e8a1 /home/d/catkin_ws/devel/share/gennodejs/ros/armc_controller/srv/SetArmcConfigure.js
+846aa68162712a37125328857266acdf /home/d/catkin_ws/devel/share/gennodejs/ros/armc_visual/srv/AddTwoInts.js
 b269fa0de2975e6a1b2055dc8ea6c582 /home/d/catkin_ws/devel/share/gennodejs/ros/robot_msg/msg/IpPos.js
 d7982b4bd3e8c63bea1efff8f3ceda0f /home/d/catkin_ws/devel/share/gennodejs/ros/robot_msg/srv/SetArmcConfigure.js
 8019498814bffc177d8ad269b775ee44 /home/d/catkin_ws/devel/share/gennodejs/ros/robot_python/msg/Frame.js
@@ -73,6 +78,8 @@ b9fdd93a5130c33b399ee62ffcf067c1 /home/d/catkin_ws/devel/share/gennodejs/ros/ur_
 eb02f4b78d8e712602cc5b497cef6e8f /home/d/catkin_ws/devel/share/gennodejs/ros/ur_msgs/srv/SetPayload.js
 da15b008cf8b21e2196dd31f7f5e802e /home/d/catkin_ws/devel/share/roseus/ros/armc_controller/manifest.l
 17565670941a9e1a77194ddcbfdc2519 /home/d/catkin_ws/devel/share/roseus/ros/armc_controller/srv/SetArmcConfigure.l
+3c7f820e3167019fe6a788ff591a95b7 /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/manifest.l
+22ec686d229b4d19e8b492850e1362c0 /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/AddTwoInts.l
 0e7676c9d8514dcfbcab4213216bd08a /home/d/catkin_ws/devel/share/roseus/ros/robot_msg/manifest.l
 7a5bc1fcc0d2f9bce786e01de948e1ef /home/d/catkin_ws/devel/share/roseus/ros/robot_msg/msg/IpPos.l
 74174aa08e794e54b3d41c23a1b66adb /home/d/catkin_ws/devel/share/roseus/ros/robot_msg/srv/SetArmcConfigure.l
@@ -125,3 +132,9 @@ b46db607d0ddd37e1fbb3e12f356fbf0 robot_msg/CMakeFiles/robot_msg_generate_message
 0f44788a67cc2ddd9c351b0062eed2db robot_python/CMakeFiles/robot_python_generate_messages_lisp
 0f44788a67cc2ddd9c351b0062eed2db robot_python/CMakeFiles/robot_python_generate_messages_nodejs
 0f44788a67cc2ddd9c351b0062eed2db robot_python/CMakeFiles/robot_python_generate_messages_py
+6799bc58cea39af49a5d6cd8bbd93d3c robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts
+b97b5620ce39979bacc877b582ff8414 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp
+b97b5620ce39979bacc877b582ff8414 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus
+b97b5620ce39979bacc877b582ff8414 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp
+b97b5620ce39979bacc877b582ff8414 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs
+b97b5620ce39979bacc877b582ff8414 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py
