@@ -15,7 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   hardware_interface
   realtime_tools
   ros_ethercat_driver
-  robot_msg
+  #robot_msg
   message_generation
   kdl_parser
   kdl_kinematic   ##自定义文件

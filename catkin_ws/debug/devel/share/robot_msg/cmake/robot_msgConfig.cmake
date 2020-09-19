@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(robot_msg_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/d/catkin_ws/debug/devel/include " STREQUAL " ")
+if(NOT "/home/d/catkin_ws/debug/devel/include;/home/d/catkin_ws/src/robot_msg/include " STREQUAL " ")
   set(robot_msg_INCLUDE_DIRS "")
-  set(_include_dirs "/home/d/catkin_ws/debug/devel/include")
+  set(_include_dirs "/home/d/catkin_ws/debug/devel/include;/home/d/catkin_ws/src/robot_msg/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -116,7 +116,7 @@ if(NOT "/home/d/catkin_ws/debug/devel/include " STREQUAL " ")
   endforeach()
 endif()
 
-set(libraries "")
+set(libraries "robot_msg")
 foreach(library ${libraries})
   # keep build configuration keywords, target names and absolute libraries as-is
   if("${library}" MATCHES "^(debug|optimized|general)$")

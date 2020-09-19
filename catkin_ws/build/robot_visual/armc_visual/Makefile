@@ -56,39 +56,6 @@ CMAKE_BINARY_DIR = /home/d/catkin_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -98,17 +65,6 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -132,6 +88,50 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,184 +166,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/rule
+robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-server_demo_node: robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/rule
+armc_visual_generate_messages_nodejs: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/rule
 
-.PHONY : server_demo_node
+.PHONY : armc_visual_generate_messages_nodejs
 
 # fast build rule for target.
-server_demo_node/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/build.make robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/build
-.PHONY : server_demo_node/fast
-
-# Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-armc_visual_generate_messages_eus: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/rule
-
-.PHONY : armc_visual_generate_messages_eus
-
-# fast build rule for target.
-armc_visual_generate_messages_eus/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/build
-.PHONY : armc_visual_generate_messages_eus/fast
-
-# Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/rule
-
-# Convenience name for target.
-armc_visual_gencpp: robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/rule
-
-.PHONY : armc_visual_gencpp
-
-# fast build rule for target.
-armc_visual_gencpp/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/build
-.PHONY : armc_visual_gencpp/fast
-
-# Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/rule
-
-# Convenience name for target.
-client_demo_node: robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/rule
-
-.PHONY : client_demo_node
-
-# fast build rule for target.
-client_demo_node/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/build.make robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/build
-.PHONY : client_demo_node/fast
-
-# Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/rule
-
-# Convenience name for target.
-armc_visual_generate_messages: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/rule
-
-.PHONY : armc_visual_generate_messages
-
-# fast build rule for target.
-armc_visual_generate_messages/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/build
-.PHONY : armc_visual_generate_messages/fast
-
-# Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/rule
-
-# Convenience name for target.
-armc_visual_generate_messages_py: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/rule
-
-.PHONY : armc_visual_generate_messages_py
-
-# fast build rule for target.
-armc_visual_generate_messages_py/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/build
-.PHONY : armc_visual_generate_messages_py/fast
-
-# Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-armc_visual_generate_messages_cpp: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/rule
-
-.PHONY : armc_visual_generate_messages_cpp
-
-# fast build rule for target.
-armc_visual_generate_messages_cpp/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/build
-.PHONY : armc_visual_generate_messages_cpp/fast
-
-# Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/rule
-
-# Convenience name for target.
-_armc_visual_generate_messages_check_deps_AddTwoInts: robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/rule
-
-.PHONY : _armc_visual_generate_messages_check_deps_AddTwoInts
-
-# fast build rule for target.
-_armc_visual_generate_messages_check_deps_AddTwoInts/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/build.make robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/build
-.PHONY : _armc_visual_generate_messages_check_deps_AddTwoInts/fast
-
-# Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/rule
-
-# Convenience name for target.
-armc_visual_geneus: robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/rule
-
-.PHONY : armc_visual_geneus
-
-# fast build rule for target.
-armc_visual_geneus/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/build
-.PHONY : armc_visual_geneus/fast
-
-# Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-armc_visual_generate_messages_lisp: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/rule
-
-.PHONY : armc_visual_generate_messages_lisp
-
-# fast build rule for target.
-armc_visual_generate_messages_lisp/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/build
-.PHONY : armc_visual_generate_messages_lisp/fast
-
-# Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/rule
-
-# Convenience name for target.
-armc_visual_genlisp: robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/rule
-
-.PHONY : armc_visual_genlisp
-
-# fast build rule for target.
-armc_visual_genlisp/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/build
-.PHONY : armc_visual_genlisp/fast
-
-# Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/rule
-
-# Convenience name for target.
-armc_visual_genpy: robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/rule
-
-.PHONY : armc_visual_genpy
-
-# fast build rule for target.
-armc_visual_genpy/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/build
-.PHONY : armc_visual_genpy/fast
+armc_visual_generate_messages_nodejs/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/build
+.PHONY : armc_visual_generate_messages_nodejs/fast
 
 # Convenience name for target.
 robot_visual/armc_visual/CMakeFiles/armc_visual_gennodejs.dir/rule:
@@ -361,19 +196,340 @@ armc_visual_gennodejs/fast:
 .PHONY : armc_visual_gennodejs/fast
 
 # Convenience name for target.
-robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/rule:
-	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/rule
-.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/rule
+robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/rule
 
 # Convenience name for target.
-armc_visual_generate_messages_nodejs: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/rule
+armc_visual_genpy: robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/rule
 
-.PHONY : armc_visual_generate_messages_nodejs
+.PHONY : armc_visual_genpy
 
 # fast build rule for target.
-armc_visual_generate_messages_nodejs/fast:
-	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/build
-.PHONY : armc_visual_generate_messages_nodejs/fast
+armc_visual_genpy/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/build
+.PHONY : armc_visual_genpy/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+armc_visual_generate_messages_lisp: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/rule
+
+.PHONY : armc_visual_generate_messages_lisp
+
+# fast build rule for target.
+armc_visual_generate_messages_lisp/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/build
+.PHONY : armc_visual_generate_messages_lisp/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/rule
+
+# Convenience name for target.
+armc_visual_geneus: robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/rule
+
+.PHONY : armc_visual_geneus
+
+# fast build rule for target.
+armc_visual_geneus/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/build
+.PHONY : armc_visual_geneus/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/rule
+
+# Convenience name for target.
+_armc_visual_generate_messages_check_deps_AddTwoInts: robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/rule
+
+.PHONY : _armc_visual_generate_messages_check_deps_AddTwoInts
+
+# fast build rule for target.
+_armc_visual_generate_messages_check_deps_AddTwoInts/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/build.make robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/build
+.PHONY : _armc_visual_generate_messages_check_deps_AddTwoInts/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+armc_visual_generate_messages_cpp: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/rule
+
+.PHONY : armc_visual_generate_messages_cpp
+
+# fast build rule for target.
+armc_visual_generate_messages_cpp/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/build
+.PHONY : armc_visual_generate_messages_cpp/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+armc_visual_generate_messages_eus: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/rule
+
+.PHONY : armc_visual_generate_messages_eus
+
+# fast build rule for target.
+armc_visual_generate_messages_eus/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/build
+.PHONY : armc_visual_generate_messages_eus/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/capture.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/capture.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/capture.dir/rule
+
+# Convenience name for target.
+capture: robot_visual/armc_visual/CMakeFiles/capture.dir/rule
+
+.PHONY : capture
+
+# fast build rule for target.
+capture/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/build
+.PHONY : capture/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_VisualVar.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_VisualVar.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_VisualVar.dir/rule
+
+# Convenience name for target.
+_armc_visual_generate_messages_check_deps_VisualVar: robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_VisualVar.dir/rule
+
+.PHONY : _armc_visual_generate_messages_check_deps_VisualVar
+
+# fast build rule for target.
+_armc_visual_generate_messages_check_deps_VisualVar/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_VisualVar.dir/build.make robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_VisualVar.dir/build
+.PHONY : _armc_visual_generate_messages_check_deps_VisualVar/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/rule
+
+# Convenience name for target.
+visual_server_node: robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/rule
+
+.PHONY : visual_server_node
+
+# fast build rule for target.
+visual_server_node/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/build.make robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/build
+.PHONY : visual_server_node/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/rule
+
+# Convenience name for target.
+armc_visual_generate_messages: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/rule
+
+.PHONY : armc_visual_generate_messages
+
+# fast build rule for target.
+armc_visual_generate_messages/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/build
+.PHONY : armc_visual_generate_messages/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/rule
+
+# Convenience name for target.
+client_demo_node: robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/rule
+
+.PHONY : client_demo_node
+
+# fast build rule for target.
+client_demo_node/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/build.make robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/build
+.PHONY : client_demo_node/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/rule
+
+# Convenience name for target.
+armc_visual_genlisp: robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/rule
+
+.PHONY : armc_visual_genlisp
+
+# fast build rule for target.
+armc_visual_genlisp/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/build
+.PHONY : armc_visual_genlisp/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/rule
+
+# Convenience name for target.
+armc_visual_gencpp: robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/rule
+
+.PHONY : armc_visual_gencpp
+
+# fast build rule for target.
+armc_visual_gencpp/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/build
+.PHONY : armc_visual_gencpp/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/rule
+
+# Convenience name for target.
+armc_visual_generate_messages_py: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/rule
+
+.PHONY : armc_visual_generate_messages_py
+
+# fast build rule for target.
+armc_visual_generate_messages_py/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/build
+.PHONY : armc_visual_generate_messages_py/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/rule
+
+# Convenience name for target.
+server_demo_node: robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/rule
+
+.PHONY : server_demo_node
+
+# fast build rule for target.
+server_demo_node/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/build.make robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/build
+.PHONY : server_demo_node/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/capture_using.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/capture_using.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/capture_using.dir/rule
+
+# Convenience name for target.
+capture_using: robot_visual/armc_visual/CMakeFiles/capture_using.dir/rule
+
+.PHONY : capture_using
+
+# fast build rule for target.
+capture_using/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture_using.dir/build.make robot_visual/armc_visual/CMakeFiles/capture_using.dir/build
+.PHONY : capture_using/fast
+
+# Convenience name for target.
+robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/rule:
+	cd /home/d/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/rule
+.PHONY : robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/rule
+
+# Convenience name for target.
+visual_client_node: robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/rule
+
+.PHONY : visual_client_node
+
+# fast build rule for target.
+visual_client_node/fast:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/build.make robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/build
+.PHONY : visual_client_node/fast
+
+src/IprovedFDCM.o: src/IprovedFDCM.cpp.o
+
+.PHONY : src/IprovedFDCM.o
+
+# target to build an object file
+src/IprovedFDCM.cpp.o:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/IprovedFDCM.cpp.o
+.PHONY : src/IprovedFDCM.cpp.o
+
+src/IprovedFDCM.i: src/IprovedFDCM.cpp.i
+
+.PHONY : src/IprovedFDCM.i
+
+# target to preprocess a source file
+src/IprovedFDCM.cpp.i:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/IprovedFDCM.cpp.i
+.PHONY : src/IprovedFDCM.cpp.i
+
+src/IprovedFDCM.s: src/IprovedFDCM.cpp.s
+
+.PHONY : src/IprovedFDCM.s
+
+# target to generate assembly for a file
+src/IprovedFDCM.cpp.s:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/IprovedFDCM.cpp.s
+.PHONY : src/IprovedFDCM.cpp.s
+
+src/Rect_Detect.o: src/Rect_Detect.cpp.o
+
+.PHONY : src/Rect_Detect.o
+
+# target to build an object file
+src/Rect_Detect.cpp.o:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/Rect_Detect.cpp.o
+.PHONY : src/Rect_Detect.cpp.o
+
+src/Rect_Detect.i: src/Rect_Detect.cpp.i
+
+.PHONY : src/Rect_Detect.i
+
+# target to preprocess a source file
+src/Rect_Detect.cpp.i:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/Rect_Detect.cpp.i
+.PHONY : src/Rect_Detect.cpp.i
+
+src/Rect_Detect.s: src/Rect_Detect.cpp.s
+
+.PHONY : src/Rect_Detect.s
+
+# target to generate assembly for a file
+src/Rect_Detect.cpp.s:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/Rect_Detect.cpp.s
+.PHONY : src/Rect_Detect.cpp.s
+
+src/capture.o: src/capture.cpp.o
+
+.PHONY : src/capture.o
+
+# target to build an object file
+src/capture.cpp.o:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/capture.cpp.o
+.PHONY : src/capture.cpp.o
+
+src/capture.i: src/capture.cpp.i
+
+.PHONY : src/capture.i
+
+# target to preprocess a source file
+src/capture.cpp.i:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/capture.cpp.i
+.PHONY : src/capture.cpp.i
+
+src/capture.s: src/capture.cpp.s
+
+.PHONY : src/capture.s
+
+# target to generate assembly for a file
+src/capture.cpp.s:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/capture.cpp.s
+.PHONY : src/capture.cpp.s
 
 src/client_demo.o: src/client_demo.cpp.o
 
@@ -402,6 +558,87 @@ src/client_demo.cpp.s:
 	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/build.make robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/src/client_demo.cpp.s
 .PHONY : src/client_demo.cpp.s
 
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture_using.dir/build.make robot_visual/armc_visual/CMakeFiles/capture_using.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture_using.dir/build.make robot_visual/armc_visual/CMakeFiles/capture_using.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture_using.dir/build.make robot_visual/armc_visual/CMakeFiles/capture_using.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/print_matrix.o: src/print_matrix.cpp.o
+
+.PHONY : src/print_matrix.o
+
+# target to build an object file
+src/print_matrix.cpp.o:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/print_matrix.cpp.o
+.PHONY : src/print_matrix.cpp.o
+
+src/print_matrix.i: src/print_matrix.cpp.i
+
+.PHONY : src/print_matrix.i
+
+# target to preprocess a source file
+src/print_matrix.cpp.i:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/print_matrix.cpp.i
+.PHONY : src/print_matrix.cpp.i
+
+src/print_matrix.s: src/print_matrix.cpp.s
+
+.PHONY : src/print_matrix.s
+
+# target to generate assembly for a file
+src/print_matrix.cpp.s:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/print_matrix.cpp.s
+.PHONY : src/print_matrix.cpp.s
+
+src/process.o: src/process.cpp.o
+
+.PHONY : src/process.o
+
+# target to build an object file
+src/process.cpp.o:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/process.cpp.o
+.PHONY : src/process.cpp.o
+
+src/process.i: src/process.cpp.i
+
+.PHONY : src/process.i
+
+# target to preprocess a source file
+src/process.cpp.i:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/process.cpp.i
+.PHONY : src/process.cpp.i
+
+src/process.s: src/process.cpp.s
+
+.PHONY : src/process.s
+
+# target to generate assembly for a file
+src/process.cpp.s:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/src/process.cpp.s
+.PHONY : src/process.cpp.s
+
 src/server_demo.o: src/server_demo.cpp.o
 
 .PHONY : src/server_demo.o
@@ -429,39 +666,122 @@ src/server_demo.cpp.s:
 	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/build.make robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/src/server_demo.cpp.s
 .PHONY : src/server_demo.cpp.s
 
+src/visual_client.o: src/visual_client.cpp.o
+
+.PHONY : src/visual_client.o
+
+# target to build an object file
+src/visual_client.cpp.o:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/build.make robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/src/visual_client.cpp.o
+.PHONY : src/visual_client.cpp.o
+
+src/visual_client.i: src/visual_client.cpp.i
+
+.PHONY : src/visual_client.i
+
+# target to preprocess a source file
+src/visual_client.cpp.i:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/build.make robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/src/visual_client.cpp.i
+.PHONY : src/visual_client.cpp.i
+
+src/visual_client.s: src/visual_client.cpp.s
+
+.PHONY : src/visual_client.s
+
+# target to generate assembly for a file
+src/visual_client.cpp.s:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/build.make robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/src/visual_client.cpp.s
+.PHONY : src/visual_client.cpp.s
+
+src/visual_server.o: src/visual_server.cpp.o
+
+.PHONY : src/visual_server.o
+
+# target to build an object file
+src/visual_server.cpp.o:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/build.make robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/src/visual_server.cpp.o
+.PHONY : src/visual_server.cpp.o
+
+src/visual_server.i: src/visual_server.cpp.i
+
+.PHONY : src/visual_server.i
+
+# target to preprocess a source file
+src/visual_server.cpp.i:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/build.make robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/src/visual_server.cpp.i
+.PHONY : src/visual_server.cpp.i
+
+src/visual_server.s: src/visual_server.cpp.s
+
+.PHONY : src/visual_server.s
+
+# target to generate assembly for a file
+src/visual_server.cpp.s:
+	cd /home/d/catkin_ws/build && $(MAKE) -f robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/build.make robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/src/visual_server.cpp.s
+.PHONY : src/visual_server.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... test"
-	@echo "... edit_cache"
-	@echo "... install/local"
 	@echo "... list_install_components"
-	@echo "... install/strip"
 	@echo "... rebuild_cache"
-	@echo "... server_demo_node"
-	@echo "... armc_visual_generate_messages_eus"
-	@echo "... armc_visual_gencpp"
-	@echo "... install"
-	@echo "... client_demo_node"
-	@echo "... armc_visual_generate_messages"
-	@echo "... armc_visual_generate_messages_py"
-	@echo "... armc_visual_generate_messages_cpp"
-	@echo "... _armc_visual_generate_messages_check_deps_AddTwoInts"
-	@echo "... armc_visual_geneus"
-	@echo "... armc_visual_generate_messages_lisp"
-	@echo "... armc_visual_genlisp"
-	@echo "... armc_visual_genpy"
-	@echo "... armc_visual_gennodejs"
 	@echo "... armc_visual_generate_messages_nodejs"
+	@echo "... armc_visual_gennodejs"
+	@echo "... armc_visual_genpy"
+	@echo "... armc_visual_generate_messages_lisp"
+	@echo "... armc_visual_geneus"
+	@echo "... _armc_visual_generate_messages_check_deps_AddTwoInts"
+	@echo "... armc_visual_generate_messages_cpp"
+	@echo "... install"
+	@echo "... armc_visual_generate_messages_eus"
+	@echo "... capture"
+	@echo "... _armc_visual_generate_messages_check_deps_VisualVar"
+	@echo "... visual_server_node"
+	@echo "... armc_visual_generate_messages"
+	@echo "... client_demo_node"
+	@echo "... armc_visual_genlisp"
+	@echo "... armc_visual_gencpp"
+	@echo "... armc_visual_generate_messages_py"
+	@echo "... install/strip"
+	@echo "... server_demo_node"
+	@echo "... capture_using"
+	@echo "... visual_client_node"
+	@echo "... test"
+	@echo "... install/local"
+	@echo "... edit_cache"
+	@echo "... src/IprovedFDCM.o"
+	@echo "... src/IprovedFDCM.i"
+	@echo "... src/IprovedFDCM.s"
+	@echo "... src/Rect_Detect.o"
+	@echo "... src/Rect_Detect.i"
+	@echo "... src/Rect_Detect.s"
+	@echo "... src/capture.o"
+	@echo "... src/capture.i"
+	@echo "... src/capture.s"
 	@echo "... src/client_demo.o"
 	@echo "... src/client_demo.i"
 	@echo "... src/client_demo.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/print_matrix.o"
+	@echo "... src/print_matrix.i"
+	@echo "... src/print_matrix.s"
+	@echo "... src/process.o"
+	@echo "... src/process.i"
+	@echo "... src/process.s"
 	@echo "... src/server_demo.o"
 	@echo "... src/server_demo.i"
 	@echo "... src/server_demo.s"
+	@echo "... src/visual_client.o"
+	@echo "... src/visual_client.i"
+	@echo "... src/visual_client.s"
+	@echo "... src/visual_server.o"
+	@echo "... src/visual_server.i"
+	@echo "... src/visual_server.s"
 .PHONY : help
 
 

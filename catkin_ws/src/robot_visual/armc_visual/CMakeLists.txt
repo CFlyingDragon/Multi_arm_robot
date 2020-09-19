@@ -16,6 +16,8 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+set( OpenCV_DIR  "/opt/ros/kinetic/include/opencv-3.3.1-dev" )
+find_package( OpenCV 3.3.1 REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -58,7 +60,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_service_files(
   FILES
   AddTwoInts.srv
-  #Service2.srv
+  VisualVar.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -107,9 +109,10 @@ generate_messages(
   LIBRARIES armc_visual
   CATKIN_DEPENDS roscpp rospy std_msgs
   DEPENDS system_lib
-#  CATKIN_DEPENS message_runtime
+  CATKIN_DEPENS message_runtime
  )
-
+# eigen
+set(EIGEN3_INCLUDE_DIR  /usr/include/eigen3)
 ###########
 ## Build ##
 ###########
@@ -119,23 +122,38 @@ generate_messages(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
+  /usr/include/flycapture
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/armc_visual.cpp
 # )
+#add_library(menbashou
+#src/menbashou_pose.cpp src/menbashou_pose.h src/print_matrix.cpp src/print_matrix.h src/process.cpp src/process.h)
+#add_library(lock
+#src/lock_pose.cpp src/lock_pose.h src/IprovedFDCM.cpp src/IprovedFDCM.h src/Rect_Detect.cpp src/Rect_Detect.h)
+add_library(capture
+src/capture.cpp
+src/print_matrix.cpp  src/process.cpp
+src/IprovedFDCM.cpp  src/Rect_Detect.cpp )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-#add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+#add_dependencies(capture ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
+add_executable(capture_using src/main.cpp)
 add_executable(server_demo_node src/server_demo.cpp)
 add_executable(client_demo_node src/client_demo.cpp)
+
+add_executable(visual_server_node src/visual_server.cpp)
+add_executable(visual_client_node src/visual_client.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -145,11 +163,32 @@ add_executable(client_demo_node src/client_demo.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-#add_dependencies(client_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(capture_using ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(server_demo_node ${catkin_LIBRARIES})
+target_link_libraries(capture_using
+    ${OpenCV_LIBS}
+    ${catkin_LIBRARIES}
+    /usr/lib/libflycapture.so
+    capture)
+TARGET_LINK_LIBRARIES(capture_using ${OpenCV_LIBS} /usr/lib/libflycapture.so)
+#target_link_libraries(capture_using menbashou ${catkin_LIBRARIES} /usr/lib/libflycapture.so)
+#target_link_libraries(capture_using lock ${catkin_LIBRARIES} /usr/lib/libflycapture.so)
+#target_link_libraries(capture_using capture ${catkin_LIBRARIES} /usr/lib/libflycapture.so)
+#target_link_libraries(capture_using menbashou)
+#target_link_libraries(capture_using lock)
+#target_link_libraries(capture_using capture)
+
+target_link_libraries(server_demo_node ${catkin_LIBRARIES} )
 target_link_libraries(client_demo_node ${catkin_LIBRARIES})
+
+target_link_libraries(visual_server_node
+    ${OpenCV_LIBS}
+    ${catkin_LIBRARIES}
+    /usr/lib/libflycapture.so
+    capture)
+TARGET_LINK_LIBRARIES(visual_server_node ${OpenCV_LIBS} /usr/lib/libflycapture.so)
+target_link_libraries(visual_client_node ${catkin_LIBRARIES})
 
 #############
 ## Install ##

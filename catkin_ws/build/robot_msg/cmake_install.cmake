@@ -37,7 +37,10 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_msg/srv" TYPE FILE FILES "/home/d/catkin_ws/src/robot_msg/srv/SetArmcConfigure.srv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_msg/srv" TYPE FILE FILES
+    "/home/d/catkin_ws/src/robot_msg/srv/SetArmcConfigure.srv"
+    "/home/d/catkin_ws/src/robot_msg/srv/VisualVar.srv"
+    )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")

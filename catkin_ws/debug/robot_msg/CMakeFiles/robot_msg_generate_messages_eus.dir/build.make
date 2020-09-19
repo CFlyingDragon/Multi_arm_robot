@@ -55,6 +55,7 @@ include robot_msg/CMakeFiles/robot_msg_generate_messages_eus.dir/progress.make
 
 robot_msg/CMakeFiles/robot_msg_generate_messages_eus: devel/share/roseus/ros/robot_msg/msg/IpPos.l
 robot_msg/CMakeFiles/robot_msg_generate_messages_eus: devel/share/roseus/ros/robot_msg/srv/SetArmcConfigure.l
+robot_msg/CMakeFiles/robot_msg_generate_messages_eus: devel/share/roseus/ros/robot_msg/srv/VisualVar.l
 robot_msg/CMakeFiles/robot_msg_generate_messages_eus: devel/share/roseus/ros/robot_msg/manifest.l
 
 
@@ -68,13 +69,19 @@ devel/share/roseus/ros/robot_msg/srv/SetArmcConfigure.l: /home/d/catkin_ws/src/r
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from robot_msg/SetArmcConfigure.srv"
 	cd /home/d/catkin_ws/debug/robot_msg && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/d/catkin_ws/src/robot_msg/srv/SetArmcConfigure.srv -Irobot_msg:/home/d/catkin_ws/src/robot_msg/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p robot_msg -o /home/d/catkin_ws/debug/devel/share/roseus/ros/robot_msg/srv
 
+devel/share/roseus/ros/robot_msg/srv/VisualVar.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+devel/share/roseus/ros/robot_msg/srv/VisualVar.l: /home/d/catkin_ws/src/robot_msg/srv/VisualVar.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from robot_msg/VisualVar.srv"
+	cd /home/d/catkin_ws/debug/robot_msg && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/d/catkin_ws/src/robot_msg/srv/VisualVar.srv -Irobot_msg:/home/d/catkin_ws/src/robot_msg/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p robot_msg -o /home/d/catkin_ws/debug/devel/share/roseus/ros/robot_msg/srv
+
 devel/share/roseus/ros/robot_msg/manifest.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp manifest code for robot_msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp manifest code for robot_msg"
 	cd /home/d/catkin_ws/debug/robot_msg && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/d/catkin_ws/debug/devel/share/roseus/ros/robot_msg robot_msg std_msgs
 
 robot_msg_generate_messages_eus: robot_msg/CMakeFiles/robot_msg_generate_messages_eus
 robot_msg_generate_messages_eus: devel/share/roseus/ros/robot_msg/msg/IpPos.l
 robot_msg_generate_messages_eus: devel/share/roseus/ros/robot_msg/srv/SetArmcConfigure.l
+robot_msg_generate_messages_eus: devel/share/roseus/ros/robot_msg/srv/VisualVar.l
 robot_msg_generate_messages_eus: devel/share/roseus/ros/robot_msg/manifest.l
 robot_msg_generate_messages_eus: robot_msg/CMakeFiles/robot_msg_generate_messages_eus.dir/build.make
 

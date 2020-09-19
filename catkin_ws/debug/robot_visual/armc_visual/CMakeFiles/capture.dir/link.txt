@@ -1,0 +1,1 @@
+/usr/bin/g++  -fPIC -g  -shared -Wl,-soname,libcapture.so -o ../../devel/lib/libcapture.so CMakeFiles/capture.dir/src/capture.cpp.o CMakeFiles/capture.dir/src/print_matrix.cpp.o CMakeFiles/capture.dir/src/process.cpp.o CMakeFiles/capture.dir/src/IprovedFDCM.cpp.o CMakeFiles/capture.dir/src/Rect_Detect.cpp.o 

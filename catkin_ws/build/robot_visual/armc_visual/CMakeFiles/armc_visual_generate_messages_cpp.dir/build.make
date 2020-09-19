@@ -53,18 +53,6 @@ CMAKE_BINARY_DIR = /home/d/catkin_ws/build
 # Include the progress variables for this target.
 include robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/progress.make
 
-robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp: /home/d/catkin_ws/devel/include/armc_visual/AddTwoInts.h
-
-
-/home/d/catkin_ws/devel/include/armc_visual/AddTwoInts.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
-/home/d/catkin_ws/devel/include/armc_visual/AddTwoInts.h: /home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv
-/home/d/catkin_ws/devel/include/armc_visual/AddTwoInts.h: /opt/ros/kinetic/share/gencpp/msg.h.template
-/home/d/catkin_ws/devel/include/armc_visual/AddTwoInts.h: /opt/ros/kinetic/share/gencpp/srv.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from armc_visual/AddTwoInts.srv"
-	cd /home/d/catkin_ws/src/robot_visual/armc_visual && /home/d/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p armc_visual -o /home/d/catkin_ws/devel/include/armc_visual -e /opt/ros/kinetic/share/gencpp/cmake/..
-
-armc_visual_generate_messages_cpp: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp
-armc_visual_generate_messages_cpp: /home/d/catkin_ws/devel/include/armc_visual/AddTwoInts.h
 armc_visual_generate_messages_cpp: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/build.make
 
 .PHONY : armc_visual_generate_messages_cpp

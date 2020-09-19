@@ -1,0 +1,1 @@
+/usr/bin/g++  -fPIC -g  -shared -Wl,-soname,liblock.so -o ../../devel/lib/liblock.so CMakeFiles/lock.dir/src/lock_pose.cpp.o CMakeFiles/lock.dir/src/IprovedFDCM.cpp.o CMakeFiles/lock.dir/src/Rect_Detect.cpp.o 

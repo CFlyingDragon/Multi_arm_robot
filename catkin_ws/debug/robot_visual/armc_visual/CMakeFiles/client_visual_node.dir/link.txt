@@ -1,0 +1,1 @@
+/usr/bin/g++   -g   CMakeFiles/client_visual_node.dir/src/visual_client.cpp.o  -o ../../devel/lib/armc_visual/client_visual_node -rdynamic 

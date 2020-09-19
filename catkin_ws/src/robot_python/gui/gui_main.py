@@ -1959,17 +1959,22 @@ class ArmcWindow3(QMainWindow, Ui_ArmcForm3):
             self.sub_pos_path = "/armc/joint_states"
             self.pub_path = "/armc/joint_positions_controller/command"
 
+    #调用视觉检测
+    def visual_check(self):
+        #读取检测目标种类
+        pass
+    
     # 计算初始位置
     def calculation_init_point_xx(self):
         # 初始关节角
         qq = np.zeros(7)
-        qq[0] = self.lineEdit_q1.text()
-        qq[1] = self.lineEdit_q2.text()
-        qq[2] = self.lineEdit_q3.text()
-        qq[3] = self.lineEdit_q4.text()
-        qq[4] = self.lineEdit_q5.text()
-        qq[5] = self.lineEdit_q6.text()
-        qq[6] = self.lineEdit_q7.text()
+        qq[0] = self.lineEdit_qq1.text()
+        qq[1] = self.lineEdit_qq2.text()
+        qq[2] = self.lineEdit_qq3.text()
+        qq[3] = self.lineEdit_qq4.text()
+        qq[4] = self.lineEdit_qq5.text()
+        qq[5] = self.lineEdit_qq6.text()
+        qq[6] = self.lineEdit_qq7.text()
 
         # 转换单位
         qq = qq * np.pi / 180.0
@@ -1983,13 +1988,13 @@ class ArmcWindow3(QMainWindow, Ui_ArmcForm3):
         xx[3:] = xx_b[3:] * 180.0 / np.pi  # 转换为mm显示
 
         # 显示到界面
-        self.lineEdit_x1.setText(str(round(xx[0], 4)))
-        self.lineEdit_x2.setText(str(round(xx[1], 4)))
-        self.lineEdit_x3.setText(str(round(xx[2], 4)))
-        self.lineEdit_x4.setText(str(round(xx[3], 4)))
-        self.lineEdit_x5.setText(str(round(xx[4], 4)))
-        self.lineEdit_x6.setText(str(round(xx[5], 4)))
-        self.lineEdit_x7.setText(str(round(xx[6], 4)))
+        self.lineEdit_xx1.setText(str(round(xx[0], 4)))
+        self.lineEdit_xx2.setText(str(round(xx[1], 4)))
+        self.lineEdit_xx3.setText(str(round(xx[2], 4)))
+        self.lineEdit_xx4.setText(str(round(xx[3], 4)))
+        self.lineEdit_xx5.setText(str(round(xx[4], 4)))
+        self.lineEdit_xx6.setText(str(round(xx[5], 4)))
+        self.lineEdit_xx7.setText(str(round(xx[6], 4)))
         msg = "初始末端位置\n" + \
               "x1:" + str(xx[0]) + "\n" + "x2:" + str(xx[1]) + \
               "\n" + "x3:" + str(xx[2]) + "\n" + "x4:" + str(xx[3]) + \
@@ -2000,13 +2005,13 @@ class ArmcWindow3(QMainWindow, Ui_ArmcForm3):
     def read_qq(self):
         # 初始关节角
         qq = np.zeros(7)
-        qq[0] = self.lineEdit_q1.text()
-        qq[1] = self.lineEdit_q2.text()
-        qq[2] = self.lineEdit_q3.text()
-        qq[3] = self.lineEdit_q4.text()
-        qq[4] = self.lineEdit_q5.text()
-        qq[5] = self.lineEdit_q6.text()
-        qq[6] = self.lineEdit_q7.text()
+        qq[0] = self.lineEdit_qq1.text()
+        qq[1] = self.lineEdit_qq2.text()
+        qq[2] = self.lineEdit_qq3.text()
+        qq[3] = self.lineEdit_qq4.text()
+        qq[4] = self.lineEdit_qq5.text()
+        qq[5] = self.lineEdit_qq6.text()
+        qq[6] = self.lineEdit_qq7.text()
 
         # 转换单位
         qq1 = qq * np.pi / 180.0
@@ -2019,47 +2024,6 @@ class ArmcWindow3(QMainWindow, Ui_ArmcForm3):
               "q7:" + str(qq[6]) + "\n"
         self.textEdit.setText(msg)
 
-        self.read_flag = True
-
-    # 读取所有初始参数
-    def read_paramter(self):
-        # 初始关节角
-        qq = np.zeros(7)
-        qq[0] = self.lineEdit_q1.text()
-        qq[1] = self.lineEdit_q2.text()
-        qq[2] = self.lineEdit_q3.text()
-        qq[3] = self.lineEdit_q4.text()
-        qq[4] = self.lineEdit_q5.text()
-        qq[5] = self.lineEdit_q6.text()
-        qq[6] = self.lineEdit_q7.text()
-
-        # 读取期望末端位置
-        xx = np.zeros(6)
-        xx[0] = self.lineEdit_x1.text()
-        xx[1] = self.lineEdit_x2.text()
-        xx[2] = self.lineEdit_x3.text()
-        xx[3] = self.lineEdit_x4.text()
-        xx[4] = self.lineEdit_x5.text()
-        xx[5] = self.lineEdit_x6.text()
-        # 改变为输入单位
-        x_d = np.copy(xx)
-        x_d[0:3] = xx[0:3] / 1000.0
-
-        msg_joint = "初始关节角\n" + \
-                    "qq:" + "[" + str(qq[0]) + "," + str(qq[1]) + "," + \
-                    str(qq[2]) + "," + str(qq[3]) + "," + str(qq[4]) + \
-                    "," + str(qq[5]) + "," + str(qq[6]) + "]" + "\n"
-
-        msg_pos = "期望末端位置\n" + \
-                  "Xd:" + "[" + str(xx[0]) + "," + str(xx[1]) + "," + \
-                  str(xx[2]) + "," + str(xx[3]) + "," + str(xx[4]) + \
-                  "," + str(xx[5]) + "]" + "\n"
-
-        msg = msg_joint + msg_pos
-        self.textEdit.setText(msg)
-        # 转化为输入单位，并保存到全局变量
-        self.qq_init = np.copy(qq * np.pi / 180.0)
-        self.xx_d = np.copy(x_d)
         self.read_flag = True
 
     ##关节角订阅回调函数

@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/armc_visual_generate_messages_eus"
+  "/home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/VisualVar.l"
   "/home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/AddTwoInts.l"
   "/home/d/catkin_ws/devel/share/roseus/ros/armc_visual/manifest.l"
 )

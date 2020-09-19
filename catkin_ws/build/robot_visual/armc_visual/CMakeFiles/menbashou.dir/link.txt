@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC   -shared -Wl,-soname,libmenbashou.so -o /home/d/catkin_ws/devel/lib/libmenbashou.so CMakeFiles/menbashou.dir/src/menbashou_pose.cpp.o CMakeFiles/menbashou.dir/src/print_matrix.cpp.o CMakeFiles/menbashou.dir/src/process.cpp.o 

@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/armc_visual_generate_messages_py"
+  "/home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_VisualVar.py"
   "/home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_AddTwoInts.py"
   "/home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/__init__.py"
 )

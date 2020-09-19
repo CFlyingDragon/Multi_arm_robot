@@ -4,6 +4,7 @@ adbc0a3dc2a2f36a25bcd7717b02672c devel/include/action_test/action_msg1.h
 a8b8807c61b78a09219f05369bbc9582 devel/include/action_test/action_srv1.h
 5170c6f2f8b37672eb88fe9118e586d0 devel/include/robot_msg/IpPos.h
 2d12ee713e2f91db3a7f40de38c6aeed devel/include/robot_msg/SetArmcConfigure.h
+c561415aaad4a76483f975ead8724a39 devel/include/robot_msg/VisualVar.h
 a97291be85158a793424dcc482bb09dc devel/include/robot_python/Frame.h
 f0c83542df0060f3eeb9be00da21b738 devel/include/robot_python/IpPos.h
 57bd121508160f07261217e1e7cc2417 devel/include/testcan/Frame.h
@@ -25,10 +26,12 @@ a096d02c13f14cd62b579a9e7aa07806 devel/lib/python2.7/dist-packages/action_test/m
 9307c8e52d7f6ca27004aef8be9c92df devel/lib/python2.7/dist-packages/armc_controller/srv/_SetArmcConfigure.py
 712b54c2f5cda4d0b546e4ddb4ece1c2 devel/lib/python2.7/dist-packages/armc_controller/srv/__init__.py
 2b70cb5af114c02a28f72d1527f5be7f devel/lib/python2.7/dist-packages/armc_visual/srv/_AddTwoInts.py
+4fb1f86db65b9fa2b418f2c4625dbe9c devel/lib/python2.7/dist-packages/armc_visual/srv/_VisualVar.py
 0ff8f9a7ba2dabdb5fa575617fc4bb50 devel/lib/python2.7/dist-packages/armc_visual/srv/__init__.py
 bb94c7123858c1cf7b58190089bd4507 devel/lib/python2.7/dist-packages/robot_msg/msg/_IpPos.py
 24838bdcea19e13ac26f52bf3212b3c9 devel/lib/python2.7/dist-packages/robot_msg/msg/__init__.py
 a59b9337d21d3163b3b89f532f22d89b devel/lib/python2.7/dist-packages/robot_msg/srv/_SetArmcConfigure.py
+ec193ed59bbaa8db990ae2f6f13e06d6 devel/lib/python2.7/dist-packages/robot_msg/srv/_VisualVar.py
 0c6f820614c1ea64f4aea3d453acb030 devel/lib/python2.7/dist-packages/robot_msg/srv/__init__.py
 63073dcf6320d9161961c5f95a40259b devel/lib/python2.7/dist-packages/robot_python/msg/_Frame.py
 55c3f574f921aa06083de68999320147 devel/lib/python2.7/dist-packages/robot_python/msg/_IpPos.py
@@ -51,8 +54,10 @@ af22b0d6e959878cd61f301e8a608d60 devel/lib/python2.7/dist-packages/ur_msgs/srv/_
 fd38e3936d46b43d56ff40b5e2b09c49 devel/share/common-lisp/ros/action_test/srv/action_srv1.lisp
 ab77928a0cbba1a682b66b9ded5d8468 devel/share/common-lisp/ros/armc_controller/srv/SetArmcConfigure.lisp
 ac01bdf44475fa160286ec4c06a2d757 devel/share/common-lisp/ros/armc_visual/srv/AddTwoInts.lisp
+f028de39dd6a06ce55bf1d4a2e49d14e devel/share/common-lisp/ros/armc_visual/srv/VisualVar.lisp
 ca799d2bc8e9876b6e5667e327ab23c6 devel/share/common-lisp/ros/robot_msg/msg/IpPos.lisp
 e8506f2a079f3b3a64ea46ba4fd9ce44 devel/share/common-lisp/ros/robot_msg/srv/SetArmcConfigure.lisp
+5046545c357b32d6f01b60a6cac8d5e6 devel/share/common-lisp/ros/robot_msg/srv/VisualVar.lisp
 eb2b8b022fddbd08e838913ea355a625 devel/share/common-lisp/ros/robot_python/msg/Frame.lisp
 40305f01c609cb1e131533abedac3416 devel/share/common-lisp/ros/robot_python/msg/IpPos.lisp
 c28457052bc02115d7405db1b93ce543 devel/share/common-lisp/ros/testcan/msg/Frame.lisp
@@ -70,8 +75,10 @@ dd15918861f8efebab49deba2b6779c4 devel/share/common-lisp/ros/ur_msgs/srv/SetIO.l
 13646d46b6c1cc6545a3d4d5f4dfe108 devel/share/gennodejs/ros/action_test/srv/action_srv1.js
 06645ab96ed3084bbad0e24e1d624068 devel/share/gennodejs/ros/armc_controller/srv/SetArmcConfigure.js
 98efadcdd1fc374050719379c95e3c37 devel/share/gennodejs/ros/armc_visual/srv/AddTwoInts.js
+cdbb1f549032f5dca77a343bbd872746 devel/share/gennodejs/ros/armc_visual/srv/VisualVar.js
 e6e764c94596278f542a0559af2d1594 devel/share/gennodejs/ros/robot_msg/msg/IpPos.js
 3166108c22f00a4e9899710e9d49f479 devel/share/gennodejs/ros/robot_msg/srv/SetArmcConfigure.js
+d47f52964d5bc38a777d9fdfe26d9248 devel/share/gennodejs/ros/robot_msg/srv/VisualVar.js
 78299043632d5c27e7aa190ec6f7e9a1 devel/share/gennodejs/ros/robot_python/msg/Frame.js
 23fb0e383142bb73cbc2336292c4b81f devel/share/gennodejs/ros/robot_python/msg/IpPos.js
 280ffceba72ab50e76fccc1e30f1da3e devel/share/gennodejs/ros/testcan/msg/Frame.js
@@ -92,9 +99,11 @@ c781b5bf03b47b93c57b2b62ba90dc58 devel/share/roseus/ros/action_test/srv/action_s
 39793309e02f09301f95527e584e1e76 devel/share/roseus/ros/armc_controller/srv/SetArmcConfigure.l
 6a484cff4b657340bd926d644ebb3d86 devel/share/roseus/ros/armc_visual/manifest.l
 3fedc183b0f21abe77bae497beecdf9b devel/share/roseus/ros/armc_visual/srv/AddTwoInts.l
+074705fe0247dd9764e72cba5029cdae devel/share/roseus/ros/armc_visual/srv/VisualVar.l
 1cfb2406d50980b0c7546495e469588a devel/share/roseus/ros/robot_msg/manifest.l
 b727a956370c7b200d844655e8f8e2d7 devel/share/roseus/ros/robot_msg/msg/IpPos.l
 56c72373ea31b72c9069bdf85cb22230 devel/share/roseus/ros/robot_msg/srv/SetArmcConfigure.l
+7561baa2904602ec50c53aeafafa7a17 devel/share/roseus/ros/robot_msg/srv/VisualVar.l
 826c2eafbb53d6c3581833c4543f8452 devel/share/roseus/ros/robot_python/manifest.l
 fe4ec164fe87fc835132f7f240b2f48a devel/share/roseus/ros/robot_python/msg/Frame.l
 8b67527b46ac906154091483943c3ff7 devel/share/roseus/ros/robot_python/msg/IpPos.l
@@ -131,6 +140,7 @@ f1141465537379e8277b27f432758b38 robot_driver/ros_ethercat-master/rqt_ethercat_t
 08c493190b85718c79fb475916e8e5f5 robot_gazebo/ur_gazebo/CMakeFiles/run_tests_ur_gazebo_roslaunch-check_tests_roslaunch_test.xml
 cf3db74bb8cf044b1a31d5537b355c2a robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_IpPos
 8bfaf2ee06fc3f97e1e1cc3ad581d8b4 robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_SetArmcConfigure
+c8a73b5c6f42d3423ec7083d65574616 robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_VisualVar
 84d9cb59fed062e6945d3e6bddf4148c robot_msg/CMakeFiles/robot_msg_generate_messages_cpp
 84d9cb59fed062e6945d3e6bddf4148c robot_msg/CMakeFiles/robot_msg_generate_messages_eus
 84d9cb59fed062e6945d3e6bddf4148c robot_msg/CMakeFiles/robot_msg_generate_messages_lisp
@@ -144,6 +154,7 @@ f5c6f6a1e697150176a966bc81291053 robot_python/CMakeFiles/_robot_python_generate_
 41b443f71dc8af2d953dfc4b21048da0 robot_python/CMakeFiles/robot_python_generate_messages_nodejs
 41b443f71dc8af2d953dfc4b21048da0 robot_python/CMakeFiles/robot_python_generate_messages_py
 92de5d6d9fc26585cb7035e91fb050da robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts
+c252ab2861791ddbb54ea83165d2d5c3 robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_VisualVar
 127d27d447bda8f8fb6fe13e077591a0 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus
 127d27d447bda8f8fb6fe13e077591a0 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp
 127d27d447bda8f8fb6fe13e077591a0 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs

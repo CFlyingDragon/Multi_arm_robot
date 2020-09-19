@@ -55,6 +55,7 @@ include robot_msg/CMakeFiles/robot_msg_generate_messages_nodejs.dir/progress.mak
 
 robot_msg/CMakeFiles/robot_msg_generate_messages_nodejs: devel/share/gennodejs/ros/robot_msg/msg/IpPos.js
 robot_msg/CMakeFiles/robot_msg_generate_messages_nodejs: devel/share/gennodejs/ros/robot_msg/srv/SetArmcConfigure.js
+robot_msg/CMakeFiles/robot_msg_generate_messages_nodejs: devel/share/gennodejs/ros/robot_msg/srv/VisualVar.js
 
 
 devel/share/gennodejs/ros/robot_msg/msg/IpPos.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
@@ -67,9 +68,15 @@ devel/share/gennodejs/ros/robot_msg/srv/SetArmcConfigure.js: /home/d/catkin_ws/s
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from robot_msg/SetArmcConfigure.srv"
 	cd /home/d/catkin_ws/debug/robot_msg && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/d/catkin_ws/src/robot_msg/srv/SetArmcConfigure.srv -Irobot_msg:/home/d/catkin_ws/src/robot_msg/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p robot_msg -o /home/d/catkin_ws/debug/devel/share/gennodejs/ros/robot_msg/srv
 
+devel/share/gennodejs/ros/robot_msg/srv/VisualVar.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+devel/share/gennodejs/ros/robot_msg/srv/VisualVar.js: /home/d/catkin_ws/src/robot_msg/srv/VisualVar.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Javascript code from robot_msg/VisualVar.srv"
+	cd /home/d/catkin_ws/debug/robot_msg && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/d/catkin_ws/src/robot_msg/srv/VisualVar.srv -Irobot_msg:/home/d/catkin_ws/src/robot_msg/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p robot_msg -o /home/d/catkin_ws/debug/devel/share/gennodejs/ros/robot_msg/srv
+
 robot_msg_generate_messages_nodejs: robot_msg/CMakeFiles/robot_msg_generate_messages_nodejs
 robot_msg_generate_messages_nodejs: devel/share/gennodejs/ros/robot_msg/msg/IpPos.js
 robot_msg_generate_messages_nodejs: devel/share/gennodejs/ros/robot_msg/srv/SetArmcConfigure.js
+robot_msg_generate_messages_nodejs: devel/share/gennodejs/ros/robot_msg/srv/VisualVar.js
 robot_msg_generate_messages_nodejs: robot_msg/CMakeFiles/robot_msg_generate_messages_nodejs.dir/build.make
 
 .PHONY : robot_msg_generate_messages_nodejs

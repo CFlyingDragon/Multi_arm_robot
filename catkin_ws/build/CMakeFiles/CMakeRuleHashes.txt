@@ -1,8 +1,10 @@
 # Hashes of file build rules.
 e948e1a6fd160546ea39e28adcaffced /home/d/catkin_ws/devel/include/armc_controller/SetArmcConfigure.h
 023f3f9fa544c0146bae873abf8b2308 /home/d/catkin_ws/devel/include/armc_visual/AddTwoInts.h
+9dc0a50e9857e8dea7f947929a945431 /home/d/catkin_ws/devel/include/armc_visual/VisualVar.h
 0eb0dfb56dc8f6c018acdcab473b3431 /home/d/catkin_ws/devel/include/robot_msg/IpPos.h
 f100cdc90d4d92861a3f1d2ecad8567b /home/d/catkin_ws/devel/include/robot_msg/SetArmcConfigure.h
+aef40ade41509cd9e84a60aa9aaf54a5 /home/d/catkin_ws/devel/include/robot_msg/VisualVar.h
 bfb1be392a16cfa0c0f24841c4725eb7 /home/d/catkin_ws/devel/include/robot_python/Frame.h
 000417e9e7ad3902cb8a50ce5a12e8da /home/d/catkin_ws/devel/include/robot_python/IpPos.h
 49ff1e99be7cc8f2aec0a1713eab88d5 /home/d/catkin_ws/devel/include/testcan/Frame.h
@@ -20,10 +22,12 @@ c6a2a499306e9ef1d3ffa8586d24ad1e /home/d/catkin_ws/devel/include/ur_msgs/RobotMo
 2f878136a05082e606c2e666a01a0daa /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_controller/srv/_SetArmcConfigure.py
 3203e72bbbfe2d8908eb90f4160a9e47 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_controller/srv/__init__.py
 8e7938eabf535b23f575fcd08d2cd542 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_AddTwoInts.py
+9124857fe7eba0852dac5b838e1d0242 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_VisualVar.py
 67f3a961d7cb2d5e5a15ffb3ef1a0a67 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/__init__.py
 c9fd8b8cabf983a3de4709910fc0ee08 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/robot_msg/msg/_IpPos.py
 cc7ad0fb552cecd2b6dc41a6e12bd533 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/robot_msg/msg/__init__.py
 829d8683290f74efe57d5b38fe37be28 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/robot_msg/srv/_SetArmcConfigure.py
+7f52432ea25c305accdf595d8b9923c9 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/robot_msg/srv/_VisualVar.py
 a63e8355d3bfa2f8a2fc32df459ec52a /home/d/catkin_ws/devel/lib/python2.7/dist-packages/robot_msg/srv/__init__.py
 8b6b22f306b17c763ffbde32d9c3b529 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/robot_python/msg/_Frame.py
 5449861fbb632ecbc38da2ddad3adcf8 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/robot_python/msg/_IpPos.py
@@ -44,8 +48,10 @@ ac2d7a380de6fafb7d6efd71b753e21b /home/d/catkin_ws/devel/lib/python2.7/dist-pack
 996315e764401299f958f22e4d524841 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/ur_msgs/srv/__init__.py
 e3ec9a763d3c6b9fa130c2b45cadf437 /home/d/catkin_ws/devel/share/common-lisp/ros/armc_controller/srv/SetArmcConfigure.lisp
 f9f90c1ec328d3edf1533d493a4a3c51 /home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv/AddTwoInts.lisp
+f11657a982d270538e3250a4120f3fad /home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv/VisualVar.lisp
 753ff138eacec15ca20683c1e2d0f116 /home/d/catkin_ws/devel/share/common-lisp/ros/robot_msg/msg/IpPos.lisp
 d21469cbb3f47ccb20bb4946b5d34af7 /home/d/catkin_ws/devel/share/common-lisp/ros/robot_msg/srv/SetArmcConfigure.lisp
+fb4b605a47cfdfe0b98e434d9de427a7 /home/d/catkin_ws/devel/share/common-lisp/ros/robot_msg/srv/VisualVar.lisp
 d8ed525d8b6478968ef5268dad67c117 /home/d/catkin_ws/devel/share/common-lisp/ros/robot_python/msg/Frame.lisp
 fbde7705801bab434588b28dfa1390b9 /home/d/catkin_ws/devel/share/common-lisp/ros/robot_python/msg/IpPos.lisp
 2bfe43faf0db0535c35d84cacdc04bbe /home/d/catkin_ws/devel/share/common-lisp/ros/testcan/msg/Frame.lisp
@@ -61,8 +67,10 @@ e8259c86db89bc41f89510afc70101ed /home/d/catkin_ws/devel/share/common-lisp/ros/u
 fa659e2fd519c27fa8f7273e8b27afa0 /home/d/catkin_ws/devel/share/common-lisp/ros/ur_msgs/srv/SetPayload.lisp
 a248006d665478702b775d31fbf9e8a1 /home/d/catkin_ws/devel/share/gennodejs/ros/armc_controller/srv/SetArmcConfigure.js
 846aa68162712a37125328857266acdf /home/d/catkin_ws/devel/share/gennodejs/ros/armc_visual/srv/AddTwoInts.js
+06025369a600b7fa242adba51fb98021 /home/d/catkin_ws/devel/share/gennodejs/ros/armc_visual/srv/VisualVar.js
 b269fa0de2975e6a1b2055dc8ea6c582 /home/d/catkin_ws/devel/share/gennodejs/ros/robot_msg/msg/IpPos.js
 d7982b4bd3e8c63bea1efff8f3ceda0f /home/d/catkin_ws/devel/share/gennodejs/ros/robot_msg/srv/SetArmcConfigure.js
+6572aae05ac5a8308b61e68651e4969c /home/d/catkin_ws/devel/share/gennodejs/ros/robot_msg/srv/VisualVar.js
 8019498814bffc177d8ad269b775ee44 /home/d/catkin_ws/devel/share/gennodejs/ros/robot_python/msg/Frame.js
 e6a1ff59d0f8f8ddc33962877f489e30 /home/d/catkin_ws/devel/share/gennodejs/ros/robot_python/msg/IpPos.js
 5e78e41bc50bee696ff80f85b6640d02 /home/d/catkin_ws/devel/share/gennodejs/ros/testcan/msg/Frame.js
@@ -80,9 +88,11 @@ da15b008cf8b21e2196dd31f7f5e802e /home/d/catkin_ws/devel/share/roseus/ros/armc_c
 17565670941a9e1a77194ddcbfdc2519 /home/d/catkin_ws/devel/share/roseus/ros/armc_controller/srv/SetArmcConfigure.l
 3c7f820e3167019fe6a788ff591a95b7 /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/manifest.l
 22ec686d229b4d19e8b492850e1362c0 /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/AddTwoInts.l
+62eaf935a32d7cc277ff6b817da3abbe /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/VisualVar.l
 0e7676c9d8514dcfbcab4213216bd08a /home/d/catkin_ws/devel/share/roseus/ros/robot_msg/manifest.l
 7a5bc1fcc0d2f9bce786e01de948e1ef /home/d/catkin_ws/devel/share/roseus/ros/robot_msg/msg/IpPos.l
 74174aa08e794e54b3d41c23a1b66adb /home/d/catkin_ws/devel/share/roseus/ros/robot_msg/srv/SetArmcConfigure.l
+dcef5ded0849559882cc622b4b2062b6 /home/d/catkin_ws/devel/share/roseus/ros/robot_msg/srv/VisualVar.l
 b2f53df78b56f9e3dda75299d5e56f8a /home/d/catkin_ws/devel/share/roseus/ros/robot_python/manifest.l
 dcd89aa04e6e860110f6f1dd0733393e /home/d/catkin_ws/devel/share/roseus/ros/robot_python/msg/Frame.l
 cc2a3c90dd58c307adb8c9dc1e28a049 /home/d/catkin_ws/devel/share/roseus/ros/robot_python/msg/IpPos.l
@@ -120,6 +130,7 @@ bfc25f65a2e6cb439fbeeb8f9c8b0c00 robot_gazebo/ur_gazebo/CMakeFiles/clean_test_re
 ab7a1e9c8cd787cd9156541beb6e910e robot_gazebo/ur_gazebo/CMakeFiles/run_tests_ur_gazebo_roslaunch-check_tests_roslaunch_test.xml
 feb42d9a32fb3da38b38dbf0bcbe6d5e robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_IpPos
 8a123591a238a81640c433283f24fe45 robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_SetArmcConfigure
+3a98a2e6d916c4616bcb1381cfe219cb robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_VisualVar
 b46db607d0ddd37e1fbb3e12f356fbf0 robot_msg/CMakeFiles/robot_msg_generate_messages_cpp
 b46db607d0ddd37e1fbb3e12f356fbf0 robot_msg/CMakeFiles/robot_msg_generate_messages_eus
 b46db607d0ddd37e1fbb3e12f356fbf0 robot_msg/CMakeFiles/robot_msg_generate_messages_lisp
@@ -133,7 +144,7 @@ b46db607d0ddd37e1fbb3e12f356fbf0 robot_msg/CMakeFiles/robot_msg_generate_message
 0f44788a67cc2ddd9c351b0062eed2db robot_python/CMakeFiles/robot_python_generate_messages_nodejs
 0f44788a67cc2ddd9c351b0062eed2db robot_python/CMakeFiles/robot_python_generate_messages_py
 6799bc58cea39af49a5d6cd8bbd93d3c robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts
-b97b5620ce39979bacc877b582ff8414 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp
+de86a7787573a9a8c2e349c80ad18361 robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_VisualVar
 b97b5620ce39979bacc877b582ff8414 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus
 b97b5620ce39979bacc877b582ff8414 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp
 b97b5620ce39979bacc877b582ff8414 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs

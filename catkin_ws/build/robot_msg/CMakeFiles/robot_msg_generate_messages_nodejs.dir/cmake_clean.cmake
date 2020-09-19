@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/robot_msg_generate_messages_nodejs"
   "/home/d/catkin_ws/devel/share/gennodejs/ros/robot_msg/msg/IpPos.js"
   "/home/d/catkin_ws/devel/share/gennodejs/ros/robot_msg/srv/SetArmcConfigure.js"
+  "/home/d/catkin_ws/devel/share/gennodejs/ros/robot_msg/srv/VisualVar.js"
 )
 
 # Per-language clean rules from dependency scanning.

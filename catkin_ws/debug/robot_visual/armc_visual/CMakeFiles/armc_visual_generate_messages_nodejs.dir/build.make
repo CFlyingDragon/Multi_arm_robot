@@ -53,15 +53,22 @@ CMAKE_BINARY_DIR = /home/d/catkin_ws/debug
 # Include the progress variables for this target.
 include robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/progress.make
 
+robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs: devel/share/gennodejs/ros/armc_visual/srv/VisualVar.js
 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs: devel/share/gennodejs/ros/armc_visual/srv/AddTwoInts.js
 
 
+devel/share/gennodejs/ros/armc_visual/srv/VisualVar.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+devel/share/gennodejs/ros/armc_visual/srv/VisualVar.js: /home/d/catkin_ws/src/robot_visual/armc_visual/srv/VisualVar.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from armc_visual/VisualVar.srv"
+	cd /home/d/catkin_ws/debug/robot_visual/armc_visual && ../../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/d/catkin_ws/src/robot_visual/armc_visual/srv/VisualVar.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p armc_visual -o /home/d/catkin_ws/debug/devel/share/gennodejs/ros/armc_visual/srv
+
 devel/share/gennodejs/ros/armc_visual/srv/AddTwoInts.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
 devel/share/gennodejs/ros/armc_visual/srv/AddTwoInts.js: /home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from armc_visual/AddTwoInts.srv"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from armc_visual/AddTwoInts.srv"
 	cd /home/d/catkin_ws/debug/robot_visual/armc_visual && ../../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p armc_visual -o /home/d/catkin_ws/debug/devel/share/gennodejs/ros/armc_visual/srv
 
 armc_visual_generate_messages_nodejs: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs
+armc_visual_generate_messages_nodejs: devel/share/gennodejs/ros/armc_visual/srv/VisualVar.js
 armc_visual_generate_messages_nodejs: devel/share/gennodejs/ros/armc_visual/srv/AddTwoInts.js
 armc_visual_generate_messages_nodejs: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/build.make
 

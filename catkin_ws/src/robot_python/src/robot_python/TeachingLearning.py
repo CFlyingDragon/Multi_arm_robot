@@ -306,6 +306,8 @@ class TeachingLearn(object):
 
 # 设置为已知dmps参数和
 class JointTeachingLearn(object):
+    qq_qva = []
+
     def __init__(self, dmps_path, rbf_path):
         # 学习数据的维数
         self.dmps_path = dmps_path
@@ -501,7 +503,7 @@ class JointTeachingReproduction(object):
         # 阻尼项
         self.d = dmps_param[:, 2]
 
-    def reproduction(self, xx0, gg, tt, T):
+    def reproduction(self, qq0, qqe, tt, T):
         '''
         :param xx0: 规划起点
         :param gg: 规划目标点
@@ -523,14 +525,14 @@ class JointTeachingReproduction(object):
         XX = np.zeros([num, self.m])
 
         x_dot = np.zeros(self.m)
-        xx = np.copy(xx0)
+        xx = np.copy(qq0)
 
         # 采用迭代发求微分方程
         for i in range(num):
             for j in range(self.m):
                 [xx[j], x_dot[j]] = dmps_solve_2(
                     self.tau, self.k[j], self.d[j],
-                    gg[j], xx0[j], ss[i], T, f[i, j],
+                    qqe[j], qq0[j], ss[i], T, f[i, j],
                     xx[j], x_dot[j])
                 XX[i, j] = xx[j]
         self.xx = np.copy(XX)
@@ -768,6 +770,34 @@ def write_dmps_pramter():
     file_path = os.path.abspath(file_path)
 
     dmps_file_name = "dmps_parameter.txt"
+    dmps_path = os.path.join(file_path, dmps_file_name)
+
+    #写入参数
+    FileOpen.write(dmps_param, dmps_path)
+
+def joint_write_dmps_pramter():
+    # 时间尺度
+    tau = 10  # 所有变量时间尺度同时，保证运动统一性
+    # 正则化常数
+    alpha = 1
+    #刚度项
+    k = np.array([1000, 1000, 1000, 1000, 1000, 1000, 1000])  # 刚度项
+    #阻尼项
+    d = np.array([100, 100, 100, 100, 100, 100, 100])  # 阻尼项
+
+    # 存储dmps的模型参数
+    dmps_param = np.zeros([7, 3])
+    dmps_param[0, 0] = tau  # 存储在第一位，其他位用0补齐
+    dmps_param[1, 0] = alpha
+    dmps_param[:, 1] = k
+    dmps_param[:, 2] = d
+
+    #存储参数
+    current_path = os.getcwd()
+    file_path = os.path.join(current_path, "../..", "data/teaching")
+    file_path = os.path.abspath(file_path)
+
+    dmps_file_name = "dhg_dmps_parameter.txt"
     dmps_path = os.path.join(file_path, dmps_file_name)
 
     #写入参数
@@ -1101,12 +1131,6 @@ def door_handle_grab():
     # 绘制数据图
     MyPlot.plot2_nd(tt, X_demo, title="X_demo")
 
-    for i in range(num):
-        for j in range(6):
-            X_demo[i, j] = X_demo[i, j] + 0.01 * (np.random.random() - 0.5)
-            # 绘制数据图
-    MyPlot.plot2_nd(tt, X_demo, title="X_rdemo", lable="Xr")
-
     # *****学习阶段:关节空间学习,直接得到规划关节角******#
     dmps_file_name = "dhg_dmps_parameter.txt"
     dmps_path = os.path.join(file_path, dmps_file_name)
@@ -1115,23 +1139,23 @@ def door_handle_grab():
     rbf_path = os.path.join(file_path, rbf_file_name)
 
     # 创建一个示教学习器
-    teach_learn1 = TeachingLearn(dmps_path, rbf_path)
+    teach_learn1 = JointTeachingLearn(dmps_path, rbf_path)
 
     # 获取rbf参数
     h = 1000  # 隐藏层个数
     teach_learn1.get_rbf_paramter(h)
 
     # 获取示教数据
-    teach_learn1.get_teaching_data(qq_demo,   T)
+    teach_learn1.get_teaching_data(qq_demo, T)
 
     # 采用最小二乘学习获取权重
     teach_learn1.learn()
 
     # 绘制拟合图
-    X_xva = teach_learn1.X_xva
-    MyPlot.plot2_nd(tt, X_xva[:, :, 0], title="Xx", lable="Xx")
-    MyPlot.plot2_nd(tt, X_xva[:, :, 1], title="Xv", lable="Xv")
-    MyPlot.plot2_nd(tt, X_xva[:, :, 2], title="Xa", lable="Xa")
+    qq_qva = teach_learn1.qq_qva
+    MyPlot.plot2_nd(tt, qq_qva[:, :, 0], title="qq", lable="qq")
+    MyPlot.plot2_nd(tt, qq_qva[:, :, 1], title="qv", lable="qv")
+    MyPlot.plot2_nd(tt, qq_qva[:, :, 2], title="qa", lable="qa")
 
     # 将权重写入文件
     teach_learn1.write_data()
@@ -1142,12 +1166,12 @@ def door_handle_grab():
 
     # *****示教再现阶段******#
     # 穿件示教再现器
-    dmps_file_name = "dmps_parameter.txt"
-    dmps_path = os.path.join(file_path, dmps_file_name)
-
-    rbf_file_name = "rbf_parameter.txt"
-    rbf_path = os.path.join(file_path, rbf_file_name)
-    teach_repro1 = TeachingReproduction(dmps_path, rbf_path)
+    # dmps_file_name = "dhg_dmps_parameter.txt"
+    # dmps_path = os.path.join(file_path, dmps_file_name)
+    #
+    # rbf_file_name = "dhg_rbf_parameter.txt"
+    # rbf_path = os.path.join(file_path, rbf_file_name)
+    teach_repro1 = JointTeachingReproduction(dmps_path, rbf_path)
 
     # 规划新轨迹
     # 时间系列
@@ -1158,21 +1182,28 @@ def door_handle_grab():
     print "X_goal:", X_goal
     xx0 = X0 + np.array([0.0, 0, -0.0, 0, 0, 0])  # 轨迹起点
     gg = X_goal + np.array([0.01, 0.00, -0.1, 0, 0, 0])  # 规划目标点
-    teach_repro1.reproduction(xx0, gg, tt, T)
-    X_data = teach_repro1.get_plan_tcp()
+
+    #转化为关节空间
+    qq0 = qq_demo[0, :]
+    qe = qq_demo[-1, :] + np.array([0.1, 0.00, -0.1, 0, 0, 0.1, 0.4])
+
+    qq_data = teach_repro1.reproduction(xx0, gg, tt, T)
 
     # 获取强迫项
     f = teach_repro1.f
     # 绘制力跟踪图
     MyPlot.plot2_nd(tt, f, title="f", lable="f")
 
-    MyPlot.plot2_nd(tt, X_data, title="X_data")
+    MyPlot.plot2_nd(tt, qq_data, title="qq_data")
 
 def main():
     # write_dmps_pramter()
     #local_test()
     #rbf_test1()
-    rbf_test()
+    #rbf_test()
+    joint_write_dmps_pramter()
+    door_handle_grab()
+    print "finish!"
 
 if __name__ == "__main__":
     main()

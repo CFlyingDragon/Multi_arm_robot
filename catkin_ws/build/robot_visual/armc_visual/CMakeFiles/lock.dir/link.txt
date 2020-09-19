@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC   -shared -Wl,-soname,liblock.so -o /home/d/catkin_ws/devel/lib/liblock.so CMakeFiles/lock.dir/src/lock_pose.cpp.o CMakeFiles/lock.dir/src/IprovedFDCM.cpp.o CMakeFiles/lock.dir/src/Rect_Detect.cpp.o 

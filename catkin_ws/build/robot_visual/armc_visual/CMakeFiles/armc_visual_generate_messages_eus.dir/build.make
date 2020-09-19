@@ -53,20 +53,27 @@ CMAKE_BINARY_DIR = /home/d/catkin_ws/build
 # Include the progress variables for this target.
 include robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/progress.make
 
+robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus: /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/VisualVar.l
 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus: /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/AddTwoInts.l
 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus: /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/manifest.l
 
 
+/home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/VisualVar.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+/home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/VisualVar.l: /home/d/catkin_ws/src/robot_visual/armc_visual/srv/VisualVar.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from armc_visual/VisualVar.srv"
+	cd /home/d/catkin_ws/build/robot_visual/armc_visual && ../../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/d/catkin_ws/src/robot_visual/armc_visual/srv/VisualVar.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p armc_visual -o /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv
+
 /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/AddTwoInts.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
 /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/AddTwoInts.l: /home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from armc_visual/AddTwoInts.srv"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from armc_visual/AddTwoInts.srv"
 	cd /home/d/catkin_ws/build/robot_visual/armc_visual && ../../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p armc_visual -o /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv
 
 /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/manifest.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp manifest code for armc_visual"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp manifest code for armc_visual"
 	cd /home/d/catkin_ws/build/robot_visual/armc_visual && ../../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/d/catkin_ws/devel/share/roseus/ros/armc_visual armc_visual std_msgs
 
 armc_visual_generate_messages_eus: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus
+armc_visual_generate_messages_eus: /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/VisualVar.l
 armc_visual_generate_messages_eus: /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/srv/AddTwoInts.l
 armc_visual_generate_messages_eus: /home/d/catkin_ws/devel/share/roseus/ros/armc_visual/manifest.l
 armc_visual_generate_messages_eus: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/build.make

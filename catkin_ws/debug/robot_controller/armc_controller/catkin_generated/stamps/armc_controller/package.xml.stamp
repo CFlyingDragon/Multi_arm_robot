@@ -70,6 +70,10 @@
   <depend>kdl_kinematic</depend>
   <depend>ros_ethercat_driver</depend>
 
+  <!--<build_depend>robot_msg</build_depend>-->
+<!--  <build_export_depend>robot_msg</build_export_depend>-->
+ <!-- <exec_depend>robot_msg</exec_depend>-->
+
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

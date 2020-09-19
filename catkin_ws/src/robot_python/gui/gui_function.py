@@ -336,3 +336,53 @@ def out_joint_limit(qq, qq_min, qq_max):
             break
     return flag
 
+#============================抓取规划函数===================================#
+def handl_grab_go(X):
+    #检测容差范围
+    X0 = np.array([0, 0, 0, 0, 0, 0])
+    error = np.array([0, 0, 0, 0, 0, 0])
+    qq_array = 0
+
+    #判断是否成功
+    flag = True
+    for i in range(6):
+        if(abs(X[i]- X0[i]) > error[i]):
+            flag = False
+            print "超出安全范围,检测失败！"
+            return [flag, qq_array]
+
+    return [flag, qq_array]
+
+def handl_grab_run(X):
+    #检测容差范围
+    X0 = np.array([0, 0, 0, 0, 0, 0])
+    error = np.array([0, 0, 0, 0, 0, 0])
+    qq_array = 0
+
+    #判断是否成功
+    flag = True
+    for i in range(6):
+        if(abs(X[i]- X0[i]) > error[i]):
+            flag = False
+            print "超出安全范围,检测失败！"
+            return [flag, qq_array]
+
+    return [flag, qq_array]
+
+def handl_grab_back(X):
+    #检测容差范围
+    X0 = np.array([0, 0, 0, 0, 0, 0])
+    error = np.array([0, 0, 0, 0, 0, 0])
+    qq_array = 0
+
+    #判断是否成功
+    flag = True
+    for i in range(6):
+        if(abs(X[i]- X0[i]) > error[i]):
+            flag = False
+            print "超出安全范围,检测失败！"
+            return [flag, qq_array]
+
+    return [flag, qq_array]
+
+

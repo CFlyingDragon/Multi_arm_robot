@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/armc_visual_generate_messages_nodejs"
+  "../../devel/share/gennodejs/ros/armc_visual/srv/VisualVar.js"
   "../../devel/share/gennodejs/ros/armc_visual/srv/AddTwoInts.js"
 )
 

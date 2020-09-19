@@ -55,6 +55,7 @@ include robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/progress.make
 
 robot_msg/CMakeFiles/robot_msg_generate_messages_cpp: /home/d/catkin_ws/devel/include/robot_msg/IpPos.h
 robot_msg/CMakeFiles/robot_msg_generate_messages_cpp: /home/d/catkin_ws/devel/include/robot_msg/SetArmcConfigure.h
+robot_msg/CMakeFiles/robot_msg_generate_messages_cpp: /home/d/catkin_ws/devel/include/robot_msg/VisualVar.h
 
 
 /home/d/catkin_ws/devel/include/robot_msg/IpPos.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
@@ -70,9 +71,17 @@ robot_msg/CMakeFiles/robot_msg_generate_messages_cpp: /home/d/catkin_ws/devel/in
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from robot_msg/SetArmcConfigure.srv"
 	cd /home/d/catkin_ws/src/robot_msg && /home/d/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/d/catkin_ws/src/robot_msg/srv/SetArmcConfigure.srv -Irobot_msg:/home/d/catkin_ws/src/robot_msg/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p robot_msg -o /home/d/catkin_ws/devel/include/robot_msg -e /opt/ros/kinetic/share/gencpp/cmake/..
 
+/home/d/catkin_ws/devel/include/robot_msg/VisualVar.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
+/home/d/catkin_ws/devel/include/robot_msg/VisualVar.h: /home/d/catkin_ws/src/robot_msg/srv/VisualVar.srv
+/home/d/catkin_ws/devel/include/robot_msg/VisualVar.h: /opt/ros/kinetic/share/gencpp/msg.h.template
+/home/d/catkin_ws/devel/include/robot_msg/VisualVar.h: /opt/ros/kinetic/share/gencpp/srv.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating C++ code from robot_msg/VisualVar.srv"
+	cd /home/d/catkin_ws/src/robot_msg && /home/d/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/d/catkin_ws/src/robot_msg/srv/VisualVar.srv -Irobot_msg:/home/d/catkin_ws/src/robot_msg/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p robot_msg -o /home/d/catkin_ws/devel/include/robot_msg -e /opt/ros/kinetic/share/gencpp/cmake/..
+
 robot_msg_generate_messages_cpp: robot_msg/CMakeFiles/robot_msg_generate_messages_cpp
 robot_msg_generate_messages_cpp: /home/d/catkin_ws/devel/include/robot_msg/IpPos.h
 robot_msg_generate_messages_cpp: /home/d/catkin_ws/devel/include/robot_msg/SetArmcConfigure.h
+robot_msg_generate_messages_cpp: /home/d/catkin_ws/devel/include/robot_msg/VisualVar.h
 robot_msg_generate_messages_cpp: robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/build.make
 
 .PHONY : robot_msg_generate_messages_cpp

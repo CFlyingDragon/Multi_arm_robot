@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/robot_msg_generate_messages_py"
   "../devel/lib/python2.7/dist-packages/robot_msg/msg/_IpPos.py"
   "../devel/lib/python2.7/dist-packages/robot_msg/srv/_SetArmcConfigure.py"
+  "../devel/lib/python2.7/dist-packages/robot_msg/srv/_VisualVar.py"
   "../devel/lib/python2.7/dist-packages/robot_msg/msg/__init__.py"
   "../devel/lib/python2.7/dist-packages/robot_msg/srv/__init__.py"
 )

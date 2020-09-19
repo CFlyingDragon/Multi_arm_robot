@@ -53,15 +53,22 @@ CMAKE_BINARY_DIR = /home/d/catkin_ws/build
 # Include the progress variables for this target.
 include robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/progress.make
 
+robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp: /home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv/VisualVar.lisp
 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp: /home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv/AddTwoInts.lisp
 
 
+/home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv/VisualVar.lisp: /opt/ros/kinetic/lib/genlisp/gen_lisp.py
+/home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv/VisualVar.lisp: /home/d/catkin_ws/src/robot_visual/armc_visual/srv/VisualVar.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from armc_visual/VisualVar.srv"
+	cd /home/d/catkin_ws/build/robot_visual/armc_visual && ../../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/d/catkin_ws/src/robot_visual/armc_visual/srv/VisualVar.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p armc_visual -o /home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv
+
 /home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv/AddTwoInts.lisp: /opt/ros/kinetic/lib/genlisp/gen_lisp.py
 /home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv/AddTwoInts.lisp: /home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from armc_visual/AddTwoInts.srv"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Lisp code from armc_visual/AddTwoInts.srv"
 	cd /home/d/catkin_ws/build/robot_visual/armc_visual && ../../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p armc_visual -o /home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv
 
 armc_visual_generate_messages_lisp: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp
+armc_visual_generate_messages_lisp: /home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv/VisualVar.lisp
 armc_visual_generate_messages_lisp: /home/d/catkin_ws/devel/share/common-lisp/ros/armc_visual/srv/AddTwoInts.lisp
 armc_visual_generate_messages_lisp: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/build.make
 

@@ -4,5 +4,5 @@ Name: robot_msg
 Description: Description of robot_msg
 Version: 0.0.0
 Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
+Libs: -L${prefix}/lib -lrobot_msg
 Requires: roscpp rospy std_msgs message_runtime

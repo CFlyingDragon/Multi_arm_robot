@@ -78,6 +78,27 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -112,27 +133,6 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/d/catkin_ws/debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/d/catkin_ws/debug/CMakeFiles /home/d/catkin_ws/debug/robot_msg/CMakeFiles/progress.marks
@@ -166,6 +166,51 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+robot_msg/CMakeFiles/robot_msg_gennodejs.dir/rule:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_msg/CMakeFiles/robot_msg_gennodejs.dir/rule
+.PHONY : robot_msg/CMakeFiles/robot_msg_gennodejs.dir/rule
+
+# Convenience name for target.
+robot_msg_gennodejs: robot_msg/CMakeFiles/robot_msg_gennodejs.dir/rule
+
+.PHONY : robot_msg_gennodejs
+
+# fast build rule for target.
+robot_msg_gennodejs/fast:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_msg/CMakeFiles/robot_msg_gennodejs.dir/build.make robot_msg/CMakeFiles/robot_msg_gennodejs.dir/build
+.PHONY : robot_msg_gennodejs/fast
+
+# Convenience name for target.
+robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/rule:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/rule
+.PHONY : robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+robot_msg_generate_messages_cpp: robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/rule
+
+.PHONY : robot_msg_generate_messages_cpp
+
+# fast build rule for target.
+robot_msg_generate_messages_cpp/fast:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/build.make robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/build
+.PHONY : robot_msg_generate_messages_cpp/fast
+
+# Convenience name for target.
+robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_VisualVar.dir/rule:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_VisualVar.dir/rule
+.PHONY : robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_VisualVar.dir/rule
+
+# Convenience name for target.
+_robot_msg_generate_messages_check_deps_VisualVar: robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_VisualVar.dir/rule
+
+.PHONY : _robot_msg_generate_messages_check_deps_VisualVar
+
+# fast build rule for target.
+_robot_msg_generate_messages_check_deps_VisualVar/fast:
+	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_VisualVar.dir/build.make robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_VisualVar.dir/build
+.PHONY : _robot_msg_generate_messages_check_deps_VisualVar/fast
+
+# Convenience name for target.
 robot_msg/CMakeFiles/robot_msg_gencpp.dir/rule:
 	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_msg/CMakeFiles/robot_msg_gencpp.dir/rule
 .PHONY : robot_msg/CMakeFiles/robot_msg_gencpp.dir/rule
@@ -194,21 +239,6 @@ robot_msg_geneus: robot_msg/CMakeFiles/robot_msg_geneus.dir/rule
 robot_msg_geneus/fast:
 	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_msg/CMakeFiles/robot_msg_geneus.dir/build.make robot_msg/CMakeFiles/robot_msg_geneus.dir/build
 .PHONY : robot_msg_geneus/fast
-
-# Convenience name for target.
-robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/rule:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/rule
-.PHONY : robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-robot_msg_generate_messages_cpp: robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/rule
-
-.PHONY : robot_msg_generate_messages_cpp
-
-# fast build rule for target.
-robot_msg_generate_messages_cpp/fast:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/build.make robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/build
-.PHONY : robot_msg_generate_messages_cpp/fast
 
 # Convenience name for target.
 robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_IpPos.dir/rule:
@@ -345,21 +375,6 @@ robot_msg_generate_messages_nodejs/fast:
 	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_msg/CMakeFiles/robot_msg_generate_messages_nodejs.dir/build.make robot_msg/CMakeFiles/robot_msg_generate_messages_nodejs.dir/build
 .PHONY : robot_msg_generate_messages_nodejs/fast
 
-# Convenience name for target.
-robot_msg/CMakeFiles/robot_msg_gennodejs.dir/rule:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f CMakeFiles/Makefile2 robot_msg/CMakeFiles/robot_msg_gennodejs.dir/rule
-.PHONY : robot_msg/CMakeFiles/robot_msg_gennodejs.dir/rule
-
-# Convenience name for target.
-robot_msg_gennodejs: robot_msg/CMakeFiles/robot_msg_gennodejs.dir/rule
-
-.PHONY : robot_msg_gennodejs
-
-# fast build rule for target.
-robot_msg_gennodejs/fast:
-	cd /home/d/catkin_ws/debug && $(MAKE) -f robot_msg/CMakeFiles/robot_msg_gennodejs.dir/build.make robot_msg/CMakeFiles/robot_msg_gennodejs.dir/build
-.PHONY : robot_msg_gennodejs/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -368,10 +383,14 @@ help:
 	@echo "... depend"
 	@echo "... test"
 	@echo "... edit_cache"
+	@echo "... list_install_components"
+	@echo "... install/strip"
+	@echo "... robot_msg_gennodejs"
+	@echo "... robot_msg_generate_messages_cpp"
+	@echo "... _robot_msg_generate_messages_check_deps_VisualVar"
 	@echo "... rebuild_cache"
 	@echo "... robot_msg_gencpp"
 	@echo "... robot_msg_geneus"
-	@echo "... robot_msg_generate_messages_cpp"
 	@echo "... _robot_msg_generate_messages_check_deps_IpPos"
 	@echo "... install"
 	@echo "... robot_msg_generate_messages_py"
@@ -383,9 +402,6 @@ help:
 	@echo "... robot_msg_genpy"
 	@echo "... robot_msg_generate_messages_eus"
 	@echo "... robot_msg_generate_messages_nodejs"
-	@echo "... list_install_components"
-	@echo "... install/strip"
-	@echo "... robot_msg_gennodejs"
 .PHONY : help
 
 

@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/armc_visual_generate_messages_lisp"
+  "../../devel/share/common-lisp/ros/armc_visual/srv/VisualVar.lisp"
   "../../devel/share/common-lisp/ros/armc_visual/srv/AddTwoInts.lisp"
 )
 

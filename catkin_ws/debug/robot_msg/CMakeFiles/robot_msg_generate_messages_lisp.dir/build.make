@@ -55,6 +55,7 @@ include robot_msg/CMakeFiles/robot_msg_generate_messages_lisp.dir/progress.make
 
 robot_msg/CMakeFiles/robot_msg_generate_messages_lisp: devel/share/common-lisp/ros/robot_msg/msg/IpPos.lisp
 robot_msg/CMakeFiles/robot_msg_generate_messages_lisp: devel/share/common-lisp/ros/robot_msg/srv/SetArmcConfigure.lisp
+robot_msg/CMakeFiles/robot_msg_generate_messages_lisp: devel/share/common-lisp/ros/robot_msg/srv/VisualVar.lisp
 
 
 devel/share/common-lisp/ros/robot_msg/msg/IpPos.lisp: /opt/ros/kinetic/lib/genlisp/gen_lisp.py
@@ -67,9 +68,15 @@ devel/share/common-lisp/ros/robot_msg/srv/SetArmcConfigure.lisp: /home/d/catkin_
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Lisp code from robot_msg/SetArmcConfigure.srv"
 	cd /home/d/catkin_ws/debug/robot_msg && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/d/catkin_ws/src/robot_msg/srv/SetArmcConfigure.srv -Irobot_msg:/home/d/catkin_ws/src/robot_msg/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p robot_msg -o /home/d/catkin_ws/debug/devel/share/common-lisp/ros/robot_msg/srv
 
+devel/share/common-lisp/ros/robot_msg/srv/VisualVar.lisp: /opt/ros/kinetic/lib/genlisp/gen_lisp.py
+devel/share/common-lisp/ros/robot_msg/srv/VisualVar.lisp: /home/d/catkin_ws/src/robot_msg/srv/VisualVar.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Lisp code from robot_msg/VisualVar.srv"
+	cd /home/d/catkin_ws/debug/robot_msg && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/d/catkin_ws/src/robot_msg/srv/VisualVar.srv -Irobot_msg:/home/d/catkin_ws/src/robot_msg/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p robot_msg -o /home/d/catkin_ws/debug/devel/share/common-lisp/ros/robot_msg/srv
+
 robot_msg_generate_messages_lisp: robot_msg/CMakeFiles/robot_msg_generate_messages_lisp
 robot_msg_generate_messages_lisp: devel/share/common-lisp/ros/robot_msg/msg/IpPos.lisp
 robot_msg_generate_messages_lisp: devel/share/common-lisp/ros/robot_msg/srv/SetArmcConfigure.lisp
+robot_msg_generate_messages_lisp: devel/share/common-lisp/ros/robot_msg/srv/VisualVar.lisp
 robot_msg_generate_messages_lisp: robot_msg/CMakeFiles/robot_msg_generate_messages_lisp.dir/build.make
 
 .PHONY : robot_msg_generate_messages_lisp

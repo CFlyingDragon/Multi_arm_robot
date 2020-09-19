@@ -55,6 +55,7 @@ include robot_msg/CMakeFiles/robot_msg_generate_messages_py.dir/progress.make
 
 robot_msg/CMakeFiles/robot_msg_generate_messages_py: devel/lib/python2.7/dist-packages/robot_msg/msg/_IpPos.py
 robot_msg/CMakeFiles/robot_msg_generate_messages_py: devel/lib/python2.7/dist-packages/robot_msg/srv/_SetArmcConfigure.py
+robot_msg/CMakeFiles/robot_msg_generate_messages_py: devel/lib/python2.7/dist-packages/robot_msg/srv/_VisualVar.py
 robot_msg/CMakeFiles/robot_msg_generate_messages_py: devel/lib/python2.7/dist-packages/robot_msg/msg/__init__.py
 robot_msg/CMakeFiles/robot_msg_generate_messages_py: devel/lib/python2.7/dist-packages/robot_msg/srv/__init__.py
 
@@ -69,21 +70,29 @@ devel/lib/python2.7/dist-packages/robot_msg/srv/_SetArmcConfigure.py: /home/d/ca
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python code from SRV robot_msg/SetArmcConfigure"
 	cd /home/d/catkin_ws/debug/robot_msg && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/d/catkin_ws/src/robot_msg/srv/SetArmcConfigure.srv -Irobot_msg:/home/d/catkin_ws/src/robot_msg/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p robot_msg -o /home/d/catkin_ws/debug/devel/lib/python2.7/dist-packages/robot_msg/srv
 
+devel/lib/python2.7/dist-packages/robot_msg/srv/_VisualVar.py: /opt/ros/kinetic/lib/genpy/gensrv_py.py
+devel/lib/python2.7/dist-packages/robot_msg/srv/_VisualVar.py: /home/d/catkin_ws/src/robot_msg/srv/VisualVar.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python code from SRV robot_msg/VisualVar"
+	cd /home/d/catkin_ws/debug/robot_msg && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/d/catkin_ws/src/robot_msg/srv/VisualVar.srv -Irobot_msg:/home/d/catkin_ws/src/robot_msg/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p robot_msg -o /home/d/catkin_ws/debug/devel/lib/python2.7/dist-packages/robot_msg/srv
+
 devel/lib/python2.7/dist-packages/robot_msg/msg/__init__.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
 devel/lib/python2.7/dist-packages/robot_msg/msg/__init__.py: devel/lib/python2.7/dist-packages/robot_msg/msg/_IpPos.py
 devel/lib/python2.7/dist-packages/robot_msg/msg/__init__.py: devel/lib/python2.7/dist-packages/robot_msg/srv/_SetArmcConfigure.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python msg __init__.py for robot_msg"
+devel/lib/python2.7/dist-packages/robot_msg/msg/__init__.py: devel/lib/python2.7/dist-packages/robot_msg/srv/_VisualVar.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python msg __init__.py for robot_msg"
 	cd /home/d/catkin_ws/debug/robot_msg && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/d/catkin_ws/debug/devel/lib/python2.7/dist-packages/robot_msg/msg --initpy
 
 devel/lib/python2.7/dist-packages/robot_msg/srv/__init__.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
 devel/lib/python2.7/dist-packages/robot_msg/srv/__init__.py: devel/lib/python2.7/dist-packages/robot_msg/msg/_IpPos.py
 devel/lib/python2.7/dist-packages/robot_msg/srv/__init__.py: devel/lib/python2.7/dist-packages/robot_msg/srv/_SetArmcConfigure.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python srv __init__.py for robot_msg"
+devel/lib/python2.7/dist-packages/robot_msg/srv/__init__.py: devel/lib/python2.7/dist-packages/robot_msg/srv/_VisualVar.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Python srv __init__.py for robot_msg"
 	cd /home/d/catkin_ws/debug/robot_msg && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/d/catkin_ws/debug/devel/lib/python2.7/dist-packages/robot_msg/srv --initpy
 
 robot_msg_generate_messages_py: robot_msg/CMakeFiles/robot_msg_generate_messages_py
 robot_msg_generate_messages_py: devel/lib/python2.7/dist-packages/robot_msg/msg/_IpPos.py
 robot_msg_generate_messages_py: devel/lib/python2.7/dist-packages/robot_msg/srv/_SetArmcConfigure.py
+robot_msg_generate_messages_py: devel/lib/python2.7/dist-packages/robot_msg/srv/_VisualVar.py
 robot_msg_generate_messages_py: devel/lib/python2.7/dist-packages/robot_msg/msg/__init__.py
 robot_msg_generate_messages_py: devel/lib/python2.7/dist-packages/robot_msg/srv/__init__.py
 robot_msg_generate_messages_py: robot_msg/CMakeFiles/robot_msg_generate_messages_py.dir/build.make

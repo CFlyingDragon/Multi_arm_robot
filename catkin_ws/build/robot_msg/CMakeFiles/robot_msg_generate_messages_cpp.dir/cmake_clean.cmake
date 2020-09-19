@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/robot_msg_generate_messages_cpp"
   "/home/d/catkin_ws/devel/include/robot_msg/IpPos.h"
   "/home/d/catkin_ws/devel/include/robot_msg/SetArmcConfigure.h"
+  "/home/d/catkin_ws/devel/include/robot_msg/VisualVar.h"
 )
 
 # Per-language clean rules from dependency scanning.

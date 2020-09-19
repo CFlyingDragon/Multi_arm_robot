@@ -12,7 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
-)
+#  CATKIN_DEPENS message_runtime
+ )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -58,7 +59,7 @@ find_package(catkin REQUIRED COMPONENTS
  add_service_files(
    FILES
    SetArmcConfigure.srv
-#   Service2.srv
+   VisualVar.srv
  )
 
 ## Generate actions in the 'action' folder
@@ -104,10 +105,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  #INCLUDE_DIRS include
-#  LIBRARIES robot_msg
+  INCLUDE_DIRS include
+  LIBRARIES robot_msg
   CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
-#  DEPENDS system_lib
+  DEPENDS system_lib
 )
 
 ###########

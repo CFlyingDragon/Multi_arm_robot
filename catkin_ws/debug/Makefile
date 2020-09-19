@@ -1310,160 +1310,17 @@ canopenexample/fast:
 .PHONY : canopenexample/fast
 
 #=============================================================================
-# Target rules for targets named server_demo_node
+# Target rules for targets named armc_visual_generate_messages_nodejs
 
 # Build rule for target.
-server_demo_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 server_demo_node
-.PHONY : server_demo_node
+armc_visual_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages_nodejs
+.PHONY : armc_visual_generate_messages_nodejs
 
 # fast build rule for target.
-server_demo_node/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/build.make robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/build
-.PHONY : server_demo_node/fast
-
-#=============================================================================
-# Target rules for targets named armc_visual_generate_messages_eus
-
-# Build rule for target.
-armc_visual_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages_eus
-.PHONY : armc_visual_generate_messages_eus
-
-# fast build rule for target.
-armc_visual_generate_messages_eus/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/build
-.PHONY : armc_visual_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named armc_visual_gencpp
-
-# Build rule for target.
-armc_visual_gencpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_gencpp
-.PHONY : armc_visual_gencpp
-
-# fast build rule for target.
-armc_visual_gencpp/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/build
-.PHONY : armc_visual_gencpp/fast
-
-#=============================================================================
-# Target rules for targets named client_demo_node
-
-# Build rule for target.
-client_demo_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 client_demo_node
-.PHONY : client_demo_node
-
-# fast build rule for target.
-client_demo_node/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/build.make robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/build
-.PHONY : client_demo_node/fast
-
-#=============================================================================
-# Target rules for targets named armc_visual_generate_messages
-
-# Build rule for target.
-armc_visual_generate_messages: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages
-.PHONY : armc_visual_generate_messages
-
-# fast build rule for target.
-armc_visual_generate_messages/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/build
-.PHONY : armc_visual_generate_messages/fast
-
-#=============================================================================
-# Target rules for targets named armc_visual_generate_messages_py
-
-# Build rule for target.
-armc_visual_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages_py
-.PHONY : armc_visual_generate_messages_py
-
-# fast build rule for target.
-armc_visual_generate_messages_py/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/build
-.PHONY : armc_visual_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named armc_visual_generate_messages_cpp
-
-# Build rule for target.
-armc_visual_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages_cpp
-.PHONY : armc_visual_generate_messages_cpp
-
-# fast build rule for target.
-armc_visual_generate_messages_cpp/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/build
-.PHONY : armc_visual_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named _armc_visual_generate_messages_check_deps_AddTwoInts
-
-# Build rule for target.
-_armc_visual_generate_messages_check_deps_AddTwoInts: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _armc_visual_generate_messages_check_deps_AddTwoInts
-.PHONY : _armc_visual_generate_messages_check_deps_AddTwoInts
-
-# fast build rule for target.
-_armc_visual_generate_messages_check_deps_AddTwoInts/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/build.make robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/build
-.PHONY : _armc_visual_generate_messages_check_deps_AddTwoInts/fast
-
-#=============================================================================
-# Target rules for targets named armc_visual_geneus
-
-# Build rule for target.
-armc_visual_geneus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_geneus
-.PHONY : armc_visual_geneus
-
-# fast build rule for target.
-armc_visual_geneus/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/build
-.PHONY : armc_visual_geneus/fast
-
-#=============================================================================
-# Target rules for targets named armc_visual_generate_messages_lisp
-
-# Build rule for target.
-armc_visual_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages_lisp
-.PHONY : armc_visual_generate_messages_lisp
-
-# fast build rule for target.
-armc_visual_generate_messages_lisp/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/build
-.PHONY : armc_visual_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named armc_visual_genlisp
-
-# Build rule for target.
-armc_visual_genlisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_genlisp
-.PHONY : armc_visual_genlisp
-
-# fast build rule for target.
-armc_visual_genlisp/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/build
-.PHONY : armc_visual_genlisp/fast
-
-#=============================================================================
-# Target rules for targets named armc_visual_genpy
-
-# Build rule for target.
-armc_visual_genpy: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_genpy
-.PHONY : armc_visual_genpy
-
-# fast build rule for target.
-armc_visual_genpy/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/build
-.PHONY : armc_visual_genpy/fast
+armc_visual_generate_messages_nodejs/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/build
+.PHONY : armc_visual_generate_messages_nodejs/fast
 
 #=============================================================================
 # Target rules for targets named armc_visual_gennodejs
@@ -1479,17 +1336,264 @@ armc_visual_gennodejs/fast:
 .PHONY : armc_visual_gennodejs/fast
 
 #=============================================================================
-# Target rules for targets named armc_visual_generate_messages_nodejs
+# Target rules for targets named armc_visual_genpy
 
 # Build rule for target.
-armc_visual_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages_nodejs
-.PHONY : armc_visual_generate_messages_nodejs
+armc_visual_genpy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_genpy
+.PHONY : armc_visual_genpy
 
 # fast build rule for target.
-armc_visual_generate_messages_nodejs/fast:
-	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_nodejs.dir/build
-.PHONY : armc_visual_generate_messages_nodejs/fast
+armc_visual_genpy/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_genpy.dir/build
+.PHONY : armc_visual_genpy/fast
+
+#=============================================================================
+# Target rules for targets named armc_visual_generate_messages_lisp
+
+# Build rule for target.
+armc_visual_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages_lisp
+.PHONY : armc_visual_generate_messages_lisp
+
+# fast build rule for target.
+armc_visual_generate_messages_lisp/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_lisp.dir/build
+.PHONY : armc_visual_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named armc_visual_geneus
+
+# Build rule for target.
+armc_visual_geneus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_geneus
+.PHONY : armc_visual_geneus
+
+# fast build rule for target.
+armc_visual_geneus/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_geneus.dir/build
+.PHONY : armc_visual_geneus/fast
+
+#=============================================================================
+# Target rules for targets named _armc_visual_generate_messages_check_deps_AddTwoInts
+
+# Build rule for target.
+_armc_visual_generate_messages_check_deps_AddTwoInts: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _armc_visual_generate_messages_check_deps_AddTwoInts
+.PHONY : _armc_visual_generate_messages_check_deps_AddTwoInts
+
+# fast build rule for target.
+_armc_visual_generate_messages_check_deps_AddTwoInts/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/build.make robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_AddTwoInts.dir/build
+.PHONY : _armc_visual_generate_messages_check_deps_AddTwoInts/fast
+
+#=============================================================================
+# Target rules for targets named armc_visual_generate_messages_cpp
+
+# Build rule for target.
+armc_visual_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages_cpp
+.PHONY : armc_visual_generate_messages_cpp
+
+# fast build rule for target.
+armc_visual_generate_messages_cpp/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_cpp.dir/build
+.PHONY : armc_visual_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named armc_visual_generate_messages_eus
+
+# Build rule for target.
+armc_visual_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages_eus
+.PHONY : armc_visual_generate_messages_eus
+
+# fast build rule for target.
+armc_visual_generate_messages_eus/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_eus.dir/build
+.PHONY : armc_visual_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named capture
+
+# Build rule for target.
+capture: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 capture
+.PHONY : capture
+
+# fast build rule for target.
+capture/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture.dir/build.make robot_visual/armc_visual/CMakeFiles/capture.dir/build
+.PHONY : capture/fast
+
+#=============================================================================
+# Target rules for targets named _armc_visual_generate_messages_check_deps_VisualVar
+
+# Build rule for target.
+_armc_visual_generate_messages_check_deps_VisualVar: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _armc_visual_generate_messages_check_deps_VisualVar
+.PHONY : _armc_visual_generate_messages_check_deps_VisualVar
+
+# fast build rule for target.
+_armc_visual_generate_messages_check_deps_VisualVar/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_VisualVar.dir/build.make robot_visual/armc_visual/CMakeFiles/_armc_visual_generate_messages_check_deps_VisualVar.dir/build
+.PHONY : _armc_visual_generate_messages_check_deps_VisualVar/fast
+
+#=============================================================================
+# Target rules for targets named visual_server_node
+
+# Build rule for target.
+visual_server_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visual_server_node
+.PHONY : visual_server_node
+
+# fast build rule for target.
+visual_server_node/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/build.make robot_visual/armc_visual/CMakeFiles/visual_server_node.dir/build
+.PHONY : visual_server_node/fast
+
+#=============================================================================
+# Target rules for targets named armc_visual_generate_messages
+
+# Build rule for target.
+armc_visual_generate_messages: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages
+.PHONY : armc_visual_generate_messages
+
+# fast build rule for target.
+armc_visual_generate_messages/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages.dir/build
+.PHONY : armc_visual_generate_messages/fast
+
+#=============================================================================
+# Target rules for targets named client_demo_node
+
+# Build rule for target.
+client_demo_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 client_demo_node
+.PHONY : client_demo_node
+
+# fast build rule for target.
+client_demo_node/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/build.make robot_visual/armc_visual/CMakeFiles/client_demo_node.dir/build
+.PHONY : client_demo_node/fast
+
+#=============================================================================
+# Target rules for targets named armc_visual_genlisp
+
+# Build rule for target.
+armc_visual_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_genlisp
+.PHONY : armc_visual_genlisp
+
+# fast build rule for target.
+armc_visual_genlisp/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_genlisp.dir/build
+.PHONY : armc_visual_genlisp/fast
+
+#=============================================================================
+# Target rules for targets named armc_visual_gencpp
+
+# Build rule for target.
+armc_visual_gencpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_gencpp
+.PHONY : armc_visual_gencpp
+
+# fast build rule for target.
+armc_visual_gencpp/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_gencpp.dir/build
+.PHONY : armc_visual_gencpp/fast
+
+#=============================================================================
+# Target rules for targets named armc_visual_generate_messages_py
+
+# Build rule for target.
+armc_visual_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 armc_visual_generate_messages_py
+.PHONY : armc_visual_generate_messages_py
+
+# fast build rule for target.
+armc_visual_generate_messages_py/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/build.make robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/build
+.PHONY : armc_visual_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named server_demo_node
+
+# Build rule for target.
+server_demo_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 server_demo_node
+.PHONY : server_demo_node
+
+# fast build rule for target.
+server_demo_node/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/build.make robot_visual/armc_visual/CMakeFiles/server_demo_node.dir/build
+.PHONY : server_demo_node/fast
+
+#=============================================================================
+# Target rules for targets named capture_using
+
+# Build rule for target.
+capture_using: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 capture_using
+.PHONY : capture_using
+
+# fast build rule for target.
+capture_using/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/capture_using.dir/build.make robot_visual/armc_visual/CMakeFiles/capture_using.dir/build
+.PHONY : capture_using/fast
+
+#=============================================================================
+# Target rules for targets named visual_client_node
+
+# Build rule for target.
+visual_client_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visual_client_node
+.PHONY : visual_client_node
+
+# fast build rule for target.
+visual_client_node/fast:
+	$(MAKE) -f robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/build.make robot_visual/armc_visual/CMakeFiles/visual_client_node.dir/build
+.PHONY : visual_client_node/fast
+
+#=============================================================================
+# Target rules for targets named robot_msg_gennodejs
+
+# Build rule for target.
+robot_msg_gennodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robot_msg_gennodejs
+.PHONY : robot_msg_gennodejs
+
+# fast build rule for target.
+robot_msg_gennodejs/fast:
+	$(MAKE) -f robot_msg/CMakeFiles/robot_msg_gennodejs.dir/build.make robot_msg/CMakeFiles/robot_msg_gennodejs.dir/build
+.PHONY : robot_msg_gennodejs/fast
+
+#=============================================================================
+# Target rules for targets named robot_msg_generate_messages_cpp
+
+# Build rule for target.
+robot_msg_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robot_msg_generate_messages_cpp
+.PHONY : robot_msg_generate_messages_cpp
+
+# fast build rule for target.
+robot_msg_generate_messages_cpp/fast:
+	$(MAKE) -f robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/build.make robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/build
+.PHONY : robot_msg_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named _robot_msg_generate_messages_check_deps_VisualVar
+
+# Build rule for target.
+_robot_msg_generate_messages_check_deps_VisualVar: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _robot_msg_generate_messages_check_deps_VisualVar
+.PHONY : _robot_msg_generate_messages_check_deps_VisualVar
+
+# fast build rule for target.
+_robot_msg_generate_messages_check_deps_VisualVar/fast:
+	$(MAKE) -f robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_VisualVar.dir/build.make robot_msg/CMakeFiles/_robot_msg_generate_messages_check_deps_VisualVar.dir/build
+.PHONY : _robot_msg_generate_messages_check_deps_VisualVar/fast
 
 #=============================================================================
 # Target rules for targets named robot_msg_gencpp
@@ -1516,19 +1620,6 @@ robot_msg_geneus: cmake_check_build_system
 robot_msg_geneus/fast:
 	$(MAKE) -f robot_msg/CMakeFiles/robot_msg_geneus.dir/build.make robot_msg/CMakeFiles/robot_msg_geneus.dir/build
 .PHONY : robot_msg_geneus/fast
-
-#=============================================================================
-# Target rules for targets named robot_msg_generate_messages_cpp
-
-# Build rule for target.
-robot_msg_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 robot_msg_generate_messages_cpp
-.PHONY : robot_msg_generate_messages_cpp
-
-# fast build rule for target.
-robot_msg_generate_messages_cpp/fast:
-	$(MAKE) -f robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/build.make robot_msg/CMakeFiles/robot_msg_generate_messages_cpp.dir/build
-.PHONY : robot_msg_generate_messages_cpp/fast
 
 #=============================================================================
 # Target rules for targets named _robot_msg_generate_messages_check_deps_IpPos
@@ -1646,19 +1737,6 @@ robot_msg_generate_messages_nodejs: cmake_check_build_system
 robot_msg_generate_messages_nodejs/fast:
 	$(MAKE) -f robot_msg/CMakeFiles/robot_msg_generate_messages_nodejs.dir/build.make robot_msg/CMakeFiles/robot_msg_generate_messages_nodejs.dir/build
 .PHONY : robot_msg_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named robot_msg_gennodejs
-
-# Build rule for target.
-robot_msg_gennodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 robot_msg_gennodejs
-.PHONY : robot_msg_gennodejs
-
-# fast build rule for target.
-robot_msg_gennodejs/fast:
-	$(MAKE) -f robot_msg/CMakeFiles/robot_msg_gennodejs.dir/build.make robot_msg/CMakeFiles/robot_msg_gennodejs.dir/build
-.PHONY : robot_msg_gennodejs/fast
 
 #=============================================================================
 # Target rules for targets named robot_python_generate_messages_py
@@ -3347,23 +3425,30 @@ help:
 	@echo "... testcan_node"
 	@echo "... canopen_vci_ros"
 	@echo "... canopenexample"
-	@echo "... server_demo_node"
-	@echo "... armc_visual_generate_messages_eus"
-	@echo "... armc_visual_gencpp"
-	@echo "... client_demo_node"
-	@echo "... armc_visual_generate_messages"
-	@echo "... armc_visual_generate_messages_py"
-	@echo "... armc_visual_generate_messages_cpp"
-	@echo "... _armc_visual_generate_messages_check_deps_AddTwoInts"
-	@echo "... armc_visual_geneus"
-	@echo "... armc_visual_generate_messages_lisp"
-	@echo "... armc_visual_genlisp"
-	@echo "... armc_visual_genpy"
-	@echo "... armc_visual_gennodejs"
 	@echo "... armc_visual_generate_messages_nodejs"
+	@echo "... armc_visual_gennodejs"
+	@echo "... armc_visual_genpy"
+	@echo "... armc_visual_generate_messages_lisp"
+	@echo "... armc_visual_geneus"
+	@echo "... _armc_visual_generate_messages_check_deps_AddTwoInts"
+	@echo "... armc_visual_generate_messages_cpp"
+	@echo "... armc_visual_generate_messages_eus"
+	@echo "... capture"
+	@echo "... _armc_visual_generate_messages_check_deps_VisualVar"
+	@echo "... visual_server_node"
+	@echo "... armc_visual_generate_messages"
+	@echo "... client_demo_node"
+	@echo "... armc_visual_genlisp"
+	@echo "... armc_visual_gencpp"
+	@echo "... armc_visual_generate_messages_py"
+	@echo "... server_demo_node"
+	@echo "... capture_using"
+	@echo "... visual_client_node"
+	@echo "... robot_msg_gennodejs"
+	@echo "... robot_msg_generate_messages_cpp"
+	@echo "... _robot_msg_generate_messages_check_deps_VisualVar"
 	@echo "... robot_msg_gencpp"
 	@echo "... robot_msg_geneus"
-	@echo "... robot_msg_generate_messages_cpp"
 	@echo "... _robot_msg_generate_messages_check_deps_IpPos"
 	@echo "... robot_msg_generate_messages_py"
 	@echo "... robot_msg_generate_messages"
@@ -3373,7 +3458,6 @@ help:
 	@echo "... robot_msg_genpy"
 	@echo "... robot_msg_generate_messages_eus"
 	@echo "... robot_msg_generate_messages_nodejs"
-	@echo "... robot_msg_gennodejs"
 	@echo "... robot_python_generate_messages_py"
 	@echo "... robot_python_genpy"
 	@echo "... robot_python_gencpp"

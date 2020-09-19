@@ -33,7 +33,10 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/armc_visual/srv" TYPE FILE FILES "/home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/armc_visual/srv" TYPE FILE FILES
+    "/home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv"
+    "/home/d/catkin_ws/src/robot_visual/armc_visual/srv/VisualVar.srv"
+    )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")

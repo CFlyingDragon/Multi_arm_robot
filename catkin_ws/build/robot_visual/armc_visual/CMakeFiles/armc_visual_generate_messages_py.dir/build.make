@@ -53,21 +53,29 @@ CMAKE_BINARY_DIR = /home/d/catkin_ws/build
 # Include the progress variables for this target.
 include robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/progress.make
 
+robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py: /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_VisualVar.py
 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py: /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_AddTwoInts.py
 robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py: /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/__init__.py
 
 
+/home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_VisualVar.py: /opt/ros/kinetic/lib/genpy/gensrv_py.py
+/home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_VisualVar.py: /home/d/catkin_ws/src/robot_visual/armc_visual/srv/VisualVar.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python code from SRV armc_visual/VisualVar"
+	cd /home/d/catkin_ws/build/robot_visual/armc_visual && ../../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/d/catkin_ws/src/robot_visual/armc_visual/srv/VisualVar.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p armc_visual -o /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv
+
 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_AddTwoInts.py: /opt/ros/kinetic/lib/genpy/gensrv_py.py
 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_AddTwoInts.py: /home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python code from SRV armc_visual/AddTwoInts"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python code from SRV armc_visual/AddTwoInts"
 	cd /home/d/catkin_ws/build/robot_visual/armc_visual && ../../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/d/catkin_ws/src/robot_visual/armc_visual/srv/AddTwoInts.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p armc_visual -o /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv
 
 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/__init__.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
+/home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/__init__.py: /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_VisualVar.py
 /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/__init__.py: /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_AddTwoInts.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python srv __init__.py for armc_visual"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/d/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python srv __init__.py for armc_visual"
 	cd /home/d/catkin_ws/build/robot_visual/armc_visual && ../../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv --initpy
 
 armc_visual_generate_messages_py: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py
+armc_visual_generate_messages_py: /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_VisualVar.py
 armc_visual_generate_messages_py: /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/_AddTwoInts.py
 armc_visual_generate_messages_py: /home/d/catkin_ws/devel/lib/python2.7/dist-packages/armc_visual/srv/__init__.py
 armc_visual_generate_messages_py: robot_visual/armc_visual/CMakeFiles/armc_visual_generate_messages_py.dir/build.make
