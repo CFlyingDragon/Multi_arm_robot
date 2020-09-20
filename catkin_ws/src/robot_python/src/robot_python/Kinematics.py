@@ -682,6 +682,7 @@ def arm_angle_ikine_chose(Q, qk, q_min,q_max):
 	#选取最佳关节角
 	dq_minIndex = np.where(dq == dq_min)
 	qq =np.array(Q[dq_minIndex,:]).reshape(1,-1)[0] #转换成向量
+	#qq = Q[1, :]
 	return [qq,limit_flag]
 
 #选择求取关节所需参考面,并调用对应算法求取8组关节角

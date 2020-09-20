@@ -892,7 +892,7 @@
          <rect>
           <x>20</x>
           <y>40</y>
-          <width>351</width>
+          <width>331</width>
           <height>61</height>
          </rect>
         </property>
@@ -921,7 +921,7 @@
         <widget class="QRadioButton" name="radioButton_2">
          <property name="geometry">
           <rect>
-           <x>220</x>
+           <x>200</x>
            <y>20</y>
            <width>91</width>
            <height>22</height>
@@ -1207,7 +1207,7 @@
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QPushButton" name="button_get_init_xx">
+       <widget class="QPushButton" name="button_get_init">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -1217,7 +1217,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>笛卡尔起点</string>
+         <string>初始位置</string>
         </property>
         <property name="autoDefault">
          <bool>true</bool>
