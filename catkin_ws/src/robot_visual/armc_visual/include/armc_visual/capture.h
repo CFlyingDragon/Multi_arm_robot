@@ -27,12 +27,12 @@
 #define PI 3.1415926
 
 
-int menbashou_pose(cv::Mat image,float weizi[6]);
+int menbashou_pose(cv::Mat image,float weizi_1[6],float weizi_2[6]);
 
 int lock_pose(Mat image,float tag_T_cam[4][4]);
 
 int lock_capture_pose(float tag_T_cam[4][4]);
 
-int handle_capture_pose(float twist[6]);
+int handle_capture_pose(float twist_1[6],float twist_2[6]);
 
 #endif

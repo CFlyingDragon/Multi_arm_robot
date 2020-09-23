@@ -12,25 +12,44 @@ bool visualInspection(armc_visual::VisualVar::Request  &req,
 {
     int a=req.a;
     float tag_T_cam[4][4]={0.0f};
-    float twist[6]={0.0f};
+    float twist_1[6]={0.0f};
+    float twist_2[6]={0.0f};
     int flag=0;
     if (a == 0)
     {
         std::cout<<"a0= "<<a<< std::endl;
         flag=lock_capture_pose(tag_T_cam);
         std::cout<<"a1= "<<a<< std::endl;
+        for(int i=0;i<12;i++)
+        {
+            res.T[i] = (double)tag_T_cam[i/4][i%4];
+        }
+        std::cout << "T=:\n" << std::endl;
+        std::cout << "[";
+        for(int i=0;i<4;i++)
+        {
+             std::cout << "[";
+            for(int j=0;j<4;j++)
+            {
+               std::cout << tag_T_cam[i][j] << ", ";
+            }
+            std::cout << "]\n";
+        }
+        std::cout << "]"<< std::endl;
     }
     else
     {
-        flag=handle_capture_pose(twist);
+        flag=handle_capture_pose(twist_1,twist_2);
         std::cout<<"a2= "<<a<<std::endl;
+        for(int i=0;i<6;i++)
+        {
+           res.T[i] = (double)twist_1[i];
+           res.T[6+i] = (double)twist_2[i];
+        }
     }
 
     //输出
-    for(int i=0;i<12;i++)
-    {
-        res.T[i] = (double)tag_T_cam[i/4][ i%4];
-    }
+
     res.flag = flag;
   return true;
 }

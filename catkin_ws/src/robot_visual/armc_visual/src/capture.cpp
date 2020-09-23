@@ -6,14 +6,14 @@ using namespace std;
 using namespace FlyCapture2;
 
 //将所有函数定义在统一个文件中
-int menbashou_pose(Mat image,float weizi[6])
+int menbashou_pose(Mat image,float weizi_1[6],float weizi_2[6])
 {
      int flag=0;
     Mat Src,Src_save,jiance,jiance_clone,zhanshi,zhanshi_1,zhanshi_2,HLStu,lvbo,erzhi_zsy,erzhi_gd,erzhi_gd_countour;
      Src=image;
     if(Src.cols == 0)
         cout<<"kong"<<endl;
-    imshow("Src111",Src);
+    //imshow("Src111",Src);
     Src_save=Src.clone();
     Size2f image_size,jiance_size;
     image_size.width = Src.cols;
@@ -25,7 +25,7 @@ int menbashou_pose(Mat image,float weizi[6])
     right_d.y=1800;
     jiance=Src.clone();
     jiance=jiance(Rect(left_t.x,left_t.y, right_d.x, right_d.y));
-    imshow("jiance",jiance);
+    //imshow("jiance",jiance);
     jiance_size.width = jiance.cols;
     jiance_size.height =jiance.rows;
     cvtColor(jiance,HLStu,CV_BGR2HLS);
@@ -40,12 +40,12 @@ int menbashou_pose(Mat image,float weizi[6])
     //zhanshi=erzhi_zsy.clone();
     //resize(erzhi_zsy, zhanshi, Size2f(0.5*jiance_size.width,0.5*jiance_size.height));
 
-    int low_H = 50, low_L = 10, low_S = 0;
-    int high_H = 170, high_L = 120, high_S = 50;//max:179,255,255
+    int low_H =50,low_L = 25, low_S = 3;
+    int high_H = 160, high_L =65,high_S = 40;//max:179,255,255
     inRange(lvbo,Scalar(low_H,low_L,low_S),Scalar(high_H,high_L,high_S),erzhi_gd);
-    imshow("erzhi",erzhi_gd);
+    //imshow("erzhi",erzhi_gd);
     resize(erzhi_gd, zhanshi, Size2f(0.3*jiance_size.width,0.3*jiance_size.height));
-    imshow("zhanshi",zhanshi);
+    //imshow("zhanshi",zhanshi);
 
     vector<vector<Point>> contours;
     vector<vector<Point>> contourstrue;
@@ -59,7 +59,7 @@ int menbashou_pose(Mat image,float weizi[6])
     {
         float tmparea=fabs(contourArea(contours[i]));
         //if (contours[i].size()>1  && tmparea>100000)
-        if (tmparea>3000 && tmparea<15000)
+        if (tmparea>5000 && tmparea<20000)
         {
             contourstrue.push_back(contours[i]);
             cout<<"tmparea:  "<<tmparea<<endl;
@@ -135,15 +135,16 @@ int menbashou_pose(Mat image,float weizi[6])
         return flag;
     }
     resize(erzhi_gd_countour, zhanshi_1, Size2f(0.3*jiance_size.width,0.3*jiance_size.height));
-    imshow("zhanshi_1",zhanshi_1);
+    //imshow("zhanshi_1",zhanshi_1);
     box_end.center.x=box_end.center.x+left_t.x;
     box_end.center.y=box_end.center.y+left_t.y;
     ellipse(Src_save, box_end, Scalar(255,0,0), 3, CV_AA);
     resize(Src_save, zhanshi_2, Size2f(0.3*image_size.width,0.3*image_size.height));
-    imshow("zhanshi_2",zhanshi_2);
+    //imshow("zhanshi_2",zhanshi_2);
     //waitKey();
-    process(box_end.center.x,box_end.center.y, box_end.size.width,box_end.size.height,box_end.angle,weizi);
-    cout<<"weizi:  "<<weizi[0]<<"  "<<weizi[1]<<"  "<<weizi[2]<<"  "<<weizi[3]<<"  "<<weizi[4]<<"  "<<weizi[5]<<endl;
+    process(box_end.center.x,box_end.center.y, box_end.size.width,box_end.size.height,box_end.angle,weizi_1,weizi_2);
+    cout<<"weizi_1:  "<<weizi_1[0]<<"  "<<weizi_1[1]<<"  "<<weizi_1[2]<<"  "<<weizi_1[3]<<"  "<<weizi_1[4]<<"  "<<weizi_1[5]<<endl;
+     cout<<"weizi_2:  "<<weizi_2[0]<<"  "<<weizi_2[1]<<"  "<<weizi_2[2]<<"  "<<weizi_2[3]<<"  "<<weizi_2[4]<<"  "<<weizi_2[5]<<endl;
     //waitKey();
     return flag;
 }
@@ -155,7 +156,7 @@ int lock_pose(Mat image,float tag_T_cam[4][4])
     Src=image;
     if(Src.cols == 0)
         cout<<"kong"<<endl;
-    imshow("Src111",Src);
+    //imshow("Src111",Src);
     Src_save=Src.clone();
     Size2f image_size,jiance_size;
     image_size.width = Src.cols;
@@ -167,7 +168,7 @@ int lock_pose(Mat image,float tag_T_cam[4][4])
     right_d.y=1800;
     jiance=Src.clone();
     jiance=jiance(Rect2f(left_t.x,left_t.y, right_d.x, right_d.y));
-    imshow("jiance",jiance);
+    //imshow("jiance",jiance);
     jiance_size.width = jiance.cols;
     jiance_size.height =jiance.rows;
     cvtColor(jiance,HLStu,CV_BGR2HLS);
@@ -182,12 +183,12 @@ int lock_pose(Mat image,float tag_T_cam[4][4])
     //zhanshi=erzhi_zsy.clone();
     //resize(erzhi_zsy, zhanshi, Size2f(0.5*jiance_size.width,0.5*jiance_size.height));
 
-    int low_H = 50, low_L = 120, low_S = 130;
-    int high_H = 130, high_L = 230, high_S = 255;
+    int low_H = 10, low_L = 80, low_S = 0;
+    int high_H = 180, high_L = 200, high_S = 100;
     inRange(lvbo,Scalar(low_H,low_L,low_S),Scalar(high_H,high_L,high_S),erzhi_gd);
-    imshow("erzhi",erzhi_gd);
+    //imshow("erzhi",erzhi_gd);
     resize(erzhi_gd, zhanshi, Size2f(0.5*jiance_size.width,0.5*jiance_size.height));
-    imshow("zhanshi",zhanshi);
+    //imshow("zhanshi",zhanshi);
 
     vector<vector<Point>> contours;
     vector<vector<Point>> contourstrue;
@@ -212,12 +213,18 @@ int lock_pose(Mat image,float tag_T_cam[4][4])
        drawContours(erzhi_gd_countour,contourstrue,i,Scalar(255,255,255),1,8);
     }
     resize(erzhi_gd_countour, zhanshi_1, Size2f(0.5*jiance_size.width,0.5*jiance_size.height));
-    imshow("zhanshi_1",zhanshi_1);
+    //imshow("zhanshi_1",zhanshi_1);
 
     vector<Point2f> corner;
+    corner.clear();
     bool isDetect;
     //*********矩形检测*************
-    flag = RectDetect(erzhi_gd_countour, &isDetect,corner);//need the gray picture
+    corner = RectDetect(erzhi_gd_countour, &isDetect);//need the gray picture
+    flag=(int)isDetect;
+    std::cout << "flag:" << flag << std::endl;
+//    std::cout << "isDetect:" << isDetect << std::endl;
+//    std::cout << "corner.empty():" << corner.empty() << std::endl;
+    cout<<"corner.size:  "<<corner.size()<<endl;
     if ((isDetect == 1) && !(corner.empty()))
     //if ( !(corner.empty()))
     //if (isDetect == 1)
@@ -248,7 +255,7 @@ int lock_pose(Mat image,float tag_T_cam[4][4])
 
        imwrite("origin_circle.bmp", Src_save);
        resize(Src_save, zhanshi_2, Size2f(0.4*image_size.width,0.4*image_size.height));
-       imshow("zhanshi_2",zhanshi_2);
+       //imshow("zhanshi_2",zhanshi_2);
        //waitKey();
 
        // add PnP method
@@ -257,18 +264,18 @@ int lock_pose(Mat image,float tag_T_cam[4][4])
        cout << "**corner**" << corner << endl;
        //特征点世界坐标
        vector<cv::Point3f> Points3D;
-       Points3D.push_back(cv::Point3f(-57.5, 45, 0));  //P1 三维坐标的单位是毫米
-       Points3D.push_back(cv::Point3f(57.5, 45, 0));   //P2
-       Points3D.push_back(cv::Point3f(57.5, -45, 0));  //P3
-       Points3D.push_back(cv::Point3f(-57.5, -45, 0)); //P4
+       Points3D.push_back(cv::Point3f(-111.5, 62.5, 0));  //P1 三维坐标的单位是毫米
+       Points3D.push_back(cv::Point3f(111.5, 62.5, 0));   //P2
+       Points3D.push_back(cv::Point3f(111.5, -62.5, 0));  //P3
+       Points3D.push_back(cv::Point3f(-111.5, -62.5, 0)); //P4
 
        //the parameter of camera
-       double camD[9] = {1061.63809405752, 0, 669.823184750678,
-                                    0, 1061.72911715432, 356.265577591959,
-                                    0, 0, 1};
+       double camD[9] = {3621.84, 0, 1230.23,
+                         0, 3620.63, 1021.54,
+                         0, 0, 1 };
        cv::Mat cameraMatrix = cv::Mat(3, 3, CV_64FC1, camD);
        //畸变参数
-       double distCoeffD[5] = {-0.0533687268157436, 0.123316714357672, -0.00129228763177168, -0.00215893504838259, 0};
+       double distCoeffD[5] = {-0.0559, 0.1765, -0.0011, -0.00046324, 0};
        //double转mat类型
        cv::Mat distCoeffs = cv::Mat(1, 5, CV_64FC1, distCoeffD);
 
@@ -296,11 +303,12 @@ int lock_pose(Mat image,float tag_T_cam[4][4])
            tag_T_cam[3][i]=0;
            for (int j=0;j<3;j++)
            {
-               tag_T_cam[i][i]=rotation_matrix.at<double>(0, 0);
+               tag_T_cam[i][j]=rotation_matrix.at<double>(i, j);
            }
        }
        tag_T_cam[3][3]=1;
     }
+    //cout << "tag_T_cam1:" << tag_T_cam[0][0] << "\ntag_T_cam2:" << tag_T_cam[0][1]<< endl;
     cout<<"jieshu"<<endl;
 
 
@@ -369,9 +377,10 @@ int lock_capture_pose(float tag_T_cam[4][4])
 		// convert to OpenCV Mat
 		unsigned int rowBytes = (double)rgbImage.GetReceivedDataSize()/(double)rgbImage.GetRows();       
 		cv::Mat image = cv::Mat(rgbImage.GetRows(), rgbImage.GetCols(), CV_8UC3, rgbImage.GetData(),rowBytes);
-		cv::imshow("image", image);
+        //cv::imshow("image", image);
                 //cv::waitKey();
         flag=lock_pose(image,tag_T_cam);
+        std::cout << "tag_T_cam:" << tag_T_cam[0][3] << std::endl;
         if (flag == 1)
         {
             cout<<"密码锁识别成功"<<endl;
@@ -408,7 +417,7 @@ int lock_capture_pose(float tag_T_cam[4][4])
 }
 
 //门把手检测
-int handle_capture_pose(float twist[6])
+int handle_capture_pose(float twist_1[6],float twist_2[6])
 {
     FlyCapture2::Error error;
     Camera camera;
@@ -468,9 +477,9 @@ int handle_capture_pose(float twist[6])
         // convert to OpenCV Mat
         unsigned int rowBytes = (double)rgbImage.GetReceivedDataSize()/(double)rgbImage.GetRows();
         cv::Mat image = cv::Mat(rgbImage.GetRows(), rgbImage.GetCols(), CV_8UC3, rgbImage.GetData(),rowBytes);
-        cv::imshow("image", image);
+        //cv::imshow("image", image);
         //cv::waitKey();
-        flag=menbashou_pose(image,twist);
+        flag=menbashou_pose(image,twist_1,twist_2);
         if (flag == 1)
         {
             cout<<"门把手识别成功"<<endl;

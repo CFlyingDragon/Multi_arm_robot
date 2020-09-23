@@ -1,4 +1,4 @@
-#ifndef Rect_Detect_H
+﻿#ifndef Rect_Detect_H
 #define Rect_Detect_H
 
 #include <ctime>
@@ -46,7 +46,7 @@ bool rect_ansys(Vec4f line1,Vec4f line2,Vec4f line3,Vec4f line4);
 //int RectDetect(Mat ROI_PIC,vector<Point2f> corner);
 //int RectDetect(Mat ROI_PIC,vector<Point2f> corner,bool isDetect);
 // vector<Point2f> RectDetect(Mat ROI_PIC,bool isDetect);
-int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner);
+vector<Point2f> RectDetect(Mat ROI_PIC,bool* isDetect);
 
 
 #endif

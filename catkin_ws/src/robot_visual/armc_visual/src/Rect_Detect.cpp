@@ -53,7 +53,7 @@ void DrawRect(Vec4f L1,Vec4f L2,Vec4f L3,Vec4f L4){
 	for (int i = 0; i < DrawLines.size(); i++){
 		line(pic, Point(DrawLines.at(i)[0], DrawLines.at(i)[1]), Point(DrawLines.at(i)[2], DrawLines.at(i)[3]),Scalar(255, 0, 0),2);  //画出边缘图
 	}
-	imshow("pic",pic);
+    //imshow("pic",pic);
 	//imwrite("../image/res/rect_ansys.bmp",pic);
 	
         //waitKey(4);
@@ -146,7 +146,7 @@ vector<Vec4f> line_cluster(vector<Vec4f> DetLines)
                      line(PIC_copy, Point(DetLines.at(i)[0], DetLines.at(i)[1]), Point(DetLines.at(i)[2], DetLines.at(i)[3]),Scalar(255, 0, 0),2);  //画出边缘图
                      line(PIC_copy, Point(DetLines.at(j)[0], DetLines.at(j)[1]), Point(DetLines.at(j)[2], DetLines.at(j)[3]),Scalar(0, 255, 0),2);  //画出边缘图
                      resize(PIC_copy, xianshi, Size2f(0.5*PIC_copy.cols,0.5*PIC_copy.rows));
-                     imshow("xianshi",xianshi);
+                     //imshow("xianshi",xianshi);
                      //waitKey();
                      PIC_copy=PIC_copy1.clone();*/
 
@@ -541,7 +541,7 @@ vector<Point2f> ObtainCrossPoint(Vec4f line1,Vec4f line2,Vec4f line3,Vec4f line4
 	
 }
 
-int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
+vector<Point2f> RectDetect(Mat ROI_PIC,bool* isDetect)
 {
 #if 0
 	Ptr<LineSegmentDetector> ls = createLineSegmentDetector(LSD_REFINE_STD);
@@ -551,8 +551,9 @@ int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
     //Ptr<LineSegmentDetector> ls = createLineSegmentDetector(LSD_REFINE_STD, 0.8, 0.6, 2.0, 22.5, 0, 0.7, 1024);
 
 #endif
-    int flag=0;
+    //int flag=0;
 	vector<Point2f> corner;  //默认为空，用于未检测到时返回
+    vector<Point2f> fourcorner;
 	ROI_PIC.copyTo(PIC);
     PIC.copyTo(PIC_copy);
     PIC.copyTo(PIC_copy1);
@@ -632,7 +633,7 @@ int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
      {
          line(PIC_copy, Point(DetLines.at(i)[0], DetLines.at(i)[1]), Point(DetLines.at(i)[2], DetLines.at(i)[3]),Scalar(255, 0, 0),2);  //画出边缘图
          resize(PIC_copy, xianshi, Size2f(0.5*PIC_copy.cols,0.5*PIC_copy.rows));
-         imshow("xianshi",xianshi);
+         //imshow("xianshi",xianshi);
          //waitKey();
          PIC_copy=PIC_copy1.clone();
      }*/
@@ -641,7 +642,7 @@ int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
     for (int i = 0; i < DetLines.size(); i++){
         line(PIC_copy, Point(DetLines.at(i)[0], DetLines.at(i)[1]), Point(DetLines.at(i)[2], DetLines.at(i)[3]),Scalar(255, 0, 0),2);  //画出边缘图
         resize(PIC_copy, xianshi, Size2f(0.5*PIC_copy.cols,0.5*PIC_copy.rows));
-        imshow("xianshi",xianshi);
+        //imshow("xianshi",xianshi);
         cout<<"xianshi"<<endl;
         //waitKey();
     }*/
@@ -681,35 +682,35 @@ int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
            {
                line(PIC_copy, Point(DetLines.at(i)[0], DetLines.at(i)[1]), Point(DetLines.at(i)[2], DetLines.at(i)[3]),Scalar(255, 0, 0),2);  //画出边缘图
                resize(PIC_copy, xianshi, Size2f(0.5*PIC_copy.cols,0.5*PIC_copy.rows));
-               imshow("xianshi",xianshi);
+               //imshow("xianshi",xianshi);
                //waitKey(1000);
            }
            if (cishu ==1)
            {
                line(PIC_copy1, Point(DetLines.at(i)[0], DetLines.at(i)[1]), Point(DetLines.at(i)[2], DetLines.at(i)[3]),Scalar(0, 255, 0),2);  //画出边缘图
                resize(PIC_copy1, xianshi, Size2f(0.5*PIC_copy1.cols,0.5*PIC_copy1.rows));
-               imshow("xianshi",xianshi);
+               //imshow("xianshi",xianshi);
                //waitKey(1000);
            }
            if (cishu ==2)
            {
                line(PIC_copy2, Point(DetLines.at(i)[0], DetLines.at(i)[1]), Point(DetLines.at(i)[2], DetLines.at(i)[3]),Scalar(0, 0, 255),2);  //画出边缘图
                resize(PIC_copy2, xianshi, Size2f(0.5*PIC_copy2.cols,0.5*PIC_copy2.rows));
-               imshow("xianshi",xianshi);
+               //imshow("xianshi",xianshi);
                //waitKey(1000);
            }
            if (cishu ==3)
            {
                line(PIC_copy3, Point(DetLines.at(i)[0], DetLines.at(i)[1]), Point(DetLines.at(i)[2], DetLines.at(i)[3]),Scalar(200, 200, 200),2);  //画出边缘图
                resize(PIC_copy3, xianshi, Size2f(0.5*PIC_copy3.cols,0.5*PIC_copy3.rows));
-               imshow("xianshi",xianshi);
+               //imshow("xianshi",xianshi);
                //waitKey(1000);
            }
            if (cishu ==4)
            {
                line(PIC_copy4, Point(DetLines.at(i)[0], DetLines.at(i)[1]), Point(DetLines.at(i)[2], DetLines.at(i)[3]),Scalar(100, 100, 100),2);  //画出边缘图
                resize(PIC_copy4, xianshi, Size2f(0.5*PIC_copy4.cols,0.5*PIC_copy4.rows));
-               imshow("xianshi",xianshi);
+               //imshow("xianshi",xianshi);
                //waitKey(1000);
            }
            else
@@ -732,7 +733,7 @@ int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
     {
         line(PIC_copy, Point(DetLines.at(i)[0], DetLines.at(i)[1]), Point(DetLines.at(i)[2], DetLines.at(i)[3]),Scalar(255, 0, 0),2);  //画出边缘图
         resize(PIC_copy, xianshi, Size2f(0.5*PIC_copy.cols,0.5*PIC_copy.rows));
-        imshow("xianshi",xianshi);
+        //imshow("xianshi",xianshi);
         //waitKey();
         PIC_copy=PIC_copy1.clone();
     }
@@ -762,7 +763,7 @@ int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
 
     }
    resize(PIC_copy, xianshi, Size2f(0.5*PIC_copy.cols,0.5*PIC_copy.rows));
-   imshow("xianshi",xianshi);
+   //imshow("xianshi",xianshi);
    //waitKey();
 
 
@@ -807,7 +808,7 @@ int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
 
         }
        resize(PIC_copy, xianshi, Size2f(0.5*PIC_copy.cols,0.5*PIC_copy.rows));
-       imshow("xianshi",xianshi);
+       //imshow("xianshi",xianshi);
        //waitKey();
 	// for(int i=0;i<DetLines.size();i++){
 	// 	//cout << "Linedistance(DetLines[i]):" << Linedistance(DetLines[i]) << endl;
@@ -815,7 +816,7 @@ int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
     // }*/
 
      /*ls->drawSegments(Huibao, DetLines);
-     imshow("Huibao",Huibao);
+     //imshow("Huibao",Huibao);
      //waitKey(100);
      //sprintf(pic_name,"../image/pic_saved/Template_%d.bmp",Ti);
      cv::imwrite("Huibao.bmp",Huibao);
@@ -829,8 +830,8 @@ int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
 	// 小于4条线条时直接返回
     if(n<4)
     {
-       flag=0;
-        return flag;
+       //flag=0;
+        return fourcorner;
     }
     //cout<<"n k a m "<<n<<endl<<k<<endl<<a<<endl<<m<<endl;
     func_select(n,k,a,m);/*实现排列组合:进行选择*///输出res_select中的每一个元素为C84中的一种
@@ -865,47 +866,50 @@ int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
 		}
 	}
 
-	imshow("Rect_Src",PIC);
+    //imshow("Rect_Src",PIC);
     imwrite("Rect_Src.bmp", PIC);
+    //fourcorner.clear();
     //waitKey(4);
 	if(IsRect){
 		cout <<"Isrect is true in circle put function" << endl;
-		vector<Point2f> pointCorner;
-		pointCorner = ObtainCrossPoint(ResLines.at(0),ResLines.at(1),ResLines.at(2),ResLines.at(3));
-        cout<<"pointCorner[0]:  "<<pointCorner[0].x<<"  "<<pointCorner[0].y<<endl;
-        cout<<"pointCorner[1]:  "<<pointCorner[1].x<<"  "<<pointCorner[1].y<<endl;
-        cout<<"pointCorner[2]:  "<<pointCorner[2].x<<"  "<<pointCorner[2].y<<endl;
-        cout<<"pointCorner[3]:  "<<pointCorner[3].x<<"  "<<pointCorner[3].y<<endl;
-		circle(PIC, pointCorner[0], 5, Scalar(225, 0, 225), 3, 8);//线宽为3，颜色为紫色
-        cv::putText(PIC, to_string(0) , cv::Point(pointCorner[0].x-34, pointCorner[0].y), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
+        //vector<Point2f> pointCorner;
+        fourcorner = ObtainCrossPoint(ResLines.at(0),ResLines.at(1),ResLines.at(2),ResLines.at(3));
+        //cout<<"pointCorner[0]:  "<<pointCorner[0].x<<"  "<<pointCorner[0].y<<endl;
+        //cout<<"pointCorner[1]:  "<<pointCorner[1].x<<"  "<<pointCorner[1].y<<endl;
+        //cout<<"pointCorner[2]:  "<<pointCorner[2].x<<"  "<<pointCorner[2].y<<endl;
+        //cout<<"pointCorner[3]:  "<<pointCorner[3].x<<"  "<<pointCorner[3].y<<endl;
+        circle(PIC, fourcorner[0], 5, Scalar(225, 0, 225), 3, 8);//线宽为3，颜色为紫色
+        cv::putText(PIC, to_string(0) , cv::Point(fourcorner[0].x-34, fourcorner[0].y), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
         //cv::putText(PIC, to_string(0) , cv::Point(pointCorner[0].x+34, pointCorner[0].y+34), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
 		
-		circle(PIC, pointCorner[1], 5, Scalar(225, 0, 225), 3, 8);
-        cv::putText(PIC, to_string(1) , cv::Point(pointCorner[1].x+14, pointCorner[1].y), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
+        circle(PIC, fourcorner[1], 5, Scalar(225, 0, 225), 3, 8);
+        cv::putText(PIC, to_string(1) , cv::Point(fourcorner[1].x+14, fourcorner[1].y), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
         //cv::putText(PIC, to_string(1) , cv::Point(pointCorner[1].x-34, pointCorner[1].y+34), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
 
-		circle(PIC, pointCorner[2], 5, Scalar(225, 0, 225), 3, 8);
-        cv::putText(PIC, to_string(2) , cv::Point(pointCorner[2].x+14, pointCorner[2].y), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
+        circle(PIC, fourcorner[2], 5, Scalar(225, 0, 225), 3, 8);
+        cv::putText(PIC, to_string(2) , cv::Point(fourcorner[2].x+14, fourcorner[2].y), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
         //cv::putText(PIC, to_string(2) , cv::Point(pointCorner[2].x-34, pointCorner[2].y-34), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
 		
-		circle(PIC, pointCorner[3], 5, Scalar(225, 0, 225), 3, 8);
-        cv::putText(PIC, to_string(3) , cv::Point(pointCorner[3].x-34, pointCorner[3].y), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
+        circle(PIC, fourcorner[3], 5, Scalar(225, 0, 225), 3, 8);
+        cv::putText(PIC, to_string(3) , cv::Point(fourcorner[3].x-34, fourcorner[3].y), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
         //cv::putText(PIC, to_string(3) , cv::Point(pointCorner[3].x+34, pointCorner[3].y-34), CV_FONT_HERSHEY_SIMPLEX, 1.5, CV_RGB(0, 0, 255),2);
 		
-		imwrite("PIC_circle.bmp",PIC);	
-		imshow("circle_Res",PIC);
+        imwrite("PIC_circle.bmp",PIC);
+        //imshow("circle_Res",PIC);
         //waitKey(200);
 		*isDetect = IsRect;
 		cout <<endl <<  "value of isDetect：" << *isDetect << endl   << endl  << endl;
         //waitKey(300);
-        flag=1;
-        fourcorner.clear();
+        //flag=1;
+        cout<<"fourcorner.size:  "<<fourcorner.size()<<endl;
+       /* fourcorner.clear();
+        //cout<<"save corner"<<endl;
         for (int i=0;i<4;i++)
         {
             fourcorner.push_back(pointCorner[i]);
-        }
+        }*/
 
-        return flag;
+        return fourcorner;
 	}
     *isDetect = IsRect;
 	cout << "ISRect in Rect_detect function is  : "  <<  IsRect  << endl ;
@@ -922,5 +926,5 @@ int RectDetect(Mat ROI_PIC,bool* isDetect,vector<Point2f> fourcorner)
 	//imwrite(savename,PIC);
 
 
-    return flag;
+    return fourcorner;
 }

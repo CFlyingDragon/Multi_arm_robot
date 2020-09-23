@@ -660,29 +660,34 @@ def arm_angle_ikine_chose(Q, qk, q_min,q_max):
 	'''
 	#是否超关节极限
 	limit_flag = False
-	#求取Q的形状
-	m = len(Q[:,0])
-	#创建中间变量
-	dq = np.zeros(m)
-	#判断关节角是否超出极限//后期做处理
-	for i in range(m):
-		if (bf.exceed_joint_limit(Q[i,:],q_min,q_max)):
-			dq[i] = 1000.0 + i #超出关节极限
-		else:
-			#关节角未超出极限，求取与上一时刻偏差
-			dqqi = Q[i,:] - qk
-			dq[i] = nla.norm(dqqi)
-	#求取与上一时刻偏差最小的一组
-	dq_min = min(dq)
-	#判断是否有解
-	if(dq_min >= 1000.0):
-		print "关节角超出关节极限：无解"
+	qq = Q[0, :]
+	if(bf.exceed_joint_limit(Q[0,:],q_min,q_max)):
+		qq = np.copy(qk)
 		limit_flag = True
-		return [qk,limit_flag]
-	#选取最佳关节角
-	dq_minIndex = np.where(dq == dq_min)
-	qq =np.array(Q[dq_minIndex,:]).reshape(1,-1)[0] #转换成向量
-	#qq = Q[1, :]
+
+	#求取Q的形状
+	#m = len(Q[:,0])
+	#创建中间变量
+	# dq = np.zeros(m)
+	# #判断关节角是否超出极限//后期做处理
+	# for i in range(m):
+	# 	if (bf.exceed_joint_limit(Q[i,:],q_min,q_max)):
+	# 		print "第", i, "组"
+	# 		dq[i] = 1000.0 + i #超出关节极限
+	# 	else:
+	# 		#关节角未超出极限，求取与上一时刻偏差
+	# 		dqqi = Q[i,:] - qk
+	# 		dq[i] = nla.norm(dqqi)
+	# #求取与上一时刻偏差最小的一组
+	# dq_min = min(dq)
+	# #判断是否有解
+	# if(dq_min >= 1000.0):
+	# 	print "关节角超出关节极限：无解"
+	# 	limit_flag = True
+	# 	return [qk,limit_flag]
+	# #选取最佳关节角
+	# dq_minIndex = np.where(dq == dq_min)
+	# qq =np.array(Q[dq_minIndex,:]).reshape(1,-1)[0] #转换成向量
 	return [qq,limit_flag]
 
 #选择求取关节所需参考面,并调用对应算法求取8组关节角

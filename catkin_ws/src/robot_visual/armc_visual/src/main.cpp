@@ -7,7 +7,8 @@ int main()
 {
     int a=1;
     float tag_T_cam[4][4]={0.0f};
-    float twist[6]={0.0f};
+    float twist_1[6]={0.0f};
+    float twist_2[6]={0.0f};
     int flag=0;
     if (a == 0)
     {
@@ -18,7 +19,7 @@ int main()
     }
     else
     {
-        flag=handle_capture_pose(twist);
+        flag=handle_capture_pose(twist_1,twist_2);
         cout<<"a2= "<<a<<endl;
     }
     return 0;

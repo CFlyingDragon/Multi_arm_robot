@@ -1,4 +1,4 @@
-#ifndef __MENBASHOU_POSE
+﻿#ifndef __MENBASHOU_POSE
 #define __MENBASHOU_POSE
 
 #include <stdio.h>
@@ -19,6 +19,6 @@
 #include "print_matrix.h"
 
 
-int menbashou_pose(cv::Mat image,float weizi[6]);
+int menbashou_pose(cv::Mat image,float weizi_1[6],float weizi_2[6]);
 
 #endif
