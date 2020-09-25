@@ -2941,6 +2941,10 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
         self.read_flag = False
         self.visual_flag = False
 
+        self.flag_h = False
+        self.flag_l = False
+        self.flag_g = False
+
         [DH0, q_max, q_min] = gf.get_robot_parameter("armc")
         self.DH0 = DH0
         self.q_max = q_max
@@ -3019,13 +3023,17 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
         self.button_xx6_P.clicked.connect(self.fun_xx6_p)
         self.button_xx7_P.clicked.connect(self.fun_xx7_p)
 
-        self.button_check.clicked.connect(self.visual_check)
+        self.button_check.clicked.connect(self.visual_check1)
         self.button_h_go.clicked.connect(self.handle_go_init)
         self.button_h_run.clicked.connect(self.handle_run)
         self.button_h_back.clicked.connect(self.handle_back_init)
         self.button_l_go.clicked.connect(self.lock_go_init)
         self.button_l_run.clicked.connect(self.lock_run)
         self.button_l_back.clicked.connect(self.lock_back_init)
+        self.button_g_go.clicked.connect(self.grab_go_init)
+        self.button_g_run.clicked.connect(self.grab_run)
+        self.button_g_back.clicked.connect(self.grab_back_init)
+
         self.button_qq_to_xx.clicked.connect(self.joint_to_twist)
 
     # ===============按钮功能模块相关函数================#
@@ -3091,13 +3099,16 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
     # 调用视觉检测
     def visual_check(self):
         # 读取检测目标种类
-        flag = self.radioButton_handle.isChecked()
-        #print "flag1:" , flag
+        self.flag_h = self.radioButton_handle.isChecked()
+        self.flag_l = self.radioButton_lock.isChecked()
+        self.flag_g = self.radioButton_grab.isChecked()
         a=0
-        if (flag):
+        if(self.flag_h):
             a =1
-        else:
+        if(self.flag_l):
             a = 0
+        if(self.flag_g):
+            a = 2
         #print "a:" , a
         rospy.wait_for_service('visual_inspection')
         try:
@@ -3114,43 +3125,57 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
                 R = self.my_kin.euler_zyx2rot(handle_X[3:6])
                 Tc_o = np.eye(4)
                 Tc_o[0:3, 0:3] = R
-                Tc_o[0:3, 0:3] = handle_X[0:3]*0.001
-
-                handle_X1 = np.array(resp.T[6:12])
-                R = self.my_kin.euler_zyx2rot(handle_X1[3:6])
-                Tc_o1 = np.eye(4)
-                Tc_o1[0:3, 0:3] = R
-                Tc_o1[0:3, 0:3] = handle_X1[0:3] * 0.001
-                print "Tc_o1:", np.around(Tc_o1, 3)
+                Tc_o[0:3, 3] = handle_X[0:3]*0.001
+                flag = False
+                if(Tc_o[2, 3] < 0):
+                    flag = True
+                    msg_tip = "检测错误！"
+                    #Tc_o[0:3, 3] = - Tc_o[0:3, 3]
 
                 Te_c = gf.camera_parameters()
                 T0_e = self.my_kin.fkine(self.qq_state)
                 T0_o = np.dot(np.dot(T0_e, Te_c), Tc_o)
-
                 handle_X[0:3] = T0_o[0:3, 3]
                 handle_X[3:6] = self.my_kin.rot2euler_zyx(T0_o[0:3, 0:3])
                 self.handle_X = handle_X
 
+                handle_X1 = np.array(resp.T[6:12])
+                R1 = self.my_kin.euler_zyx2rot(handle_X1[3:6])
+                Tc_o1 = np.eye(4)
+                Tc_o1[0:3, 0:3] = R1
+                Tc_o1[0:3, 3] = handle_X1[0:3] * 0.001
+                print "Tc_o1:", np.around(Tc_o1, 3)
+
+                Te_c = gf.camera_parameters()
+                T0_e1 = self.my_kin.fkine(self.qq_state)
+                T0_o1 = np.dot(np.dot(T0_e1, Te_c), Tc_o1)
+
+                handle_X1[0:3] = T0_o1[0:3, 3]
+                handle_X1[3:6] = self.my_kin.rot2euler_zyx(T0_o1[0:3, 0:3])
+                self.handle_X1 = handle_X1
+
                 msg = "门把手检测成功！\n"
-                msg1 = "第一组解：" + "\nx:" + str(handle_X[0]) + "\ny:" + str(handle_X[1]) \
-                      + "\nz:" + str(handle_X[2]) + "\nR:" + str(handle_X[3]) \
+                msg1 = "第一组解：" + "\nx:" + str(handle_X[0]*1000) + "\ny:" + str(handle_X[1]*1000) \
+                      + "\nz:" + str(handle_X[2]*1000) + "\nR:" + str(handle_X[3]) \
                       + "\nP:" + str(handle_X[4]) + "\nY:" + str(handle_X[5]) + "\n"
-                msg2 = "第二组解：" + str(handle_X1[0]) + "\ny:" + str(handle_X1[1]) \
-                      + "\nz:" + str(handle_X1[2]) + "\nR:" + str(handle_X1[3]) \
+                msg2 = "第二组解：" + str(handle_X1[0]*1000) + "\ny:" + str(handle_X1[1]*1000) \
+                      + "\nz:" + str(handle_X1[2]*1000) + "\nR:" + str(handle_X1[3]) \
                       + "\nP:" + str(handle_X1[4]) + "\nY:" + str(handle_X1[5]) + "\n"
+                if(flag):
+                    msg = msg_tip
                 msg = msg + msg1 + msg2
             else:
-                To_c = np.eye(4)
-                for i in range(12):
-                    To_c[i / 4, i% 4] = resp.T[i]
-
-                To_c[0:3, 3] = To_c[0:3, 3]*0.001
-                #print "To_c:", To_c
-                #Tc_o = np.linalg.inv(To_c)
                 Tc_o = np.eye(4)
-                Tc_o[0:3, 0:3] = To_c[0:3, 0:3].T
-                Tc_o[0:3, 3] = np.dot(-Tc_o[0:3, 0:3],  To_c[0:3, 3])
-                #print " Tc_o:\n", np.around(Tc_o, 2)
+                for i in range(12):
+                    Tc_o[i / 4, i% 4] = resp.T[i]
+
+                Tc_o[0:3, 3] = Tc_o[0:3, 3]*0.001
+                print "Tc_o:", Tc_o
+                #Tc_o = np.linalg.inv(To_c)
+                # Tc_o = np.eye(4)
+                # Tc_o[0:3, 0:3] = To_c[0:3, 0:3].T
+                # Tc_o[0:3, 3] = np.dot(-Tc_o[0:3, 0:3],  To_c[0:3, 3])
+                # print " Tc_o:\n", np.around(Tc_o, 6)
                 Te_c = gf.camera_parameters()
                 T0_e = self.my_kin.fkine(self.qq_state)
                 # print "T0_e:\n", np.around(T0_e, 2)
@@ -3171,18 +3196,28 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
 
     def visual_check1(self):
         # 读取检测目标种类
-        flag = self.radioButton_handle.isChecked()
+        self.flag_h = self.radioButton_handle.isChecked()
+        self.flag_l = self.radioButton_lock.isChecked()
+        self.flag_g = self.radioButton_grab.isChecked()
         self.visual_flag = True
-        self.handle_X = np.array([0.850, -0.26, 0.220, 0, 0, 0])
-        self.lock_X = np.array([0.860, -0.26, 0.220, 0, 0, 0])
+        self.handle_X = np.array([0.620, 0.136, 0.40, 0, 0, 0])
+        self.lock_X = np.array([0.70, 0.025, 0.6, 0, 0, 0])
+        self.grab_X = np.array([0.600, -0.11, 0.400, 0, 0, 0])
         msg = "检测成功！"
         self.textEdit.setText(msg)
 
     # 计算初始位置
     def calculation_init_point_xx(self):
         # 初始关节角
-        #qq = np.array([0, -45, 0, 90, 0, 90, 0])
-        qq = np.array([-20, -50, 0, 75, 0, 90, -90])
+        flag1 = self.radioButton_handle.isChecked()
+        flag2 = self.radioButton_lock.isChecked()
+        flag3 = self.radioButton_grab.isChecked()
+        if(flag1):
+            qq = np.array([14, -40, 0, 70, 0, 90, -90])
+        if (flag2):
+            qq = np.array([-3, -50, 0, 70, 0, 85, -90])
+        if(flag3):
+            qq = np.array([-3, -50, 0, 70, 0, 90, -90])
         self.lineEdit_qq1.setText(str(qq[0]))
         self.lineEdit_qq2.setText(str(qq[1]))
         self.lineEdit_qq3.setText(str(qq[2]))
@@ -3347,14 +3382,14 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
             return -1
 
         # 获得规划起点
-        qq_b = np.array(self.state_qq_list[-1])
-        qq_m = np.zeros(self.n)
+        qq_b = self.qq_state
+        qq_m = np.copy(qq_b)
         qq_m[5] = self.qq_init[5]
         # 调用规划函数
         [qq1, qv1, _] = gf.q_joint_space_plan_time(qq_b, qq_m, self.T, self.t)
         [qq2, qv2, _] = gf.q_joint_space_plan_time(qq1[-1, :], self.qq_init, self.T, self.t)
         k1 = len(qq1)
-        k2= len(qq2)
+        k2 = len(qq2)
         k = k1+k2
         qq = np.zeros([k, self.n])
         qv = np.zeros([k, self.n])
@@ -3863,9 +3898,371 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
     # ----------任务按钮---------#
     # 门把手
     def handle_go_init(self):
+        if(not self.flag_h):
+            msg = "请先选着门把手！\n"
+            self.textEdit.setText(msg)
+            return 0
         # 获得规划起点
         qq_b = np.array(self.state_qq_list[-1])
-        qq_h_init = np.array([-60.0, 65, 50.73, 93, -20, -44.31, -90]) * np.pi / 180.0
+        #qq_h_init = np.array([-102.6, 32.7, 108.2, 71.6, -3.3, 69.9, 3.1]) * np.pi / 180.0
+        #qq_h_init = np.array([-84.7, -14.1, 27.2, 87.5, 59.5, 78.9, -36.4]) * np.pi / 180.0
+        #qq_h_init = np.array([-53.3, -18.7, 25.5, 92.3, 61.9, 76.5, -5.9]) * np.pi / 180.0
+        qq_h_init = np.array([-53.3, -14.0, 32.9, 90.5, 59.3, 65.5, -3.6]) * np.pi / 180.0
+        self.qq_h_init = qq_h_init
+        t = 15
+        # 调用规划函数
+        qq_m = np.copy(qq_b)
+        qq_m[0] = qq_h_init[0]
+        qq_m[3] = qq_h_init[3]
+        #qq_m[4] = qq_h_init[4]
+        #qq_m[5] = qq_h_init[5]
+        qq_m[6] = qq_h_init[6]
+        [qq1, qv1, _] = gf.q_joint_space_plan_time(qq_b, qq_m, self.T, t)
+        t = 15
+        [qq2, qv2, _] = gf.q_joint_space_plan_time(qq1[-1, :], qq_h_init, self.T, t)
+        k1 = len(qq1)
+        k2 = len(qq2)
+        k = k1 + k2
+        qq = np.zeros([k, self.n])
+        qv = np.zeros([k, self.n])
+        qq[:k1, :] = qq1
+        qv[:k1, :] = qv1
+        qq[k1:, :] = qq2
+        qv[k1:, :] = qv2
+        # 调用绘图函数
+        k = len(qq[:, 0])
+        t = np.linspace(0, self.T * (k - 1), k)
+        # 绘制关节角位置速度图
+        self.plot_pos(t, qq)
+        self.plot_vel(t, qv)
+        # 将规划好的位置定义为全局变量
+        self.command_qq = np.copy(qq)
+        msg = "运动到门把手任务初始点已规划！\n"
+        self.textEdit.setText(msg)
+
+    def handle_run(self):
+        if (not self.flag_h):
+            msg = "请先选着门把手！\n"
+            self.textEdit.setText(msg)
+            return 0
+        if (not self.visual_flag):
+            msg = "视觉检测失败,请重新检测再规划！\n"
+            self.textEdit.setText(msg)
+            return -1
+
+        # 获得规划时间
+        t = 10
+        # 调用规划函数
+        # 运行到门把手位置
+        xx1_1 = self.my_kin.fkine_zeros(self.qq_state)
+        xx1_2 = np.copy(xx1_1)
+        xx1_2[0:3] = self.handle_X[0:3]
+        xx1_2[1] = self.handle_X[1] - 0.03
+
+        self.line_plan.get_plan_time(t)
+        self.line_plan.get_begin_end_point(xx1_1[:6], xx1_2[:6])
+        self.line_plan.get_init_guess_joint(self.qq_state)
+        [qq1, qv1, _] = self.line_plan.out_joint()
+
+        # 转动门把手
+        t = 5
+        xx2 = np.copy(xx1_2)
+        xx2[2] = xx2[2] - 0.05
+
+        self.line_plan.get_plan_time(t)
+        self.line_plan.get_begin_end_point(xx1_2[:6], xx2[:6])
+        self.line_plan.get_init_guess_joint(qq1[-1, :])
+        [qq2_1, qv2_1, _] = self.line_plan.out_joint()
+        kk2_1 = len(qq2_1)
+        qq2 = np.zeros([2*kk2_1, self.n])
+        qv2 = np.zeros([2*kk2_1, self.n])
+        qq2[:kk2_1] = qq2_1
+        qv2[:kk2_1] = qv2_1
+        qq2[kk2_1:] = qq2_1[::-1]
+        qv2[kk2_1:] = qv2_1[::-1]
+
+        # 拉门开门
+        xx3_1 = self.my_kin.fkine_zeros(qq2[-1, :])
+        xx3_2 = np.copy(xx3_1)
+        xx3_2[0] = xx3_2[0] - 0.08
+
+        self.line_plan.get_plan_time(t)
+        self.line_plan.get_begin_end_point(xx3_1[:6], xx3_2[:6])
+        self.line_plan.get_init_guess_joint(qq2[-1, :])
+        [qq4, qv4, _] = self.line_plan.out_joint()
+
+        #臂形调整
+        [qq3, qv3, _] = gf.q_joint_space_plan_time(qq2[-1, :], qq4[0,:], self.T, t)
+
+        # 合成一个完整轨迹
+        k1 = len(qq1)
+        k2 = len(qq2)
+        k3 = len(qq3)
+        k4 = len(qq4)
+        ks = 500
+        k = k1 + k2 + k3 + k4 + 2 * ks
+
+        qq = np.zeros([k, self.n])
+        qv = np.zeros([k, self.n])
+        qq[0:k1] = qq1
+        qv[0:k1] = qv1
+        qq[k1:k1 + ks] = np.dot(np.ones([ks, self.n]), np.diag(qq1[-1, :]))
+        qv[k1:k1 + ks] = np.dot(np.ones([ks, self.n]), np.diag(qv1[-1, :]))
+        qq[k1 + ks:k1 + ks + k2] = qq2
+        qv[k1 + ks:k1 + ks + k2] = qv2
+        qq[k1 + ks + k2:k1 + ks + k2 + k3] = qq3
+        qv[k1 + ks + k2:k1 + ks + k2 + k3] = qv3
+        qq[k1 + ks + k2 + k3:k1 + ks + k2 + k3 + k4] = qq4
+        qv[k1 + ks + k2 + k3:k1 + ks + k2 + k3 + k4] = qv4
+        qq[k1 + ks + k2 + k3 + k4:] = np.dot(np.ones([ks, self.n]), np.diag(qq4[-1, :]))
+        qv[k1 + ks + k2 + k3 + k4:] = np.dot(np.ones([ks, self.n]), np.diag(qv4[-1, :]))
+
+        # 调用绘图函数
+        t = np.linspace(0, self.T * (k - 1), k)
+        # 绘制关节角位置速度图
+        self.plot_pos(t, qq)
+        self.plot_vel(t, qv)
+        # 将规划好的位置定义为全局变量
+        self.command_qq = np.copy(qq)
+        msg = "运动到门把手任务初始点已规划！\n"
+        self.textEdit.setText(msg)
+
+    def handle_back_init(self):
+        if (not self.flag_h):
+            msg = "请先选着门把手！\n"
+            self.textEdit.setText(msg)
+            return 0
+        # 获得规划起点
+        qq_b = np.array(self.state_qq_list[-1])
+        qq_m1 = np.copy(self.qq_h_init)
+        qq_init = np.array([-90, -45, 0, 90, 0, 90, 0]) * np.pi / 180.0
+        t = 5
+        # 调用规划函数
+        [qq1, qv1, _] = gf.q_joint_space_plan_time(qq_b, qq_m1, self.T, t)
+
+        qq_m2 = np.copy(qq1[-1, :])
+        #qq_m2[0] = qq_init[0]
+        qq_m2[1] = qq_init[1]
+        qq_m2[2] = qq_init[2]
+        qq_m2[4] = qq_init[4]
+        #qq_m2[6] = qq_init[6]
+        # 调用规划函数
+        t = 15
+        [qq2, qv2, _] = gf.q_joint_space_plan_time(qq1[-1, :], qq_m2, self.T, t)
+        t = 15
+        [qq3, qv3, _] = gf.q_joint_space_plan_time(qq2[-1, :], qq_init, self.T, t)
+        k1 = len(qq1)
+        k2 = len(qq2)
+        k3 = len(qq3)
+        k = k1 + k2 + k3
+        qq = np.zeros([k, self.n])
+        qv = np.zeros([k, self.n])
+        qq[:k1, :] = qq1
+        qv[:k1, :] = qv1
+        qq[k1:k1+k2, :] = qq2
+        qv[k1:k1+k2, :] = qv2
+        qq[k1+k2:, :] = qq3
+        qv[k1+k2:, :] = qv3
+        # 调用绘图函数
+        k = len(qq[:, 0])
+        t = np.linspace(0, self.T * (k - 1), k)
+        # 绘制关节角位置速度图
+        self.plot_pos(t, qq)
+        self.plot_vel(t, qv)
+        # 将规划好的位置定义为全局变量
+        self.command_qq = np.copy(qq)
+        msg = "运动到初始点已规划！\n"
+        self.textEdit.setText(msg)
+
+    #密码手
+    def lock_go_init(self):
+        if (not self.flag_l):
+            msg = "请先选择密码锁！\n"
+            self.textEdit.setText(msg)
+            return 0
+        # 获得规划起点
+        qq_b = np.array(self.state_qq_list[-1])
+        #qq_h_init = np.array([-145.0, 39, 139.0, 91.7, 17.1, 39.3, 4.2]) * np.pi / 180.0
+        qq_h_init = np.array([-39.5, -24.8, 17.4, 77.3, 25.1, 51.5, -0]) * np.pi / 180.0
+        self.qq_h_init = np.copy(qq_h_init)
+        t = 15
+        # 调用规划函数
+        qq_m = np.copy(qq_b)
+        qq_m[0] = qq_h_init[0]
+        qq_m[3] = qq_h_init[3]
+        #qq_m[5] = qq_h_init[5]
+        qq_m[6] = qq_h_init[6]
+        [qq1, qv1, _] = gf.q_joint_space_plan_time(qq_b, qq_m, self.T, t)
+        t = 15
+        [qq2, qv2, _] = gf.q_joint_space_plan_time(qq1[-1, :], qq_h_init, self.T, t)
+        k1 = len(qq1)
+        k2 = len(qq2)
+        k = k1 + k2
+        qq = np.zeros([k, self.n])
+        qv = np.zeros([k, self.n])
+        qq[:k1, :] = qq1
+        qv[:k1, :] = qv1
+        qq[k1:, :] = qq2
+        qv[k1:, :] = qv2
+        # 调用绘图函数
+        k = len(qq[:, 0])
+        t = np.linspace(0, self.T * (k - 1), k)
+        # 绘制关节角位置速度图
+        self.plot_pos(t, qq)
+        self.plot_vel(t, qv)
+        # 将规划好的位置定义为全局变量
+        self.command_qq = np.copy(qq)
+        msg = "运动到密码锁任务初始点已规划！\n"
+        self.textEdit.setText(msg)
+
+    def lock_run(self):
+        if (not self.flag_l):
+            msg = "请先选择密码锁！\n"
+            self.textEdit.setText(msg)
+            return 0
+        if (not self.visual_flag):
+            msg = "视觉检测失败,请重新检测再规划！\n"
+            self.textEdit.setText(msg)
+            return -1
+
+        # 获得规划时间
+        t = 10
+        # 调用规划函数
+        # 运行到门把手位置
+        xx1 = self.my_kin.fkine_zeros(self.qq_state)
+        xx2 = np.copy(xx1)
+        xx2[0:3] = self.lock_X[0:3]
+        xx2[1] = xx2[1] - 0.02
+
+        xx_m = np.copy(xx2)
+        xx_m[0] = xx_m[0] - 0.05
+
+        self.line_plan.get_plan_time(t)
+        self.line_plan.get_begin_end_point(xx1[:6], xx2[:6])
+        self.line_plan.get_init_guess_joint(self.qq_state)
+        [qq1, qv1, _] = self.line_plan.out_joint()
+
+        #返回
+        xx3 = np.copy(xx2)
+        xx4 = np.copy(xx2)
+        xx3[1] = xx3[1] + 0.01
+        xx4[2] = xx4[2] - 0.01
+
+        t=3
+        self.line_plan.get_plan_time(t)
+        self.line_plan.get_begin_end_point(xx2[:6], xx_m[0:6])
+        self.line_plan.get_init_guess_joint(qq1[-1, :])
+        [qq2_1, qv2_1, _] = self.line_plan.out_joint()
+
+        self.line_plan.get_plan_time(t)
+        self.line_plan.get_begin_end_point(xx_m[:6], xx3[:6])
+        self.line_plan.get_init_guess_joint(qq2_1[-1, :])
+        [qq2_2, qv2_2, _] = self.line_plan.out_joint()
+
+        self.line_plan.get_plan_time(t)
+        self.line_plan.get_begin_end_point(xx3[:6], xx_m[:6])
+        self.line_plan.get_init_guess_joint(qq2_2[-1, :])
+        [qq3_1, qv3_1, _] = self.line_plan.out_joint()
+
+        self.line_plan.get_plan_time(t)
+        self.line_plan.get_begin_end_point(xx_m[:6], xx4[:6])
+        self.line_plan.get_init_guess_joint(qq3_1[-1, :])
+        [qq3_2, qv3_2, _] = self.line_plan.out_joint()
+
+        xx_m[0] = xx_m[0] - 0.06
+        t = 10
+        self.line_plan.get_plan_time(t)
+        self.line_plan.get_begin_end_point(xx4[:6], xx_m[:6])
+        self.line_plan.get_init_guess_joint(qq3_2[-1, :])
+        [qq4, qv4, _] = self.line_plan.out_joint()
+
+        # 合成一个完整轨迹
+        k1 = len(qq1)
+        k2 = len(qq2_1)
+        k3 = len(qq2_2)
+        k4 = len(qq3_1)
+        k5 = len(qq3_2)
+        k6 = len(qq4)
+
+        k = k1 + k2 + k3 + k4 + k5 + k6
+
+        qq = np.zeros([k, self.n])
+        qv = np.zeros([k, self.n])
+        qq[0:k1] = qq1
+        qv[0:k1] = qv1
+        qq[k1:k1 + k2] = qq2_1
+        qv[k1:k1 + k2] = qv2_1
+        qq[k1 + k2:k1 + k2 + k3] = qq2_2
+        qv[k1 + k2:k1 + k2 + k3] = qv2_2
+        qq[k1 + k2 + k3:k1 + k2 + k3 + k4] = qq3_1
+        qv[k1 + k2 + k3:k1 + k2 + k3 + k4] = qv3_1
+        qq[k1 + k2 + k3 + k4:k1 + k2 + k3 + k4 + k5] = qq3_2
+        qv[k1 + k2 + k3 + k4:k1 + k2 + k3 + k4 + k5] = qv3_2
+        qq[k1 + k2 + k3 + k4 + k5:] = qq4
+        qv[k1 + k2 + k3 + k4 + k5:] = qv4
+
+        # 调用绘图函数
+        t = np.linspace(0, self.T * (k - 1), k)
+        # 绘制关节角位置速度图
+        self.plot_pos(t, qq)
+        self.plot_vel(t, qv)
+        # 将规划好的位置定义为全局变量
+        self.command_qq = np.copy(qq)
+        msg = "运动到门把手任务初始点已规划！\n"
+        self.textEdit.setText(msg)
+
+    def lock_back_init(self):
+        if (not self.flag_l):
+            msg = "请先选择密码锁！\n"
+            self.textEdit.setText(msg)
+            return 0
+        # 获得规划起点
+        qq_b = np.array(self.state_qq_list[-1])
+        qq_m1 = self.qq_l_init
+        qq_init = np.array([-90, -45, 0, 90, 0, 90, 0]) * np.pi / 180.0
+        t = 15
+        # 调用规划函数
+        [qq1, qv1, _] = gf.q_joint_space_plan_time(qq_b, qq_m1, self.T, t)
+
+        qq_m2 = np.copy(qq1[-1, :])
+        # qq_m2[0] = qq_init[0]
+        qq_m2[1] = qq_init[1]
+        qq_m2[2] = qq_init[2]
+        qq_m2[4] = qq_init[4]
+        qq_m2[5] = qq_init[5]
+        # 调用规划函数
+        t = 10
+        [qq2, qv2, _] = gf.q_joint_space_plan_time(qq1[-1, :], qq_m2, self.T, t)
+        t = 5
+        [qq3, qv3, _] = gf.q_joint_space_plan_time(qq2[-1, :], qq_init, self.T, t)
+        k1 = len(qq1)
+        k2 = len(qq2)
+        k3 = len(qq3)
+        k = k1 + k2 + k3
+        qq = np.zeros([k, self.n])
+        qv = np.zeros([k, self.n])
+        qq[:k1, :] = qq1
+        qv[:k1, :] = qv1
+        qq[k1:k1 + k2, :] = qq2
+        qv[k1:k1 + k2, :] = qv2
+        qq[k1 + k2:, :] = qq3
+        qv[k1 + k2:, :] = qv3
+        # 调用绘图函数
+        k = len(qq[:, 0])
+        t = np.linspace(0, self.T * (k - 1), k)
+        # 绘制关节角位置速度图
+        self.plot_pos(t, qq)
+        self.plot_vel(t, qv)
+        # 将规划好的位置定义为全局变量
+        self.command_qq = np.copy(qq)
+        msg = "运动到初始点已规划！\n"
+        self.textEdit.setText(msg)
+
+    #抓取物体规划
+    def grab_go_init(self):
+        # 获得规划起点
+        qq_b = np.array(self.state_qq_list[-1])
+        qq_h_init = np.array([-60.0, 65, 50.73, 93, -20, -44.31, 0.0]) * np.pi / 180.0
         t = 15
         # 调用规划函数
         qq_m = np.copy(qq_b)
@@ -3896,7 +4293,7 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
         msg = "运动到门把手任务初始点已规划！\n"
         self.textEdit.setText(msg)
 
-    def handle_run(self):
+    def grab_run(self):
         if (not self.visual_flag):
             msg = "视觉检测失败,请重新检测再规划！\n"
             self.textEdit.setText(msg)
@@ -3931,8 +4328,8 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
         self.line_plan.get_init_guess_joint(qq2[-1, :])
         [qq4, qv4, _] = self.line_plan.out_joint()
 
-        #臂形调整
-        [qq3, qv3, _] = gf.q_joint_space_plan_time(qq2[-1,:], qq4[0,:], self.T, t)
+        # 臂形调整
+        [qq3, qv3, _] = gf.q_joint_space_plan_time(qq2[-1, :], qq4[0, :], self.T, t)
 
         # 合成一个完整轨迹
         k1 = len(qq1)
@@ -3967,150 +4364,10 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
         msg = "运动到门把手任务初始点已规划！\n"
         self.textEdit.setText(msg)
 
-    def handle_back_init(self):
+    def grab_back_init(self):
         # 获得规划起点
         qq_b = np.array(self.state_qq_list[-1])
-        qq_m1 = np.array([-60.0, 65, 50.73, 93, -20, -44.31, -90]) * np.pi / 180.0
-        qq_init = np.array([-20, -50, 0, 75, 0, 90, -90]) * np.pi / 180.0
-        t = 5
-        # 调用规划函数
-        [qq1, qv1, _] = gf.q_joint_space_plan_time(qq_b, qq_m1, self.T, t)
-
-        qq_m2 = np.copy(qq1[-1, :])
-        qq_m2[1] = qq_init[1]
-        qq_m2[4] = qq_init[4]
-        qq_m2[5] = -np.pi/2
-        # 调用规划函数
-        t = 15
-        [qq2, qv2, _] = gf.q_joint_space_plan_time(qq1[-1, :], qq_m2, self.T, t)
-        t = 15
-        [qq3, qv3, _] = gf.q_joint_space_plan_time(qq2[-1, :], qq_init, self.T, t)
-        k1 = len(qq1)
-        k2 = len(qq2)
-        k3 = len(qq3)
-        k = k1 + k2 + k3
-        qq = np.zeros([k, self.n])
-        qv = np.zeros([k, self.n])
-        qq[:k1, :] = qq1
-        qv[:k1, :] = qv1
-        qq[k1:k1+k2, :] = qq2
-        qv[k1:k1+k2, :] = qv2
-        qq[k1+k2:, :] = qq3
-        qv[k1+k2:, :] = qv3
-        # 调用绘图函数
-        k = len(qq[:, 0])
-        t = np.linspace(0, self.T * (k - 1), k)
-        # 绘制关节角位置速度图
-        self.plot_pos(t, qq)
-        self.plot_vel(t, qv)
-        # 将规划好的位置定义为全局变量
-        self.command_qq = np.copy(qq)
-        msg = "运动到初始点已规划！\n"
-        self.textEdit.setText(msg)
-
-    def lock_go_init(self):
-        # 获得规划起点
-        qq_b = np.array(self.state_qq_list[-1])
-        qq_h_init = np.array([-60.0, 65, 50.73, 93, -20, -44.31, -90]) * np.pi / 180.0
-        t = 15
-        # 调用规划函数
-        qq_m = np.copy(qq_b)
-        qq_m[0] = qq_h_init[0]
-        qq_m[2] = qq_h_init[2]
-        qq_m[4] = qq_h_init[4]
-        qq_m[5] = qq_h_init[5]
-        [qq1, qv1, _] = gf.q_joint_space_plan_time(qq_b, qq_m, self.T, t)
-        t = 15
-        [qq2, qv2, _] = gf.q_joint_space_plan_time(qq1[-1, :], qq_h_init, self.T, t)
-        k1 = len(qq1)
-        k2 = len(qq2)
-        k = k1 + k2
-        qq = np.zeros([k, self.n])
-        qv = np.zeros([k, self.n])
-        qq[:k1, :] = qq1
-        qv[:k1, :] = qv1
-        qq[k1:, :] = qq2
-        qv[k1:, :] = qv2
-        # 调用绘图函数
-        k = len(qq[:, 0])
-        t = np.linspace(0, self.T * (k - 1), k)
-        # 绘制关节角位置速度图
-        self.plot_pos(t, qq)
-        self.plot_vel(t, qv)
-        # 将规划好的位置定义为全局变量
-        self.command_qq = np.copy(qq)
-        msg = "运动到密码锁任务初始点已规划！\n"
-        self.textEdit.setText(msg)
-
-    def lock_run(self):
-        if (not self.visual_flag):
-            msg = "视觉检测失败,请重新检测再规划！\n"
-            self.textEdit.setText(msg)
-            return -1
-
-        # 获得规划时间
-        t = 10
-        # 调用规划函数
-        # 运行到门把手位置
-        xx1_1 = self.my_kin.fkine_zeros(self.qq_state)
-        xx1_2 = np.copy(xx1_1)
-        xx1_2[0:3] = self.lock_X[0:3]
-
-        self.line_plan.get_plan_time(t)
-        self.line_plan.get_begin_end_point(xx1_1[:6], xx1_2[:6])
-        self.line_plan.get_init_guess_joint(self.qq_state)
-        [qq, qv, _] = self.line_plan.out_joint()
-
-        #
-        # t = 5
-        # qq2_b = qq1[-1, :]
-        # qq2_e = qq2_b + np.array([0, 0, 0, 0, 0, 0, 60]) * np.pi / 180.0
-        # [qq2, qv2, qa] = gf.q_joint_space_plan_time(qq2_b, qq2_e, self.T, t)
-
-        # # 拉门开门
-        # xx2_1 = self.my_kin.fkine_zeros(qq2[-1, :])
-        # xx2_2 = np.copy(xx2_1)
-        # xx2_2[0] = xx2_2[0] - 0.05
-        #
-        # self.line_plan.get_plan_time(t)
-        # self.line_plan.get_begin_end_point(xx2_1[:6], xx2_2[:6])
-        # self.line_plan.get_init_guess_joint(qq2[-1, :])
-        # [qq3, qv3, qa] = self.line_plan.out_joint()
-        #
-        # # 合成一个完整轨迹
-        # k1 = len(qq1)
-        # k2 = len(qq2)
-        # k3 = len(qq3)
-        # ks = 200
-        # k = k1 + k2 + k3 + 2 * ks
-        #
-        # qq = np.zeros([k, self.n])
-        # qv = np.zeros([k, self.n])
-        # qq[0:k1] = qq1
-        # qv[0:k1] = qv1
-        # qq[k1:k1 + ks] = np.dot(np.ones([ks, self.n]), np.diag(qq1[-1, :]))
-        # qv[k1:k1 + ks] = np.dot(np.ones([ks, self.n]), np.diag(qv1[-1, :]))
-        # qq[k1 + ks:k1 + ks + k2] = qq2
-        # qv[k1 + ks:k1 + ks + k2] = qv2
-        # qq[k1 + ks + k2:k1 + ks + k2 + ks] = np.dot(np.ones([ks, self.n]), np.diag(qq2[-1, :]))
-        # qv[k1 + ks + k2:k1 + ks + k2 + ks] = np.dot(np.ones([ks, self.n]), np.diag(qv2[-1, :]))
-        # qq[k1 + ks + k2 + ks:] = qq3
-        # qv[k1 + ks + k2 + ks:] = qv3
-
-        # 调用绘图函数
-        t = np.linspace(0, self.T * (k - 1), k)
-        # 绘制关节角位置速度图
-        self.plot_pos(t, qq)
-        self.plot_vel(t, qv)
-        # 将规划好的位置定义为全局变量
-        self.command_qq = np.copy(qq)
-        msg = "运动到门把手任务初始点已规划！\n"
-        self.textEdit.setText(msg)
-
-    def lock_back_init(self):
-        # 获得规划起点
-        qq_b = np.array(self.state_qq_list[-1])
-        qq_m1 = np.array([-60.0, 65, 50.73, 93, -20, -44.31, -90]) * np.pi / 180.0
+        qq_m1 = np.array([-60.0, 65, 50.73, 93, -20, -44.31, 0.0]) * np.pi / 180.0
         qq_init = np.array([-20, -50, 0, 75, 0, 90, -90]) * np.pi / 180.0
         t = 5
         # 调用规划函数

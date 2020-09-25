@@ -40,8 +40,8 @@ int menbashou_pose(Mat image,float weizi_1[6],float weizi_2[6])
     //zhanshi=erzhi_zsy.clone();
     //resize(erzhi_zsy, zhanshi, Size2f(0.5*jiance_size.width,0.5*jiance_size.height));
 
-    int low_H =50,low_L = 25, low_S = 3;
-    int high_H = 160, high_L =65,high_S = 40;//max:179,255,255
+    int low_H = 50, low_L = 0, low_S = 0;
+    int high_H = 170, high_L = 60, high_S = 20;//max:179,255,255
     inRange(lvbo,Scalar(low_H,low_L,low_S),Scalar(high_H,high_L,high_S),erzhi_gd);
     //imshow("erzhi",erzhi_gd);
     resize(erzhi_gd, zhanshi, Size2f(0.3*jiance_size.width,0.3*jiance_size.height));
@@ -59,7 +59,7 @@ int menbashou_pose(Mat image,float weizi_1[6],float weizi_2[6])
     {
         float tmparea=fabs(contourArea(contours[i]));
         //if (contours[i].size()>1  && tmparea>100000)
-        if (tmparea>5000 && tmparea<20000)
+        if (tmparea>3000 && tmparea<15000)
         {
             contourstrue.push_back(contours[i]);
             cout<<"tmparea:  "<<tmparea<<endl;
@@ -183,8 +183,10 @@ int lock_pose(Mat image,float tag_T_cam[4][4])
     //zhanshi=erzhi_zsy.clone();
     //resize(erzhi_zsy, zhanshi, Size2f(0.5*jiance_size.width,0.5*jiance_size.height));
 
-    int low_H = 10, low_L = 80, low_S = 0;
-    int high_H = 180, high_L = 200, high_S = 100;
+    //int low_H = 0, low_L = 100, low_S = 0;
+    //int high_H = 160, high_L = 180, high_S = 100;
+    int low_H = 0, low_L = 65, low_S = 0;
+    int high_H = 170, high_L = 130, high_S = 20;
     inRange(lvbo,Scalar(low_H,low_L,low_S),Scalar(high_H,high_L,high_S),erzhi_gd);
     //imshow("erzhi",erzhi_gd);
     resize(erzhi_gd, zhanshi, Size2f(0.5*jiance_size.width,0.5*jiance_size.height));
@@ -201,7 +203,7 @@ int lock_pose(Mat image,float tag_T_cam[4][4])
     {
         float tmparea=fabs(contourArea(contours[i]));
         //if (contours[i].size()>1  && tmparea>100000)
-        if (tmparea>1000000 && tmparea<3000000)
+        if (tmparea>500000 && tmparea<2000000)
         {
             contourstrue.push_back(contours[i]);
             cout<<"tmparea:  "<<tmparea<<endl;
@@ -270,12 +272,12 @@ int lock_pose(Mat image,float tag_T_cam[4][4])
        Points3D.push_back(cv::Point3f(-111.5, -62.5, 0)); //P4
 
        //the parameter of camera
-       double camD[9] = {3621.84, 0, 1230.23,
-                         0, 3620.63, 1021.54,
+       double camD[9] = {3648.6773, 0, 1224.2426,
+                         0, 3648.6535, 1019.89438,
                          0, 0, 1 };
        cv::Mat cameraMatrix = cv::Mat(3, 3, CV_64FC1, camD);
        //畸变参数
-       double distCoeffD[5] = {-0.0559, 0.1765, -0.0011, -0.00046324, 0};
+       double distCoeffD[5] = {-0.0563, 0.2628, -0.0014, -0.00057535, 0};
        //double转mat类型
        cv::Mat distCoeffs = cv::Mat(1, 5, CV_64FC1, distCoeffD);
 

@@ -104,7 +104,7 @@ void process(float center_x,float center_y,float box_width,float box_height,floa
         Mat Target_Position_tmp_z = Mat(3, 1, CV_64FC1, Target_Position_z);//????
         Target_Position_tmp_z = P*Target_Position_tmp_z;//??????P????????????????
 
-        double Radius = 7.5;
+        double Radius = 15;
         PosX_z = Radius*Target_Position_z[0];
         PosY_z = Radius*Target_Position_z[1];
         PosZ_z = Radius*Target_Position_z[2];
@@ -123,8 +123,8 @@ void process(float center_x,float center_y,float box_width,float box_height,floa
         weizi_1[1] = PosY_z;
         weizi_1[2] = PosZ_z;
         weizi_1[3] = ang1_z;
-        weizi_1[4] = ang1_z;
-        weizi_1[5] = ang1_z;
+        weizi_1[4] = ang2_z;
+        weizi_1[5] = ang3_z;
 
         //-------------------??????????-----------------------------------------
         Target_Position_f[0] = -sqrt(Lambda3*(Lambda1 - Lambda2) / Lambda1 / (Lambda1 + Lambda3));//????
@@ -151,6 +151,6 @@ void process(float center_x,float center_y,float box_width,float box_height,floa
         weizi_2[1] = PosY_f;
         weizi_2[2] = PosZ_f;
         weizi_2[3] = ang1_f;
-        weizi_2[4] = ang1_f;
-        weizi_2[5] = ang1_f;
+        weizi_2[4] = ang2_f;
+        weizi_2[5] = ang3_f;
 }
