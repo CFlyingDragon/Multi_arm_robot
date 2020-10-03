@@ -472,7 +472,7 @@ def armct_move_basketball():
     # 获取地址
     file_path = os.path.join(os.getcwd(), '../../../', 'robot_bag/armct/抓篮球数据')
     file_path = os.path.abspath(file_path)
-    file_force = file_path + '/f_armc_force2.txt'
+    file_force = file_path + '/p_armc_force1.txt'
 
     # 读取数据
     force = FileOpen.read(file_force)
@@ -481,13 +481,65 @@ def armct_move_basketball():
     T = 0.01
     t = np.linspace(0, T * (num - 1), num)
 
+    MyPlot.plot2_nd(t, force, title='force', xlab='t/s', ylab='N', lable='f')
+
+    # # 绘制数据图
+    # m1 = 1140
+    # m2 = 11400
+    # force[m1:m2, 2] = force[m1:m2, 2] - 1.2*np.ones(m2-m1)
+    # force[m1:4000, 2] = smooth(force[m1:4000, 2], window_len=35)
+    # force[4000:7500, 2] = smooth(force[4000:7500, 2], window_len=10)
+    # force[7500:m2, 2] = smooth(force[7500:m2, 2], window_len=35)
+    # MyPlot.plot2_nd(t, force, title='force', xlab='t/s', ylab='N', lable='f')
+    #
+    #
+    # # 绘制单轴曲线
+    # plt.figure(2)
+    # plt.plot(t, force[:, 2], label='Fz', color='r')
+    # plt.title("Fz")
+    # plt.xlabel("t/s")
+    # plt.ylabel("fz/N")
+    # plt.legend()
+    #
+    # #研究力控段
+    # fz = force[m1:m2, 2]
+    # plt.figure(3)
+    # plt.plot(t[m1:m2], fz, label='Fz_s', color='g')
+    # plt.title("Fz_s")
+    # plt.xlabel("t/s")
+    # plt.ylabel("fz/N")
+    # plt.legend()
+    #
+    # fz = force[m1:m2, 2] + 30*np.ones(m2-m1)
+    # plt.figure(4)
+    # plt.plot(t[m1:m2], fz, label='Fz_error', color='b')
+    # plt.title("Fz_error")
+    # plt.xlabel("t/s")
+    # plt.ylabel("fz/N")
+    # plt.legend()
+    #
+    # plt.show()
+
+#直线运动控制
+def armc_move_line():
+    # 获取地址
+    file_path = os.path.join(os.getcwd(), '../../../', 'robot_bag/imp_data')
+    file_path = os.path.abspath(file_path)
+    file_force = file_path + '/armc_line_p_force1.txt'
+
+    # 读取数据
+    force = FileOpen.read(file_force)
+    num = len(force)
+    print "num:", num
+    T = 0.01
+    t = np.linspace(0, T * (num - 1), num)
+
+    MyPlot.plot2_nd(t, force, title='force', xlab='t/s', ylab='N', lable='f')
+
     # 绘制数据图
-    m1 = 1140
-    m2 = 11400
-    force[m1:m2, 2] = force[m1:m2, 2] - 1.2*np.ones(m2-m1)
-    force[m1:4000, 2] = smooth(force[m1:4000, 2], window_len=35)
-    force[4000:7500, 2] = smooth(force[4000:7500, 2], window_len=10)
-    force[7500:m2, 2] = smooth(force[7500:m2, 2], window_len=35)
+    m1 = 1200
+    m2 = 6500
+    force[:, 2] = smooth(force[:, 2], window_len=6)
     MyPlot.plot2_nd(t, force, title='force', xlab='t/s', ylab='N', lable='f')
 
 
@@ -508,16 +560,75 @@ def armct_move_basketball():
     plt.ylabel("fz/N")
     plt.legend()
 
-    fz = force[m1:m2, 2] + 30*np.ones(m2-m1)
+    fz = force[m1:m2, 2] + 5*np.ones(m2-m1)
     plt.figure(4)
-    plt.plot(t[m1:m2], fz, label='Fz_s', color='b')
-    plt.title("Fz_s")
+    plt.plot(t[m1:m2], fz, label='Fz_error', color='b')
+    plt.title("Fz_error")
     plt.xlabel("t/s")
     plt.ylabel("fz/N")
     plt.legend()
 
     plt.show()
 
+#单点恒力控制
+def armc_move_sigle():
+    # 获取地址
+    file_path = os.path.join(os.getcwd(), '../../../', 'robot_bag/imp_data')
+    file_path = os.path.abspath(file_path)
+    file_force = file_path + '/line_sigle_f_force1.txt'
+
+    # 读取数据
+    force = FileOpen.read(file_force)
+    num = len(force)
+
+    print "num:", num
+    T = 0.01
+    t = np.linspace(0, T * (num - 1), num)
+
+    MyPlot.plot2_nd(t, force, title='force', xlab='t/s', ylab='N', lable='f')
+
+    #生成命令数据
+    num_c = 1000
+    t_c = np.linspace(0, T * (num_c - 1), num_c)
+    force_c = -10 + 10*np.cos(2*np.pi/5*t_c)
+
+    # 绘制数据图
+    plt.figure(3)
+    plt.plot(t_c, force_c, label='Fz_command', color='r')
+    plt.title("Fz")
+    plt.xlabel("t/s")
+    plt.ylabel("fz/N")
+    plt.legend()
+
+    # 绘制单轴曲线
+    plt.figure(2)
+    plt.plot(t, force[:, 2], label='Fz', color='r')
+    plt.title("Fz")
+    plt.xlabel("t/s")
+    plt.ylabel("fz/N")
+    plt.legend()
+
+    # 绘制单轴曲线
+    m1 = 605
+    m2 = 1605
+    fz = force[m1:m2, 2]
+    plt.figure(4)
+    plt.plot(t_c, fz, label='fz_state', color='b')
+    plt.plot(t_c, force_c, label='fz_command', color='r')
+    plt.title("Single point force tracking")
+    plt.xlabel("t/s")
+    plt.ylabel("fz/N")
+    plt.legend()
+
+    f_err = fz - force_c
+    plt.figure(5)
+    plt.plot(t_c, f_err, label='fz_error', color='r')
+    plt.title("Error single point force tracking")
+    plt.xlabel("t/s")
+    plt.ylabel("fz/N")
+    plt.legend()
+
+    plt.show()
 
 def main():
     num = 1000
@@ -542,5 +653,7 @@ if __name__ == "__main__":
     # armc_deal_with_data1()
     # armc_deal_with_data2()
     #deal_with_sigle_force()
-    armct_move_basketball()
+    #armct_move_basketball()
+    #armc_move_line()
+    armc_move_sigle()
     print "finish!"

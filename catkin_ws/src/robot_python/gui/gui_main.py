@@ -3023,7 +3023,7 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
         self.button_xx6_P.clicked.connect(self.fun_xx6_p)
         self.button_xx7_P.clicked.connect(self.fun_xx7_p)
 
-        self.button_check.clicked.connect(self.visual_check1)
+        self.button_check.clicked.connect(self.visual_check)
         self.button_h_go.clicked.connect(self.handle_go_init)
         self.button_h_run.clicked.connect(self.handle_run)
         self.button_h_back.clicked.connect(self.handle_back_init)
@@ -3213,9 +3213,9 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
         flag2 = self.radioButton_lock.isChecked()
         flag3 = self.radioButton_grab.isChecked()
         if(flag1):
-            qq = np.array([14, -40, 0, 70, 0, 90, -90])
+            qq = np.array([9, -50, 0, 70, 0, 90, -92])
         if (flag2):
-            qq = np.array([-3, -50, 0, 70, 0, 85, -90])
+            qq = np.array([-8, -50, 0, 70, 0, 85, -92])
         if(flag3):
             qq = np.array([-3, -50, 0, 70, 0, 90, -90])
         self.lineEdit_qq1.setText(str(qq[0]))
@@ -3286,7 +3286,7 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
 
     #关节空间到笛卡尔空间
     def joint_to_twist(self):
-        qq = np.array([-20, -50, 0, 75, 0, 90, -90])
+        qq = np.array([-40, 23, 15, 25, 60, 80, -100])
         self.lineEdit_qq1.setText(str(qq[0]))
         self.lineEdit_qq2.setText(str(qq[1]))
         self.lineEdit_qq3.setText(str(qq[2]))
@@ -3907,7 +3907,7 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
         #qq_h_init = np.array([-102.6, 32.7, 108.2, 71.6, -3.3, 69.9, 3.1]) * np.pi / 180.0
         #qq_h_init = np.array([-84.7, -14.1, 27.2, 87.5, 59.5, 78.9, -36.4]) * np.pi / 180.0
         #qq_h_init = np.array([-53.3, -18.7, 25.5, 92.3, 61.9, 76.5, -5.9]) * np.pi / 180.0
-        qq_h_init = np.array([-53.3, -14.0, 32.9, 90.5, 59.3, 65.5, -3.6]) * np.pi / 180.0
+        qq_h_init = np.array([-56.3, -14.0, 32.9, 90.5, 59.3, 65.5, -3.6]) * np.pi / 180.0
         self.qq_h_init = qq_h_init
         t = 15
         # 调用规划函数
@@ -4084,7 +4084,7 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
         qq_b = np.array(self.state_qq_list[-1])
         #qq_h_init = np.array([-145.0, 39, 139.0, 91.7, 17.1, 39.3, 4.2]) * np.pi / 180.0
         qq_h_init = np.array([-39.5, -24.8, 17.4, 77.3, 25.1, 51.5, -0]) * np.pi / 180.0
-        self.qq_h_init = np.copy(qq_h_init)
+        self.qq_l_init = np.copy(qq_h_init)
         t = 15
         # 调用规划函数
         qq_m = np.copy(qq_b)
@@ -4261,27 +4261,12 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
     #抓取物体规划
     def grab_go_init(self):
         # 获得规划起点
-        qq_b = np.array(self.state_qq_list[-1])
-        qq_h_init = np.array([-60.0, 65, 50.73, 93, -20, -44.31, 0.0]) * np.pi / 180.0
+        qq_b = self.qq_state
+        qq_h_init = np.array([-16.5, 27.0, 15.0, 25.0, 0.0, 30.0, -100]) * np.pi / 180.0
         t = 15
         # 调用规划函数
-        qq_m = np.copy(qq_b)
-        qq_m[0] = qq_h_init[0]
-        qq_m[2] = qq_h_init[2]
-        qq_m[4] = qq_h_init[4]
-        qq_m[5] = qq_h_init[5]
-        [qq1, qv1, _] = gf.q_joint_space_plan_time(qq_b, qq_m, self.T, t)
+        [qq, qv, _] = gf.q_joint_space_plan_time(qq_b, qq_h_init, self.T, t)
         t = 15
-        [qq2, qv2, _] = gf.q_joint_space_plan_time(qq1[-1, :], qq_h_init, self.T, t)
-        k1 = len(qq1)
-        k2 = len(qq2)
-        k = k1 + k2
-        qq = np.zeros([k, self.n])
-        qv = np.zeros([k, self.n])
-        qq[:k1, :] = qq1
-        qv[:k1, :] = qv1
-        qq[k1:, :] = qq2
-        qv[k1:, :] = qv2
         # 调用绘图函数
         k = len(qq[:, 0])
         t = np.linspace(0, self.T * (k - 1), k)
@@ -4293,67 +4278,18 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
         msg = "运动到门把手任务初始点已规划！\n"
         self.textEdit.setText(msg)
 
+    #用作开门
     def grab_run(self):
-        if (not self.visual_flag):
-            msg = "视觉检测失败,请重新检测再规划！\n"
-            self.textEdit.setText(msg)
-            return -1
-
         # 获得规划时间
-        t = 10
-        # 调用规划函数
-        # 运行到门把手位置
-        xx1_1 = self.my_kin.fkine_zeros(self.qq_state)
-        xx1_2 = np.copy(xx1_1)
-        xx1_2[0:3] = self.handle_X[0:3]
+        t = 20
+        #运动到指定位置
+        qq_b = np.copy(self.qq_state)
+        qq_m = np.copy(self.qq_state)
+        qq_m[4] = qq_m[4] + np.pi/6
+        qq_m[0] = qq_m[0] + np.pi / 6
+        [qq, qv, _] = gf.q_joint_space_plan_time(qq_b, qq_m, self.T, t)
 
-        self.line_plan.get_plan_time(t)
-        self.line_plan.get_begin_end_point(xx1_1[:6], xx1_2[:6])
-        self.line_plan.get_init_guess_joint(self.qq_state)
-        [qq1, qv1, qa1] = self.line_plan.out_joint()
-
-        # 转动门把手
-        t = 5
-        qq2_b = qq1[-1, :]
-        qq2_e = qq2_b + np.array([0, 0, 0, 0, 0, 0, 60]) * np.pi / 180.0
-        [qq2, qv2, qa] = gf.q_joint_space_plan_time(qq2_b, qq2_e, self.T, t)
-
-        # 拉门开门
-        xx3_1 = self.my_kin.fkine_zeros(qq2[-1, :])
-        xx3_2 = np.copy(xx3_1)
-        xx3_2[0] = xx3_2[0] - 0.05
-
-        self.line_plan.get_plan_time(t)
-        self.line_plan.get_begin_end_point(xx3_1[:6], xx3_2[:6])
-        self.line_plan.get_init_guess_joint(qq2[-1, :])
-        [qq4, qv4, _] = self.line_plan.out_joint()
-
-        # 臂形调整
-        [qq3, qv3, _] = gf.q_joint_space_plan_time(qq2[-1, :], qq4[0, :], self.T, t)
-
-        # 合成一个完整轨迹
-        k1 = len(qq1)
-        k2 = len(qq2)
-        k3 = len(qq3)
-        k4 = len(qq4)
-        ks = 200
-        k = k1 + k2 + k3 + k4 + 2 * ks
-
-        qq = np.zeros([k, self.n])
-        qv = np.zeros([k, self.n])
-        qq[0:k1] = qq1
-        qv[0:k1] = qv1
-        qq[k1:k1 + ks] = np.dot(np.ones([ks, self.n]), np.diag(qq1[-1, :]))
-        qv[k1:k1 + ks] = np.dot(np.ones([ks, self.n]), np.diag(qv1[-1, :]))
-        qq[k1 + ks:k1 + ks + k2] = qq2
-        qv[k1 + ks:k1 + ks + k2] = qv2
-        qq[k1 + ks + k2:k1 + ks + k2 + k3] = qq3
-        qv[k1 + ks + k2:k1 + ks + k2 + k3] = qv3
-        qq[k1 + ks + k2 + k3:k1 + ks + k2 + k3 + k4] = qq4
-        qv[k1 + ks + k2 + k3:k1 + ks + k2 + k3 + k4] = qv4
-        qq[k1 + ks + k2 + k3 + k4:] = np.dot(np.ones([ks, self.n]), np.diag(qq4[-1, :]))
-        qv[k1 + ks + k2 + k3 + k4:] = np.dot(np.ones([ks, self.n]), np.diag(qv4[-1, :]))
-
+        k = len(qq)
         # 调用绘图函数
         t = np.linspace(0, self.T * (k - 1), k)
         # 绘制关节角位置速度图
@@ -4366,34 +4302,27 @@ class ArmcWindow4(QMainWindow, Ui_ArmcForm4):
 
     def grab_back_init(self):
         # 获得规划起点
-        qq_b = np.array(self.state_qq_list[-1])
-        qq_m1 = np.array([-60.0, 65, 50.73, 93, -20, -44.31, 0.0]) * np.pi / 180.0
-        qq_init = np.array([-20, -50, 0, 75, 0, 90, -90]) * np.pi / 180.0
-        t = 5
-        # 调用规划函数
-        [qq1, qv1, _] = gf.q_joint_space_plan_time(qq_b, qq_m1, self.T, t)
+        qq_b = self.qq_state
+        qq_m = np.array([-45, 30, 0, 0, 0, 60, -90]) * np.pi / 180.0
+        qq_init = np.array([-90, -45, 0, 90, 0, 90, 0]) * np.pi / 180.0
 
-        qq_m2 = np.copy(qq1[-1, :])
-        qq_m2[1] = qq_init[1]
-        qq_m2[4] = qq_init[4]
-        qq_m2[5] = -np.pi / 2
         # 调用规划函数
-        t = 15
-        [qq2, qv2, _] = gf.q_joint_space_plan_time(qq1[-1, :], qq_m2, self.T, t)
-        t = 15
-        [qq3, qv3, _] = gf.q_joint_space_plan_time(qq2[-1, :], qq_init, self.T, t)
+        t = 20
+        [qq1, qv1, _] = gf.q_joint_space_plan_time(qq_b, qq_m, self.T, t)
+        t = 20
+        [qq2, qv2, _] = gf.q_joint_space_plan_time(qq_m, qq_init, self.T, t)
         k1 = len(qq1)
         k2 = len(qq2)
-        k3 = len(qq3)
-        k = k1 + k2 + k3
+        ks = 500
+        k = k1 + k2 + ks
         qq = np.zeros([k, self.n])
         qv = np.zeros([k, self.n])
         qq[:k1, :] = qq1
         qv[:k1, :] = qv1
-        qq[k1:k1 + k2, :] = qq2
-        qv[k1:k1 + k2, :] = qv2
-        qq[k1 + k2:, :] = qq3
-        qv[k1 + k2:, :] = qv3
+        qq[k1:k1 + ks, :] = np.dot(np.ones([ks, self.n]), np.diag(qq1[-1, :]))
+        qv[k1:k1 + ks, :] = np.dot(np.ones([ks, self.n]), np.diag(qv1[-1, :]))
+        qq[k1 + ks:, :] = qq2
+        qv[k1 + ks:, :] = qv2
         # 调用绘图函数
         k = len(qq[:, 0])
         t = np.linspace(0, self.T * (k - 1), k)
