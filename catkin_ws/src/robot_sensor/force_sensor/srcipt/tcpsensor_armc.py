@@ -46,6 +46,15 @@ def tcp_connect():
     # s.send(set_decouple_matrix)
     # recvData = bytearray(s.recv(1000))
     # print "新设置的解耦矩阵：", recvData
+    # #重新设置IP重启后生效
+    get_ip = "AT+EIP=?\r\n"
+    s.send(get_ip)
+    recvData = bytearray(s.recv(1000))
+    print recvData
+    set_ip = "AT+EIP=192.168.0.103\r\n"
+    s.send(set_ip)
+    recvData = bytearray(s.recv(1000))
+    print recvData
 
     #设置采样频率
     set_update_rate = "AT+SMPR=100\r\n"
@@ -82,7 +91,6 @@ def tcp_connect():
         F[3] = float(mx)
         F[4] = float(my)
         F[5] = float(mz)
-
 
 def pub_force_node():
     # 运行话题

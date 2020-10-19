@@ -77,143 +77,169 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # ======================菜单栏功能模块=======================#
         #创建菜单
         menubar = self.menuBar()
-        fileMenu = menubar.addMenu('&File')
-        armcMenu = menubar.addMenu('&Armc')
-        ursMenu = menubar.addMenu('&3URs')
-        handMenu = menubar.addMenu('&Hand')
-        armctMenu = menubar.addMenu('&Armc_Armt')
-        planMenu = menubar.addMenu('&Plan')
-        impedanceMenu = menubar.addMenu('Impedance')
-        teachMenu = menubar.addMenu('&Teaching')
-        demoMenu = menubar.addMenu('&Technology')
-        testMenu = menubar.addMenu('&Test')
-        helpMenu = menubar.addMenu('&Help')
+        fileMenu = menubar.addMenu('&文件')
+        armcMenu = menubar.addMenu('&自制Armc')
+        ursMenu = menubar.addMenu('&UR5三臂')
+        handMenu = menubar.addMenu('&手抓')
+        armctMenu = menubar.addMenu('&双臂Armct')
+        armctrMenu = menubar.addMenu('&三臂Armrtc')
+        planMenu = menubar.addMenu('&规划')
+        impedanceMenu = menubar.addMenu('阻抗控制')
+        teachMenu = menubar.addMenu('&示教')
+        demoMenu = menubar.addMenu('&工艺')
+        testMenu = menubar.addMenu('&测试')
+        helpMenu = menubar.addMenu('&帮助')
 
         #-------------------文件菜单-------------------#
         # 中打开文件操作
-        openFile = QAction(QIcon('exit.png'), 'Open', self)
+        openFile = QAction(QIcon('exit.png'), '打开', self)
         openFile.setShortcut('Ctrl+o')
-        openFile.setStatusTip('Open new File')
+        openFile.setStatusTip('打开文件')
         openFile.triggered.connect(self.fileOpen)
         fileMenu.addAction(openFile)
 
         #文件菜单中关闭操作
-        exitAction = QAction(QIcon('exit.png'), '&Exit', self)
+        exitAction = QAction(QIcon('exit.png'), '&退出', self)
         exitAction.setShortcut('Ctrl+q')
-        exitAction.setStatusTip('Exit application')
+        exitAction.setStatusTip('退出软件')
         exitAction.triggered.connect(qApp.quit)
         fileMenu.addAction(exitAction)
 
         # -------------------Armc菜单-------------------#
         #armc机械臂关节空间规划
-        openArmc1 = QAction(QIcon('exit.png'), 'armc joint plan', self)
+        openArmc1 = QAction(QIcon('exit.png'), '关节控制', self)
         openArmc1.setShortcut('Ctrl+c')
-        openArmc1.setStatusTip('Open armc joint plan form')
+        openArmc1.setStatusTip('自制机械臂关节空间规划和控制')
         openArmc1.triggered.connect(self.gotoArmc1)
         armcMenu.addAction(openArmc1)
 
         # armc机械臂增量规划
-        openArmc2 = QAction(QIcon('exit.png'), 'armc inc plan', self)
+        openArmc2 = QAction(QIcon('exit.png'), '笛卡尔增量控制', self)
         openArmc2.setShortcut('Ctrl+c')
-        openArmc2.setStatusTip('Open armc inc plan form')
+        openArmc2.setStatusTip('常规求逆控制')
         openArmc2.triggered.connect(self.gotoArmc2)
         armcMenu.addAction(openArmc2)
 
         # armc机械臂增量规划
-        openArmc3 = QAction(QIcon('exit.png'), 'armc zero plan', self)
+        openArmc3 = QAction(QIcon('exit.png'), '笛卡尔零控制', self)
         openArmc3.setShortcut('Ctrl+c')
-        openArmc3.setStatusTip('Open armc zero plan form')
+        openArmc3.setStatusTip('臂型角求逆控制')
         openArmc3.triggered.connect(self.gotoArmc3)
         armcMenu.addAction(openArmc3)
 
         # armc机械臂最终规划
-        openArmc4 = QAction(QIcon('exit.png'), 'armc perfect plan', self)
+        openArmc4 = QAction(QIcon('exit.png'), '推荐笛卡尔控制', self)
         openArmc4.setShortcut('Ctrl+c')
-        openArmc4.setStatusTip('Open armc perfect plan form')
+        openArmc4.setStatusTip('常规求逆零空间控制')
         openArmc4.triggered.connect(self.gotoArmc4)
         armcMenu.addAction(openArmc4)
 
         # -------------------URs菜单-------------------#
         #3个UR机械臂关节空间规划
-        openUrs1 = QAction(QIcon('exit.png'), 'Open URs joint plan', self)
+        openUrs1 = QAction(QIcon('exit.png'), '关节空间控制', self)
         openUrs1.setShortcut('Ctrl+c')
-        openUrs1.setStatusTip('Open URs joint plan form')
+        openUrs1.setStatusTip('三个UR机械臂关节空间规划')
         openUrs1.triggered.connect(self.gotoUrs1)
         ursMenu.addAction(openUrs1)
 
         #2个UR机械臂搬运物体
-        openUrs2 = QAction(QIcon('exit.png'), 'Open URs move object', self)
+        openUrs2 = QAction(QIcon('exit.png'), '搬运控制', self)
         openUrs2.setShortcut('Ctrl+c')
-        openUrs2.setStatusTip('Open URs move object form')
+        openUrs2.setStatusTip('三个UR机械臂搬运控制')
         openUrs2.triggered.connect(self.gotoUrs2)
         ursMenu.addAction(openUrs2)
 
         # 3个UR机械臂初始位置调整
-        openUrs3 = QAction(QIcon('exit.png'), 'Open URs go init', self)
+        openUrs3 = QAction(QIcon('exit.png'), '初始位置调整', self)
         openUrs3.setShortcut('Ctrl+c')
-        openUrs3.setStatusTip('Open URs go init form')
+        openUrs3.setStatusTip('调整UR机械臂初始位置')
         openUrs3.triggered.connect(self.gotoUrs3)
         ursMenu.addAction(openUrs3)
 
         # -------------------hand菜单-------------------#
         #URs加手抓
-        openHand1 = QAction(QIcon('exit.png'), 'Open Hand URs', self)
+        openHand1 = QAction(QIcon('exit.png'), 'UR+手抓', self)
         openHand1.setShortcut('Ctrl+c')
-        openHand1.setStatusTip('Open Hand URs joint plan form')
+        openHand1.setStatusTip('UR加手抓控制')
         openHand1.triggered.connect(self.gotoHand1)
         handMenu.addAction(openHand1)
 
         # -------------------armct菜单-------------------#
-        openArmct1 = QAction(QIcon('exit.png'), 'joint plan form', self)
+        openArmct1 = QAction(QIcon('exit.png'), '关节空间控制', self)
         openArmct1.setShortcut('Ctrl+c')
         openArmct1.setStatusTip('关节空间规划')
         openArmct1.triggered.connect(self.gotoArmct1)
         armctMenu.addAction(openArmct1)
 
-        openArmct2 = QAction(QIcon('exit.png'), 'cartesian plan form', self)
+        openArmct2 = QAction(QIcon('exit.png'), '笛卡尔空间控制', self)
         openArmct2.setShortcut('Ctrl+c')
         openArmct2.setStatusTip('笛卡尔空间规划')
         openArmct2.triggered.connect(self.gotoArmct2)
         armctMenu.addAction(openArmct2)
 
-        openArmct3 = QAction(QIcon('exit.png'), 'imp plan form', self)
+        openArmct3 = QAction(QIcon('exit.png'), '阻抗控制', self)
         openArmct3.setShortcut('Ctrl+c')
-        openArmct3.setStatusTip('笛卡尔空间规划')
+        openArmct3.setStatusTip('笛卡尔空间阻抗控制')
         openArmct3.triggered.connect(self.gotoArmct3)
         armctMenu.addAction(openArmct3)
 
+        # -------------------armctr菜单-------------------#
+        openArmctr1 = QAction(QIcon('exit.png'), '三臂阻抗控制', self)
+        openArmctr1.setShortcut('Ctrl+c')
+        openArmctr1.setStatusTip('阻抗控制')
+        openArmctr1.triggered.connect(self.gotoArmctr1)
+        armctrMenu.addAction(openArmctr1)
+
+        # openArmct2 = QAction(QIcon('exit.png'), 'cartesian plan form', self)
+        # openArmct2.setShortcut('Ctrl+c')
+        # openArmct2.setStatusTip('笛卡尔空间规划')
+        # openArmct2.triggered.connect(self.gotoArmct2)
+        # armctMenu.addAction(openArmct2)
+        #
+        # openArmct3 = QAction(QIcon('exit.png'), 'imp plan form', self)
+        # openArmct3.setShortcut('Ctrl+c')
+        # openArmct3.setStatusTip('笛卡尔空间规划')
+        # openArmct3.triggered.connect(self.gotoArmct3)
+        # armctMenu.addAction(openArmct3)
+
         #规划菜单栏:打开圆规划
-        openCirPlan = QAction(QIcon('exit.png'), 'Open circular1 plan', self)
+        openCirPlan = QAction(QIcon('exit.png'), '圆规划', self)
         openCirPlan.setShortcut('Ctrl+c')
-        openCirPlan.setStatusTip('Open circular1 plan form')
+        openCirPlan.setStatusTip('圆规划')
         openCirPlan.triggered.connect(self.gotoCircular1)
         planMenu.addAction(openCirPlan)
 
         #规划菜单栏:打直线规划规划
-        openLinePlan = QAction(QIcon('exit.png'), 'Open Line1 plan', self)
+        openLinePlan = QAction(QIcon('exit.png'), '直线规划', self)
         openLinePlan.setShortcut('Ctrl+l')
-        openLinePlan.setStatusTip('Open Line1 plan form')
+        openLinePlan.setStatusTip('直线规划')
         openLinePlan.triggered.connect(self.gotoLine1)
         planMenu.addAction(openLinePlan)
 
         # -------------------积分自适应导纳菜单-------------------#
         #阻抗控制菜单栏:阻抗参数调试
-        openImp1 = QAction(QIcon('exit.png'), 'Impedance paramter debug ', self)
-        openImp1.setStatusTip('Open impedance form1')
+        openImp1 = QAction(QIcon('exit.png'), '阻抗参数调试 ', self)
+        openImp1.setStatusTip('阻抗参数调试')
         openImp1.triggered.connect(self.gotoImp1)
         impedanceMenu.addAction(openImp1)
 
         #阻抗控制菜单栏:阻抗轨迹控制
-        openImp2 = QAction(QIcon('exit.png'), 'Impedance controll', self)
-        openImp2.setStatusTip('Open impedance form2')
+        openImp2 = QAction(QIcon('exit.png'), '单臂阻抗控制', self)
+        openImp2.setStatusTip('单臂阻抗控制')
         openImp2.triggered.connect(self.gotoImp2)
         impedanceMenu.addAction(openImp2)
 
         #阻抗控制菜单栏:等效刚度评估
-        openImp3 = QAction(QIcon('exit.png'), 'Equivalent stiffness evaluation', self)
-        openImp3.setStatusTip('Open impedance form3')
+        openImp3 = QAction(QIcon('exit.png'), '刚度评估控制', self)
+        openImp3.setStatusTip('刚度评估控制')
         openImp3.triggered.connect(self.gotoImp3)
         impedanceMenu.addAction(openImp3)
+
+        # 阻抗控制菜单栏:笛卡尔空间阻抗控制
+        openImp4 = QAction(QIcon('exit.png'), '笛卡尔控制阻抗控制', self)
+        openImp4.setStatusTip('笛卡尔空间阻抗控制')
+        openImp4.triggered.connect(self.gotoImp4)
+        impedanceMenu.addAction(openImp4)
 
         # ----------------------示教菜单栏------------------------#
         #示教菜单栏:
@@ -224,21 +250,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         #----------------------工艺菜单栏------------------------#
         # 运行给定数据
-        openTechn1 = QAction(QIcon('exit.png'), 'Open polish', self)
-        openTechn1.setStatusTip('Open technology polish form')
+        openTechn1 = QAction(QIcon('exit.png'), '打磨工艺', self)
+        openTechn1.setStatusTip('打磨工艺')
         openTechn1.triggered.connect(self.gotoTechnology)
         demoMenu.addAction(openTechn1)
 
         #运行给定数据
-        openData = QAction(QIcon('exit.png'), 'Open run data', self)
-        openData.setStatusTip('Open run data form')
+        openData = QAction(QIcon('exit.png'), '数据控制', self)
+        openData.setStatusTip('数据控制')
         openData.triggered.connect(self.gotoData)
         demoMenu.addAction(openData)
 
         # ----------------------测试菜单栏------------------------#
         #测试菜单栏
-        openTest1 = QAction(QIcon('exit.png'), 'Open fitt test1', self)
-        openTest1.setStatusTip('Open run test form1')
+        openTest1 = QAction(QIcon('exit.png'), '滤波测试', self)
+        openTest1.setStatusTip('运行滤波函数')
         openTest1.triggered.connect(self.gotoTest1)
         testMenu.addAction(openTest1)
 
@@ -503,6 +529,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.sub_imp3 = ImpWindow3()
         self.sub_imp3.show()
 
+    def gotoImp4(self):
+        self.hide()
+        self.sub_imp4 = ImpWindow4()
+        self.sub_imp4.show()
+
     def gotoData(self):
         self.hide()
         self.sub_data = RunDataWindow()
@@ -547,6 +578,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.hide()
         self.armct3 = ArmctWindow3()
         self.armct3.show()
+
+    def gotoArmctr1(self):
+        self.hide()
+        self.armctr1 = ArmctrWindow1()
+        self.armctr1.show()
 
     def gotoTechnology(self):
         self.hide()

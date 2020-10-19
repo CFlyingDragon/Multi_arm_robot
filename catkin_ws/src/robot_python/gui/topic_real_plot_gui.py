@@ -318,16 +318,6 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
         # 仅记录1000个数据点
         del self.state_f_list[0]
 
-        f_array = np.array(self.state_fitt_list[-30:])
-        print "f_array:", f_array
-        f_fitt = signal.filtfilt(self.b, self.a, f_array[:, 2])
-        print "f_fitt:", f_fitt
-        F_fitt = f
-        F_fitt[2] = f_fitt[-1]
-
-        self.state_fitt_list.append(F_fitt)
-        del self.state_fitt_list[0]
-
     ##末端力订阅线程
     def thread_spin(self):
         rospy.spin()
@@ -340,7 +330,7 @@ class PlotWindow(QMainWindow, Ui_PlotMainWindow):
         plot_t = np.array(self.state_t_list)
         plot_qq = np.array(self.state_qq_list)
         plot_qv = np.array(self.state_qv_list)
-        plot_f = np.array(self.state_fitt_list)
+        plot_f = np.array(self.state_f_list)
 
         # 绘制关节图
         if (self.q1_flag):

@@ -1428,6 +1428,7 @@ class GeneralKinematic(object):
 		Te = np.eye(4)
 		Te[0:3, 0:3] = self.euler_zyx2rot(Xe[3:])
 		Te[0:3, 3] = Xe[:3]
+		print "Te:", Te
 		qr = self.iterate_ikine(q_guess, Te)
 		flag = bf.exceed_joint_limit(qr ,self.q_min, self.q_max)
 		if(flag):

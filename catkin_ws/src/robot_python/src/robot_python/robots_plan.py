@@ -275,7 +275,7 @@ def robots_polish_object_plan():
 
     return [qq1, qq2, qq3, fd3]
 
-#=================两个UR5机械臂搬运木箱规划=================#
+#=================两个自制机械臂搬运木箱规划=================#
 def armct_move_object_plan():
     Xb = rp.ball_X
     Xe = Xb + np.array([0.0, 0.0, 0.100, 0, 0, 0])
@@ -355,6 +355,201 @@ def armct_move_object_plan():
 
     return [qq1, qq2]
 
+#=================三个自制机械臂搬运木箱规划=================#
+def armctr_move_object_plan():
+    ## 建立多臂规划类
+    robots1 = Robots.robotsMoveObject()
+    robots2 = Robots.robotsMoveObject()
+    robots3 = Robots.robotsMoveObject()
+
+    #机械臂关节角度
+    n1 = 6
+    n2 = 7
+    n3 = 7
+
+    # 获取DH参数
+    robots1.get_robot_paramter(rp.DH0_ur5, rp.q_min_ur5, rp.q_max_ur5)
+    robots2.get_robot_paramter(rp.DHfx_armt, rp.q_min_armt, rp.q_max_armt)
+    robots3.get_robot_paramter(rp.DHfx_armc, rp.q_min_armc, rp.q_max_armc)
+
+    # 获取基座到世界坐标系参数
+    # Tb1 = rp.robotsr_armr_base_T
+    # Tb2 = rp.robotsr_armt_base_T
+    # Tb3 = rp.robotsr_armc_base_T
+    Tb1 = np.array([[-1, 0, 0, 0.6], [0, -1, 0, 0],[0, 0, 1, 0], [0, 0, 0, 1.0]])
+    Tb2 = np.array([[1, 0, 0, -0.6], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1.0]])
+    Tb3 = np.array([[0, -1, 0, 0.6], [-1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1.0]])
+
+    robots1.get_robot_base_to_world(Tb1)
+    robots2.get_robot_base_to_world(Tb2)
+    robots3.get_robot_base_to_world(Tb3)
+
+    ##物体运动轨迹轨迹
+    T = 0.01
+    t = 10
+    Tw_o = np.eye(4)
+
+    xo_1 = np.array([0, -0.1, 0.1])
+    xo_2 = xo_1 + np.array([0, 0, 0.1])
+    xo_3 = xo_2 + np.array([0, 0.1, 0])
+    xo_4 = xo_3 + np.array([0.1, 0, 0])
+
+    x0 = np.zeros(3)
+
+    #搬运段
+    [xo_12_array, _, _] = bf.interp5rdPoly(xo_1, x0, x0, xo_2, x0, x0, t, T)
+    [xo_23_array, _, _] = bf.interp5rdPoly(xo_2, x0, x0, xo_3, x0, x0, t, T)
+    xo_13_array = np.concatenate((xo_12_array, xo_23_array), axis=0)
+
+    num_o13 = len(xo_13_array)
+    Tw_o13 = np.zeros([num_o13, 4, 4])
+    for i in range(num_o13):
+        Tw_o[0:3, 3] = xo_13_array[i, :]
+        Tw_o13[i, :, :] = Tw_o
+
+    #协同打磨段
+    [xo_34_array, _, _] = bf.interp5rdPoly(xo_3, x0, x0, xo_4, x0, x0, t, T)
+    num_o34 = len(xo_34_array)
+    Tw_o34 = np.zeros([num_o34, 4, 4])
+    for i in range(num_o34):
+        Tw_o[0:3, 3] = xo_34_array[i, :]
+        Tw_o34[i, :, :] = Tw_o
+
+    ##获取抓取点相对于工件坐标系
+    To_t1 = np.array([[0, 0, -1, 0.1], [0, 1, 0, 0], [0, 0, -1, 0], [0, 0, 0, 1.0]])
+    To_t2 = np.array([[0, 0, -1, 0.1], [0, 1, 0, 0], [0, 0,   -1, 0], [0, 0, 0, 1.0]])
+    To_t3 = np.array([[0, 0, -1, 0.127], [0, -1, 0, 0], [-1, 0, 0, 0], [0, 0, 0, 1.0]])
+
+    xo_t3_1 = np.array([0, 0.05, 0])
+    xo_t3_2 = xo_t3_1 + np.array([0, -0.1, 0])
+
+    t = 10
+    [xo_t3_array, _, _] = bf.interp5rdPoly(xo_t3_1, x0, x0, xo_t3_2, x0, x0, t, T)
+    num_t3 = len(xo_t3_array)
+    To_t3_array = np.zeros([num_t3, 4, 4])
+    for i in range(num_t3):
+        To_t3_array[i, 0:3, 0:3] = To_t3[0:3, 0:3]
+        To_t3_array[i, 0:3, 0:3] = xo_t3_array[i, :]
+
+    #输入准备长度
+    l = 0.030
+    t_r = 5
+    [l_array, _, _] = bf.interp5rdPoly1(l, 0.0, 0.0, 0.0, 0.0, 0.0, t_r, T)
+    num_r = len(l_array)
+    To_t1_l_array = np.zeros([num_r, 4, 4])
+    To_t2_l_array = np.zeros([num_r, 4, 4])
+    To_t3_l_array = np.zeros([num_r, 4, 4])
+    for i in range(num_r):
+        To_t1_l_array[i, :, :] = To_t1
+        To_t1_l_array[i, 0, 3] = To_t1_l_array[i, 0, 3] + l_array[i]
+        To_t2_l_array[i, :, :] = To_t2
+        To_t2_l_array[i, 0, 3] = To_t2_l_array[i, 0, 3] - l_array[i]
+        To_t3_l_array[i, :, :] = To_t3_array[0, :, :]
+        To_t3_l_array[i, 2, 3] = To_t3_l_array[i, 2, 3] + l_array[i]
+
+
+    #获取关节角
+    qq1_guess = np.array([0, -45, 0, 85, 0, 50])*np.pi / 180.0
+    qq2_guess = np.array([0, -45, 0, 85, 0, 50, 0]) * np.pi / 180.0
+    qq3_guess = np.array([0, -45, 0, 85, 0, 50, 0]) * np.pi / 180.0
+
+    #获取机械臂12的关节角
+    #准备段关节角
+    qq1_1 = robots1.out_robot_joint(qq1_guess, Tw_o13[0, :, :], To_t1_l_array)
+    qq2_1 = robots2.out_robot_joint(qq2_guess, Tw_o13[0, :, :], To_t2_l_array)
+    #等待加载力
+    num_l = 200
+    qq1_2 = np.dot(np.ones([num_l, n1]), np.diag(qq1_1[-1, :]))
+    qq2_2 = np.dot(np.ones([num_l, n2]), np.diag(qq2_1[-1, :]))
+    #将物体搬运到一定高度
+    qq1_3 = robots1.out_robot_joint(qq1_2[-1, :], Tw_o13[0, :, :], To_t1_l_array)
+    qq2_3 = robots2.out_robot_joint(qq2_2[-1, :], Tw_o13[0, :, :], To_t2_l_array)
+    #等待机械臂3准备并加载力
+    num_s = num_l + num_r
+    qq1_4 = np.dot(np.ones([num_s, n1]), np.diag(qq1_3[-1, :]))
+    qq2_4 = np.dot(np.ones([num_s, n2]), np.diag(qq2_3[-1, :]))
+    #协同运动段
+    qq1_5 = robots1.out_robot_joint(qq1_4[-1, :], Tw_o34, To_t1)
+    qq2_5 = robots2.out_robot_joint(qq2_4[-1, :], Tw_o34, To_t1)
+
+    #获取机械臂3的关节角
+    #准备段关节角度
+    qq3_1 = robots3.out_robot_joint(qq3_guess, Tw_o34[0, :, :], To_t3_l_array)
+    #等待机械臂3加载力
+    num_s3 = 100
+    qq3_2 = np.dot(np.ones([num_s3, n3]), np.diag(qq3_1[-1, :]))
+    #协同运动动
+    qq3_3 = robots3.out_robot_joint(qq3_2[-1, :], Tw_o34, To_t3_array)
+
+    ##按时序拼接对应段
+    qq1_ = np.concatenate((qq1_1, qq1_2, qq1_3, qq1_4, qq1_5), axis=0)
+    qq2_ = np.concatenate((qq2_1, qq2_2, qq2_3, qq2_4, qq2_5), axis=0)
+    qq3_ = np.concatenate((qq3_1, qq3_2, qq3_3), axis=0)
+    qq1 = np.concatenate((qq1_, qq1_[::-1, :]), axis=0)
+    qq2 = np.concatenate((qq2_, qq2_[::-1, :]), axis=0)
+    qq3 = np.concatenate((qq3_, qq3_[::-1, :]), axis=0)
+
+    ##规划控制力
+    #机械臂2
+    num2 = len(qq2)
+    Fd2 = np.array([0, 0, -20, 0, 0, 0.0])
+    F0 = np.zeros(6)
+    f2_l = np.zeros([num_r, 6])
+    f2_r = bf.interp5rdPoly(F0, F0, F0, Fd2, F0, F0, t_r, T)
+    f2_3 = np.dot(np.ones([num2 - 2*num_r - 2*num_l, 6]), np.diag(Fd2))
+    ff2 = np.concatenate((f2_r, f2_l, f2_3, f2_l, f2_r), axis=0)
+
+    #机械臂3
+    num3 = len(qq3)
+    Fd3 = np.array([0, 0, -5, 0, 0, 0.0])
+    f3_l = np.zeros([num_r, 6])
+    f3_r = bf.interp5rdPoly(F0, F0, F0, Fd3, F0, F0, t_r, T)
+    f3_3 = np.dot(np.ones([num3 - 2 * num_r - 2 * num_l, 6]), np.diag(Fd3))
+    ff3 = np.concatenate((f3_r, f3_l, f3_3, f3_l, f3_r), axis=0)
+
+    #计算机械臂1被动受力
+    ff1 = ff2 + ff3
+
+    #绘制关节角
+    t12 = np.linspace(0, T * (num2 - 1), num2)
+    t3 = np.linspace(0, T * (num3 - 1), num3)
+    MyPlot.plot2_nd(t12, qq1, title="qq1", lable="q_")
+    MyPlot.plot2_nd(t12, qq2, title="qq2", lable="q_")
+    MyPlot.plot2_nd(t3, qq3, title="qq3", lable="q_")
+
+    MyPlot.plot2_nd(t12, ff1, title="F1", lable="F")
+    MyPlot.plot2_nd(t12, ff2, title="F2", lable="F")
+    MyPlot.plot2_nd(t3, ff3, title="F3", lable="F")
+
+    #写入位置
+    parent_path = os.path.join(os.getcwd(), '../..')
+    parent_path = os.path.abspath(parent_path)
+    file_pos1 = "data/robots/armctr/armr_position.txt"
+    path_pos1 = os.path.join(parent_path, file_pos1)
+    FileOpen.write(qq1, path_pos1)
+
+    file_pos2 = "data/robots/armctr/armt_position.txt"
+    path_pos2 = os.path.join(parent_path, file_pos2)
+    FileOpen.write(qq2, path_pos2)
+
+    file_pos3 = "data/robots/armctr/armc_position.txt"
+    path_pos3 = os.path.join(parent_path, file_pos3)
+    FileOpen.write(qq3, path_pos3)
+
+    #写入写入力
+    file_f1 = "data/robots/armctr/armr_force.txt"
+    path_f1 = os.path.join(parent_path, file_f1)
+    FileOpen.write(ff1, path_f1)
+
+    file_f2 = "data/robots/armctr/armt_force.txt"
+    path_f2 = os.path.join(parent_path, file_f2)
+    FileOpen.write(ff2, path_f2)
+
+    file_f3 = "data/robots/armctr/armc_force.txt"
+    path_f3 = os.path.join(parent_path, file_f3)
+    FileOpen.write(ff3, path_f3)
+
+    return 1
 
 def main():
     # 求取规划轨迹
@@ -364,7 +559,10 @@ def main():
     #ur5s_move_object_plan()
 
     # 搬运物体规划:加入手抓
-    armct_move_object_plan()
+    #armct_move_object_plan()
+
+    #三臂规划
+    armctr_move_object_plan()
 
     print "finish!"
 

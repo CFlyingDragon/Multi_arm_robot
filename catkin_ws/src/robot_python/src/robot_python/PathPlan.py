@@ -550,6 +550,33 @@ def multipoint_plan_position_w(qr_init, X0_e, T, DH_0,q_max,q_min,kk=10):
 
 #================新版规划算法,采用类封装算法,实现统一接口==============#
 #直线规划算法
+class LinePlanCartesian(object):
+	# 构造函数
+	def __init__(self):
+		# 周期
+		self.T = 0.01
+		self.t = 30
+		self.pos_flag = False
+
+	def get_period(self, T):
+		self.T = np.copy(T)
+
+	def get_plan_time(self, t):
+		self.t = t
+
+	def get_begin_end_point(self, X1, X2):
+		self.X1 = np.copy(X1)
+		self.X2 = np.copy(X2)
+
+	def lineEnd_plan(self):
+		X0 = np.zeros(6)
+		#计算末端位姿点
+		[XX, Xv, Xa] = bf.interp5rdPoly(self.X1, X0, X0,
+						self.X2, X0, X0, self.t,self.T)
+
+		return [XX, Xv, Xa]
+
+#直线规划算法
 class LinePlan(object):
 	# 构造函数
 	def __init__(self):
@@ -588,14 +615,16 @@ class LinePlan(object):
 		self.pos_flag = True
 
 	def lineEnd_plan(self):
-		#计算规划点数
-		self.nodeNum = int(self.t/self.T + 1)
-
+		X0 = np.zeros(6)
 		#计算末端位姿点
-		self.X0_e = np.zeros([self.nodeNum, 6])
-		for i in range(self.nodeNum):
-			self.X0_e[i,:] = self.X1 + (self.X2 - self.X1) * \
-				np.sin((pi) * (i / (1.0 * (self.nodeNum - 1))))
+		[self.X0_e, self.Xv, self.Xa] = bf.interp5rdPoly(self.X1, X0, X0,
+						self.X2, X0, X0, self.t,self.T)
+		self.nodeNum = len(self.X0_e)
+
+	def out_zyx(self):
+		# 末端规划
+		self.lineEnd_plan()
+		return [self.X0_e, self.Xv, self.Xa]
 
 	def out_joint(self):
 		#末端规划

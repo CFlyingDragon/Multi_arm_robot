@@ -1056,6 +1056,141 @@ class RobotsPolishObject(object):
         fd[self.r_num:, :] = fd1
         return fd
 
+# ===============多机器人经典规划===================#
+class robotsMoveObject(object):
+    def __init__(self):
+        self.T = 0.01
+
+    def get_robot_paramter(self, DH_0, qq_min, qq_max):
+        self.n = len(qq_min)
+        print "self.n:",self.n
+        self.kin = kin.GeneralKinematic(DH_0, qq_min, qq_max)
+
+    def get_robot_base_to_world(self, Tw_b):
+        self.Tw_b = np.copy(Tw_b)
+
+        #求逆
+        self.Tb_w = nla.inv(self.Tw_b)
+
+    def get_robot_base_to_world_zyx(self, Xw_b):
+        self.Tw_b = np.eye(4)
+        # 转换为齐次矩阵
+        self.Tw_b[0:3, 3] = Xw_b[0:3]
+        self.Tw_b[0:3, 0:3] = bf.euler_zyx2rot(Xw_b[3:6])
+        self.Tb_w = nla.inv(self.Tw_b)
+
+    def out_robot_pos(self, To_array, To_t_array):
+        shape_o = To_array.ndim
+        shape_t = To_t_array.ndim
+        if(shape_o==2 and shape_t==2):
+            Tb_t_array = np.dot(np.dot(self.Tb_w, To_array), To_t_array)
+
+        elif(shape_o==3 and shape_t==2):
+            num = len(To_array)
+            Tb_t_array = np.zeros([num, 4, 4])
+            # 坐标变换求取工具坐标系在基座下的表示
+            for i in range(num):
+                Tb_t_array[i, :, :] = np.dot(np.dot(self.Tb_w, To_array[i, :, :]), To_t_array)
+        elif(shape_o == 2 and shape_t == 3):
+            num = len(To_t_array)
+            Tb_t_array = np.zeros([num, 4, 4])
+            # 坐标变换求取工具坐标系在基座下的表示
+            for i in range(num):
+                Tb_t_array[i, :, :] = np.dot(np.dot(self.Tb_w, To_array), To_t_array[i, :, :])
+
+        elif (shape_o == 3 and shape_t == 3):
+            num = len(To_array)
+            Tb_t_array = np.zeros([num, 4, 4])
+            # 坐标变换求取工具坐标系在基座下的表示
+            for i in range(num):
+                Tb_t_array[i, :, :] = np.dot(np.dot(self.Tb_w, To_array[i, :, :]),
+                                             To_t_array[i, :, :])
+        else:
+            print "输入参数不对！"
+            return -1
+        return Tb_t_array
+
+    def out_robot_pos_zyx(self, Xo_array, Xo_t_array):
+        shape_o = Xo_array.ndim()
+        shape_t = Xo_t_array.ndim()
+        To = np.eye(4)
+        To_t = np.eye(4)
+        if (shape_o == 2 and shape_t == 2):
+            To[0:3, 0:3] = bf.euler_zyx2rot(Xo_array[3:6])
+            To[0:3, 3] = Xo_array[0:3]
+            To_t[0:3, 0:3] = bf.euler_zyx2rot(Xo_t_array[3:6])
+            To_t[0:3, 3] = Xo_t_array[0:3]
+            Tb_t_array = np.dot(np.dot(self.Tb_w, To), To_t)
+
+        elif (shape_o == 3 and shape_t == 2):
+            num = len(Xo_array)
+            Tb_t_array = np.zeros([num, 4, 4])
+            # 坐标变换求取工具坐标系在基座下的表示
+            To_t[0:3, 0:3] = bf.euler_zyx2rot(Xo_t_array[3:6])
+            To_t[0:3, 3] = Xo_t_array[0:3]
+            for i in range(num):
+                To[0:3, 0:3] = bf.euler_zyx2rot(Xo_array[i, 3:6])
+                To[0:3, 3] = Xo_array[i, 0:3]
+                Tb_t_array[i, :, :] = np.dot(np.dot(self.Tb_w, To), To_t)
+
+        elif (shape_o == 2 and shape_t == 3):
+            num = len(Xo_t_array)
+            Tb_t_array = np.zeros([num, 4, 4])
+            # 坐标变换求取工具坐标系在基座下的表示
+            To[0:3, 0:3] = bf.euler_zyx2rot(Xo_array[3:6])
+            To[0:3, 3] = Xo_array[0:3]
+            for i in range(num):
+                To_t[0:3, 0:3] = bf.euler_zyx2rot(Xo_t_array[i, 3:6])
+                To_t[0:3, 3] = Xo_t_array[i, 0:3]
+                Tb_t_array[i, :, :] = np.dot(np.dot(self.Tb_w, To), To_t)
+
+        elif (shape_o == 3 and shape_t == 3):
+            num = len(Xo_array)
+            Tb_t_array = np.zeros([num, 4, 4])
+            # 坐标变换求取工具坐标系在基座下的表示
+            for i in range(num):
+                To[0:3, 0:3] = bf.euler_zyx2rot(Xo_array[i, 3:6])
+                To[0:3, 3] = Xo_array[i, 0:3]
+                To_t[0:3, 0:3] = bf.euler_zyx2rot(Xo_t_array[i, 3:6])
+                To_t[0:3, 3] = Xo_t_array[i, 0:3]
+                Tb_t_array[i, :, :] = np.dot(np.dot(self.Tb_w, To), To_t)
+
+        else:
+            print "输入参数不对！"
+            return -1
+
+        return Tb_t_array
+
+    def out_robot_joint(self, q_guess, To_array, To_t_array):
+        #转换到基坐标
+        qq_guess = np.copy(q_guess)
+        Te_array = self.out_robot_pos(To_array, To_t_array)
+        dim = Te_array.ndim
+        if(dim==2):
+            qq_array = self.kin.iterate_ikine_limit(qq_guess, Te_array)
+        else:
+            num = len(Te_array)
+            qq_array = np.zeros([num, self.n])
+            for i in range(num):
+                qq_array[i, :] = self.kin.iterate_ikine_limit(qq_guess, Te_array[i, :, :])
+                qq_guess = qq_array[i, :]
+        return qq_array
+
+    def out_robot_joint_zyx(self, q_guess, Xo_array, Xo_t_array):
+        # 转换到基坐标
+        qq_guess = np.copy(q_guess)
+        Te_array = self.out_robot_pos_zyx(Xo_array, Xo_t_array)
+        dim = Te_array.ndim
+        if (dim == 2):
+            qq_array = self.kin.iterate_ikine_limit(qq_guess, Te_array)
+        else:
+            num = len(Te_array)
+            qq_array = np.zeros([num, self.n])
+            for i in range(num):
+                qq_array[i, :] = self.kin.iterate_ikine_limit(qq_guess, Te_array[i, :, :])
+                qq_guess = qq_array[i, :]
+        return qq_array
+
 def main():
     robot1 = RobotBaseAndWorld()
     robot1.get_robot_paramter(rp.DH0_ur5, rp.q_min_ur5, rp.q_max_ur5)

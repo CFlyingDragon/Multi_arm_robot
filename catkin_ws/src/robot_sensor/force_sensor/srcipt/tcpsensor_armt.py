@@ -28,7 +28,7 @@ def tcp_connect():
         :return:
         '''
     #设置IP和端口号
-    IP_ADDR	= '192.168.0.108'
+    IP_ADDR	= '192.168.0.102'
     PORT = 4008
 
     #创建连接插口并连接
@@ -47,6 +47,16 @@ def tcp_connect():
     # s.send(set_decouple_matrix)
     # recvData = bytearray(s.recv(1000))
     # print "新设置的解耦矩阵：", recvData
+
+    # #重新设置IP重启后生效
+    get_ip = "AT+EIP=?\r\n"
+    s.send(get_ip)
+    recvData = bytearray(s.recv(1000))
+    print recvData
+    # set_ip = "AT+EIP=192.168.0.102\r\n"
+    # s.send(set_ip)
+    # recvData = bytearray(s.recv(1000))
+    # print recvData
 
     #设置采样频率
     set_update_rate = "AT+SMPR=100\r\n"
@@ -77,13 +87,12 @@ def tcp_connect():
         mx = struct.unpack('f', data[18:22])[0]
         my = struct.unpack('f', data[22:26])[0]
         mz = struct.unpack('f', data[26:30])[0]
-        F[0] = -float(fx)
+        F[0] = float(fx)
         F[1] = float(fy)
         F[2] = float(fz)
         F[3] = float(mx)
-        F[4] = float(my)
+        F[4] = -float(my)
         F[5] = float(mz)
-
 
 def pub_force_node():
     # 运行话题
@@ -107,6 +116,8 @@ def pub_force_node():
     rate = rospy.Rate(100)
     while not rospy.is_shutdown():
         F1 = F - F_offset
+        if (abs(F1[4]) < 0.05):
+            F1[4] = 0.0
         command_force = WrenchStamped()
         command_force.wrench.force.x = F1[0]
         command_force.wrench.force.y = F1[1]
