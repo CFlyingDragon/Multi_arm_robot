@@ -95,12 +95,12 @@ def read_joints(robot):
 
 
 def main():
-    robot1 = connect_robot('192.168.0.1')
+    #robot1 = connect_robot('192.168.0.1')
     robot2 = connect_robot('192.168.0.2')
-    robot3 = connect_robot('192.168.0.3')
-    stopj(robot1, 0.5)
+    #robot3 = connect_robot('192.168.0.3')
+    #stopj(robot1, 0.5)
     stopj(robot2, 0.5)
-    stopj(robot3, 0.5)
+    #stopj(robot3, 0.5)
 
 if __name__=="__main__":
     try:

@@ -277,6 +277,15 @@ def get_robot_parameter(flag_str):
         DH0 = rp.DHf_armt
         qq_max = rp.q_max_armc
         qq_min = rp.q_min_armc
+    elif(flag_str == 'armc_x'):
+        DH0 = rp.DHfx_armc
+        qq_max = rp.q_max_armc
+        qq_min = rp.q_min_armc
+    elif(flag_str == 'armt_x'):
+        print "run here"
+        DH0 = rp.DHfx_armt
+        qq_max = rp.q_max_armt
+        qq_min = rp.q_min_armt
     else:
         print '输入参数错误'
         return -1
@@ -396,3 +405,31 @@ def camera_parameters():
                  [0, 0, 1, -0.198913],
                  [0, 0, 0, 1]])
     return Te_c
+
+#========三臂实验关节空间规划函数==============#
+def qq_init_joint_plan(qqb_r, qqe_r, theta = np.pi/4):
+    T = 0.01
+    tr = 5
+    #规划中间点1
+
+    qqm1_r = np.copy(qqb_r)
+    qqm1_r[0] = qqm1_r[0] + theta
+
+    #规划中间点2
+    qqm2_r = np.copy(qqe_r)
+    qqm2_r[0] = qqm2_r[0] + theta
+    t = 10
+
+    [qq1_r, qv1_r, qa1_r] = q_joint_space_plan_time(qqb_r, qqm1_r, T, tr)
+    [qq2_r, qv2_r, qa2_r] = q_joint_space_plan_time(qqm1_r, qqm2_r, T, t)
+    [qq3_r, qv3_r, qa3_r] = q_joint_space_plan_time(qqm2_r, qqe_r, T, tr)
+
+    qq1 = np.concatenate((qq1_r, qq2_r, qq3_r), axis=0)
+    qv1 = np.concatenate((qv1_r, qv2_r, qv3_r), axis=0)
+    qa1 = np.concatenate((qa1_r, qa2_r, qa3_r), axis=0)
+    return [qq1, qv1, qa1]
+
+
+
+
+

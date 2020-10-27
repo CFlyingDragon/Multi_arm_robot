@@ -15,7 +15,7 @@ import numpy as np
 from robot_python import ImpedanceControl as imc
 
 ##定义全局变量
-F = np.zeros([3,6])
+F = np.zeros([3, 6])
 qq = np.zeros(7)
 omega_k = np.zeros(6)
 ##关节角订阅函数
@@ -32,11 +32,6 @@ def force_callback(msg):
     F[0,:] = F[1,:]
     F[1,:] = F[2,:]
     F[2,:] = base_F
-
-##末端力订阅线程
-def thread_spin():
-    rospy.spin()
-
 
 ##阻抗控制运行节点
 def node_cloop(pub):
@@ -80,7 +75,7 @@ def main():
     rospy.Subscriber('six_axis_force_1', Float64MultiArray, force_callback)
     pub = rospy.Publisher('/armc/armc_position_controller/command', Float64MultiArray, queue_size=10)
 
-    t1 = threading.Thread(target=thread_spin)   # 末端位置订阅线程
+    t1 = threading.Thread(target=rospy.spin)   # 末端位置订阅线程
 
     print "Impendance controller begain run!;"
     t1.start()

@@ -27,12 +27,13 @@ def tcp_connect():
     SN8961
     :return:
     '''
-    IP_ADDR	= '192.168.0.101'
+    IP_ADDR	= '192.168.0.103'
     PORT = 4008
 
     #创建连接插口并连接
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((IP_ADDR, PORT))
+    s.settimeout(5.0)
 
     #设置传感器参数
     #设置解耦矩阵,仅需要设置一次
@@ -51,10 +52,10 @@ def tcp_connect():
     s.send(get_ip)
     recvData = bytearray(s.recv(1000))
     print recvData
-    set_ip = "AT+EIP=192.168.0.103\r\n"
-    s.send(set_ip)
-    recvData = bytearray(s.recv(1000))
-    print recvData
+    # set_ip = "AT+EIP=192.168.0.103\r\n"
+    # s.send(set_ip)
+    # recvData = bytearray(s.recv(1000))
+    # print recvData
 
     #设置采样频率
     set_update_rate = "AT+SMPR=100\r\n"
@@ -100,7 +101,7 @@ def pub_force_node():
     #建立线程接收六维力
     t1 = threading.Thread(target=tcp_connect)
     t1.start()
-    time.sleep(2)
+    time.sleep(5)
 
     #求取偏置
     F_offset = np.zeros(6)

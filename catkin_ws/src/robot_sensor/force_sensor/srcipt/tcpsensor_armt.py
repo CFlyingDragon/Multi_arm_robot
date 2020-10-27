@@ -34,6 +34,7 @@ def tcp_connect():
     #创建连接插口并连接
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((IP_ADDR, PORT))
+    s.settimeout(5.0)
 
     #设置传感器参数
     #设置解耦矩阵,仅需要设置一次

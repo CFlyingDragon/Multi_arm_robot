@@ -23,6 +23,7 @@
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo21.coverage" NAME="pyqt_demo21 Coverage Results" MODIFIED="1587441800778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$plot_graphical.coverage" NAME="plot_graphical Coverage Results" MODIFIED="1596465190586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/opencv_learn" />
     <SUITE FILE_PATH="coverage/catkin_ws$python_gui_test.coverage" NAME="python_gui_test Coverage Results" MODIFIED="1574255039203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_gui/python_gui/script" />
+    <SUITE FILE_PATH="coverage/catkin_ws$ur5_ros_master.coverage" NAME="ur5_ros_master Coverage Results" MODIFIED="1603542559676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_driver/UR5" />
     <SUITE FILE_PATH="coverage/catkin_ws$hrl_geom_demo.coverage" NAME="hrl_geom_demo Coverage Results" MODIFIED="1576415367707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$ftsensoreth.coverage" NAME="ftsensoreth Coverage Results" MODIFIED="1591968165104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/tcp_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$geometric_trans.coverage" NAME="geometric_trans Coverage Results" MODIFIED="1596539051795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/opencv_learn" />
@@ -32,8 +33,8 @@
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo18.coverage" NAME="pyqt_demo18 Coverage Results" MODIFIED="1587440797492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$demo1__1_.coverage" NAME="demo1 (1) Coverage Results" MODIFIED="1576411560203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$rospyqt_demo1.coverage" NAME="rospyqt_demo1 Coverage Results" MODIFIED="1587639694532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_gui/python_gui/demo/ros_pyqt" />
-    <SUITE FILE_PATH="coverage/catkin_ws$topic_real_plot_gui.coverage" NAME="topic_real_plot_gui Coverage Results" MODIFIED="1602829193921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
-    <SUITE FILE_PATH="coverage/catkin_ws$tcpsensor_armr.coverage" NAME="tcpsensor_armr Coverage Results" MODIFIED="1603070988865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
+    <SUITE FILE_PATH="coverage/catkin_ws$topic_real_plot_gui.coverage" NAME="topic_real_plot_gui Coverage Results" MODIFIED="1603372069574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
+    <SUITE FILE_PATH="coverage/catkin_ws$tcpsensor_armr.coverage" NAME="tcpsensor_armr Coverage Results" MODIFIED="1603541941403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
     <SUITE FILE_PATH="coverage/catkin_ws$plot_app.coverage" NAME="plot_app Coverage Results" MODIFIED="1574905834563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/kinematics/script" />
     <SUITE FILE_PATH="coverage/catkin_ws$time.coverage" NAME="time Coverage Results" MODIFIED="1590503161916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$tf_conversions_demo.coverage" NAME="tf_conversions_demo Coverage Results" MODIFIED="1576420260309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
@@ -69,6 +70,7 @@
     <SUITE FILE_PATH="coverage/catkin_ws$robots_app.coverage" NAME="robots_app Coverage Results" MODIFIED="1587172130145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/scripts" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo3.coverage" NAME="pyqt_demo3 Coverage Results" MODIFIED="1587279615790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$demo3.coverage" NAME="demo3 Coverage Results" MODIFIED="1587348935880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
+    <SUITE FILE_PATH="coverage/catkin_ws$connect_ur.coverage" NAME="connect_ur Coverage Results" MODIFIED="1603158008551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_driver/UR5" />
     <SUITE FILE_PATH="coverage/catkin_ws$sub_topic_node.coverage" NAME="sub_topic_node Coverage Results" MODIFIED="1588757734863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo8.coverage" NAME="pyqt_demo8 Coverage Results" MODIFIED="1587369727283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$tcpsersor_arms.coverage" NAME="tcpsersor_arms Coverage Results" MODIFIED="1603072831062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
@@ -84,21 +86,21 @@
     <SUITE FILE_PATH="coverage/catkin_ws$morphology.coverage" NAME="morphology Coverage Results" MODIFIED="1596609029046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/opencv_learn" />
     <SUITE FILE_PATH="coverage/catkin_ws$visual_client.coverage" NAME="visual_client Coverage Results" MODIFIED="1600518038903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/test" />
     <SUITE FILE_PATH="coverage/catkin_ws$imp_controler_node.coverage" NAME="imp_controler_node Coverage Results" MODIFIED="1575287884846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
-    <SUITE FILE_PATH="coverage/catkin_ws$robots_plan.coverage" NAME="robots_plan Coverage Results" MODIFIED="1603069116168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
+    <SUITE FILE_PATH="coverage/catkin_ws$robots_plan.coverage" NAME="robots_plan Coverage Results" MODIFIED="1603541752675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo.coverage" NAME="pyqt_demo Coverage Results" MODIFIED="1587344819558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$kdl_demo3.coverage" NAME="kdl_demo3 Coverage Results" MODIFIED="1592813159907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$outline.coverage" NAME="outline Coverage Results" MODIFIED="1596637845671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/opencv_learn" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo9.coverage" NAME="pyqt_demo9 Coverage Results" MODIFIED="1587371380655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
-    <SUITE FILE_PATH="coverage/catkin_ws$send_cmd_node.coverage" NAME="send_cmd_node Coverage Results" MODIFIED="1591701239661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
+    <SUITE FILE_PATH="coverage/catkin_ws$send_cmd_node.coverage" NAME="send_cmd_node Coverage Results" MODIFIED="1603118291442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
     <SUITE FILE_PATH="coverage/catkin_ws$send_single_cmd_gaebo_node.coverage" NAME="send_single_cmd_gaebo_node Coverage Results" MODIFIED="1576208778917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/nodes" />
-    <SUITE FILE_PATH="coverage/catkin_ws$gui_main.coverage" NAME="gui_main Coverage Results" MODIFIED="1603092929208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
+    <SUITE FILE_PATH="coverage/catkin_ws$gui_main.coverage" NAME="gui_main Coverage Results" MODIFIED="1603542563499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/gui" />
     <SUITE FILE_PATH="coverage/catkin_ws$moveit_cartesion_demo.coverage" NAME="moveit_cartesion_demo Coverage Results" MODIFIED="1570604335715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/kinematics/moveit_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$run_controller.coverage" NAME="run_controller Coverage Results" MODIFIED="1575095725003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_driver/impedance_controler/scripts" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo15.coverage" NAME="pyqt_demo15 Coverage Results" MODIFIED="1587437191698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$key.coverage" NAME="key Coverage Results" MODIFIED="1592101270098" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqtgraph" />
     <SUITE FILE_PATH="coverage/catkin_ws$tcp_demo.coverage" NAME="tcp_demo Coverage Results" MODIFIED="1592010560052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/tcp_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$demo1.coverage" NAME="demo1 Coverage Results" MODIFIED="1587996207384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqtgraph" />
-    <SUITE FILE_PATH="coverage/catkin_ws$tcpsensor_armc.coverage" NAME="tcpsensor_armc Coverage Results" MODIFIED="1603071305850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
+    <SUITE FILE_PATH="coverage/catkin_ws$tcpsensor_armc.coverage" NAME="tcpsensor_armc Coverage Results" MODIFIED="1603541936216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
     <SUITE FILE_PATH="coverage/catkin_ws$qtqy_demo1.coverage" NAME="qtqy_demo1 Coverage Results" MODIFIED="1587347647897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$read_mouse.coverage" NAME="read_mouse Coverage Results" MODIFIED="1596501298933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/opencv_learn" />
     <SUITE FILE_PATH="coverage/catkin_ws$Kinematics.coverage" NAME="Kinematics Coverage Results" MODIFIED="1600068395681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/src/robot_python" />
@@ -123,7 +125,7 @@
     <SUITE FILE_PATH="coverage/catkin_ws$subtopic.coverage" NAME="subtopic Coverage Results" MODIFIED="1597924972145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/test" />
     <SUITE FILE_PATH="coverage/catkin_ws$kdlu_demo1.coverage" NAME="kdlu_demo1 Coverage Results" MODIFIED="1593224729261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/kdl_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$time1.coverage" NAME="time1 Coverage Results" MODIFIED="1590505112036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo" />
-    <SUITE FILE_PATH="coverage/catkin_ws$tcpsensor_armt.coverage" NAME="tcpsensor_armt Coverage Results" MODIFIED="1603070629278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
+    <SUITE FILE_PATH="coverage/catkin_ws$tcpsensor_armt.coverage" NAME="tcpsensor_armt Coverage Results" MODIFIED="1603541938851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
     <SUITE FILE_PATH="coverage/catkin_ws$demo2.coverage" NAME="demo2 Coverage Results" MODIFIED="1587277668482" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$pyqt_demo4.coverage" NAME="pyqt_demo4 Coverage Results" MODIFIED="1587363769177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_python/demo/pyqt_demo" />
     <SUITE FILE_PATH="coverage/catkin_ws$tcpsensor_armct.coverage" NAME="tcpsensor_armct Coverage Results" MODIFIED="1598881356616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
@@ -157,12 +159,104 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="robots_plan.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/robots_plan.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="465" column="24" selection-start-line="465" selection-start-column="24" selection-end-line="465" selection-end-column="24" />
+              <folding>
+                <element signature="e#96#114#0" expanded="true" />
+                <element signature="e#330#470#0" expanded="false" />
+                <element signature="e#556#2483#0" expanded="false" />
+                <element signature="e#2579#4549#0" expanded="false" />
+                <element signature="e#4578#5040#0" expanded="false" />
+                <element signature="e#5125#8383#0" expanded="false" />
+                <element signature="e#8469#10882#0" expanded="false" />
+                <element signature="e#17976#18170#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="threading.py" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/lib/python2.7/threading.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="753" column="0" selection-start-line="753" selection-start-column="0" selection-end-line="753" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="RobotParameter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="163" column="40" selection-start-line="160" selection-start-column="22" selection-end-line="163" selection-end-column="40" />
+            <state relative-caret-position="1671">
+              <caret line="163" column="38" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tcpsensor_armr.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armr.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+              <folding>
+                <element signature="e#2642#3649#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gui_function.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_function.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="780">
+              <caret line="433" column="0" selection-start-line="433" selection-start-column="0" selection-end-line="433" selection-end-column="0" />
+              <folding>
+                <element signature="e#99#108#0" expanded="true" />
+                <element signature="e#664#2041#0" expanded="false" />
+                <element signature="e#2094#2863#0" expanded="false" />
+                <element signature="e#2936#4818#0" expanded="false" />
+                <element signature="e#4958#5291#0" expanded="false" />
+                <element signature="e#8073#8642#0" expanded="false" />
+                <element signature="e#8680#9020#0" expanded="false" />
+                <element signature="e#9075#9291#0" expanded="false" />
+                <element signature="e#9391#9710#0" expanded="false" />
+                <element signature="e#9739#10058#0" expanded="false" />
+                <element signature="e#10088#10407#0" expanded="false" />
+                <element signature="e#10440#10876#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImpedanceControl.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="217">
+              <caret line="520" column="60" selection-start-line="520" selection-start-column="60" selection-end-line="520" selection-end-column="60" />
+              <folding>
+                <element signature="e#463#3160#0" expanded="false" />
+                <element signature="e#3228#6426#0" expanded="false" />
+                <element signature="e#3375#3631#0" expanded="false" />
+                <element signature="e#3699#3718#0" expanded="false" />
+                <element signature="e#3790#3897#0" expanded="false" />
+                <element signature="e#3962#4231#0" expanded="false" />
+                <element signature="e#4278#4305#0" expanded="false" />
+                <element signature="e#6492#10193#0" expanded="false" />
+                <element signature="e#10691#10710#0" expanded="false" />
+                <element signature="e#10781#10931#0" expanded="false" />
+                <element signature="e#12048#12703#0" expanded="false" />
+                <element signature="e#12786#12875#1" expanded="false" />
+                <element signature="e#14332#18011#0" expanded="false" />
+                <element signature="e#18098#19685#0" expanded="false" />
+                <element signature="e#19769#21844#0" expanded="false" />
+                <element signature="e#21893#26478#0" expanded="false" />
+                <element signature="e#26534#31175#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -170,97 +264,68 @@
       <file leaf-file-name="gui_main_sub2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main_sub2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="4401" column="27" selection-start-line="4401" selection-start-column="27" selection-end-line="4401" selection-end-column="27" />
+            <state relative-caret-position="483">
+              <caret line="4862" column="0" selection-start-line="4862" selection-start-column="0" selection-end-line="4862" selection-end-column="0" />
               <folding>
                 <element signature="e#110#132#0" expanded="true" />
-                <element signature="e#1166#19407#0" expanded="false" />
-                <element signature="e#19511#36420#0" expanded="false" />
-                <element signature="e#36513#55727#0" expanded="false" />
-                <element signature="e#55834#73114#0" expanded="false" />
-                <element signature="e#73222#90672#0" expanded="false" />
-                <element signature="e#90782#112366#0" expanded="false" />
-                <element signature="e#112473#135525#0" expanded="false" />
-                <element signature="e#135632#154539#0" expanded="false" />
-                <element signature="e#154727#155824#0" expanded="false" />
-                <element signature="e#158221#158690#0" expanded="false" />
-                <element signature="e#158743#161462#0" expanded="false" />
-                <element signature="e#161521#161968#0" expanded="false" />
-                <element signature="e#162012#162521#0" expanded="false" />
-                <element signature="e#162565#163074#0" expanded="false" />
-                <element signature="e#163117#163519#0" expanded="false" />
-                <element signature="e#163562#163964#0" expanded="false" />
-                <element signature="e#164007#164409#0" expanded="false" />
-                <element signature="e#164449#165753#0" expanded="false" />
-                <element signature="e#165803#166091#0" expanded="false" />
-                <element signature="e#166141#167015#0" expanded="false" />
-                <element signature="e#167061#168088#0" expanded="false" />
-                <element signature="e#168129#170124#0" expanded="false" />
-                <element signature="e#170158#170393#0" expanded="false" />
-                <element signature="e#170426#172151#0" expanded="false" />
-                <element signature="e#170741#171159#0" expanded="false" />
-                <element signature="e#171219#171637#0" expanded="false" />
-                <element signature="e#171697#172115#0" expanded="false" />
-                <element signature="e#172213#172378#0" expanded="false" />
-                <element signature="e#172424#172544#0" expanded="false" />
-                <element signature="e#172590#172710#0" expanded="false" />
-                <element signature="e#172772#173020#0" expanded="false" />
-                <element signature="e#173066#173314#0" expanded="false" />
-                <element signature="e#173360#173608#0" expanded="false" />
-                <element signature="e#173930#174951#0" expanded="false" />
-                <element signature="e#174991#179092#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gui_main_sub1.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main_sub1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="1605" column="43" selection-start-line="1605" selection-start-column="43" selection-end-line="1605" selection-end-column="43" />
-              <folding>
-                <element signature="e#837#19091#0" expanded="false" />
-                <element signature="e#19189#36426#0" expanded="false" />
-                <element signature="e#19391#19963#0" expanded="false" />
-                <element signature="e#19995#21891#0" expanded="false" />
-                <element signature="e#22005#23101#0" expanded="false" />
-                <element signature="e#23145#23661#0" expanded="false" />
-                <element signature="e#23704#24138#0" expanded="false" />
-                <element signature="e#24189#24637#0" expanded="false" />
-                <element signature="e#24692#26450#0" expanded="false" />
-                <element signature="e#26487#27342#0" expanded="false" />
-                <element signature="e#27379#27720#0" expanded="false" />
-                <element signature="e#27754#28126#0" expanded="false" />
-                <element signature="e#28178#28336#0" expanded="false" />
-                <element signature="e#28387#28966#0" expanded="false" />
-                <element signature="e#29027#29436#0" expanded="false" />
-                <element signature="e#30238#30423#0" expanded="false" />
-                <element signature="e#30458#31395#0" expanded="false" />
-                <element signature="e#36524#55740#0" expanded="false" />
-                <element signature="e#55841#73597#0" expanded="false" />
-                <element signature="e#58661#59757#0" expanded="false" />
-                <element signature="e#59801#60317#0" expanded="false" />
-                <element signature="e#60359#60806#0" expanded="false" />
-                <element signature="e#60849#61283#0" expanded="false" />
-                <element signature="e#61334#61782#0" expanded="false" />
-                <element signature="e#61837#63596#0" expanded="false" />
-                <element signature="e#63637#64302#0" expanded="false" />
-                <element signature="e#64338#64679#0" expanded="false" />
-                <element signature="e#64713#65052#0" expanded="false" />
-                <element signature="e#65104#65262#0" expanded="false" />
-                <element signature="e#65313#65892#0" expanded="false" />
-                <element signature="e#65953#66398#0" expanded="false" />
-                <element signature="e#66459#66871#0" expanded="false" />
-                <element signature="e#66922#66934#0" expanded="false" />
-                <element signature="e#66971#67110#0" expanded="false" />
-                <element signature="e#67140#67161#0" expanded="false" />
-                <element signature="e#67200#67409#0" expanded="false" />
-                <element signature="e#67444#68381#0" expanded="false" />
-                <element signature="e#68414#69051#0" expanded="false" />
-                <element signature="e#69083#69229#0" expanded="false" />
-                <element signature="e#69262#69815#0" expanded="false" />
-                <element signature="e#69855#73480#0" expanded="false" />
+                <element signature="e#1207#19448#0" expanded="false" />
+                <element signature="e#19552#36461#0" expanded="false" />
+                <element signature="e#36554#55768#0" expanded="false" />
+                <element signature="e#55875#73155#0" expanded="false" />
+                <element signature="e#73263#90713#0" expanded="false" />
+                <element signature="e#90823#112407#0" expanded="false" />
+                <element signature="e#112514#135566#0" expanded="false" />
+                <element signature="e#135673#154580#0" expanded="false" />
+                <element signature="e#154768#155894#0" expanded="false" />
+                <element signature="e#155926#157631#0" expanded="false" />
+                <element signature="e#157745#158240#0" expanded="false" />
+                <element signature="e#158291#158760#0" expanded="false" />
+                <element signature="e#158813#161532#0" expanded="false" />
+                <element signature="e#161591#162038#0" expanded="false" />
+                <element signature="e#162082#162591#0" expanded="false" />
+                <element signature="e#162635#163144#0" expanded="false" />
+                <element signature="e#163187#163589#0" expanded="false" />
+                <element signature="e#163632#164034#0" expanded="false" />
+                <element signature="e#164077#164479#0" expanded="false" />
+                <element signature="e#164519#165823#0" expanded="false" />
+                <element signature="e#165873#166161#0" expanded="false" />
+                <element signature="e#167238#168337#0" expanded="false" />
+                <element signature="e#168750#169174#0" expanded="false" />
+                <element signature="e#169718#170207#0" expanded="false" />
+                <element signature="e#170277#170512#0" expanded="false" />
+                <element signature="e#170545#172321#0" expanded="false" />
+                <element signature="e#170860#171340#0" expanded="false" />
+                <element signature="e#172383#172651#0" expanded="false" />
+                <element signature="e#172697#172817#0" expanded="false" />
+                <element signature="e#172863#172983#0" expanded="false" />
+                <element signature="e#173045#173293#0" expanded="false" />
+                <element signature="e#173339#173587#0" expanded="false" />
+                <element signature="e#173633#173881#0" expanded="false" />
+                <element signature="e#174203#175224#0" expanded="false" />
+                <element signature="e#179672#180046#0" expanded="false" />
+                <element signature="e#180723#203374#0" expanded="false" />
+                <element signature="e#180795#181892#0" expanded="false" />
+                <element signature="e#181924#183511#0" expanded="false" />
+                <element signature="e#183625#184120#0" expanded="false" />
+                <element signature="e#184171#184640#0" expanded="false" />
+                <element signature="e#184693#187412#0" expanded="false" />
+                <element signature="e#187471#187918#0" expanded="false" />
+                <element signature="e#187962#188471#0" expanded="false" />
+                <element signature="e#189067#189469#0" expanded="false" />
+                <element signature="e#189512#189914#0" expanded="false" />
+                <element signature="e#189957#190359#0" expanded="false" />
+                <element signature="e#191753#192041#0" expanded="false" />
+                <element signature="e#192091#193248#0" expanded="false" />
+                <element signature="e#193294#194321#0" expanded="false" />
+                <element signature="e#196086#197886#0" expanded="false" />
+                <element signature="e#196954#197372#0" expanded="false" />
+                <element signature="e#197432#197850#0" expanded="false" />
+                <element signature="e#198261#198381#0" expanded="false" />
+                <element signature="e#198427#198547#0" expanded="false" />
+                <element signature="e#198609#198857#0" expanded="false" />
+                <element signature="e#198903#199151#0" expanded="false" />
+                <element signature="e#199197#199445#0" expanded="false" />
+                <element signature="e#200828#203212#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -269,37 +334,40 @@
       <file leaf-file-name="gui_main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2565">
-              <caret line="190" column="14" selection-start-line="190" selection-start-column="14" selection-end-line="190" selection-end-column="14" />
+            <state relative-caret-position="288">
+              <caret line="4797" column="42" selection-start-line="4797" selection-start-column="42" selection-end-line="4797" selection-end-column="42" />
               <folding>
-                <element signature="e#10074#10386#0" expanded="false" />
-                <element signature="e#10492#11562#0" expanded="false" />
-                <element signature="e#11632#12565#0" expanded="false" />
-                <element signature="e#12616#13421#0" expanded="false" />
-                <element signature="e#13468#14147#0" expanded="false" />
-                <element signature="e#21035#34895#0" expanded="false" />
-                <element signature="e#34996#63703#0" expanded="false" />
-                <element signature="e#101761#152693#0" expanded="false" />
-                <element signature="e#135345#135654#0" expanded="false" />
-                <element signature="e#135689#135998#0" expanded="false" />
-                <element signature="e#136079#137586#0" expanded="false" />
-                <element signature="e#137622#140492#0" expanded="false" />
-                <element signature="e#140534#141953#0" expanded="false" />
-                <element signature="e#152787#165685#0" expanded="false" />
-                <element signature="e#165782#178410#0" expanded="false" />
-                <element signature="e#178506#188027#0" expanded="false" />
-                <element signature="e#188123#198932#0" expanded="false" />
-                <element signature="e#199027#211115#0" expanded="false" />
+                <element signature="e#110#137#0" expanded="true" />
+                <element signature="e#1310#21536#0" expanded="false" />
+                <element signature="e#10458#10770#0" expanded="false" />
+                <element signature="e#10876#11946#0" expanded="false" />
+                <element signature="e#12016#12949#0" expanded="false" />
+                <element signature="e#13000#13805#0" expanded="false" />
+                <element signature="e#13852#14531#0" expanded="false" />
+                <element signature="e#21662#35522#0" expanded="false" />
+                <element signature="e#35623#64330#0" expanded="false" />
+                <element signature="e#64429#102283#0" expanded="false" />
+                <element signature="e#102388#153320#0" expanded="false" />
+                <element signature="e#135972#136281#0" expanded="false" />
+                <element signature="e#136316#136625#0" expanded="false" />
+                <element signature="e#136706#138213#0" expanded="false" />
+                <element signature="e#138249#141119#0" expanded="false" />
+                <element signature="e#141161#142580#0" expanded="false" />
+                <element signature="e#153414#166312#0" expanded="false" />
+                <element signature="e#166409#179037#0" expanded="false" />
+                <element signature="e#179133#188654#0" expanded="false" />
+                <element signature="e#188750#199559#0" expanded="false" />
+                <element signature="e#199654#211742#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="double_robot_position_control.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robot_driver/UR5/double_robot_position_control.py">
+      <file leaf-file-name="ur5_ros_master.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/robot_driver/UR5/ur5_ros_master.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-171">
-              <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
+            <state relative-caret-position="351">
+              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -317,10 +385,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/opencv_learn/plot_trajectory.py" />
-        <option value="$PROJECT_DIR$/src/opencv_learn/basic_operation.py" />
-        <option value="$PROJECT_DIR$/src/opencv_learn/geometric_trans.py" />
-        <option value="$PROJECT_DIR$/src/opencv_learn/threshold.py" />
         <option value="$PROJECT_DIR$/src/opencv_learn/image_smoothing.py" />
         <option value="$PROJECT_DIR$/src/opencv_learn/morphology.py" />
         <option value="$PROJECT_DIR$/src/opencv_learn/edge_detection.py" />
@@ -344,7 +408,6 @@
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/TeachingLearning.py" />
         <option value="$PROJECT_DIR$/src/robot_python/test/visual_client.py" />
         <option value="$PROJECT_DIR$/src/robot_python/gui/gui_main_sub.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/gui/gui_function.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/DataProcessing.py" />
         <option value="$PROJECT_DIR$/src/robot_python/test/filter/kalman_filter.py" />
         <option value="$PROJECT_DIR$/src/robot_python/test/filter/FIR_filter.py" />
@@ -355,19 +418,24 @@
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/PathPlan.py" />
         <option value="$PROJECT_DIR$/src/robot_python/gui/impedance_form4.py" />
         <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/robot_path_plan.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/gui/gui_main_sub1.py" />
-        <option value="$PROJECT_DIR$/src/robot_driver/UR5/connect_ur.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/Robots.py" />
-        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/robots_plan.py" />
-        <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armt.py" />
-        <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armr.py" />
-        <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armc.py" />
         <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsersor_arms.py" />
-        <option value="$PROJECT_DIR$/src/robot_driver/UR5/ur5_ros_master.py" />
+        <option value="$PROJECT_DIR$/src/robot_driver/UR5/connect_ur.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/nodes/send_cmd_node.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/gui/armctr_form2.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/nodes/imp_controler_node.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/Robots.py" />
         <option value="$PROJECT_DIR$/src/robot_python/gui/gui_main.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/gui/gui_main_sub3.py" />
+        <option value="$PROJECT_DIR$/src/robot_driver/UR5/ur5_ros_master.py" />
+        <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armr.py" />
+        <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armt.py" />
+        <option value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armc.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/gui/gui_main_sub1.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/gui/gui_function.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py" />
         <option value="$PROJECT_DIR$/src/robot_python/gui/gui_main_sub2.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py" />
+        <option value="$PROJECT_DIR$/src/robot_python/src/robot_python/robots_plan.py" />
       </list>
     </option>
   </component>
@@ -471,7 +539,95 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="robot_sensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robot_sensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="force_sensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robot_sensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="force_sensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="srcipt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="robot_python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="catkin_ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="robot_python" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -562,7 +718,7 @@
       <recent name="$PROJECT_DIR$/src/robot_gui/robot_gui" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.gui_main">
+  <component name="RunManager" selected="Python.robots_plan">
     <configuration default="false" name="tcpsensor_armt" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -599,6 +755,24 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
+    <configuration default="false" name="ur5_ros_master" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_driver/UR5" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="catkin_ws" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_driver/UR5/ur5_ros_master.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
     <configuration default="false" name="tcpsensor_armr" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -617,38 +791,20 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="tcpsersor_arms" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="robots_plan" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_python/src/robot_python" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="catkin_ws" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsersor_arms.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="gui_main" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/robot_python/gui" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="catkin_ws" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_python/gui/gui_main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/robot_python/src/robot_python/robots_plan.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -864,17 +1020,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.tcpsensor_armt" />
       <item index="1" class="java.lang.String" itemvalue="Python.tcpsensor_armc" />
-      <item index="2" class="java.lang.String" itemvalue="Python.tcpsensor_armr" />
-      <item index="3" class="java.lang.String" itemvalue="Python.tcpsersor_arms" />
-      <item index="4" class="java.lang.String" itemvalue="Python.gui_main" />
+      <item index="2" class="java.lang.String" itemvalue="Python.ur5_ros_master" />
+      <item index="3" class="java.lang.String" itemvalue="Python.tcpsensor_armr" />
+      <item index="4" class="java.lang.String" itemvalue="Python.robots_plan" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.gui_main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.tcpsersor_arms" />
-        <item index="2" class="java.lang.String" itemvalue="Python.tcpsensor_armc" />
-        <item index="3" class="java.lang.String" itemvalue="Python.tcpsensor_armr" />
-        <item index="4" class="java.lang.String" itemvalue="Python.tcpsensor_armt" />
+        <item index="0" class="java.lang.String" itemvalue="Python.ur5_ros_master" />
+        <item index="1" class="java.lang.String" itemvalue="Python.tcpsensor_armr" />
+        <item index="2" class="java.lang.String" itemvalue="Python.tcpsensor_armt" />
+        <item index="3" class="java.lang.String" itemvalue="Python.tcpsensor_armc" />
+        <item index="4" class="java.lang.String" itemvalue="Python.robots_plan" />
       </list>
     </recent_temporary>
   </component>
@@ -907,13 +1063,13 @@
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23591746" sideWeight="0.748307" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25543782" sideWeight="0.748307" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32655826" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33877996" sideWeight="0.5105054" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959244" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905746" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278867" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3529412" sideWeight="0.4894946" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3137255" sideWeight="0.4894946" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24904798" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278867" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25634968" sideWeight="0.251693" order="2" side_tool="true" content_ui="tabs" />
@@ -960,74 +1116,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="101" />
+      <option name="time" value="107" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main_sub.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/main_windon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/teaching_form1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/armc_form4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="390" column="39" selection-start-line="390" selection-start-column="39" selection-end-line="390" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/armct_form1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3362">
-          <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/armc_form1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6885">
-          <caret line="255" column="61" selection-start-line="255" selection-start-column="61" selection-end-line="255" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/MachineLearning.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2016.2/system/python_stubs/-1247972723/numpy/random/mtrand.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="2017" column="4" selection-start-line="2017" selection-start-column="4" selection-end-line="2017" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/DataProcessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2619">
-          <caret line="510" column="18" selection-start-line="503" selection-start-column="4" selection-end-line="510" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/numpy/matrixlib/defmatrix.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -1060,13 +1153,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="179" column="19" selection-start-line="179" selection-start-column="19" selection-end-line="179" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1112,13 +1198,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/topic_real_plot_gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2754">
-          <caret line="311" column="14" selection-start-line="311" selection-start-column="14" selection-end-line="312" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/rospy/rostime.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="942">
@@ -1147,22 +1226,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2016.2/system/python_stubs/-1247972723/_socket.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="720" column="8" selection-start-line="720" selection-start-column="8" selection-end-line="720" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/armctr_form1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/sensor_msgs/msg/_JointState.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
@@ -1170,42 +1233,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/nodes/sub_topic_node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="43" column="59" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/nodes/arms_send_cmd_node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="517" column="17" selection-start-line="517" selection-start-column="17" selection-end-line="517" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_driver/UR5/connect_ur.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding>
-            <element signature="e#38#51#0" expanded="false" />
-            <element signature="e#538#2507#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1217,120 +1248,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/Robots.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="1065" column="30" selection-start-line="1065" selection-start-column="30" selection-end-line="1065" selection-end-column="30" />
-          <folding>
-            <element signature="e#314#522#0" expanded="false" />
-            <element signature="e#554#841#0" expanded="false" />
-            <element signature="e#926#1122#0" expanded="false" />
-            <element signature="e#1204#1690#0" expanded="false" />
-            <element signature="e#1773#2161#0" expanded="false" />
-            <element signature="e#2248#7791#0" expanded="false" />
-            <element signature="e#7879#14624#0" expanded="false" />
-            <element signature="e#14719#20983#0" expanded="false" />
-            <element signature="e#21071#22155#0" expanded="false" />
-            <element signature="e#22240#23957#0" expanded="false" />
-            <element signature="e#24052#32701#0" expanded="false" />
-            <element signature="e#33058#33135#0" expanded="false" />
-            <element signature="e#33194#33368#0" expanded="false" />
-            <element signature="e#34663#36641#0" expanded="false" />
-            <element signature="e#37295#37809#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/Kinematics.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="834">
           <caret line="1365" column="0" selection-start-line="1365" selection-start-column="0" selection-end-line="1365" selection-end-column="0" />
-          <folding>
-            <element signature="e#411#968#0" expanded="false" />
-            <element signature="e#1051#1589#0" expanded="false" />
-            <element signature="e#1685#1962#0" expanded="false" />
-            <element signature="e#2017#2458#0" expanded="false" />
-            <element signature="e#2553#3064#0" expanded="false" />
-            <element signature="e#3108#3955#0" expanded="false" />
-            <element signature="e#4099#5566#0" expanded="false" />
-            <element signature="e#5684#5996#0" expanded="false" />
-            <element signature="e#6089#7753#0" expanded="false" />
-            <element signature="e#7874#8545#0" expanded="false" />
-            <element signature="e#8644#9527#0" expanded="false" />
-            <element signature="e#9699#12427#0" expanded="false" />
-            <element signature="e#12501#15230#0" expanded="false" />
-            <element signature="e#15311#16115#0" expanded="false" />
-            <element signature="e#16186#16659#0" expanded="false" />
-            <element signature="e#16747#17119#0" expanded="false" />
-            <element signature="e#17297#20705#0" expanded="false" />
-            <element signature="e#20781#24342#0" expanded="false" />
-            <element signature="e#24413#24801#0" expanded="false" />
-            <element signature="e#24890#25262#0" expanded="false" />
-            <element signature="e#25355#25703#0" expanded="false" />
-            <element signature="e#25760#26431#0" expanded="false" />
-            <element signature="e#26467#27365#0" expanded="false" />
-            <element signature="e#27401#30182#0" expanded="false" />
-            <element signature="e#30242#30411#0" expanded="false" />
-            <element signature="e#30588#30770#0" expanded="false" />
-            <element signature="e#30823#31163#0" expanded="false" />
-            <element signature="e#31214#31815#0" expanded="false" />
-            <element signature="e#31866#31974#0" expanded="false" />
-            <element signature="e#32019#32260#0" expanded="false" />
-            <element signature="e#32300#32468#0" expanded="false" />
-            <element signature="e#32940#33534#0" expanded="false" />
-            <element signature="e#35174#35227#0" expanded="false" />
-            <element signature="e#36510#37011#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/robots_plan.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="414" column="40" selection-start-line="414" selection-start-column="40" selection-end-line="415" selection-end-column="30" />
-          <folding>
-            <element signature="e#330#470#0" expanded="false" />
-            <element signature="e#556#2483#0" expanded="false" />
-            <element signature="e#2579#4549#0" expanded="false" />
-            <element signature="e#4578#5040#0" expanded="false" />
-            <element signature="e#5125#8383#0" expanded="false" />
-            <element signature="e#8469#10882#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="60" column="11" selection-start-line="60" selection-start-column="11" selection-end-line="60" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="58" column="20" selection-start-line="50" selection-start-column="4" selection-end-line="58" selection-end-column="20" />
-          <folding>
-            <element signature="e#124#142#0" expanded="false" />
-            <element signature="e#2620#3627#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1161">
-          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/threading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="753" column="0" selection-start-line="753" selection-start-column="0" selection-end-line="753" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1338,9 +1259,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3081">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1348,23 +1266,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-306">
           <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_driver/UR5/ur5_ros_master.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="65" column="31" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_driver/UR5/double_robot_position_control.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-171">
-          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1372,138 +1273,440 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1368">
           <caret line="86" column="27" selection-start-line="86" selection-start-column="27" selection-end-line="86" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2016.2/system/python_stubs/-1247972723/_socket.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="589" column="8" selection-start-line="589" selection-start-column="8" selection-end-line="589" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/nodes/arms_send_cmd_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="60" column="20" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_driver/UR5/connect_ur.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_driver/UR5/double_robot_position_control.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/nodes/sub_topic_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="43" column="59" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/nodes/send_cmd_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/nodes/imp_controler_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/armctr_form1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="250" column="0" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2016.2/system/python_stubs/-1247972723/sys.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/plot_armctr_form.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/armctr_form2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="909">
+          <caret line="353" column="70" selection-start-line="353" selection-start-column="70" selection-end-line="353" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/ros/kinetic/lib/python2.7/dist-packages/rospy/topics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="749" column="0" selection-start-line="749" selection-start-column="0" selection-end-line="749" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1299">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main_sub3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3726">
+          <caret line="2185" column="25" selection-start-line="2185" selection-start-column="25" selection-end-line="2185" selection-end-column="25" />
           <folding>
-            <element signature="e#107#125#0" expanded="true" />
+            <element signature="e#116#138#0" expanded="false" />
+            <element signature="e#967#14192#0" expanded="false" />
+            <element signature="e#14329#27801#0" expanded="false" />
+            <element signature="e#27939#46477#0" expanded="false" />
+            <element signature="e#46616#59533#0" expanded="false" />
+            <element signature="e#60073#60716#0" expanded="false" />
+            <element signature="e#60759#61820#0" expanded="false" />
+            <element signature="e#61870#62182#0" expanded="false" />
+            <element signature="e#62288#62783#0" expanded="false" />
+            <element signature="e#62843#65562#0" expanded="false" />
+            <element signature="e#65621#66068#0" expanded="false" />
+            <element signature="e#66112#66621#0" expanded="false" />
+            <element signature="e#66665#67174#0" expanded="false" />
+            <element signature="e#67217#67619#0" expanded="false" />
+            <element signature="e#67662#68064#0" expanded="false" />
+            <element signature="e#68107#68509#0" expanded="false" />
+            <element signature="e#68549#69853#0" expanded="false" />
+            <element signature="e#69900#70603#0" expanded="false" />
+            <element signature="e#70654#71399#0" expanded="false" />
+            <element signature="e#71461#71980#0" expanded="false" />
+            <element signature="e#71598#71655#0" expanded="false" />
+            <element signature="e#72042#72458#0" expanded="false" />
+            <element signature="e#72520#72811#0" expanded="false" />
+            <element signature="e#72873#73289#0" expanded="false" />
+            <element signature="e#73351#73642#0" expanded="false" />
+            <element signature="e#73704#74120#0" expanded="false" />
+            <element signature="e#74273#75017#0" expanded="false" />
+            <element signature="e#75052#75800#0" expanded="false" />
+            <element signature="e#75840#76301#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py">
+    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="163" column="40" selection-start-line="160" selection-start-column="22" selection-end-line="163" selection-end-column="40" />
+        <state relative-caret-position="189">
+          <caret line="109" column="24" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_driver/UR5/ur5_ros_master.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/Robots.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="1165" column="8" selection-start-line="1165" selection-start-column="8" selection-end-line="1165" selection-end-column="8" />
+          <folding>
+            <element signature="e#24052#32701#0" expanded="false" />
+            <element signature="e#27229#29407#0" expanded="false" />
+            <element signature="e#29459#29769#0" expanded="false" />
+            <element signature="e#37917#38936#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/topic_real_plot_gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1881">
+          <caret line="311" column="14" selection-start-line="311" selection-start-column="14" selection-end-line="312" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2565">
-          <caret line="190" column="14" selection-start-line="190" selection-start-column="14" selection-end-line="190" selection-end-column="14" />
+        <state relative-caret-position="288">
+          <caret line="4797" column="42" selection-start-line="4797" selection-start-column="42" selection-end-line="4797" selection-end-column="42" />
           <folding>
-            <element signature="e#10074#10386#0" expanded="false" />
-            <element signature="e#10492#11562#0" expanded="false" />
-            <element signature="e#11632#12565#0" expanded="false" />
-            <element signature="e#12616#13421#0" expanded="false" />
-            <element signature="e#13468#14147#0" expanded="false" />
-            <element signature="e#21035#34895#0" expanded="false" />
-            <element signature="e#34996#63703#0" expanded="false" />
-            <element signature="e#101761#152693#0" expanded="false" />
-            <element signature="e#135345#135654#0" expanded="false" />
-            <element signature="e#135689#135998#0" expanded="false" />
-            <element signature="e#136079#137586#0" expanded="false" />
-            <element signature="e#137622#140492#0" expanded="false" />
-            <element signature="e#140534#141953#0" expanded="false" />
-            <element signature="e#152787#165685#0" expanded="false" />
-            <element signature="e#165782#178410#0" expanded="false" />
-            <element signature="e#178506#188027#0" expanded="false" />
-            <element signature="e#188123#198932#0" expanded="false" />
-            <element signature="e#199027#211115#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main_sub2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="4401" column="27" selection-start-line="4401" selection-start-column="27" selection-end-line="4401" selection-end-column="27" />
-          <folding>
-            <element signature="e#110#132#0" expanded="true" />
-            <element signature="e#1166#19407#0" expanded="false" />
-            <element signature="e#19511#36420#0" expanded="false" />
-            <element signature="e#36513#55727#0" expanded="false" />
-            <element signature="e#55834#73114#0" expanded="false" />
-            <element signature="e#73222#90672#0" expanded="false" />
-            <element signature="e#90782#112366#0" expanded="false" />
-            <element signature="e#112473#135525#0" expanded="false" />
-            <element signature="e#135632#154539#0" expanded="false" />
-            <element signature="e#154727#155824#0" expanded="false" />
-            <element signature="e#158221#158690#0" expanded="false" />
-            <element signature="e#158743#161462#0" expanded="false" />
-            <element signature="e#161521#161968#0" expanded="false" />
-            <element signature="e#162012#162521#0" expanded="false" />
-            <element signature="e#162565#163074#0" expanded="false" />
-            <element signature="e#163117#163519#0" expanded="false" />
-            <element signature="e#163562#163964#0" expanded="false" />
-            <element signature="e#164007#164409#0" expanded="false" />
-            <element signature="e#164449#165753#0" expanded="false" />
-            <element signature="e#165803#166091#0" expanded="false" />
-            <element signature="e#166141#167015#0" expanded="false" />
-            <element signature="e#167061#168088#0" expanded="false" />
-            <element signature="e#168129#170124#0" expanded="false" />
-            <element signature="e#170158#170393#0" expanded="false" />
-            <element signature="e#170426#172151#0" expanded="false" />
-            <element signature="e#170741#171159#0" expanded="false" />
-            <element signature="e#171219#171637#0" expanded="false" />
-            <element signature="e#171697#172115#0" expanded="false" />
-            <element signature="e#172213#172378#0" expanded="false" />
-            <element signature="e#172424#172544#0" expanded="false" />
-            <element signature="e#172590#172710#0" expanded="false" />
-            <element signature="e#172772#173020#0" expanded="false" />
-            <element signature="e#173066#173314#0" expanded="false" />
-            <element signature="e#173360#173608#0" expanded="false" />
-            <element signature="e#173930#174951#0" expanded="false" />
-            <element signature="e#174991#179092#0" expanded="false" />
+            <element signature="e#110#137#0" expanded="true" />
+            <element signature="e#1310#21536#0" expanded="false" />
+            <element signature="e#10458#10770#0" expanded="false" />
+            <element signature="e#10876#11946#0" expanded="false" />
+            <element signature="e#12016#12949#0" expanded="false" />
+            <element signature="e#13000#13805#0" expanded="false" />
+            <element signature="e#13852#14531#0" expanded="false" />
+            <element signature="e#21662#35522#0" expanded="false" />
+            <element signature="e#35623#64330#0" expanded="false" />
+            <element signature="e#64429#102283#0" expanded="false" />
+            <element signature="e#102388#153320#0" expanded="false" />
+            <element signature="e#135972#136281#0" expanded="false" />
+            <element signature="e#136316#136625#0" expanded="false" />
+            <element signature="e#136706#138213#0" expanded="false" />
+            <element signature="e#138249#141119#0" expanded="false" />
+            <element signature="e#141161#142580#0" expanded="false" />
+            <element signature="e#153414#166312#0" expanded="false" />
+            <element signature="e#166409#179037#0" expanded="false" />
+            <element signature="e#179133#188654#0" expanded="false" />
+            <element signature="e#188750#199559#0" expanded="false" />
+            <element signature="e#199654#211742#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main_sub1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="1605" column="43" selection-start-line="1605" selection-start-column="43" selection-end-line="1605" selection-end-column="43" />
+        <state relative-caret-position="297">
+          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
           <folding>
-            <element signature="e#837#19091#0" expanded="false" />
-            <element signature="e#19189#36426#0" expanded="false" />
-            <element signature="e#19391#19963#0" expanded="false" />
-            <element signature="e#19995#21891#0" expanded="false" />
-            <element signature="e#22005#23101#0" expanded="false" />
-            <element signature="e#23145#23661#0" expanded="false" />
-            <element signature="e#23704#24138#0" expanded="false" />
-            <element signature="e#24189#24637#0" expanded="false" />
-            <element signature="e#24692#26450#0" expanded="false" />
-            <element signature="e#26487#27342#0" expanded="false" />
-            <element signature="e#27379#27720#0" expanded="false" />
-            <element signature="e#27754#28126#0" expanded="false" />
-            <element signature="e#28178#28336#0" expanded="false" />
-            <element signature="e#28387#28966#0" expanded="false" />
-            <element signature="e#29027#29436#0" expanded="false" />
-            <element signature="e#30238#30423#0" expanded="false" />
-            <element signature="e#30458#31395#0" expanded="false" />
-            <element signature="e#36524#55740#0" expanded="false" />
-            <element signature="e#55841#73597#0" expanded="false" />
-            <element signature="e#58661#59757#0" expanded="false" />
-            <element signature="e#59801#60317#0" expanded="false" />
-            <element signature="e#60359#60806#0" expanded="false" />
-            <element signature="e#60849#61283#0" expanded="false" />
-            <element signature="e#61334#61782#0" expanded="false" />
-            <element signature="e#61837#63596#0" expanded="false" />
-            <element signature="e#63637#64302#0" expanded="false" />
-            <element signature="e#64338#64679#0" expanded="false" />
-            <element signature="e#64713#65052#0" expanded="false" />
-            <element signature="e#65104#65262#0" expanded="false" />
-            <element signature="e#65313#65892#0" expanded="false" />
-            <element signature="e#65953#66398#0" expanded="false" />
-            <element signature="e#66459#66871#0" expanded="false" />
-            <element signature="e#66922#66934#0" expanded="false" />
-            <element signature="e#66971#67110#0" expanded="false" />
-            <element signature="e#67140#67161#0" expanded="false" />
-            <element signature="e#67200#67409#0" expanded="false" />
-            <element signature="e#67444#68381#0" expanded="false" />
-            <element signature="e#68414#69051#0" expanded="false" />
-            <element signature="e#69083#69229#0" expanded="false" />
-            <element signature="e#69262#69815#0" expanded="false" />
-            <element signature="e#69855#73480#0" expanded="false" />
+            <element signature="e#837#19087#0" expanded="false" />
+            <element signature="e#1847#3080#0" expanded="false" />
+            <element signature="e#3194#4290#0" expanded="false" />
+            <element signature="e#4341#5274#0" expanded="false" />
+            <element signature="e#5336#7353#0" expanded="false" />
+            <element signature="e#7414#8568#0" expanded="false" />
+            <element signature="e#8622#12513#0" expanded="false" />
+            <element signature="e#12574#12945#0" expanded="false" />
+            <element signature="e#13006#13368#0" expanded="false" />
+            <element signature="e#13697#13882#0" expanded="false" />
+            <element signature="e#13917#14608#0" expanded="false" />
+            <element signature="e#14641#15330#0" expanded="false" />
+            <element signature="e#15362#15508#0" expanded="false" />
+            <element signature="e#15541#16134#0" expanded="false" />
+            <element signature="e#19185#36422#0" expanded="false" />
+            <element signature="e#19387#19959#0" expanded="false" />
+            <element signature="e#19991#21887#0" expanded="false" />
+            <element signature="e#22001#23097#0" expanded="false" />
+            <element signature="e#23141#23657#0" expanded="false" />
+            <element signature="e#23700#24134#0" expanded="false" />
+            <element signature="e#24185#24633#0" expanded="false" />
+            <element signature="e#24688#26446#0" expanded="false" />
+            <element signature="e#26483#27338#0" expanded="false" />
+            <element signature="e#27375#27716#0" expanded="false" />
+            <element signature="e#27750#28122#0" expanded="false" />
+            <element signature="e#28174#28332#0" expanded="false" />
+            <element signature="e#28383#28962#0" expanded="false" />
+            <element signature="e#29023#29432#0" expanded="false" />
+            <element signature="e#30234#30419#0" expanded="false" />
+            <element signature="e#30454#31391#0" expanded="false" />
+            <element signature="e#36520#55736#0" expanded="false" />
+            <element signature="e#55837#73593#0" expanded="false" />
+            <element signature="e#58657#59753#0" expanded="false" />
+            <element signature="e#59797#60313#0" expanded="false" />
+            <element signature="e#60355#60802#0" expanded="false" />
+            <element signature="e#60845#61279#0" expanded="false" />
+            <element signature="e#61330#61778#0" expanded="false" />
+            <element signature="e#61833#63592#0" expanded="false" />
+            <element signature="e#63633#64298#0" expanded="false" />
+            <element signature="e#64334#64675#0" expanded="false" />
+            <element signature="e#64709#65048#0" expanded="false" />
+            <element signature="e#65100#65258#0" expanded="false" />
+            <element signature="e#65309#65888#0" expanded="false" />
+            <element signature="e#65949#66394#0" expanded="false" />
+            <element signature="e#66455#66867#0" expanded="false" />
+            <element signature="e#66918#66930#0" expanded="false" />
+            <element signature="e#66967#67106#0" expanded="false" />
+            <element signature="e#67136#67157#0" expanded="false" />
+            <element signature="e#67196#67405#0" expanded="false" />
+            <element signature="e#67440#68377#0" expanded="false" />
+            <element signature="e#68410#69047#0" expanded="false" />
+            <element signature="e#69079#69225#0" expanded="false" />
+            <element signature="e#69258#69811#0" expanded="false" />
+            <element signature="e#69851#73476#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_sensor/force_sensor/srcipt/tcpsensor_armr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+          <folding>
+            <element signature="e#2642#3649#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="433" column="0" selection-start-line="433" selection-start-column="0" selection-end-line="433" selection-end-column="0" />
+          <folding>
+            <element signature="e#99#108#0" expanded="true" />
+            <element signature="e#664#2041#0" expanded="false" />
+            <element signature="e#2094#2863#0" expanded="false" />
+            <element signature="e#2936#4818#0" expanded="false" />
+            <element signature="e#4958#5291#0" expanded="false" />
+            <element signature="e#8073#8642#0" expanded="false" />
+            <element signature="e#8680#9020#0" expanded="false" />
+            <element signature="e#9075#9291#0" expanded="false" />
+            <element signature="e#9391#9710#0" expanded="false" />
+            <element signature="e#9739#10058#0" expanded="false" />
+            <element signature="e#10088#10407#0" expanded="false" />
+            <element signature="e#10440#10876#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/ImpedanceControl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="520" column="60" selection-start-line="520" selection-start-column="60" selection-end-line="520" selection-end-column="60" />
+          <folding>
+            <element signature="e#463#3160#0" expanded="false" />
+            <element signature="e#3228#6426#0" expanded="false" />
+            <element signature="e#3375#3631#0" expanded="false" />
+            <element signature="e#3699#3718#0" expanded="false" />
+            <element signature="e#3790#3897#0" expanded="false" />
+            <element signature="e#3962#4231#0" expanded="false" />
+            <element signature="e#4278#4305#0" expanded="false" />
+            <element signature="e#6492#10193#0" expanded="false" />
+            <element signature="e#10691#10710#0" expanded="false" />
+            <element signature="e#10781#10931#0" expanded="false" />
+            <element signature="e#12048#12703#0" expanded="false" />
+            <element signature="e#12786#12875#1" expanded="false" />
+            <element signature="e#14332#18011#0" expanded="false" />
+            <element signature="e#18098#19685#0" expanded="false" />
+            <element signature="e#19769#21844#0" expanded="false" />
+            <element signature="e#21893#26478#0" expanded="false" />
+            <element signature="e#26534#31175#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/armct_form2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/gui/gui_main_sub2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="4862" column="0" selection-start-line="4862" selection-start-column="0" selection-end-line="4862" selection-end-column="0" />
+          <folding>
+            <element signature="e#110#132#0" expanded="true" />
+            <element signature="e#1207#19448#0" expanded="false" />
+            <element signature="e#19552#36461#0" expanded="false" />
+            <element signature="e#36554#55768#0" expanded="false" />
+            <element signature="e#55875#73155#0" expanded="false" />
+            <element signature="e#73263#90713#0" expanded="false" />
+            <element signature="e#90823#112407#0" expanded="false" />
+            <element signature="e#112514#135566#0" expanded="false" />
+            <element signature="e#135673#154580#0" expanded="false" />
+            <element signature="e#154768#155894#0" expanded="false" />
+            <element signature="e#155926#157631#0" expanded="false" />
+            <element signature="e#157745#158240#0" expanded="false" />
+            <element signature="e#158291#158760#0" expanded="false" />
+            <element signature="e#158813#161532#0" expanded="false" />
+            <element signature="e#161591#162038#0" expanded="false" />
+            <element signature="e#162082#162591#0" expanded="false" />
+            <element signature="e#162635#163144#0" expanded="false" />
+            <element signature="e#163187#163589#0" expanded="false" />
+            <element signature="e#163632#164034#0" expanded="false" />
+            <element signature="e#164077#164479#0" expanded="false" />
+            <element signature="e#164519#165823#0" expanded="false" />
+            <element signature="e#165873#166161#0" expanded="false" />
+            <element signature="e#167238#168337#0" expanded="false" />
+            <element signature="e#168750#169174#0" expanded="false" />
+            <element signature="e#169718#170207#0" expanded="false" />
+            <element signature="e#170277#170512#0" expanded="false" />
+            <element signature="e#170545#172321#0" expanded="false" />
+            <element signature="e#170860#171340#0" expanded="false" />
+            <element signature="e#172383#172651#0" expanded="false" />
+            <element signature="e#172697#172817#0" expanded="false" />
+            <element signature="e#172863#172983#0" expanded="false" />
+            <element signature="e#173045#173293#0" expanded="false" />
+            <element signature="e#173339#173587#0" expanded="false" />
+            <element signature="e#173633#173881#0" expanded="false" />
+            <element signature="e#174203#175224#0" expanded="false" />
+            <element signature="e#179672#180046#0" expanded="false" />
+            <element signature="e#180723#203374#0" expanded="false" />
+            <element signature="e#180795#181892#0" expanded="false" />
+            <element signature="e#181924#183511#0" expanded="false" />
+            <element signature="e#183625#184120#0" expanded="false" />
+            <element signature="e#184171#184640#0" expanded="false" />
+            <element signature="e#184693#187412#0" expanded="false" />
+            <element signature="e#187471#187918#0" expanded="false" />
+            <element signature="e#187962#188471#0" expanded="false" />
+            <element signature="e#189067#189469#0" expanded="false" />
+            <element signature="e#189512#189914#0" expanded="false" />
+            <element signature="e#189957#190359#0" expanded="false" />
+            <element signature="e#191753#192041#0" expanded="false" />
+            <element signature="e#192091#193248#0" expanded="false" />
+            <element signature="e#193294#194321#0" expanded="false" />
+            <element signature="e#196086#197886#0" expanded="false" />
+            <element signature="e#196954#197372#0" expanded="false" />
+            <element signature="e#197432#197850#0" expanded="false" />
+            <element signature="e#198261#198381#0" expanded="false" />
+            <element signature="e#198427#198547#0" expanded="false" />
+            <element signature="e#198609#198857#0" expanded="false" />
+            <element signature="e#198903#199151#0" expanded="false" />
+            <element signature="e#199197#199445#0" expanded="false" />
+            <element signature="e#200828#203212#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python2.7/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="753" column="0" selection-start-line="753" selection-start-column="0" selection-end-line="753" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/RobotParameter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1671">
+          <caret line="163" column="38" selection-start-line="163" selection-start-column="38" selection-end-line="163" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robot_python/src/robot_python/robots_plan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="465" column="24" selection-start-line="465" selection-start-column="24" selection-end-line="465" selection-end-column="24" />
+          <folding>
+            <element signature="e#96#114#0" expanded="true" />
+            <element signature="e#330#470#0" expanded="false" />
+            <element signature="e#556#2483#0" expanded="false" />
+            <element signature="e#2579#4549#0" expanded="false" />
+            <element signature="e#4578#5040#0" expanded="false" />
+            <element signature="e#5125#8383#0" expanded="false" />
+            <element signature="e#8469#10882#0" expanded="false" />
+            <element signature="e#17976#18170#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -471,7 +471,7 @@ class ImpWindow1(QMainWindow, Ui_ImpForm1):
         msg = "开始下发命令！\n"
         self.textEdit.setText(msg)
         # 创建阻抗自适应阻抗实例
-        imp_arm1 = imp.IIMPController_iter_vel()
+        imp_arm1 = imp.IIMPController_diff()
 
         # 输入参数
         imp_arm1.get_robot_parameter(self.DH0, self.q_max, self.q_min, )

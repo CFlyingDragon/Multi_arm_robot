@@ -1091,12 +1091,14 @@ class robotsMoveObject(object):
             # 坐标变换求取工具坐标系在基座下的表示
             for i in range(num):
                 Tb_t_array[i, :, :] = np.dot(np.dot(self.Tb_w, To_array[i, :, :]), To_t_array)
+
         elif(shape_o == 2 and shape_t == 3):
             num = len(To_t_array)
             Tb_t_array = np.zeros([num, 4, 4])
+            Tb_o = np.dot(self.Tb_w, To_array)
             # 坐标变换求取工具坐标系在基座下的表示
             for i in range(num):
-                Tb_t_array[i, :, :] = np.dot(np.dot(self.Tb_w, To_array), To_t_array[i, :, :])
+                Tb_t_array[i, :, :] = np.dot(Tb_o, To_t_array[i, :, :])
 
         elif (shape_o == 3 and shape_t == 3):
             num = len(To_array)
@@ -1172,6 +1174,7 @@ class robotsMoveObject(object):
             num = len(Te_array)
             qq_array = np.zeros([num, self.n])
             for i in range(num):
+                #print "末端位置：",np.around(Te_array[i, 0:3, 3], 3)
                 qq_array[i, :] = self.kin.iterate_ikine_limit(qq_guess, Te_array[i, :, :])
                 qq_guess = qq_array[i, :]
         return qq_array

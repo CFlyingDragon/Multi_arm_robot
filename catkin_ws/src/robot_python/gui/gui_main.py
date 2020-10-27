@@ -8,6 +8,7 @@
 #文件分开存储
 from gui_main_sub1 import *
 from gui_main_sub2 import *
+from gui_main_sub3 import *
 
 #系统函数
 import sys
@@ -78,6 +79,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #创建菜单
         menubar = self.menuBar()
         fileMenu = menubar.addMenu('&文件')
+        plotMenu = menubar.addMenu('&绘图')
         armcMenu = menubar.addMenu('&自制Armc')
         ursMenu = menubar.addMenu('&UR5三臂')
         handMenu = menubar.addMenu('&手抓')
@@ -104,6 +106,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         exitAction.setStatusTip('退出软件')
         exitAction.triggered.connect(qApp.quit)
         fileMenu.addAction(exitAction)
+
+        # -------------------绘图菜单-------------------#
+        # armctr绘图
+        openPlotArmctr = QAction(QIcon('exit.png'), 'Armctr绘图', self)
+        openPlotArmctr.setShortcut('Ctrl+c')
+        openPlotArmctr.setStatusTip('三臂场景绘图')
+        openPlotArmctr.triggered.connect(self.gotoPlotArmctr)
+        plotMenu.addAction(openPlotArmctr)
 
         # -------------------Armc菜单-------------------#
         #armc机械臂关节空间规划
@@ -190,12 +200,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         openArmctr1.triggered.connect(self.gotoArmctr1)
         armctrMenu.addAction(openArmctr1)
 
-        # openArmct2 = QAction(QIcon('exit.png'), 'cartesian plan form', self)
-        # openArmct2.setShortcut('Ctrl+c')
-        # openArmct2.setStatusTip('笛卡尔空间规划')
-        # openArmct2.triggered.connect(self.gotoArmct2)
-        # armctMenu.addAction(openArmct2)
-        #
+        openArmctr2 = QAction(QIcon('exit.png'), '三臂关节控制', self)
+        openArmctr2.setShortcut('Ctrl+c')
+        openArmctr2.setStatusTip('关节空间控制')
+        openArmctr2.triggered.connect(self.gotoArmctr2)
+        armctrMenu.addAction(openArmctr2)
+
         # openArmct3 = QAction(QIcon('exit.png'), 'imp plan form', self)
         # openArmct3.setShortcut('Ctrl+c')
         # openArmct3.setStatusTip('笛卡尔空间规划')
@@ -584,6 +594,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.armctr1 = ArmctrWindow1()
         self.armctr1.show()
 
+    def gotoArmctr2(self):
+        self.hide()
+        self.armctr2 = ArmctrWindow2()
+        self.armctr2.show()
+
     def gotoTechnology(self):
         self.hide()
         self.Technology1 = TechnologyWindow1()
@@ -613,6 +628,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.hide()
         self.armc4 = ArmcWindow4()
         self.armc4.show()
+
+    def gotoPlotArmctr(self):
+        self.hide()
+        self.plotArmctr = PlotArmctrWindow()
+        self.plotArmctr.show()
+
 
 #***************************armc窗口1：关节空间规划********************************#
 class ArmcWindow1(QMainWindow, Ui_ArmcForm1):

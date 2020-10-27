@@ -429,12 +429,14 @@ class IIMPController_diff(object):
 
     def get_current_force(self, F_t):
         Ef = F_t - self.ff_d
+        print "期望力误差Ef:", np.around(Ef, 3)
         self.E_f_list[3, :] = self.E_f_list[2, :]
         self.E_f_list[2, :] = self.E_f_list[1, :]
         self.E_f_list[1, :] = self.E_f_list[0, :]
         self.E_f_list[0, :] = Ef
 
     def get_expect_joint(self, qd):
+        #print "qd:", np.around(qd*180.0/np.pi, 3)
         self.expect_joint_flag = True
         Td = self.kin.fkine(qd)
         self.Td = np.copy(Td)
@@ -497,22 +499,25 @@ class IIMPController_diff(object):
         self.E_x_list[0, :] = E
 
         #计算参考位置:转换到基座标
-        print "误差修正项：", np.round(E, 6)
+        #print "误差修正项：", np.round(E, 6)
         Te = self.kin.fkine(self.qq_state)
         Re = Te[0:3, 0:3]
         base_E = np.zeros(6)
         base_E[0:3] = np.dot(Re, E[0:3])
         base_E[3:6] = np.dot(Re, E[3:6])
 
+        print "基坐标系修正量：", np.around(base_E, 6)
+
         Tr = np.eye(4)
         if(self.expect_joint_flag):
             Tr[0:3, 0:3] = self.Td[0:3, 0:3]
-            Tr[0:3, :] = self.Td[0:3, 3] - E[0:3]
+            Tr[0:3, 3] = self.Td[0:3, 3] + base_E[0:3]
         else:
-            Xr = self.xx_d - E
+            Xr = self.xx_d + base_E
             Tr[0:3, 0:3] = bf.euler_zyx2rot(Xr[3:6])
             Tr[0:3, 3] = Xr[0:3]
 
+        #print "Tr:\n", np.around(Tr, 3)
         qr = self.kin.iterate_ikine_limit(self.qq_state, Tr)
 
         return qr
