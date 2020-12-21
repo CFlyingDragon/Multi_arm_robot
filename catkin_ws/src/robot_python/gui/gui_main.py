@@ -634,7 +634,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.plotArmctr = PlotArmctrWindow()
         self.plotArmctr.show()
 
-
 #***************************armc窗口1：关节空间规划********************************#
 class ArmcWindow1(QMainWindow, Ui_ArmcForm1):
     # 建立全局变量

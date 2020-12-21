@@ -15,6 +15,10 @@ import MyPlot
 import PathPlan
 import Kinematics as kin
 import JointPlan as jp
+import matplotlib.pyplot as plt
+#解决中文显示问题
+plt.rcParams['font.sans-serif'] = ['SimHei'] # 指定默认字体
+plt.rcParams['axes.unicode_minus'] = False # 解决保存图像是负号'-'显示为方块的问题
 
 #=================直线规划=================#
 def line_plan():
@@ -301,11 +305,12 @@ def line_force_plan_armc():
     DH_0 = rp.DHfa_armc
     qq_max = rp.q_max_armc
     qq_min = rp.q_min_armc
-    linePlan.get_robot_parameter(DH_0, qq_max, qq_min)
+    kin1 = kin.GeneralKinematic(DH_0, rp.q_min_armc, rp.q_max_armc)
+    linePlan.get_robot_parameter(DH_0, qq_min, qq_max)
 
     #规划起点和终点
     Xb = np.array([0.410, 0, 0.022, 0, 3.14, 0])
-    Xe = Xb + np.array([0.17, 0, 0, 0, 0, 0])
+    Xe = Xb + np.array([0.15, 0, 0, 0, 0, 0])
     linePlan.get_begin_end_point(Xb, Xe)
 
     #获取起点关节角猜测值
@@ -331,12 +336,42 @@ def line_force_plan_armc():
         qd[i, :] = qq[0, :]
     qd[num_init:] = qq
 
+    #获得末端位姿
+    XX_c = np.zeros([num, 3])
+    for i in range(num):
+        Te = kin1.fkine(qd[i, :])
+        XX_c[i, :] = Te[0:3, 3]
+
     #生成受力曲线
     fd = -5
     Fd = np.zeros([num, 6])
     Fd[:num_init, 2] = fd*np.sin(np.pi/20*t[:num_init])
     for i in range(num_pos):
         Fd[num_init + i, 2] = fd
+    #绘制期望力
+        # 绘制数据图
+    dpi = 500
+    # 搬运臂期望位置
+    plt.figure(1)
+    plt.plot(t, 1000*XX_c[:, 0], linewidth='2', label='x', color='r', linestyle='--')
+    plt.plot(t, 1000*XX_c[:, 1], linewidth='2', label='y', color='g', linestyle='-.')
+    plt.plot(t, 1000*XX_c[:, 2], linewidth='2', label='z', color='b')
+    plt.title(u"曲面恒力跟踪期望位置")
+    plt.xlabel("t(s)")
+    plt.ylabel("X(mm)")
+    plt.ylim(-100, 800)
+    plt.legend()
+    plt.rcParams['savefig.dpi'] = dpi  # 图片像素
+
+    # 曲面直线
+    plt.figure(2)
+    plt.ylim(-6, 0)
+    plt.plot(t, Fd[:, 2], linewidth='2', label='Fz', color='b')
+    plt.title(u"曲面力恒跟踪期望力")
+    plt.xlabel("t(s)")
+    plt.ylabel("Fz(N)")
+    plt.legend()
+    plt.rcParams['savefig.dpi'] = dpi  # 图片像素
 
     # 绘制关节角
     MyPlot.plot2_nd(t, Fd, title="Fd", lable='fd')
@@ -560,10 +595,10 @@ def main():
     #直线规划
     #line_plan()
     #force_plan()
-    #line_force_plan_armc()
+    line_force_plan_armc()
     #force_plan_armc_stiff()
     #repeat_positionin_plan()
-    line_force_plan_armt_c()
+    #line_force_plan_armt_c()
     print "finish!"
 
 if __name__ == '__main__':

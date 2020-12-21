@@ -12,6 +12,10 @@ import RobotParameter as rp
 #自定义函数
 import FileOpen
 import MyPlot
+import Kinematics as kin
+import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif'] = ['SimHei'] # 指定默认字体
+plt.rcParams['axes.unicode_minus'] = False # 解决保存图像是负号'-'显示为方块的问题
 
 #=================工件轨迹规划-直线规划=================#
 def workpiece_moving_track_line(Xb, Xe, T, t):
@@ -372,6 +376,9 @@ def armctr_move_object_plan():
     robots2.get_robot_paramter(rp.DHfx_armt, rp.q_min_armt, rp.q_max_armt)
     robots3.get_robot_paramter(rp.DHfx_armc, rp.q_min_armc, rp.q_max_armc)
 
+    kin2 = kin.GeneralKinematic(rp.DHfx_armt, rp.q_min_armt, rp.q_max_armt)
+    kin3 = kin.GeneralKinematic(rp.DHfx_armc, rp.q_min_armc, rp.q_max_armc)
+
     # 获取基座到世界坐标系参数
     # Tb1 = rp.robotsr_armr_base_T
     # Tb2 = rp.robotsr_armt_base_T
@@ -456,7 +463,7 @@ def armctr_move_object_plan():
     qq2_1 = robots2.out_robot_joint(qq2_guess, Tw_o12[0, :, :], To_t2_l_array)
     print "机械臂2准备段求取成功！"
     #等待加载力
-    num_l = 801
+    num_l = 401
     qq1_2 = np.dot(np.ones([num_l, n1]), np.diag(qq1_1[-1, :]))
     qq2_2 = np.dot(np.ones([num_l, n2]), np.diag(qq2_1[-1, :]))
     #将物体搬运到一定高度
@@ -494,7 +501,7 @@ def armctr_move_object_plan():
     ##规划控制力
     #机械臂2
     num2 = len(qq2)
-    Fd2 = np.array([0, 0, -50, 0, 0, 0.0])
+    Fd2 = np.array([0, 0, -40, 0, 0, 0.0])
     F0 = np.zeros(6)
     f2_r = -np.ones([num_r, 6])*0
     t_l = (num_l-1)*T
@@ -504,30 +511,108 @@ def armctr_move_object_plan():
 
     #机械臂3
     num3 = len(qq3)
-    Fd3 = np.array([0, 0, -3, 0, 0, 0.0])
+    Fd3 = np.array([0, 0, -5, 0, 0, 0.0])
     f3_r = -0*np.ones([num_r, 6])
     [f3_l, _, _] = bf.interp5rdPoly(F0, F0, F0, Fd3, F0, F0, t_l, T)
     f3_3 = np.dot(np.ones([num3 - 2 * num_r - 2 * num_l, 6]), np.diag(Fd3))
     ff3 = np.concatenate((f3_r, f3_l, f3_3, f3_l[::-1, :], f3_r[::-1, :]), axis=0)
 
+    #存储期望力
+    f2 = ff2[:, 2]
+    f3 = np.zeros(num2)
+    f3[((num2-num3)/2):((num2+num3)/2)] = ff3[:, 2]
+    f = np.zeros([num2, 2])
+    f[:, 0] = f2
+    f[:, 1] = f3
+
+    #存储末端轨迹
+    XX_t = np.zeros([num2, 3])
+    XX_c = np.zeros([num3, 3])
+    for i in range(num2):
+        Te = kin2.fkine(qq2[i, :])
+        XX_t[i, :] = Te[0:3, 3]
+
+    for i in range(num3):
+        Te = kin3.fkine(qq3[i, :])
+        XX_c[i, :] = Te[0:3, 3]
+
+    #绘制论文图
+    t12 = np.linspace(0, T * (num2 - 1), num2)
+    t3 = np.linspace(0, T * (num3 - 1), num3)
+    # 绘制数据图
+    dpi = 500
+    #搬运臂期望位置
+    plt.figure(1)
+    plt.plot(t12, 1000*XX_t[:, 0], linewidth='2', label='x', color='r', linestyle='--')
+    plt.plot(t12, 1000*XX_t[:, 1], linewidth='2', label='y', color='g', linestyle='-.')
+    plt.plot(t12, 1000*XX_t[:, 2], linewidth='2', label='z', color='b')
+    plt.title(u"搬运机械臂Armt期望轨迹")
+    plt.xlabel("t(s)")
+    plt.ylabel("X(mm)")
+    plt.ylim(-100, 1000)
+    plt.legend()
+    plt.rcParams['savefig.dpi'] = dpi  # 图片像素
+
+    #曲面直线
+    plt.figure(2)
+    plt.plot(t3, 1000*XX_c[:, 0], linewidth='2', label='x', color='r', linestyle='--')
+    plt.plot(t3, 1000*XX_c[:, 1], linewidth='2', label='y', color='g', linestyle='-.')
+    plt.plot(t3, 1000*XX_c[:, 2], linewidth='2', label='z', color='b')
+    plt.title(u"未知曲面直线运动机械臂期望轨迹")
+    plt.xlabel("t(s)")
+    plt.ylabel("X(mm)")
+    plt.ylim(-100, 1250)
+    plt.legend()
+    plt.rcParams['savefig.dpi'] = dpi  # 图片像素
+
+    #夹持力
+    plt.figure(3)
+    plt.plot(t12, f2, linewidth='2', label='Fz', color='b')
+    plt.title(u"搬运机械臂Armt期望力")
+    plt.ylim(-45, 8)
+    plt.xlabel("t(s)")
+    plt.ylabel("Fz(N)")
+    plt.legend()
+    plt.rcParams['savefig.dpi'] = dpi  # 图片像素
+
+    #曲面力
+    plt.figure(4)
+    plt.plot(t3, ff3[:, 2], linewidth='2', label='Fz', color='b')
+    plt.ylim(-6, 1)
+    plt.title(u"未知曲面直线运动机械臂期望力")
+    plt.xlabel("t(s)")
+    plt.ylabel("Fz(N)")
+    plt.legend()
+    plt.rcParams['savefig.dpi'] = dpi  # 图片像素
+    plt.show()
+
     #计算机械臂1被动受力
     ff1 = -ff2
 
     #绘制关节角
-    t12 = np.linspace(0, T * (num2 - 1), num2)
-    t3 = np.linspace(0, T * (num3 - 1), num3)
+
     MyPlot.plot2_nd(t12, qq1, title="qq1", lable="q_")
     MyPlot.plot2_nd(t12, qq2, title="qq2", lable="q_")
     MyPlot.plot2_nd(t3, qq3, title="qq3", lable="q_")
+
+    #绘制末端位置
+    MyPlot.plot2_nd(t12, XX_t, title="XX_t", lable="X")
+    MyPlot.plot2_nd(t3, XX_c, title="XX_c", lable="X")
 
     print "对比：", len(ff1), num2, len(ff3), num3
     MyPlot.plot2_nd(t12, ff1, title="F1", lable="F")
     MyPlot.plot2_nd(t12, ff2, title="F2", lable="F")
     MyPlot.plot2_nd(t3, ff3, title="F3", lable="F")
 
+    MyPlot.plot2_nd(t12, f, title="F", lable="F")
+
     #写入位置
     parent_path = os.path.join(os.getcwd(), '../..')
     parent_path = os.path.abspath(parent_path)
+    file_force = "data/robots/armctr/expect_force.txt"
+    path_force = os.path.join(parent_path, file_force)
+    FileOpen.write(f, path_force)
+
     file_pos1 = "data/robots/armctr/armr_position.txt"
     path_pos1 = os.path.join(parent_path, file_pos1)
     FileOpen.write(qq1, path_pos1)

@@ -19,6 +19,9 @@ import Kinematics as kin
 import RobotParameter as rp
 import DataProcessing as dp
 import Filter
+#解决中文显示问题
+plt.rcParams['font.sans-serif'] = ['SimHei'] # 指定默认字体
+plt.rcParams['axes.unicode_minus'] = False # 解决保存图像是负号'-'显示为方块的问题
 
 #================创建一个适用于积分自适应的类=================#
 #基于迭代求解自适应导纳方程
@@ -95,7 +98,7 @@ class IIMPController_iter(object):
         # 求当前时刻速度
         exk_d = ex_d + ex_dd * T
         print "exk_d:", exk_d
-        exk = ex + exk_d * T - ex_dd*T*T/2.0
+        exk = ex + exk_d * T
 
         # print "积分项：",efk_i
         return [exk, exk_d, efk_i]
@@ -811,9 +814,9 @@ def test():
 
     # 输入阻抗参数
     M = np.array([0, 0, 1, 0, 0, 0])
-    B = np.array([0, 0, 600, 0, 0, 0])
+    B = np.array([0, 0, 200, 0, 0, 0])
     K = np.array([0, 0, 0, 0, 0, 0])
-    I = np.array([0, 0, 20, 0, 0, 0])
+    I = np.array([0, 0, 5, 0, 0, 0])
 
     # 控制周期
     T = 0.01
@@ -829,7 +832,7 @@ def test():
     k = 10
 
     # 环境刚度参数
-    ke = 30000
+    ke = 27000
 
     '''
     多次实验表明，需要解决两个问题
@@ -870,6 +873,8 @@ def test():
     [Fd_array[0:num_init, 2], _, _] = bf.interp5rdPoly1(0, 0, 0, Fd[2], 0, 0, t_init, T)
     Fd_array[num_init:, :] = np.dot(np.ones([num_imp, 6]), np.diag(Fd))
 
+    dpi = 1000
+    #绘制期望力
     plt.figure(1)
     plt.plot(t, Fd_array[:, 2], label='Fz', color='b')
     plt.title("Fd")
@@ -979,21 +984,21 @@ def test():
 #=============测试方程=============#
 def test_armt():
     # 创建阻抗
-    #imp = IIMPController_iter()
-    imp = IIMPController_diff_filter()
+    imp = IIMPController_iter_vel()
+    #imp = IIMPController_diff()
 
     #创建滤波器
     wc = 0.001
-    N = 30
+    N = 15
     my_filter = Filter.FIRFilter(wc=wc, N=N)
     my_filter.set_input_init(np.zeros(6))
     my_filter.set_hanning_filter()
 
     # 输入阻抗参数
-    M = np.array([0, 0, 1, 0, 0, 0])
-    B = np.array([0, 0, 2000, 0, 0, 0])
+    M = np.array([0, 0, 0.4, 0, 0, 0])
+    B = np.array([0, 0, 80, 0, 0, 0])
     K = np.array([0, 0, 0, 0, 0, 0])
-    I = np.array([0, 0, 10, 0, 0, 0])
+    I = np.array([0, 0, 0.8, 0, 0, 0])
 
     # 控制周期
     T = 0.01
@@ -1011,7 +1016,7 @@ def test_armt():
     k = 10
 
     # 环境刚度参数
-    ke = 80000
+    ke = 27000
 
     '''
     多次实验表明，需要解决两个问题
@@ -1052,20 +1057,26 @@ def test_armt():
     [Fd_array[0:num_init, 2], _, _] = bf.interp5rdPoly1(0, 0, 0, Fd[2], 0, 0, t_init, T)
     Fd_array[num_init:, :] = np.dot(np.ones([num_imp, 6]), np.diag(Fd))
 
+    #建立期望力曲线
+    dpi = 500
     plt.figure(1)
-    plt.plot(t, Fd_array[:, 2], label='Fz', color='b')
-    plt.title("Fd")
-    plt.xlabel("t/s")
-    plt.ylabel("Fz/N")
+    plt.plot(t, Fd_array[:, 2], linewidth='2', label='Fz', color='b')
+    plt.title(u"z方向期望力")
+    plt.xlabel("t(s)")
+    plt.ylabel("Fz(N)")
     plt.legend()
+    plt.rcParams['savefig.dpi'] = dpi  # 图片像素
 
+    #期望位置
     plt.figure(2)
-    plt.plot(t, 1000*Xe_array[:, 2], label='Xz', color='b')
-    plt.title("Xe")
-    plt.xlabel("t/s")
-    plt.ylabel("Xz/mm")
+    plt.plot(t, 1000*Xe_array[:, 2], linewidth='2', label='Xz', color='b')
+    plt.title(u"环境z方向位置")
+    plt.xlabel("t(s)")
+    plt.ylabel("Xz(mm)")
+    plt.ylim(-15, 15)
     plt.legend()
-    #plt.show()
+    plt.rcParams['savefig.dpi'] = dpi  # 图片像素
+
 
     # 建立运动学
     kin1 = kin.GeneralKinematic(DH, q_min, q_max)
@@ -1110,7 +1121,7 @@ def test_armt():
 
         # 反馈力
         if (Xe_array[i, 2] > Xs[2]):
-            Fs = -ke * (Xe_array[i, :] - Xs)# + np.random.randn(6)
+            Fs = -ke * (Xe_array[i, :] - Xs) + 0.1*np.random.randn(6)
             Ff = my_filter.hanning_filter(Fs)
         else:
             Fs = np.zeros(6)
@@ -1118,44 +1129,24 @@ def test_armt():
         Fs_array[i, :] = np.copy(Fs)
         Ff_array[i, :] = np.copy(Ff)
 
-    # 绘制力跟踪图
+    # 绘制力跟踪图和滤波力
     plt.figure(3)
     plt.plot(t, Fs_array[:, 2], label='Fz', color='r')
-    plt.title("Fs = Fs_d+random(1)")
-    plt.xlabel("t/s")
-    plt.ylabel("F/N")
-    plt.legend()
+    plt.plot(t, Ff_array[:, 2], label='Fz_filter', color='black')
+    plt.title(u"积分自适应导纳控制仿真力")
+    plt.xlabel("t(s)")
+    plt.ylabel("Fz(N)")
+    plt.legend(bbox_to_anchor=(1, 1))
+    plt.rcParams['savefig.dpi'] = dpi  # 图片像素
 
+    #绘制力误差
     plt.figure(4)
-    plt.plot(t, Ff_array[:, 2], label='Fz', color='r')
-    plt.title("Ff")
-    plt.xlabel("t/s")
-    plt.ylabel("F/N")
-    plt.legend()
-
-    plt.figure(5)
-    plt.plot(t, Fd_array[:, 2] - Fs_array[:, 2], label='Fz_err', color='b',
-             linestyle=':', marker='o', markerfacecolor='r', markersize=2)
-    plt.title("Fz_error")
-    plt.xlabel("t/s")
-    plt.ylabel("F/N")
-    plt.legend()
-
-    plt.figure(6)
     plt.plot(t, Fd_array[:, 2] - Ff_array[:, 2], label='Fz_err', color='b',
              linestyle=':', marker='o', markerfacecolor='r', markersize=2)
-    plt.title("Fz_error")
-    plt.xlabel("t/s")
-    plt.ylabel("F/N")
-    plt.legend()
-
-    plt.figure(7)
-    plt.plot(t, Xe_array[:, 2], label='Xz', color='b',
-             linestyle=':', marker='o', markerfacecolor='r', markersize=2)
-    plt.title("Xz")
-    plt.xlabel("t/s")
-    plt.ylabel("x/m")
-    plt.legend()
+    plt.title(u"积分自适应导纳控制仿真力误差")
+    plt.xlabel("t(s)")
+    plt.ylabel("Fz(N)")
+    plt.legend(bbox_to_anchor=(1, 1))
     plt.show()
 
 def main():
@@ -1198,7 +1189,7 @@ def main():
     k = 5
 
     # 环境刚度参数
-    ke = 30000
+    ke = 27000
 
     '''
     多次实验表明，需要解决两个问题

@@ -166,6 +166,101 @@ class FIRFilter(object):
         y = np.dot(X.T, self.h_n)
         return y
 
+class FIRFilter_sigle(object):
+    def __init__(self, wc=0.0314, N=20):
+        # 截断频率
+        self.wc = wc
+        # 输入阶数
+        self.N = N
+
+    def set_input_init(self, x0):
+        #获取变量维数
+        self.x0 = x0
+
+    def set_rectangle_filter(self):
+        # 计算矩形窗加窗后脉冲响应函数
+        self.h_r = np.zeros(self.N)
+        alpha = (self.N-1)/2.0
+        for i in range(self.N):
+            if(abs(i - alpha)<pow(10, -6)):
+                self.h_r[i] = self.wc/np.pi
+            else:
+                self.h_r[i] = np.sin(self.wc*(i - alpha))/(np.pi*(i-alpha))
+        self.h_r = self.h_r/np.sum(self.h_r)
+        # 设计输入初值
+        self.X_r = list(np.zeros(self.N))
+        for i in range(self.N):
+            self.X_r[i] = self.x0
+
+    def set_hanning_filter(self):
+        # 计算汉宁加窗后脉冲响应函数
+        self.h_n = np.zeros(self.N)
+        alpha = (self.N - 1) / 2.0
+        for i in range(self.N):
+            if (abs(i - alpha) < pow(10, -6)):
+                self.h_n[i] = 0.5*(1-np.cos(2*i*np.pi/(self.N-1)))*self.wc / np.pi
+            else:
+                self.h_n[i] = 0.5*(1-np.cos(2 * i * np.pi/(self.N-1))) * \
+                              np.sin(self.wc * (i - alpha)) / (np.pi * (i - alpha))
+
+        self.h_n = self.h_n / np.sum(self.h_n)
+        # 设计输入初值
+        self.X_n = list(np.zeros(self.N))
+        for i in range(self.N):
+            self.X_n[i] = self.x0
+
+    #矩形窗滤波器
+    def rectangle_filter(self, x):
+        #更新输入
+        self.X_r.append(x)
+        del self.X_r[0]
+
+        #计算输出
+        X = np.array(self.X_r)
+        y = np.dot(X.T, self.h_r)
+        return y
+
+    #汉宁窗滤波器
+    def hanning_filter(self, x):
+        # 更新输入
+        self.X_n.append(x)
+        del self.X_n[0]
+
+        # 计算输出
+        X = np.array(self.X_n)
+        y = np.dot(X.T, self.h_n)
+        return y
+
+    # 矩形窗滤波器
+    def rectangle_array_filter(self, x):
+        m = len(x)
+        y = np.zeros(m)
+        for i in range(m):
+            # 更新输入
+            self.X_r.append(x[i])
+            del self.X_r[0]
+
+            # 计算输出
+            X = np.array(self.X_r)
+            y[i] = np.dot(X.T, self.h_r)
+        return y
+
+    # 汉宁窗滤波器
+    def hanning_array_filter(self, x):
+        m = len(x)
+        y = np.zeros(m)
+        for i in range(m):
+            # 更新输入
+            self.X_n.append(x[i])
+            del self.X_n[0]
+
+            # 计算输出
+            X = np.array(self.X_n)
+            y[i] = np.dot(X.T, self.h_n)
+        return y
+
+
+
 def FIR_filter():
     #从上文有限冲击响应滤波器建立六维力滤波器
     wc = np.pi/10.0
